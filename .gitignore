@@ -20,6 +20,9 @@
 # production
 /build
 
+# файлы, загруженные через админку
+/public/uploads
+
 # misc
 .DS_Store
 *.pem

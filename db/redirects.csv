@@ -1,0 +1,824 @@
+from_path,to_path,status_code,type,comment
+/product/akoya-bq8583u/,/tovary/akoya/,301,product:product,Vicostone Akoya BQ8583
+/product/avalon-bq8618u/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product:landing,Vicostone BQ8618 немає в базі -> підбірка старої категорії granite-looking
+/product/avorio-bq9606u/,/tovary/avorio/,301,product:product,Vicostone Avorio BQ9606
+/product/azul-aran-bq9470u/,/tovary/azul-aran/,301,product:product,Vicostone Azul Aran BQ9470
+/product/bianco-venato-bq8440u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8440 немає в базі -> підбірка старої категорії marble-effect
+/product/blend-avoriou/,/tovary/blend-avorio/,301,product:product,Laminam blend Avorio
+/product/blend-grigiou/,/tovary/blend-grigio/,301,product:product,Laminam blend Grigio
+/product/blend-nerou/,/tovary/blend-nero/,301,product:product,Laminam blend Nero
+/product/borghini-bq8670u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8670 немає в базі -> підбірка старої категорії marble-effect
+/product/botticino-classic-bq8430u/,/tovary/botticino-classic/,301,product:product,Vicostone Botticino classic BQ8430
+/product/calacatta-bq8270u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8270 немає в базі -> підбірка старої категорії marble-effect
+/product/calce-antracite-xlu/,/tovary/calce-antracite/,301,product:product,Laminam calce Antracite
+/product/calce-antraciteu/,/tovary/calce-antracite/,301,product:product,Laminam calce Antracite
+/product/calce-avorio-xlu/,/tovary/calce-avorio/,301,product:product,Laminam calce Avorio
+/product/calce-avoriou/,/tovary/calce-avorio/,301,product:product,Laminam calce Avorio
+/product/calce-bianco-xlu/,/tovary/calce-bianco/,301,product:product,Laminam calce Bianco
+/product/calce-biancou/,/tovary/calce-bianco/,301,product:product,Laminam calce Bianco
+/product/calce-grigio-xlu/,/tovary/calce-grigio/,301,product:product,Laminam calce Grigio
+/product/calce-grigiou/,/tovary/calce-grigio/,301,product:product,Laminam calce Grigio
+/product/calce-nero-xlu/,/tovary/calce-nero/,301,product:product,Laminam calce Nero
+/product/calce-nerou/,/tovary/calce-nero/,301,product:product,Laminam calce Nero
+/product/calce-tortora-xlu/,/tovary/calce-tortora/,301,product:product,Laminam calce Tortora
+/product/calce-tortorau/,/tovary/calce-tortora/,301,product:product,Laminam calce Tortora
+/product/carrara-bq8220u/,/tovary/carrara/,301,product:product,Vicostone Carrara BQ8220
+/product/cementi-avoriou/,/kataloh/keramogranit-pid-beton/,301,product:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/product/cementi-grigio-2/,/kataloh/keramogranit-pid-beton/,301,product:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/product/cementi-nerou/,/kataloh/keramogranit-pid-beton/,301,product:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/product/cemento-bq8730u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8730 немає в базі -> підбірка старої категорії exotic
+/product/cendre-bq8805u/,/tovary/cendre/,301,product:product,Vicostone Cendre BQ8805
+/product/cinza-bq8808u/,/tovary/cinza/,301,product:product,Vicostone Cinza BQ8808
+/product/cold-spring-bq9441u/,/tovary/cold-spring/,301,product:product,Vicostone Cold Spring BQ9441
+/product/collection-avoriou/,/kataloh/laminam/?collection=collection,301,product:collection,декору Laminam collection «Avorio» немає в базі -> колекція
+/product/collection-bianco-assoluto-xlu/,/tovary/collection-bianco-assoluto/,301,product:product,Laminam collection Bianco Assoluto
+/product/collection-bianco-assolutou/,/tovary/collection-bianco-assoluto/,301,product:product,Laminam collection Bianco Assoluto
+/product/collection-fumou/,/kataloh/laminam/?collection=collection,301,product:collection,декору Laminam collection «Fumo» немає в базі -> колекція
+/product/collection-nero-assoluto-xlu/,/kataloh/laminam/?collection=collection,301,product:collection,декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/product/collection-nero-assolutou/,/kataloh/laminam/?collection=collection,301,product:collection,декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/product/collection-neveu/,/tovary/collection-neve/,301,product:product,Laminam collection Neve
+/product/collection-perlau/,/kataloh/laminam/?collection=collection,301,product:collection,декору Laminam collection «Perla» немає в базі -> колекція
+/product/cosmic-black-bq9427u/,/tovary/cosmic-black/,301,product:product,Vicostone Cosmic Black BQ9427
+/product/crystal-black-bq262u/,/tovary/crystal-black/,301,product:product,Vicostone Crystal Black BQ262
+/product/crystal-ice-bq1080u/,/tovary/crystal-ice/,301,product:product,Vicostone Crystal Ice BQ1080
+/product/crystal-ivory-bq850u/,/tovary/crystal-ivory/,301,product:product,Vicostone Crystal Ivory BQ850
+/product/dark-emparador-bq8560u/,/tovary/dark-emparador/,301,product:product,Vicostone Dark Emparador BQ8560
+/product/desert-sand-bs160-2/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BS160 немає в базі -> підбірка старої категорії classic
+/product/dolce-vita-bq8590u/,/tovary/dolce-vita/,301,product:product,Vicostone Dolce Vita BQ8590
+/product/emerald-bs170-2/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BS170 немає в базі -> підбірка старої категорії classic
+/product/empire-bq8370u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8370 немає в базі -> підбірка старої категорії marble-effect
+/product/filo-argentou/,/tovary/filo-argento/,301,product:product,Laminam filo Argento
+/product/filo-brinau/,/tovary/filo-brina/,301,product:product,Laminam filo Brina
+/product/filo-ghisau/,/tovary/filo-ghisa/,301,product:product,Laminam filo Ghisa
+/product/filo-mercuriou/,/tovary/filo-mercurio/,301,product:product,Laminam filo Mercurio
+/product/filo-orou/,/tovary/filo-oro/,301,product:product,Laminam filo Oro
+/product/filo-peceu/,/tovary/filo-pece/,301,product:product,Laminam filo Pece
+/product/fluido-solido-blu-lucidato-xlu/,/tovary/fluidosolido-blu/,301,product:product,Laminam fluidosolido Blu
+/product/fokos-piombo-xlu/,/tovary/fokos-piombo/,301,product:product,Laminam fokos Piombo
+/product/fokos-piombou/,/tovary/fokos-piombo/,301,product:product,Laminam fokos Piombo
+/product/fokos-renau/,/tovary/fokos-rena/,301,product:product,Laminam fokos Rena
+/product/fokos-roccia-xlu/,/tovary/fokos-roccia/,301,product:product,Laminam fokos Roccia
+/product/fokos-rocciau/,/tovary/fokos-roccia/,301,product:product,Laminam fokos Roccia
+/product/fokos-sale-xlu/,/tovary/fokos-sale/,301,product:product,Laminam fokos Sale
+/product/fokos-salegu/,/tovary/fokos-sale/,301,product:product,Laminam fokos Sale
+/product/fokos-terra-xl-2/,/tovary/fokos-terra/,301,product:product,Laminam fokos Terra
+/product/fokos-terrau/,/tovary/fokos-terra/,301,product:product,Laminam fokos Terra
+/product/grande-bq8729-2/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8729 немає в базі -> підбірка старої категорії exotic
+/product/grey-savoie-bq8446u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8446 немає в базі -> підбірка старої категорії marble-effect
+/product/i-naturali-arabescato-xlu/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/product/i-naturali-arabescatou/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/product/i-naturali-ardesia-bianco-a-spaccou/,/tovary/i-naturali-ardesia-bianco/,301,product:product,Laminam i-naturali Ardesia Bianco
+/product/i-naturali-ardesia-nero-a-spaccou/,/tovary/i-naturali-ardesia-nero/,301,product:product,Laminam i-naturali Ardesia Nero
+/product/i-naturali-basalto-vena-chiarau/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Basalto Vena Chiara» немає в базі -> колекція
+/product/i-naturali-basalto-vena-scurau/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Basalto Vena Scura» немає в базі -> колекція
+/product/i-naturali-bianco-lasa-2/,/tovary/bianco-lasa/,301,product:product,Laminam i-naturali Bianco Lasa
+/product/i-naturali-bianco-lasa-xlu/,/tovary/bianco-lasa/,301,product:product,Laminam i-naturali Bianco Lasa
+/product/i-naturali-bianco-statuario-venato-xl-2/,/tovary/bianco-statuario-venato/,301,product:product,Laminam i-naturali Bianco Statuario Venato
+/product/i-naturali-bianco-statuario-venatou/,/tovary/bianco-statuario-venato/,301,product:product,Laminam i-naturali Bianco Statuario Venato
+/product/i-naturali-blue-stone-bocciardato-xl-2/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/product/i-naturali-blue-stone-bocciardatou/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/product/i-naturali-calacatta-michelangelo-2/,/tovary/i-naturali-calacatta-michelangelo/,301,product:product,Laminam i-naturali Calacatta Michelangelo
+/product/i-naturali-calacatta-michelangelo-xl-2/,/tovary/i-naturali-calacatta-michelangelo/,301,product:product,Laminam i-naturali Calacatta Michelangelo
+/product/i-naturali-calacatta-oro-venato-2/,/tovary/i-naturali-calacatta-oro-venato/,301,product:product,Laminam i-naturali Calacatta Oro Venato
+/product/i-naturali-calacatta-oro-venato-xl-2/,/tovary/i-naturali-calacatta-oro-venato/,301,product:product,Laminam i-naturali Calacatta Oro Venato
+/product/i-naturali-diamond-cream-2/,/tovary/i-naturali-diamond-cream/,301,product:product,Laminam i-naturali Diamond Cream
+/product/i-naturali-diamond-cream-xl-2/,/tovary/i-naturali-diamond-cream/,301,product:product,Laminam i-naturali Diamond Cream
+/product/i-naturali-emperador-extra-xlu/,/tovary/i-naturali-emperador-extra/,301,product:product,Laminam i-naturali Emperador Extra
+/product/i-naturali-emperador-extrau/,/tovary/i-naturali-emperador-extra/,301,product:product,Laminam i-naturali Emperador Extra
+/product/i-naturali-invisible-white-xl-2/,/tovary/i-naturali-invisible-white/,301,product:product,Laminam i-naturali Invisible White
+/product/i-naturali-invisible-whiteu/,/tovary/i-naturali-invisible-white/,301,product:product,Laminam i-naturali Invisible White
+/product/i-naturali-marfilu/,/tovary/marfil/,301,product:product,Laminam rare Marfil (ручне зіставлення)
+/product/i-naturali-nero-ardesiau/,/tovary/i-naturali-ardesia-nero/,301,product:product,Laminam i-naturali Ardesia Nero (ручне зіставлення)
+/product/i-naturali-nero-greco-xlu/,/tovary/i-naturali-nero-greco/,301,product:product,Laminam i-naturali Nero Greco
+/product/i-naturali-nero-grecou/,/tovary/i-naturali-nero-greco/,301,product:product,Laminam i-naturali Nero Greco
+/product/i-naturali-noir-desir-xlu/,/tovary/i-naturali-noir-desir/,301,product:product,Laminam i-naturali Noir Desir
+/product/i-naturali-noir-desiru/,/tovary/i-naturali-noir-desir/,301,product:product,Laminam i-naturali Noir Desir
+/product/i-naturali-orobico-grigio-xl-2/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Orobico Grigio» немає в базі -> колекція
+/product/i-naturali-ossidiana-vena-chiarau/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Ossidiana Vena Chiara» немає в базі -> колекція
+/product/i-naturali-ossidiana-vena-grigiau/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Ossidiana Vena Grigia» немає в базі -> колекція
+/product/i-naturali-ossidiana-vena-scura-2/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Ossidiana Vena Scura» немає в базі -> колекція
+/product/i-naturali-pietra-di-savoia-antracite-bocciardato-xlu/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product:product,Laminam i-naturali Pietra Di Savoia Antracite
+/product/i-naturali-pietra-di-savoia-antracite-bocciardatou/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product:product,Laminam i-naturali Pietra Di Savoia Antracite
+/product/i-naturali-pietra-di-savoia-avorio-bocciardato-2/,/tovary/i-naturali-pietra-di-savoia-avorio/,301,product:product,Laminam i-naturali Pietra Di Savoia Avorio
+/product/i-naturali-pietra-di-savoia-grigia-bocciardato-xl-2/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product:product,Laminam i-naturali Pietra Di Savoia Grigio
+/product/i-naturali-pietra-di-savoia-grigia-bocciardatou/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product:product,Laminam i-naturali Pietra Di Savoia Grigio
+/product/i-naturali-pietra-di-savoia-perla-bocciardato-xlu/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product:product,Laminam i-naturali Pietra Di Savoia Perla
+/product/i-naturali-pietra-di-savoia-perla-bocciardatou/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product:product,Laminam i-naturali Pietra Di Savoia Perla
+/product/i-naturali-pietra-grey-2/,/tovary/i-naturali-pietra-grey/,301,product:product,Laminam i-naturali Pietra Grey
+/product/i-naturali-pietra-grey-xlu/,/tovary/i-naturali-pietra-grey/,301,product:product,Laminam i-naturali Pietra Grey
+/product/i-naturali-statuarietto-2/,/tovary/i-naturali-statuarietto/,301,product:product,Laminam i-naturali Statuarietto
+/product/i-naturali-statuarietto-xlu/,/tovary/i-naturali-statuarietto/,301,product:product,Laminam i-naturali Statuarietto
+/product/i-naturali-statuario-altissimoio-2/,/tovary/i-naturali-statuario-altissimo/,301,product:product,Laminam i-naturali Statuario Altissimo
+/product/i-naturali-statuario-altissimoio-xl-2/,/tovary/i-naturali-statuario-altissimo/,301,product:product,Laminam i-naturali Statuario Altissimo
+/product/i-naturali-travertino-avoriou/,/tovary/i-naturali-travertino-avorio/,301,product:product,Laminam i-naturali Travertino Avorio
+/product/i-naturali-travertino-navonau/,/tovary/i-naturali-travertino-navona/,301,product:product,Laminam i-naturali Travertino Navona
+/product/i-naturali-travertino-romano-bocciardato-2/,/kataloh/laminam/?collection=i-naturali,301,product:collection,декору Laminam i-naturali «Travertino Romano Bocciardato» немає в базі -> колекція
+/product/i-naturali-travetino-grigio-venato-2/,/tovary/i-naturali-travertino-grigio-venato/,301,product:product,Laminam i-naturali Travertino Grigio Venato
+/product/i-naturali-travetino-grigio-venato-xlu/,/tovary/i-naturali-travertino-grigio-venato/,301,product:product,Laminam i-naturali Travertino Grigio Venato
+/product/ice-lake-bq8668u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8668 немає в базі -> підбірка старої категорії marble-effect
+/product/imperio-bq8810u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8810 немає в базі -> підбірка старої категорії marble-effect
+/product/in-side-pietra-di-cardoso-grigio-xl-2/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product:product,Laminam in-side Pietra Di Cardoso Grigio
+/product/in-side-pietra-di-cardoso-grigiou/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product:product,Laminam in-side Pietra Di Cardoso Grigio
+/product/in-side-pietra-di-cardoso-nero-xl-2/,/tovary/in-side-pietra-di-cardoso-nero/,301,product:product,Laminam in-side Pietra Di Cardoso Nero
+/product/in-side-pietra-di-cardoso-nerou/,/tovary/in-side-pietra-di-cardoso-nero/,301,product:product,Laminam in-side Pietra Di Cardoso Nero
+/product/in-side-pietra-piasentina-grigio-xlu/,/tovary/in-side-pietra-piasentina-grigio/,301,product:product,Laminam in-side Pietra Piasentina Grigio
+/product/in-side-pietra-piasentina-grigiou/,/tovary/in-side-pietra-piasentina-grigio/,301,product:product,Laminam in-side Pietra Piasentina Grigio
+/product/in-side-pietra-piasentina-taupe-xlu/,/tovary/in-side-pietra-piasentina-taupe/,301,product:product,Laminam in-side Pietra Piasentina Taupe
+/product/in-side-pietra-piasentina-taupeu/,/tovary/in-side-pietra-piasentina-taupe/,301,product:product,Laminam in-side Pietra Piasentina Taupe
+/product/in-side-porfido-marrone-xlu/,/tovary/in-side-porfido-marrone/,301,product:product,Laminam in-side Porfido Marrone
+/product/in-side-porfido-marroneu/,/tovary/in-side-porfido-marrone/,301,product:product,Laminam in-side Porfido Marrone
+/product/java-noir-bq8812-2/,/tovary/java-noir/,301,product:product,Vicostone Java Noir BQ8812
+/product/jura-grey-bq8437u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8437 немає в базі -> підбірка старої категорії classic
+/product/legno-venezia-corda-xlu/,/kataloh/laminam/?collection=legno-venezia,301,product:collection,декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/product/legno-venezia-cordau/,/kataloh/laminam/?collection=legno-venezia,301,product:collection,декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/product/legno-venezia-fumo-xlu/,/kataloh/laminam/?collection=legno-venezia,301,product:collection,декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/product/legno-venezia-fumou/,/kataloh/laminam/?collection=legno-venezia,301,product:collection,декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/product/legno-venezia-sabbia-xlu/,/tovary/legno-venezia-sabbia/,301,product:product,Laminam legno-venezia Sabbia
+/product/legno-venezia-sabbiau/,/tovary/legno-venezia-sabbia/,301,product:product,Laminam legno-venezia Sabbia
+/product/luna-sand-bs120u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BS120 немає в базі -> підбірка старої категорії classic
+/product/milky-white-bq201u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ201 немає в базі -> підбірка старої категорії classic
+/product/mocha-crema-bq8100u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8100 немає в базі -> підбірка старої категорії classic
+/product/nirvara-bq9140u/,/kataloh/kvartsovyi-kamin-kroshka/,301,product:landing,Vicostone BQ9140 немає в базі -> підбірка старої категорії crystal
+/product/onixaa-bq8550u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8550 немає в базі -> підбірка старої категорії marble-effect
+/product/onyx-white-bq2088u/,/tovary/onyx-white/,301,product:product,Vicostone Onyx White BQ2088
+/product/ossido-bruno-xl-2/,/tovary/ossido-bruno/,301,product:product,Laminam ossido Bruno
+/product/ossido-brunou/,/tovary/ossido-bruno/,301,product:product,Laminam ossido Bruno
+/product/ossido-nero-xl-2/,/tovary/ossido-nero/,301,product:product,Laminam ossido Nero
+/product/ossido-nerou/,/tovary/ossido-nero/,301,product:product,Laminam ossido Nero
+/product/ossido-verderameu/,/tovary/ossido-verderame/,301,product:product,Laminam ossido Verderame
+/product/oxide-avorio-2/,/tovary/oxide-avorio/,301,product:product,Laminam oxide Avorio
+/product/oxide-biancou/,/tovary/oxide-bianco/,301,product:product,Laminam oxide Bianco
+/product/oxide-grigio/,/kataloh/laminam/?collection=oxide,301,product:collection,декору Laminam oxide «Grigio» немає в базі -> колекція
+/product/oxide-morou/,/tovary/oxide-moro/,301,product:product,Laminam oxide Moro
+/product/oxide-nerou/,/tovary/oxide-nero/,301,product:product,Laminam oxide Nero
+/product/oxide-perlau/,/tovary/oxide-perla/,301,product:product,Laminam oxide Perla
+/product/quasar-light-bq100u/,/tovary/quasar-light/,301,product:product,Vicostone Quasar Light BQ100
+/product/satinet-bs124u/,/tovary/satinet/,301,product:product,Vicostone Satinet BS124
+/product/serra-bq9418-2/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product:landing,Vicostone BQ9418 немає в базі -> підбірка старої категорії granite-looking
+/product/seta-blanc-xlu/,/kataloh/laminam/?collection=seta,301,product:collection,декору Laminam seta «Blanc» немає в базі -> колекція
+/product/seta-glace-2/,/kataloh/laminam/?collection=seta,301,product:collection,декору Laminam seta «Glace» немає в базі -> колекція
+/product/seta-gris-xl-2/,/kataloh/laminam/?collection=seta,301,product:collection,декору Laminam seta «Gris» немає в базі -> колекція
+/product/seta-grisu/,/kataloh/laminam/?collection=seta,301,product:collection,декору Laminam seta «Gris» немає в базі -> колекція
+/product/seta-liquorice-2/,/tovary/seta-liquorice/,301,product:product,Laminam seta Liquorice
+/product/seta-liquorice-xlu/,/tovary/seta-liquorice/,301,product:product,Laminam seta Liquorice
+/product/seta-oru/,/tovary/seta-or/,301,product:product,Laminam seta Or
+/product/silver-white-bq400u/,/tovary/silver-white/,301,product:product,Vicostone Silver White BQ400
+/product/statuario-bq8628u/,/tovary/statuario/,301,product:product,Vicostone Statuario BQ8628
+/product/taj-mahal-bq9453u/,/tovary/vicostone-taj-mahal/,301,product:product,Vicostone Taj Mahal BQ9453
+/product/tartufo-bq8863u/,/tovary/tartufo/,301,product:product,Vicostone Tartufo BQ8863
+/product/thunder-blue-bq8786-2/,/tovary/thunder-blue/,301,product:product,Vicostone Thunder Blue BQ8786
+/product/tiger-bq9438u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ9438 немає в базі -> підбірка старої категорії exotic
+/product/titanium-brown-bq9360u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ9360 немає в базі -> підбірка старої категорії marble-effect
+/product/tobacco-bq9420u/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product:landing,Vicostone BQ9420 немає в базі -> підбірка старої категорії granite-looking
+/product/uliano-bq8806u/,/tovary/uliano/,301,product:product,Vicostone Uliano BQ8806
+/product/venatino-bq8660u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8660 немає в базі -> підбірка старої категорії marble-effect
+/product/ventisca-bq8330u/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product:landing,Vicostone BQ8330 немає в базі -> підбірка старої категорії marble-effect
+/product/vicostone-altea-bs182u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BS182 немає в базі -> підбірка старої категорії classic
+/product/vicostone-amadeus-bq8887u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8887 немає в базі -> підбірка старої категорії exotic
+/product/vicostone-artic-snow-bq200u/,/tovary/artic-snow/,301,product:product,Vicostone Artic Snow BQ200
+/product/vicostone-beige-pearl-bq240u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ240 немає в базі -> підбірка старої категорії classic
+/product/vicostone-ceppo-di-gre-bq8794u/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,product:landing,Vicostone BQ8794 немає в базі -> підбірка старої категорії natural
+/product/vicostone-cosmic-bq241u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ241 немає в базі -> підбірка старої категорії classic
+/product/vicostone-eramosa-bq9602u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ9602 немає в базі -> підбірка старої категорії exotic
+/product/vicostone-greylac-bq8738u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8738 немає в базі -> підбірка старої категорії exotic
+/product/vicostone-majestic-black-bq9611u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ9611 немає в базі -> підбірка старої категорії exotic
+/product/vicostone-naxos-bq8864-2/,/tovary/naxos/,301,product:product,Vicostone Naxos BQ8864
+/product/vicostone-nero-marquina-bq8740u/,/tovary/nero-marquina/,301,product:product,Vicostone Nero Marquina BQ8740
+/product/vicostone-vivalioro-bq8918u/,/kataloh/kvartsovyi-kamin/,301,product:landing,Vicostone BQ8918 немає в базі -> підбірка старої категорії exotic
+/product/vicostone-volakano-bq8885u/,/tovary/volakano/,301,product:product,Vicostone Volakano BQ8885
+/ru/product/akoya-bq8583/,/tovary/akoya/,301,product_ru:product,Vicostone Akoya BQ8583
+/ru/product/avalon-bq8618/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_ru:landing,Vicostone BQ8618 немає в базі -> підбірка старої категорії granite-looking
+/ru/product/avorio-bq9606/,/tovary/avorio/,301,product_ru:product,Vicostone Avorio BQ9606
+/ru/product/azul-aran-bq9470/,/tovary/azul-aran/,301,product_ru:product,Vicostone Azul Aran BQ9470
+/ru/product/bianco-venato-bq8440/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8440 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/blend-avorio/,/tovary/blend-avorio/,301,product_ru:product,Laminam blend Avorio
+/ru/product/blend-grigio/,/tovary/blend-grigio/,301,product_ru:product,Laminam blend Grigio
+/ru/product/blend-nero/,/tovary/blend-nero/,301,product_ru:product,Laminam blend Nero
+/ru/product/borghini-bq8670/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8670 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/botticino-classic-bq8430/,/tovary/botticino-classic/,301,product_ru:product,Vicostone Botticino classic BQ8430
+/ru/product/calacatta-bq8270/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8270 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/calce-antracite-xl/,/tovary/calce-antracite/,301,product_ru:product,Laminam calce Antracite
+/ru/product/calce-antracite/,/tovary/calce-antracite/,301,product_ru:product,Laminam calce Antracite
+/ru/product/calce-avorio-xl/,/tovary/calce-avorio/,301,product_ru:product,Laminam calce Avorio
+/ru/product/calce-avorio/,/tovary/calce-avorio/,301,product_ru:product,Laminam calce Avorio
+/ru/product/calce-bianco-xl/,/tovary/calce-bianco/,301,product_ru:product,Laminam calce Bianco
+/ru/product/calce-bianco/,/tovary/calce-bianco/,301,product_ru:product,Laminam calce Bianco
+/ru/product/calce-grigio-xl/,/tovary/calce-grigio/,301,product_ru:product,Laminam calce Grigio
+/ru/product/calce-grigio/,/tovary/calce-grigio/,301,product_ru:product,Laminam calce Grigio
+/ru/product/calce-nero-xl/,/tovary/calce-nero/,301,product_ru:product,Laminam calce Nero
+/ru/product/calce-nero/,/tovary/calce-nero/,301,product_ru:product,Laminam calce Nero
+/ru/product/calce-tortora-xl/,/tovary/calce-tortora/,301,product_ru:product,Laminam calce Tortora
+/ru/product/calce-tortora/,/tovary/calce-tortora/,301,product_ru:product,Laminam calce Tortora
+/ru/product/carrara-bq8220/,/tovary/carrara/,301,product_ru:product,Vicostone Carrara BQ8220
+/ru/product/cementi-avorio/,/kataloh/keramogranit-pid-beton/,301,product_ru:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product/cementi-grigio/,/kataloh/keramogranit-pid-beton/,301,product_ru:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product/cementi-nero/,/kataloh/keramogranit-pid-beton/,301,product_ru:landing,колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product/cemento-bq8730/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8730 немає в базі -> підбірка старої категорії exotic
+/ru/product/cendre-bq8805/,/tovary/cendre/,301,product_ru:product,Vicostone Cendre BQ8805
+/ru/product/cinza-bq8808/,/tovary/cinza/,301,product_ru:product,Vicostone Cinza BQ8808
+/ru/product/cold-spring-bq9441/,/tovary/cold-spring/,301,product_ru:product,Vicostone Cold Spring BQ9441
+/ru/product/collection-avorio/,/kataloh/laminam/?collection=collection,301,product_ru:collection,декору Laminam collection «Avorio» немає в базі -> колекція
+/ru/product/collection-bianco-assoluto-xl/,/tovary/collection-bianco-assoluto/,301,product_ru:product,Laminam collection Bianco Assoluto
+/ru/product/collection-bianco-assoluto/,/tovary/collection-bianco-assoluto/,301,product_ru:product,Laminam collection Bianco Assoluto
+/ru/product/collection-fumo/,/kataloh/laminam/?collection=collection,301,product_ru:collection,декору Laminam collection «Fumo» немає в базі -> колекція
+/ru/product/collection-nero-assoluto-xl/,/kataloh/laminam/?collection=collection,301,product_ru:collection,декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/ru/product/collection-nero-assoluto/,/kataloh/laminam/?collection=collection,301,product_ru:collection,декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/ru/product/collection-neve/,/tovary/collection-neve/,301,product_ru:product,Laminam collection Neve
+/ru/product/collection-perla/,/kataloh/laminam/?collection=collection,301,product_ru:collection,декору Laminam collection «Perla» немає в базі -> колекція
+/ru/product/cosmic-black-bq9427/,/tovary/cosmic-black/,301,product_ru:product,Vicostone Cosmic Black BQ9427
+/ru/product/crystal-black-bq262/,/tovary/crystal-black/,301,product_ru:product,Vicostone Crystal Black BQ262
+/ru/product/crystal-ice-bq1080/,/tovary/crystal-ice/,301,product_ru:product,Vicostone Crystal Ice BQ1080
+/ru/product/crystal-ivory-bq850/,/tovary/crystal-ivory/,301,product_ru:product,Vicostone Crystal Ivory BQ850
+/ru/product/dark-emparador-bq8560/,/tovary/dark-emparador/,301,product_ru:product,Vicostone Dark Emparador BQ8560
+/ru/product/desert-sand-bs160/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BS160 немає в базі -> підбірка старої категорії classic
+/ru/product/dolce-vita-bq8590/,/tovary/dolce-vita/,301,product_ru:product,Vicostone Dolce Vita BQ8590
+/ru/product/emerald-bs170/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BS170 немає в базі -> підбірка старої категорії classic
+/ru/product/empire-bq8370/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8370 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/filo-argento/,/tovary/filo-argento/,301,product_ru:product,Laminam filo Argento
+/ru/product/filo-brina/,/tovary/filo-brina/,301,product_ru:product,Laminam filo Brina
+/ru/product/filo-ghisa/,/tovary/filo-ghisa/,301,product_ru:product,Laminam filo Ghisa
+/ru/product/filo-mercurio/,/tovary/filo-mercurio/,301,product_ru:product,Laminam filo Mercurio
+/ru/product/filo-oro/,/tovary/filo-oro/,301,product_ru:product,Laminam filo Oro
+/ru/product/filo-pece/,/tovary/filo-pece/,301,product_ru:product,Laminam filo Pece
+/ru/product/fluido-solido-blu-lucidato-xl/,/tovary/fluidosolido-blu/,301,product_ru:product,Laminam fluidosolido Blu
+/ru/product/fokos-piombo-xl/,/tovary/fokos-piombo/,301,product_ru:product,Laminam fokos Piombo
+/ru/product/fokos-piombo/,/tovary/fokos-piombo/,301,product_ru:product,Laminam fokos Piombo
+/ru/product/fokos-rena/,/tovary/fokos-rena/,301,product_ru:product,Laminam fokos Rena
+/ru/product/fokos-roccia-xl/,/tovary/fokos-roccia/,301,product_ru:product,Laminam fokos Roccia
+/ru/product/fokos-roccia/,/tovary/fokos-roccia/,301,product_ru:product,Laminam fokos Roccia
+/ru/product/fokos-sale-xl/,/tovary/fokos-sale/,301,product_ru:product,Laminam fokos Sale
+/ru/product/fokos-sale/,/tovary/fokos-sale/,301,product_ru:product,Laminam fokos Sale
+/ru/product/fokos-terra-xl/,/tovary/fokos-terra/,301,product_ru:product,Laminam fokos Terra
+/ru/product/fokos-terra/,/tovary/fokos-terra/,301,product_ru:product,Laminam fokos Terra
+/ru/product/grande-bq8729/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8729 немає в базі -> підбірка старої категорії exotic
+/ru/product/grey-savoie-bq8446/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8446 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/i-naturali-arabescato-xl/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/ru/product/i-naturali-arabescato/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/ru/product/i-naturali-ardesia-bianco-a-spacco/,/tovary/i-naturali-ardesia-bianco/,301,product_ru:product,Laminam i-naturali Ardesia Bianco
+/ru/product/i-naturali-ardesia-nero-a-spacco/,/tovary/i-naturali-ardesia-nero/,301,product_ru:product,Laminam i-naturali Ardesia Nero
+/ru/product/i-naturali-basalto-vena-chiara/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Basalto Vena Chiara» немає в базі -> колекція
+/ru/product/i-naturali-basalto-vena-scura/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Basalto Vena Scura» немає в базі -> колекція
+/ru/product/i-naturali-bianco-lasa-xl/,/tovary/bianco-lasa/,301,product_ru:product,Laminam i-naturali Bianco Lasa
+/ru/product/i-naturali-bianco-lasa/,/tovary/bianco-lasa/,301,product_ru:product,Laminam i-naturali Bianco Lasa
+/ru/product/i-naturali-bianco-statuario-venato-xl/,/tovary/bianco-statuario-venato/,301,product_ru:product,Laminam i-naturali Bianco Statuario Venato
+/ru/product/i-naturali-bianco-statuario-venato/,/tovary/bianco-statuario-venato/,301,product_ru:product,Laminam i-naturali Bianco Statuario Venato
+/ru/product/i-naturali-blue-stone-bocciardato-xl/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/ru/product/i-naturali-blue-stone-bocciardato/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/ru/product/i-naturali-calacatta-michelangelo-xl/,/tovary/i-naturali-calacatta-michelangelo/,301,product_ru:product,Laminam i-naturali Calacatta Michelangelo
+/ru/product/i-naturali-calacatta-michelangelo/,/tovary/i-naturali-calacatta-michelangelo/,301,product_ru:product,Laminam i-naturali Calacatta Michelangelo
+/ru/product/i-naturali-calacatta-oro-venato-xl/,/tovary/i-naturali-calacatta-oro-venato/,301,product_ru:product,Laminam i-naturali Calacatta Oro Venato
+/ru/product/i-naturali-calacatta-oro-venato/,/tovary/i-naturali-calacatta-oro-venato/,301,product_ru:product,Laminam i-naturali Calacatta Oro Venato
+/ru/product/i-naturali-diamond-cream-xl/,/tovary/i-naturali-diamond-cream/,301,product_ru:product,Laminam i-naturali Diamond Cream
+/ru/product/i-naturali-diamond-cream/,/tovary/i-naturali-diamond-cream/,301,product_ru:product,Laminam i-naturali Diamond Cream
+/ru/product/i-naturali-emperador-extra-xl/,/tovary/i-naturali-emperador-extra/,301,product_ru:product,Laminam i-naturali Emperador Extra
+/ru/product/i-naturali-emperador-extra/,/tovary/i-naturali-emperador-extra/,301,product_ru:product,Laminam i-naturali Emperador Extra
+/ru/product/i-naturali-invisible-white-xl/,/tovary/i-naturali-invisible-white/,301,product_ru:product,Laminam i-naturali Invisible White
+/ru/product/i-naturali-invisible-white/,/tovary/i-naturali-invisible-white/,301,product_ru:product,Laminam i-naturali Invisible White
+/ru/product/i-naturali-marfil/,/tovary/marfil/,301,product_ru:product,Laminam rare Marfil (ручне зіставлення)
+/ru/product/i-naturali-nero-ardesia/,/tovary/i-naturali-ardesia-nero/,301,product_ru:product,Laminam i-naturali Ardesia Nero (ручне зіставлення)
+/ru/product/i-naturali-nero-greco-xl/,/tovary/i-naturali-nero-greco/,301,product_ru:product,Laminam i-naturali Nero Greco
+/ru/product/i-naturali-nero-greco/,/tovary/i-naturali-nero-greco/,301,product_ru:product,Laminam i-naturali Nero Greco
+/ru/product/i-naturali-noir-desir-xl/,/tovary/i-naturali-noir-desir/,301,product_ru:product,Laminam i-naturali Noir Desir
+/ru/product/i-naturali-noir-desir/,/tovary/i-naturali-noir-desir/,301,product_ru:product,Laminam i-naturali Noir Desir
+/ru/product/i-naturali-orobico-grigio-xl/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Orobico Grigio» немає в базі -> колекція
+/ru/product/i-naturali-ossidiana-vena-chiara/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Ossidiana Vena Chiara» немає в базі -> колекція
+/ru/product/i-naturali-ossidiana-vena-grigia/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Ossidiana Vena Grigia» немає в базі -> колекція
+/ru/product/i-naturali-ossidiana-vena-scura/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Ossidiana Vena Scura» немає в базі -> колекція
+/ru/product/i-naturali-pietra-di-savoia-antracite-bocciardato-xl/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Antracite
+/ru/product/i-naturali-pietra-di-savoia-antracite-bocciardato/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Antracite
+/ru/product/i-naturali-pietra-di-savoia-avorio-bocciardato/,/tovary/i-naturali-pietra-di-savoia-avorio/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Avorio
+/ru/product/i-naturali-pietra-di-savoia-grigia-bocciardato-xl/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Grigio
+/ru/product/i-naturali-pietra-di-savoia-grigia-bocciardato/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Grigio
+/ru/product/i-naturali-pietra-di-savoia-perla-bocciardato-xl/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Perla
+/ru/product/i-naturali-pietra-di-savoia-perla-bocciardato/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product_ru:product,Laminam i-naturali Pietra Di Savoia Perla
+/ru/product/i-naturali-pietra-grey-xl/,/tovary/i-naturali-pietra-grey/,301,product_ru:product,Laminam i-naturali Pietra Grey
+/ru/product/i-naturali-pietra-grey/,/tovary/i-naturali-pietra-grey/,301,product_ru:product,Laminam i-naturali Pietra Grey
+/ru/product/i-naturali-statuarietto-xl/,/tovary/i-naturali-statuarietto/,301,product_ru:product,Laminam i-naturali Statuarietto
+/ru/product/i-naturali-statuarietto/,/tovary/i-naturali-statuarietto/,301,product_ru:product,Laminam i-naturali Statuarietto
+/ru/product/i-naturali-statuario-altissimoio-xl/,/tovary/i-naturali-statuario-altissimo/,301,product_ru:product,Laminam i-naturali Statuario Altissimo
+/ru/product/i-naturali-statuario-altissimoio/,/tovary/i-naturali-statuario-altissimo/,301,product_ru:product,Laminam i-naturali Statuario Altissimo
+/ru/product/i-naturali-travertino-avorio/,/tovary/i-naturali-travertino-avorio/,301,product_ru:product,Laminam i-naturali Travertino Avorio
+/ru/product/i-naturali-travertino-navona/,/tovary/i-naturali-travertino-navona/,301,product_ru:product,Laminam i-naturali Travertino Navona
+/ru/product/i-naturali-travertino-romano-bocciardato/,/kataloh/laminam/?collection=i-naturali,301,product_ru:collection,декору Laminam i-naturali «Travertino Romano Bocciardato» немає в базі -> колекція
+/ru/product/i-naturali-travetino-grigio-venato-xl/,/tovary/i-naturali-travertino-grigio-venato/,301,product_ru:product,Laminam i-naturali Travertino Grigio Venato
+/ru/product/i-naturali-travetino-grigio-venato/,/tovary/i-naturali-travertino-grigio-venato/,301,product_ru:product,Laminam i-naturali Travertino Grigio Venato
+/ru/product/ice-lake-bq8668/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8668 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/imperio-bq8810/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8810 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/in-side-pietra-di-cardoso-grigio-xl/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product_ru:product,Laminam in-side Pietra Di Cardoso Grigio
+/ru/product/in-side-pietra-di-cardoso-grigio/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product_ru:product,Laminam in-side Pietra Di Cardoso Grigio
+/ru/product/in-side-pietra-di-cardoso-nero-xl/,/tovary/in-side-pietra-di-cardoso-nero/,301,product_ru:product,Laminam in-side Pietra Di Cardoso Nero
+/ru/product/in-side-pietra-di-cardoso-nero/,/tovary/in-side-pietra-di-cardoso-nero/,301,product_ru:product,Laminam in-side Pietra Di Cardoso Nero
+/ru/product/in-side-pietra-piasentina-grigio-xl/,/tovary/in-side-pietra-piasentina-grigio/,301,product_ru:product,Laminam in-side Pietra Piasentina Grigio
+/ru/product/in-side-pietra-piasentina-grigio/,/tovary/in-side-pietra-piasentina-grigio/,301,product_ru:product,Laminam in-side Pietra Piasentina Grigio
+/ru/product/in-side-pietra-piasentina-taupe-xl/,/tovary/in-side-pietra-piasentina-taupe/,301,product_ru:product,Laminam in-side Pietra Piasentina Taupe
+/ru/product/in-side-pietra-piasentina-taupe/,/tovary/in-side-pietra-piasentina-taupe/,301,product_ru:product,Laminam in-side Pietra Piasentina Taupe
+/ru/product/in-side-porfido-marrone-xl/,/tovary/in-side-porfido-marrone/,301,product_ru:product,Laminam in-side Porfido Marrone
+/ru/product/in-side-porfido-marrone/,/tovary/in-side-porfido-marrone/,301,product_ru:product,Laminam in-side Porfido Marrone
+/ru/product/java-noir-bq8812/,/tovary/java-noir/,301,product_ru:product,Vicostone Java Noir BQ8812
+/ru/product/jura-grey-bq8437/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8437 немає в базі -> підбірка старої категорії classic
+/ru/product/legno-venezia-corda-xl/,/kataloh/laminam/?collection=legno-venezia,301,product_ru:collection,декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/ru/product/legno-venezia-corda/,/kataloh/laminam/?collection=legno-venezia,301,product_ru:collection,декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/ru/product/legno-venezia-fumo-xl/,/kataloh/laminam/?collection=legno-venezia,301,product_ru:collection,декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/ru/product/legno-venezia-fumo/,/kataloh/laminam/?collection=legno-venezia,301,product_ru:collection,декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/ru/product/legno-venezia-sabbia-xl/,/tovary/legno-venezia-sabbia/,301,product_ru:product,Laminam legno-venezia Sabbia
+/ru/product/legno-venezia-sabbia/,/tovary/legno-venezia-sabbia/,301,product_ru:product,Laminam legno-venezia Sabbia
+/ru/product/luna-sand-bs120/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BS120 немає в базі -> підбірка старої категорії classic
+/ru/product/milky-white-bq201/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ201 немає в базі -> підбірка старої категорії classic
+/ru/product/mocha-crema-bq8100/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8100 немає в базі -> підбірка старої категорії classic
+/ru/product/nirvara-bq9140/,/kataloh/kvartsovyi-kamin-kroshka/,301,product_ru:landing,Vicostone BQ9140 немає в базі -> підбірка старої категорії crystal
+/ru/product/onixaa-bq8550/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8550 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/onyx-white-bq2088/,/tovary/onyx-white/,301,product_ru:product,Vicostone Onyx White BQ2088
+/ru/product/ossido-bruno-xl/,/tovary/ossido-bruno/,301,product_ru:product,Laminam ossido Bruno
+/ru/product/ossido-bruno/,/tovary/ossido-bruno/,301,product_ru:product,Laminam ossido Bruno
+/ru/product/ossido-nero-xl/,/tovary/ossido-nero/,301,product_ru:product,Laminam ossido Nero
+/ru/product/ossido-nero/,/tovary/ossido-nero/,301,product_ru:product,Laminam ossido Nero
+/ru/product/ossido-verderame/,/tovary/ossido-verderame/,301,product_ru:product,Laminam ossido Verderame
+/ru/product/oxide-avorio/,/tovary/oxide-avorio/,301,product_ru:product,Laminam oxide Avorio
+/ru/product/oxide-bianco/,/tovary/oxide-bianco/,301,product_ru:product,Laminam oxide Bianco
+/ru/product/oxide-grigio/,/kataloh/laminam/?collection=oxide,301,product_ru:collection,декору Laminam oxide «Grigio» немає в базі -> колекція
+/ru/product/oxide-moro/,/tovary/oxide-moro/,301,product_ru:product,Laminam oxide Moro
+/ru/product/oxide-nero/,/tovary/oxide-nero/,301,product_ru:product,Laminam oxide Nero
+/ru/product/oxide-perla/,/tovary/oxide-perla/,301,product_ru:product,Laminam oxide Perla
+/ru/product/quasar-light-bq100/,/tovary/quasar-light/,301,product_ru:product,Vicostone Quasar Light BQ100
+/ru/product/satinet-bs124/,/tovary/satinet/,301,product_ru:product,Vicostone Satinet BS124
+/ru/product/serra-bq9418/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_ru:landing,Vicostone BQ9418 немає в базі -> підбірка старої категорії granite-looking
+/ru/product/seta-blanc-xl/,/kataloh/laminam/?collection=seta,301,product_ru:collection,декору Laminam seta «Blanc» немає в базі -> колекція
+/ru/product/seta-glace/,/kataloh/laminam/?collection=seta,301,product_ru:collection,декору Laminam seta «Glace» немає в базі -> колекція
+/ru/product/seta-gris-xl/,/kataloh/laminam/?collection=seta,301,product_ru:collection,декору Laminam seta «Gris» немає в базі -> колекція
+/ru/product/seta-gris/,/kataloh/laminam/?collection=seta,301,product_ru:collection,декору Laminam seta «Gris» немає в базі -> колекція
+/ru/product/seta-liquorice-xl/,/tovary/seta-liquorice/,301,product_ru:product,Laminam seta Liquorice
+/ru/product/seta-liquorice/,/tovary/seta-liquorice/,301,product_ru:product,Laminam seta Liquorice
+/ru/product/seta-or/,/tovary/seta-or/,301,product_ru:product,Laminam seta Or
+/ru/product/silver-white-bq400/,/tovary/silver-white/,301,product_ru:product,Vicostone Silver White BQ400
+/ru/product/statuario-bq8628/,/tovary/statuario/,301,product_ru:product,Vicostone Statuario BQ8628
+/ru/product/taj-mahal-bq9453/,/tovary/vicostone-taj-mahal/,301,product_ru:product,Vicostone Taj Mahal BQ9453
+/ru/product/tartufo-bq8863/,/tovary/tartufo/,301,product_ru:product,Vicostone Tartufo BQ8863
+/ru/product/thunder-blue-bq8786/,/tovary/thunder-blue/,301,product_ru:product,Vicostone Thunder Blue BQ8786
+/ru/product/tiger-bq9438/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ9438 немає в базі -> підбірка старої категорії exotic
+/ru/product/titanium-brown-bq9360/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ9360 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/tobacco-bq9420/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_ru:landing,Vicostone BQ9420 немає в базі -> підбірка старої категорії granite-looking
+/ru/product/uliano-bq8806/,/tovary/uliano/,301,product_ru:product,Vicostone Uliano BQ8806
+/ru/product/venatino-bq8660/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8660 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/ventisca-bq8330/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_ru:landing,Vicostone BQ8330 немає в базі -> підбірка старої категорії marble-effect
+/ru/product/vicostone-altea-bs182/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BS182 немає в базі -> підбірка старої категорії classic
+/ru/product/vicostone-amadeus-bq8887/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8887 немає в базі -> підбірка старої категорії exotic
+/ru/product/vicostone-artic-snow-bq200/,/tovary/artic-snow/,301,product_ru:product,Vicostone Artic Snow BQ200
+/ru/product/vicostone-beige-pearl-bq240/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ240 немає в базі -> підбірка старої категорії classic
+/ru/product/vicostone-ceppo-di-gre-bq8794/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,product_ru:landing,Vicostone BQ8794 немає в базі -> підбірка старої категорії natural
+/ru/product/vicostone-cosmic-bq241/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ241 немає в базі -> підбірка старої категорії classic
+/ru/product/vicostone-eramosa-bq9602/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ9602 немає в базі -> підбірка старої категорії exotic
+/ru/product/vicostone-greylac-bq8738/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8738 немає в базі -> підбірка старої категорії exotic
+/ru/product/vicostone-majestic-black-bq9611/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ9611 немає в базі -> підбірка старої категорії exotic
+/ru/product/vicostone-naxos-bq8864/,/tovary/naxos/,301,product_ru:product,Vicostone Naxos BQ8864
+/ru/product/vicostone-nero-marquina-bq8740/,/tovary/nero-marquina/,301,product_ru:product,Vicostone Nero Marquina BQ8740
+/ru/product/vicostone-vivalioro-bq8918/,/kataloh/kvartsovyi-kamin/,301,product_ru:landing,Vicostone BQ8918 немає в базі -> підбірка старої категорії exotic
+/ru/product/vicostone-volakano-bq8885/,/tovary/volakano/,301,product_ru:product,Vicostone Volakano BQ8885
+/product-tag/ardesia-bianco-a-spacco-uk/,/tovary/i-naturali-ardesia-bianco/,301,product_tag:product,тег = Laminam i-naturali Ardesia Bianco
+/product-tag/ardesia-nero-a-spacco-uk/,/tovary/i-naturali-ardesia-nero/,301,product_tag:product,тег = Laminam i-naturali Ardesia Nero
+/product-tag/blend-avorio-uk/,/tovary/blend-avorio/,301,product_tag:product,тег = Laminam blend Avorio
+/product-tag/blend-grigio-uk/,/tovary/blend-grigio/,301,product_tag:product,тег = Laminam blend Grigio
+/product-tag/blend-nero-uk/,/tovary/blend-nero/,301,product_tag:product,тег = Laminam blend Nero
+/product-tag/borghini-bq8670-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8670 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/botticino-classic-bq8430-uk/,/tovary/botticino-classic/,301,product_tag:product,тег = Vicostone Botticino classic BQ8430
+/product-tag/calacatta-bq8270-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8270 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/calce-antracite-uk/,/tovary/calce-antracite/,301,product_tag:product,тег = Laminam calce Antracite
+/product-tag/calce-avorio-uk/,/tovary/calce-avorio/,301,product_tag:product,тег = Laminam calce Avorio
+/product-tag/calce-bianco-uk/,/tovary/calce-bianco/,301,product_tag:product,тег = Laminam calce Bianco
+/product-tag/calce-grigio-uk/,/tovary/calce-grigio/,301,product_tag:product,тег = Laminam calce Grigio
+/product-tag/calce-nero-uk/,/tovary/calce-nero/,301,product_tag:product,тег = Laminam calce Nero
+/product-tag/calce-tortora-uk/,/tovary/calce-tortora/,301,product_tag:product,тег = Laminam calce Tortora
+/product-tag/carrara-bq8220-uk/,/tovary/carrara/,301,product_tag:product,тег = Vicostone Carrara BQ8220
+/product-tag/cementi-avorio-uk/,/kataloh/keramogranit-pid-beton/,301,product_tag:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/product-tag/cementi-grigio-uk/,/kataloh/keramogranit-pid-beton/,301,product_tag:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/product-tag/cementi-nero-uk/,/kataloh/keramogranit-pid-beton/,301,product_tag:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/product-tag/cinza-bq8808-uk/,/tovary/cinza/,301,product_tag:product,тег = Vicostone Cinza BQ8808
+/product-tag/collection-avorio-uk/,/kataloh/laminam/?collection=collection,301,product_tag:collection,тег = декору Laminam collection «Avorio» немає в базі -> колекція
+/product-tag/collection-bianco-assoluto-uk/,/tovary/collection-bianco-assoluto/,301,product_tag:product,тег = Laminam collection Bianco Assoluto
+/product-tag/collection-fumo-uk/,/kataloh/laminam/?collection=collection,301,product_tag:collection,тег = декору Laminam collection «Fumo» немає в базі -> колекція
+/product-tag/collection-nero-assoluto-uk/,/kataloh/laminam/?collection=collection,301,product_tag:collection,тег = декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/product-tag/collection-neve-uk/,/tovary/collection-neve/,301,product_tag:product,тег = Laminam collection Neve
+/product-tag/collection-perla-uk/,/kataloh/laminam/?collection=collection,301,product_tag:collection,тег = декору Laminam collection «Perla» немає в базі -> колекція
+/product-tag/dark-emparador-bq8560-uk/,/tovary/dark-emparador/,301,product_tag:product,тег = Vicostone Dark Emparador BQ8560
+/product-tag/dolce-vita-bq8590-uk/,/tovary/dolce-vita/,301,product_tag:product,тег = Vicostone Dolce Vita BQ8590
+/product-tag/empire-bq8370-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8370 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/filo-argento-uk/,/tovary/filo-argento/,301,product_tag:product,тег = Laminam filo Argento
+/product-tag/filo-brina-uk/,/tovary/filo-brina/,301,product_tag:product,тег = Laminam filo Brina
+/product-tag/filo-ghisa-uk/,/tovary/filo-ghisa/,301,product_tag:product,тег = Laminam filo Ghisa
+/product-tag/filo-mercurio-uk/,/tovary/filo-mercurio/,301,product_tag:product,тег = Laminam filo Mercurio
+/product-tag/filo-oro-uk/,/tovary/filo-oro/,301,product_tag:product,тег = Laminam filo Oro
+/product-tag/filo-pece-uk/,/tovary/filo-pece/,301,product_tag:product,тег = Laminam filo Pece
+/product-tag/fluido-solido-blu-lucidato-uk/,/tovary/fluidosolido-blu/,301,product_tag:product,тег = Laminam fluidosolido Blu
+/product-tag/fokos-piombo-uk/,/tovary/fokos-piombo/,301,product_tag:product,тег = Laminam fokos Piombo
+/product-tag/fokos-rena-uk/,/tovary/fokos-rena/,301,product_tag:product,тег = Laminam fokos Rena
+/product-tag/fokos-roccia-uk/,/tovary/fokos-roccia/,301,product_tag:product,тег = Laminam fokos Roccia
+/product-tag/fokos-sale-uk/,/tovary/fokos-sale/,301,product_tag:product,тег = Laminam fokos Sale
+/product-tag/fokos-terra-uk/,/tovary/fokos-terra/,301,product_tag:product,тег = Laminam fokos Terra
+/product-tag/grey-savoie-bq8446-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8446 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/i-naturali-arabescato-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/product-tag/i-naturali-ardesia-nero-a-spacco-uk/,/tovary/i-naturali-ardesia-nero/,301,product_tag:product,тег = Laminam i-naturali Ardesia Nero
+/product-tag/i-naturali-basalto-vena-chiara-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Basalto Vena Chiara» немає в базі -> колекція
+/product-tag/i-naturali-basalto-vena-scura-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Basalto Vena Scura» немає в базі -> колекція
+/product-tag/i-naturali-bianco-lasa-uk/,/tovary/bianco-lasa/,301,product_tag:product,тег = Laminam i-naturali Bianco Lasa
+/product-tag/i-naturali-bianco-statuario-venato-uk/,/tovary/bianco-statuario-venato/,301,product_tag:product,тег = Laminam i-naturali Bianco Statuario Venato
+/product-tag/i-naturali-blue-stone-bocciardato-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/product-tag/i-naturali-calacatta-michelangelo-uk/,/tovary/i-naturali-calacatta-michelangelo/,301,product_tag:product,тег = Laminam i-naturali Calacatta Michelangelo
+/product-tag/i-naturali-calacatta-oro-venato-uk/,/tovary/i-naturali-calacatta-oro-venato/,301,product_tag:product,тег = Laminam i-naturali Calacatta Oro Venato
+/product-tag/i-naturali-diamond-cream-uk/,/tovary/i-naturali-diamond-cream/,301,product_tag:product,тег = Laminam i-naturali Diamond Cream
+/product-tag/i-naturali-emperador-extra-uk/,/tovary/i-naturali-emperador-extra/,301,product_tag:product,тег = Laminam i-naturali Emperador Extra
+/product-tag/i-naturali-invisible-white-uk/,/tovary/i-naturali-invisible-white/,301,product_tag:product,тег = Laminam i-naturali Invisible White
+/product-tag/i-naturali-marfil-uk/,/tovary/marfil/,301,product_tag:product,тег = Laminam rare Marfil (ручне зіставлення)
+/product-tag/i-naturali-nero-ardesia-uk/,/tovary/i-naturali-ardesia-nero/,301,product_tag:product,тег = Laminam i-naturali Ardesia Nero (ручне зіставлення)
+/product-tag/i-naturali-nero-greco-uk/,/tovary/i-naturali-nero-greco/,301,product_tag:product,тег = Laminam i-naturali Nero Greco
+/product-tag/i-naturali-noir-desir-uk/,/tovary/i-naturali-noir-desir/,301,product_tag:product,тег = Laminam i-naturali Noir Desir
+/product-tag/i-naturali-orobico-grigio-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Orobico Grigio» немає в базі -> колекція
+/product-tag/i-naturali-ossidiana-vena-chiara-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Ossidiana Vena Chiara» немає в базі -> колекція
+/product-tag/i-naturali-ossidiana-vena-grigia-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Ossidiana Vena Grigia» немає в базі -> колекція
+/product-tag/i-naturali-ossidiana-vena-scura-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Ossidiana Vena Scura» немає в базі -> колекція
+/product-tag/i-naturali-pietra-di-savoia-antracite-bocciardato-uk/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product_tag:product,тег = Laminam i-naturali Pietra Di Savoia Antracite
+/product-tag/i-naturali-pietra-di-savoia-avorio-bocciardato-uk/,/tovary/i-naturali-pietra-di-savoia-avorio/,301,product_tag:product,тег = Laminam i-naturali Pietra Di Savoia Avorio
+/product-tag/i-naturali-pietra-di-savoia-grigia-bocciardato-uk/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product_tag:product,тег = Laminam i-naturali Pietra Di Savoia Grigio
+/product-tag/i-naturali-pietra-di-savoia-perla-bocciardato-uk/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product_tag:product,тег = Laminam i-naturali Pietra Di Savoia Perla
+/product-tag/i-naturali-pietra-grey-uk/,/tovary/i-naturali-pietra-grey/,301,product_tag:product,тег = Laminam i-naturali Pietra Grey
+/product-tag/i-naturali-statuarietto-uk/,/tovary/i-naturali-statuarietto/,301,product_tag:product,тег = Laminam i-naturali Statuarietto
+/product-tag/i-naturali-statuario-altissimoio-uk/,/tovary/i-naturali-statuario-altissimo/,301,product_tag:product,тег = Laminam i-naturali Statuario Altissimo
+/product-tag/i-naturali-travertino-avorio-uk/,/tovary/i-naturali-travertino-avorio/,301,product_tag:product,тег = Laminam i-naturali Travertino Avorio
+/product-tag/i-naturali-travertino-navona-uk/,/tovary/i-naturali-travertino-navona/,301,product_tag:product,тег = Laminam i-naturali Travertino Navona
+/product-tag/i-naturali-travertino-romano-bocciardato-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = декору Laminam i-naturali «Travertino Romano Bocciardato» немає в базі -> колекція
+/product-tag/i-naturali-travetino-grigio-venato-uk/,/tovary/i-naturali-travertino-grigio-venato/,301,product_tag:product,тег = Laminam i-naturali Travertino Grigio Venato
+/product-tag/i-naturali-uk/,/kataloh/laminam/?collection=i-naturali,301,product_tag:collection,тег = тег колекції I Naturali
+/product-tag/ice-lake-bq8668-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8668 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/imperio-bq8810-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8810 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/in-side-pietra-di-cardoso-grigio-uk/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product_tag:product,тег = Laminam in-side Pietra Di Cardoso Grigio
+/product-tag/in-side-pietra-di-cardoso-nero-uk/,/tovary/in-side-pietra-di-cardoso-nero/,301,product_tag:product,тег = Laminam in-side Pietra Di Cardoso Nero
+/product-tag/in-side-pietra-piasentina-grigio-uk/,/tovary/in-side-pietra-piasentina-grigio/,301,product_tag:product,тег = Laminam in-side Pietra Piasentina Grigio
+/product-tag/in-side-pietra-piasentina-taupe-uk/,/tovary/in-side-pietra-piasentina-taupe/,301,product_tag:product,тег = Laminam in-side Pietra Piasentina Taupe
+/product-tag/in-side-porfido-marrone-uk/,/tovary/in-side-porfido-marrone/,301,product_tag:product,тег = Laminam in-side Porfido Marrone
+/product-tag/java-noir-bq8812-uk/,/tovary/java-noir/,301,product_tag:product,тег = Vicostone Java Noir BQ8812
+/product-tag/legno-venezia-corda-uk/,/kataloh/laminam/?collection=legno-venezia,301,product_tag:collection,тег = декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/product-tag/legno-venezia-fumo-uk/,/kataloh/laminam/?collection=legno-venezia,301,product_tag:collection,тег = декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/product-tag/legno-venezia-sabbia-uk/,/tovary/legno-venezia-sabbia/,301,product_tag:product,тег = Laminam legno-venezia Sabbia
+/product-tag/onixaa-bq8550-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8550 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/ossid-uk/,/kataloh/laminam/?collection=ossido,301,product_tag:collection,тег = тег колекції Ossido
+/product-tag/ossido-bruno-uk/,/tovary/ossido-bruno/,301,product_tag:product,тег = Laminam ossido Bruno
+/product-tag/ossido-nero-uk/,/tovary/ossido-nero/,301,product_tag:product,тег = Laminam ossido Nero
+/product-tag/ossido-verderame-uk/,/tovary/ossido-verderame/,301,product_tag:product,тег = Laminam ossido Verderame
+/product-tag/oxide-avorio-uk/,/tovary/oxide-avorio/,301,product_tag:product,тег = Laminam oxide Avorio
+/product-tag/oxide-bianco-uk/,/tovary/oxide-bianco/,301,product_tag:product,тег = Laminam oxide Bianco
+/product-tag/oxide-grigio-uk/,/kataloh/laminam/?collection=oxide,301,product_tag:collection,тег = декору Laminam oxide «Grigio» немає в базі -> колекція
+/product-tag/oxide-moro-uk/,/tovary/oxide-moro/,301,product_tag:product,тег = Laminam oxide Moro
+/product-tag/oxide-nero-uk/,/tovary/oxide-nero/,301,product_tag:product,тег = Laminam oxide Nero
+/product-tag/oxide-perla-uk/,/tovary/oxide-perla/,301,product_tag:product,тег = Laminam oxide Perla
+/product-tag/seta-blanc-uk/,/kataloh/laminam/?collection=seta,301,product_tag:collection,тег = декору Laminam seta «Blanc» немає в базі -> колекція
+/product-tag/seta-glace-uk/,/kataloh/laminam/?collection=seta,301,product_tag:collection,тег = декору Laminam seta «Glace» немає в базі -> колекція
+/product-tag/seta-gris-uk/,/kataloh/laminam/?collection=seta,301,product_tag:collection,тег = декору Laminam seta «Gris» немає в базі -> колекція
+/product-tag/seta-liquorice-uk/,/tovary/seta-liquorice/,301,product_tag:product,тег = Laminam seta Liquorice
+/product-tag/seta-or-uk/,/tovary/seta-or/,301,product_tag:product,тег = Laminam seta Or
+/product-tag/statuario-bq8628-uk/,/tovary/statuario/,301,product_tag:product,тег = Vicostone Statuario BQ8628
+/product-tag/taj-mahal-bq9453-uk/,/tovary/vicostone-taj-mahal/,301,product_tag:product,тег = Vicostone Taj Mahal BQ9453
+/product-tag/titanium-brown-bq9360-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ9360 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/venatino-bq8660-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8660 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/ventisca-bq8330-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8330 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/verderame-uk/,/tovary/ossido-verderame/,301,product_tag:product,тег = Laminam ossido Verderame
+/product-tag/vicostone-akoya-bq8583-uk/,/tovary/akoya/,301,product_tag:product,тег = Vicostone Akoya BQ8583
+/product-tag/vicostone-altea-bs182-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BS182 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-amadeus-bq8887-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8887 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-artic-snow-bq200-uk/,/tovary/artic-snow/,301,product_tag:product,тег = Vicostone Artic Snow BQ200
+/product-tag/vicostone-avalon-bq8618-uk/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag:landing,тег = Vicostone BQ8618 немає в базі -> підбірка старої категорії granite-looking
+/product-tag/vicostone-avorio-bq9606-uk/,/tovary/avorio/,301,product_tag:product,тег = Vicostone Avorio BQ9606
+/product-tag/vicostone-azul-aran-bq9470-uk/,/tovary/azul-aran/,301,product_tag:product,тег = Vicostone Azul Aran BQ9470
+/product-tag/vicostone-beige-pearl-bq240-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ240 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-bianco-venato-bq8440-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag:landing,тег = Vicostone BQ8440 немає в базі -> підбірка старої категорії marble-effect
+/product-tag/vicostone-cemento-bq8730-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8730 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-cendre-bq8805-uk/,/tovary/cendre/,301,product_tag:product,тег = Vicostone Cendre BQ8805
+/product-tag/vicostone-ceppo-di-gre-bq8794-uk/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,product_tag:landing,тег = Vicostone BQ8794 немає в базі -> підбірка старої категорії natural
+/product-tag/vicostone-cold-spring-bq9441-uk/,/tovary/cold-spring/,301,product_tag:product,тег = Vicostone Cold Spring BQ9441
+/product-tag/vicostone-cosmic-black-bq9427-uk/,/tovary/cosmic-black/,301,product_tag:product,тег = Vicostone Cosmic Black BQ9427
+/product-tag/vicostone-cosmic-bq241-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ241 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-crystal-black-bq262-uk/,/tovary/crystal-black/,301,product_tag:product,тег = Vicostone Crystal Black BQ262
+/product-tag/vicostone-crystal-ice-bq1080-uk/,/tovary/crystal-ice/,301,product_tag:product,тег = Vicostone Crystal Ice BQ1080
+/product-tag/vicostone-crystal-ivory-bq850-uk/,/tovary/crystal-ivory/,301,product_tag:product,тег = Vicostone Crystal Ivory BQ850
+/product-tag/vicostone-desert-sand-bs160-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BS160 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-emerald-bs170-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BS170 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-eramosa-bq9602-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ9602 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-grande-bq8729-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8729 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-greylac-bq8738-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8738 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-jura-grey-bq8437-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8437 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-luna-sand-bs120-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BS120 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-majestic-black-bq9611-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ9611 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-milky-white-bq201-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ201 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-mocha-crema-bq8100-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8100 немає в базі -> підбірка старої категорії classic
+/product-tag/vicostone-naxos-bq8864-uk/,/tovary/naxos/,301,product_tag:product,тег = Vicostone Naxos BQ8864
+/product-tag/vicostone-nero-marquina-bq8740-uk/,/tovary/nero-marquina/,301,product_tag:product,тег = Vicostone Nero Marquina BQ8740
+/product-tag/vicostone-nirvara-bq9140-uk/,/kataloh/kvartsovyi-kamin-kroshka/,301,product_tag:landing,тег = Vicostone BQ9140 немає в базі -> підбірка старої категорії crystal
+/product-tag/vicostone-onyx-white-bq2088-uk/,/tovary/onyx-white/,301,product_tag:product,тег = Vicostone Onyx White BQ2088
+/product-tag/vicostone-quasar-light-bq100-uk/,/tovary/quasar-light/,301,product_tag:product,тег = Vicostone Quasar Light BQ100
+/product-tag/vicostone-satinet-bs124-uk/,/tovary/satinet/,301,product_tag:product,тег = Vicostone Satinet BS124
+/product-tag/vicostone-serra-bq9418-uk/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag:landing,тег = Vicostone BQ9418 немає в базі -> підбірка старої категорії granite-looking
+/product-tag/vicostone-silver-white-bq400-uk/,/tovary/silver-white/,301,product_tag:product,тег = Vicostone Silver White BQ400
+/product-tag/vicostone-tartufo-bq8863-uk/,/tovary/tartufo/,301,product_tag:product,тег = Vicostone Tartufo BQ8863
+/product-tag/vicostone-thunder-blue-bq8786-uk/,/tovary/thunder-blue/,301,product_tag:product,тег = Vicostone Thunder Blue BQ8786
+/product-tag/vicostone-tiger-bq9438-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ9438 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-tobacco-bq9420-uk/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag:landing,тег = Vicostone BQ9420 немає в базі -> підбірка старої категорії granite-looking
+/product-tag/vicostone-uliano-bq8806-uk/,/tovary/uliano/,301,product_tag:product,тег = Vicostone Uliano BQ8806
+/product-tag/vicostone-vivalioro-bq8918-uk/,/kataloh/kvartsovyi-kamin/,301,product_tag:landing,тег = Vicostone BQ8918 немає в базі -> підбірка старої категорії exotic
+/product-tag/vicostone-volakano-bq8885-uk/,/tovary/volakano/,301,product_tag:product,тег = Vicostone Volakano BQ8885
+/ru/product-tag/ardesia-bianco-a-spacco/,/tovary/i-naturali-ardesia-bianco/,301,product_tag_ru:product,тег = Laminam i-naturali Ardesia Bianco
+/ru/product-tag/ardesia-nero-a-spacco/,/tovary/i-naturali-ardesia-nero/,301,product_tag_ru:product,тег = Laminam i-naturali Ardesia Nero
+/ru/product-tag/blend-avorio/,/tovary/blend-avorio/,301,product_tag_ru:product,тег = Laminam blend Avorio
+/ru/product-tag/blend-grigio/,/tovary/blend-grigio/,301,product_tag_ru:product,тег = Laminam blend Grigio
+/ru/product-tag/blend-nero/,/tovary/blend-nero/,301,product_tag_ru:product,тег = Laminam blend Nero
+/ru/product-tag/borghini-bq8670/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8670 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/botticino-classic-bq8430/,/tovary/botticino-classic/,301,product_tag_ru:product,тег = Vicostone Botticino classic BQ8430
+/ru/product-tag/calacatta-bq8270/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8270 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/calce-antracite/,/tovary/calce-antracite/,301,product_tag_ru:product,тег = Laminam calce Antracite
+/ru/product-tag/calce-avorio/,/tovary/calce-avorio/,301,product_tag_ru:product,тег = Laminam calce Avorio
+/ru/product-tag/calce-bianco/,/tovary/calce-bianco/,301,product_tag_ru:product,тег = Laminam calce Bianco
+/ru/product-tag/calce-grigio/,/tovary/calce-grigio/,301,product_tag_ru:product,тег = Laminam calce Grigio
+/ru/product-tag/calce-nero/,/tovary/calce-nero/,301,product_tag_ru:product,тег = Laminam calce Nero
+/ru/product-tag/calce-tortora/,/tovary/calce-tortora/,301,product_tag_ru:product,тег = Laminam calce Tortora
+/ru/product-tag/carrara-bq8220/,/tovary/carrara/,301,product_tag_ru:product,тег = Vicostone Carrara BQ8220
+/ru/product-tag/cementi-avorio/,/kataloh/keramogranit-pid-beton/,301,product_tag_ru:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product-tag/cementi-grigio/,/kataloh/keramogranit-pid-beton/,301,product_tag_ru:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product-tag/cementi-nero/,/kataloh/keramogranit-pid-beton/,301,product_tag_ru:landing,тег = колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product-tag/cinza-bq8808/,/tovary/cinza/,301,product_tag_ru:product,тег = Vicostone Cinza BQ8808
+/ru/product-tag/collection-avorio/,/kataloh/laminam/?collection=collection,301,product_tag_ru:collection,тег = декору Laminam collection «Avorio» немає в базі -> колекція
+/ru/product-tag/collection-bianco-assoluto/,/tovary/collection-bianco-assoluto/,301,product_tag_ru:product,тег = Laminam collection Bianco Assoluto
+/ru/product-tag/collection-fumo/,/kataloh/laminam/?collection=collection,301,product_tag_ru:collection,тег = декору Laminam collection «Fumo» немає в базі -> колекція
+/ru/product-tag/collection-nero-assoluto/,/kataloh/laminam/?collection=collection,301,product_tag_ru:collection,тег = декору Laminam collection «Nero Assoluto» немає в базі -> колекція
+/ru/product-tag/collection-neve/,/tovary/collection-neve/,301,product_tag_ru:product,тег = Laminam collection Neve
+/ru/product-tag/collection-perla/,/kataloh/laminam/?collection=collection,301,product_tag_ru:collection,тег = декору Laminam collection «Perla» немає в базі -> колекція
+/ru/product-tag/dark-emparador-bq8560/,/tovary/dark-emparador/,301,product_tag_ru:product,тег = Vicostone Dark Emparador BQ8560
+/ru/product-tag/dolce-vita-bq8590/,/tovary/dolce-vita/,301,product_tag_ru:product,тег = Vicostone Dolce Vita BQ8590
+/ru/product-tag/empire-bq8370/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8370 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/filo-argento/,/tovary/filo-argento/,301,product_tag_ru:product,тег = Laminam filo Argento
+/ru/product-tag/filo-brina/,/tovary/filo-brina/,301,product_tag_ru:product,тег = Laminam filo Brina
+/ru/product-tag/filo-ghisa/,/tovary/filo-ghisa/,301,product_tag_ru:product,тег = Laminam filo Ghisa
+/ru/product-tag/filo-mercurio/,/tovary/filo-mercurio/,301,product_tag_ru:product,тег = Laminam filo Mercurio
+/ru/product-tag/filo-oro/,/tovary/filo-oro/,301,product_tag_ru:product,тег = Laminam filo Oro
+/ru/product-tag/filo-pece/,/tovary/filo-pece/,301,product_tag_ru:product,тег = Laminam filo Pece
+/ru/product-tag/fluido-solido-blu-lucidato/,/tovary/fluidosolido-blu/,301,product_tag_ru:product,тег = Laminam fluidosolido Blu
+/ru/product-tag/fokos-piombo/,/tovary/fokos-piombo/,301,product_tag_ru:product,тег = Laminam fokos Piombo
+/ru/product-tag/fokos-rena/,/tovary/fokos-rena/,301,product_tag_ru:product,тег = Laminam fokos Rena
+/ru/product-tag/fokos-roccia/,/tovary/fokos-roccia/,301,product_tag_ru:product,тег = Laminam fokos Roccia
+/ru/product-tag/fokos-sale/,/tovary/fokos-sale/,301,product_tag_ru:product,тег = Laminam fokos Sale
+/ru/product-tag/fokos-terra/,/tovary/fokos-terra/,301,product_tag_ru:product,тег = Laminam fokos Terra
+/ru/product-tag/grey-savoie-bq8446/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8446 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/i-naturali-arabescato/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Arabescato» немає в базі -> колекція
+/ru/product-tag/i-naturali-ardesia-nero-a-spacco/,/tovary/i-naturali-ardesia-nero/,301,product_tag_ru:product,тег = Laminam i-naturali Ardesia Nero
+/ru/product-tag/i-naturali-basalto-vena-chiara/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Basalto Vena Chiara» немає в базі -> колекція
+/ru/product-tag/i-naturali-basalto-vena-scura/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Basalto Vena Scura» немає в базі -> колекція
+/ru/product-tag/i-naturali-bianco-lasa/,/tovary/bianco-lasa/,301,product_tag_ru:product,тег = Laminam i-naturali Bianco Lasa
+/ru/product-tag/i-naturali-bianco-statuario-venato/,/tovary/bianco-statuario-venato/,301,product_tag_ru:product,тег = Laminam i-naturali Bianco Statuario Venato
+/ru/product-tag/i-naturali-blue-stone-bocciardato/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Blue Stone Bocciardato» немає в базі -> колекція
+/ru/product-tag/i-naturali-calacatta-michelangelo/,/tovary/i-naturali-calacatta-michelangelo/,301,product_tag_ru:product,тег = Laminam i-naturali Calacatta Michelangelo
+/ru/product-tag/i-naturali-calacatta-oro-venato/,/tovary/i-naturali-calacatta-oro-venato/,301,product_tag_ru:product,тег = Laminam i-naturali Calacatta Oro Venato
+/ru/product-tag/i-naturali-diamond-cream/,/tovary/i-naturali-diamond-cream/,301,product_tag_ru:product,тег = Laminam i-naturali Diamond Cream
+/ru/product-tag/i-naturali-emperador-extra/,/tovary/i-naturali-emperador-extra/,301,product_tag_ru:product,тег = Laminam i-naturali Emperador Extra
+/ru/product-tag/i-naturali-invisible-white/,/tovary/i-naturali-invisible-white/,301,product_tag_ru:product,тег = Laminam i-naturali Invisible White
+/ru/product-tag/i-naturali-marfil/,/tovary/marfil/,301,product_tag_ru:product,тег = Laminam rare Marfil (ручне зіставлення)
+/ru/product-tag/i-naturali-nero-ardesia/,/tovary/i-naturali-ardesia-nero/,301,product_tag_ru:product,тег = Laminam i-naturali Ardesia Nero (ручне зіставлення)
+/ru/product-tag/i-naturali-nero-greco/,/tovary/i-naturali-nero-greco/,301,product_tag_ru:product,тег = Laminam i-naturali Nero Greco
+/ru/product-tag/i-naturali-noir-desir/,/tovary/i-naturali-noir-desir/,301,product_tag_ru:product,тег = Laminam i-naturali Noir Desir
+/ru/product-tag/i-naturali-orobico-grigio/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Orobico Grigio» немає в базі -> колекція
+/ru/product-tag/i-naturali-ossidiana-vena-chiara/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Ossidiana Vena Chiara» немає в базі -> колекція
+/ru/product-tag/i-naturali-ossidiana-vena-grigia/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Ossidiana Vena Grigia» немає в базі -> колекція
+/ru/product-tag/i-naturali-ossidiana-vena-scura/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Ossidiana Vena Scura» немає в базі -> колекція
+/ru/product-tag/i-naturali-pietra-di-savoia-antracite-bocciardato/,/tovary/i-naturali-pietra-di-savoia-antracite/,301,product_tag_ru:product,тег = Laminam i-naturali Pietra Di Savoia Antracite
+/ru/product-tag/i-naturali-pietra-di-savoia-avorio-bocciardato/,/tovary/i-naturali-pietra-di-savoia-avorio/,301,product_tag_ru:product,тег = Laminam i-naturali Pietra Di Savoia Avorio
+/ru/product-tag/i-naturali-pietra-di-savoia-grigia-bocciardato/,/tovary/i-naturali-pietra-di-savoia-grigio/,301,product_tag_ru:product,тег = Laminam i-naturali Pietra Di Savoia Grigio
+/ru/product-tag/i-naturali-pietra-di-savoia-perla-bocciardato/,/tovary/i-naturali-pietra-di-savoia-perla/,301,product_tag_ru:product,тег = Laminam i-naturali Pietra Di Savoia Perla
+/ru/product-tag/i-naturali-pietra-grey/,/tovary/i-naturali-pietra-grey/,301,product_tag_ru:product,тег = Laminam i-naturali Pietra Grey
+/ru/product-tag/i-naturali-statuarietto/,/tovary/i-naturali-statuarietto/,301,product_tag_ru:product,тег = Laminam i-naturali Statuarietto
+/ru/product-tag/i-naturali-statuario-altissimoio/,/tovary/i-naturali-statuario-altissimo/,301,product_tag_ru:product,тег = Laminam i-naturali Statuario Altissimo
+/ru/product-tag/i-naturali-travertino-avorio/,/tovary/i-naturali-travertino-avorio/,301,product_tag_ru:product,тег = Laminam i-naturali Travertino Avorio
+/ru/product-tag/i-naturali-travertino-navona/,/tovary/i-naturali-travertino-navona/,301,product_tag_ru:product,тег = Laminam i-naturali Travertino Navona
+/ru/product-tag/i-naturali-travertino-romano-bocciardato/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = декору Laminam i-naturali «Travertino Romano Bocciardato» немає в базі -> колекція
+/ru/product-tag/i-naturali-travetino-grigio-venato/,/tovary/i-naturali-travertino-grigio-venato/,301,product_tag_ru:product,тег = Laminam i-naturali Travertino Grigio Venato
+/ru/product-tag/i-naturali/,/kataloh/laminam/?collection=i-naturali,301,product_tag_ru:collection,тег = тег колекції I Naturali
+/ru/product-tag/ice-lake-bq8668/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8668 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/imperio-bq8810/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8810 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/in-side-pietra-di-cardoso-grigio/,/tovary/in-side-pietra-di-cardoso-grigio/,301,product_tag_ru:product,тег = Laminam in-side Pietra Di Cardoso Grigio
+/ru/product-tag/in-side-pietra-di-cardoso-nero/,/tovary/in-side-pietra-di-cardoso-nero/,301,product_tag_ru:product,тег = Laminam in-side Pietra Di Cardoso Nero
+/ru/product-tag/in-side-pietra-piasentina-grigio/,/tovary/in-side-pietra-piasentina-grigio/,301,product_tag_ru:product,тег = Laminam in-side Pietra Piasentina Grigio
+/ru/product-tag/in-side-pietra-piasentina-taupe/,/tovary/in-side-pietra-piasentina-taupe/,301,product_tag_ru:product,тег = Laminam in-side Pietra Piasentina Taupe
+/ru/product-tag/in-side-porfido-marrone/,/tovary/in-side-porfido-marrone/,301,product_tag_ru:product,тег = Laminam in-side Porfido Marrone
+/ru/product-tag/java-noir-bq8812/,/tovary/java-noir/,301,product_tag_ru:product,тег = Vicostone Java Noir BQ8812
+/ru/product-tag/legno-venezia-corda/,/kataloh/laminam/?collection=legno-venezia,301,product_tag_ru:collection,тег = декору Laminam legno-venezia «Corda» немає в базі -> колекція
+/ru/product-tag/legno-venezia-fumo/,/kataloh/laminam/?collection=legno-venezia,301,product_tag_ru:collection,тег = декору Laminam legno-venezia «Fumo» немає в базі -> колекція
+/ru/product-tag/legno-venezia-sabbia/,/tovary/legno-venezia-sabbia/,301,product_tag_ru:product,тег = Laminam legno-venezia Sabbia
+/ru/product-tag/onixaa-bq8550/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8550 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/ossid/,/kataloh/laminam/?collection=ossido,301,product_tag_ru:collection,тег = тег колекції Ossido
+/ru/product-tag/ossido-bruno/,/tovary/ossido-bruno/,301,product_tag_ru:product,тег = Laminam ossido Bruno
+/ru/product-tag/ossido-nero/,/tovary/ossido-nero/,301,product_tag_ru:product,тег = Laminam ossido Nero
+/ru/product-tag/ossido-verderame/,/tovary/ossido-verderame/,301,product_tag_ru:product,тег = Laminam ossido Verderame
+/ru/product-tag/oxide-avorio/,/tovary/oxide-avorio/,301,product_tag_ru:product,тег = Laminam oxide Avorio
+/ru/product-tag/oxide-bianco/,/tovary/oxide-bianco/,301,product_tag_ru:product,тег = Laminam oxide Bianco
+/ru/product-tag/oxide-grigio/,/kataloh/laminam/?collection=oxide,301,product_tag_ru:collection,тег = декору Laminam oxide «Grigio» немає в базі -> колекція
+/ru/product-tag/oxide-moro/,/tovary/oxide-moro/,301,product_tag_ru:product,тег = Laminam oxide Moro
+/ru/product-tag/oxide-nero/,/tovary/oxide-nero/,301,product_tag_ru:product,тег = Laminam oxide Nero
+/ru/product-tag/oxide-perla/,/tovary/oxide-perla/,301,product_tag_ru:product,тег = Laminam oxide Perla
+/ru/product-tag/seta-blanc/,/kataloh/laminam/?collection=seta,301,product_tag_ru:collection,тег = декору Laminam seta «Blanc» немає в базі -> колекція
+/ru/product-tag/seta-glace/,/kataloh/laminam/?collection=seta,301,product_tag_ru:collection,тег = декору Laminam seta «Glace» немає в базі -> колекція
+/ru/product-tag/seta-gris/,/kataloh/laminam/?collection=seta,301,product_tag_ru:collection,тег = декору Laminam seta «Gris» немає в базі -> колекція
+/ru/product-tag/seta-liquorice/,/tovary/seta-liquorice/,301,product_tag_ru:product,тег = Laminam seta Liquorice
+/ru/product-tag/seta-or/,/tovary/seta-or/,301,product_tag_ru:product,тег = Laminam seta Or
+/ru/product-tag/statuario-bq8628/,/tovary/statuario/,301,product_tag_ru:product,тег = Vicostone Statuario BQ8628
+/ru/product-tag/taj-mahal-bq9453/,/tovary/vicostone-taj-mahal/,301,product_tag_ru:product,тег = Vicostone Taj Mahal BQ9453
+/ru/product-tag/titanium-brown-bq9360/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ9360 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/venatino-bq8660/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8660 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/ventisca-bq8330/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8330 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/verderame/,/tovary/ossido-verderame/,301,product_tag_ru:product,тег = Laminam ossido Verderame
+/ru/product-tag/vicostone-akoya-bq8583/,/tovary/akoya/,301,product_tag_ru:product,тег = Vicostone Akoya BQ8583
+/ru/product-tag/vicostone-altea-bs182/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BS182 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-amadeus-bq8887/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8887 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-artic-snow-bq200/,/tovary/artic-snow/,301,product_tag_ru:product,тег = Vicostone Artic Snow BQ200
+/ru/product-tag/vicostone-avalon-bq8618/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag_ru:landing,тег = Vicostone BQ8618 немає в базі -> підбірка старої категорії granite-looking
+/ru/product-tag/vicostone-avorio-bq9606/,/tovary/avorio/,301,product_tag_ru:product,тег = Vicostone Avorio BQ9606
+/ru/product-tag/vicostone-azul-aran-bq9470/,/tovary/azul-aran/,301,product_tag_ru:product,тег = Vicostone Azul Aran BQ9470
+/ru/product-tag/vicostone-beige-pearl-bq240/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ240 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-bianco-venato-bq8440/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,product_tag_ru:landing,тег = Vicostone BQ8440 немає в базі -> підбірка старої категорії marble-effect
+/ru/product-tag/vicostone-cemento-bq8730/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8730 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-cendre-bq8805/,/tovary/cendre/,301,product_tag_ru:product,тег = Vicostone Cendre BQ8805
+/ru/product-tag/vicostone-ceppo-di-gre-bq8794/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8794 немає в базі -> підбірка старої категорії natural
+/ru/product-tag/vicostone-cold-spring-bq9441/,/tovary/cold-spring/,301,product_tag_ru:product,тег = Vicostone Cold Spring BQ9441
+/ru/product-tag/vicostone-cosmic-black-bq9427/,/tovary/cosmic-black/,301,product_tag_ru:product,тег = Vicostone Cosmic Black BQ9427
+/ru/product-tag/vicostone-cosmic-bq241/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ241 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-crystal-black-bq262/,/tovary/crystal-black/,301,product_tag_ru:product,тег = Vicostone Crystal Black BQ262
+/ru/product-tag/vicostone-crystal-ice-bq1080/,/tovary/crystal-ice/,301,product_tag_ru:product,тег = Vicostone Crystal Ice BQ1080
+/ru/product-tag/vicostone-crystal-ivory-bq850/,/tovary/crystal-ivory/,301,product_tag_ru:product,тег = Vicostone Crystal Ivory BQ850
+/ru/product-tag/vicostone-desert-sand-bs160/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BS160 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-emerald-bs170/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BS170 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-eramosa-bq9602/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ9602 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-grande-bq8729/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8729 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-greylac-bq8738/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8738 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-jura-grey-bq8437/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8437 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-luna-sand-bs120/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BS120 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-majestic-black-bq9611/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ9611 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-milky-white-bq201/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ201 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-mocha-crema-bq8100/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8100 немає в базі -> підбірка старої категорії classic
+/ru/product-tag/vicostone-naxos-bq8864/,/tovary/naxos/,301,product_tag_ru:product,тег = Vicostone Naxos BQ8864
+/ru/product-tag/vicostone-nero-marquina-bq8740/,/tovary/nero-marquina/,301,product_tag_ru:product,тег = Vicostone Nero Marquina BQ8740
+/ru/product-tag/vicostone-nirvara-bq9140/,/kataloh/kvartsovyi-kamin-kroshka/,301,product_tag_ru:landing,тег = Vicostone BQ9140 немає в базі -> підбірка старої категорії crystal
+/ru/product-tag/vicostone-onyx-white-bq2088/,/tovary/onyx-white/,301,product_tag_ru:product,тег = Vicostone Onyx White BQ2088
+/ru/product-tag/vicostone-quasar-light-bq100/,/tovary/quasar-light/,301,product_tag_ru:product,тег = Vicostone Quasar Light BQ100
+/ru/product-tag/vicostone-satinet-bs124/,/tovary/satinet/,301,product_tag_ru:product,тег = Vicostone Satinet BS124
+/ru/product-tag/vicostone-serra-bq9418/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag_ru:landing,тег = Vicostone BQ9418 немає в базі -> підбірка старої категорії granite-looking
+/ru/product-tag/vicostone-silver-white-bq400/,/tovary/silver-white/,301,product_tag_ru:product,тег = Vicostone Silver White BQ400
+/ru/product-tag/vicostone-tartufo-bq8863/,/tovary/tartufo/,301,product_tag_ru:product,тег = Vicostone Tartufo BQ8863
+/ru/product-tag/vicostone-thunder-blue-bq8786/,/tovary/thunder-blue/,301,product_tag_ru:product,тег = Vicostone Thunder Blue BQ8786
+/ru/product-tag/vicostone-tiger-bq9438/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ9438 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-tobacco-bq9420/,/kataloh/kvartsovyi-kamin-pid-granit/,301,product_tag_ru:landing,тег = Vicostone BQ9420 немає в базі -> підбірка старої категорії granite-looking
+/ru/product-tag/vicostone-uliano-bq8806/,/tovary/uliano/,301,product_tag_ru:product,тег = Vicostone Uliano BQ8806
+/ru/product-tag/vicostone-vivalioro-bq8918/,/kataloh/kvartsovyi-kamin/,301,product_tag_ru:landing,тег = Vicostone BQ8918 немає в базі -> підбірка старої категорії exotic
+/ru/product-tag/vicostone-volakano-bq8885/,/tovary/volakano/,301,product_tag_ru:product,тег = Vicostone Volakano BQ8885
+/product-category/laminam-uk/,/kataloh/laminam/,301,category,бренд Laminam
+/product-category/laminam-uk/blend-uk/,/kataloh/laminam/?collection=blend,301,category,колекція Laminam blend
+/product-category/laminam-uk/calce-uk/,/kataloh/laminam/?collection=calce,301,category,колекція Laminam calce
+/product-category/laminam-uk/cementi-uk/,/kataloh/keramogranit-pid-beton/,301,category,колекції Laminam cementi немає в базі -> найближча підбірка
+/product-category/laminam-uk/collection-uk/,/kataloh/laminam/?collection=collection,301,category,колекція Laminam collection
+/product-category/laminam-uk/filo-uk/,/kataloh/laminam/?collection=filo,301,category,колекція Laminam filo
+/product-category/laminam-uk/fluido-solido-uk/,/kataloh/laminam/?collection=fluidosolido,301,category,колекція Laminam fluidosolido
+/product-category/laminam-uk/fokos-uk/,/kataloh/laminam/?collection=fokos,301,category,колекція Laminam fokos
+/product-category/laminam-uk/i-naturali-marmi-uk/,/kataloh/laminam/?collection=i-naturali,301,category,колекція Laminam i-naturali
+/product-category/laminam-uk/i-naturali-pietre-uk/,/kataloh/laminam/?collection=i-naturali,301,category,колекція Laminam i-naturali
+/product-category/laminam-uk/in-side-uk/,/kataloh/laminam/?collection=in-side,301,category,колекція Laminam in-side
+/product-category/laminam-uk/legno-venezia-uk/,/kataloh/laminam/?collection=legno-venezia,301,category,колекція Laminam legno-venezia
+/product-category/laminam-uk/ossido-uk/,/kataloh/laminam/?collection=ossido,301,category,колекція Laminam ossido
+/product-category/laminam-uk/oxide-uk/,/kataloh/laminam/?collection=oxide,301,category,колекція Laminam oxide
+/product-category/laminam-uk/seta-uk/,/kataloh/laminam/?collection=seta,301,category,колекція Laminam seta
+/product-category/vicostone-uk/,/kataloh/kvartsovyi-kamin/,301,category,бренд Vicostone
+/product-category/vicostone-uk/classic-uk/,/kataloh/kvartsovyi-kamin/,301,category,колекція Vicostone classic -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/crystal-uk/,/kataloh/kvartsovyi-kamin-kroshka/,301,category,колекція Vicostone crystal -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/exotic-uk/,/kataloh/kvartsovyi-kamin/,301,category,колекція Vicostone exotic -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/granite-looking-uk/,/kataloh/kvartsovyi-kamin-pid-granit/,301,category,колекція Vicostone granite-looking -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/marble-effect-uk/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,category,колекція Vicostone marble-effect -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/natural-uk/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,category,колекція Vicostone natural -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vicostone-uk/pure-uk/,/kataloh/kvartsovyi-kamin-odnoton/,301,category,колекція Vicostone pure -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/product-category/vsi/,/kataloh/,301,category,усі товари -> каталог
+/ru/product-category/all/,/kataloh/,301,category_ru,усі товари -> каталог
+/ru/product-category/laminam/,/kataloh/laminam/,301,category_ru,бренд Laminam
+/ru/product-category/laminam/blend/,/kataloh/laminam/?collection=blend,301,category_ru,колекція Laminam blend
+/ru/product-category/laminam/calce/,/kataloh/laminam/?collection=calce,301,category_ru,колекція Laminam calce
+/ru/product-category/laminam/cementi/,/kataloh/keramogranit-pid-beton/,301,category_ru,колекції Laminam cementi немає в базі -> найближча підбірка
+/ru/product-category/laminam/collection/,/kataloh/laminam/?collection=collection,301,category_ru,колекція Laminam collection
+/ru/product-category/laminam/filo/,/kataloh/laminam/?collection=filo,301,category_ru,колекція Laminam filo
+/ru/product-category/laminam/fluido-solido/,/kataloh/laminam/?collection=fluidosolido,301,category_ru,колекція Laminam fluidosolido
+/ru/product-category/laminam/fokos/,/kataloh/laminam/?collection=fokos,301,category_ru,колекція Laminam fokos
+/ru/product-category/laminam/i-naturali-marmi/,/kataloh/laminam/?collection=i-naturali,301,category_ru,колекція Laminam i-naturali
+/ru/product-category/laminam/i-naturali-pietre/,/kataloh/laminam/?collection=i-naturali,301,category_ru,колекція Laminam i-naturali
+/ru/product-category/laminam/in-side/,/kataloh/laminam/?collection=in-side,301,category_ru,колекція Laminam in-side
+/ru/product-category/laminam/legno-venezia/,/kataloh/laminam/?collection=legno-venezia,301,category_ru,колекція Laminam legno-venezia
+/ru/product-category/laminam/ossido/,/kataloh/laminam/?collection=ossido,301,category_ru,колекція Laminam ossido
+/ru/product-category/laminam/oxide/,/kataloh/laminam/?collection=oxide,301,category_ru,колекція Laminam oxide
+/ru/product-category/laminam/seta/,/kataloh/laminam/?collection=seta,301,category_ru,колекція Laminam seta
+/ru/product-category/vicostone/,/kataloh/kvartsovyi-kamin/,301,category_ru,бренд Vicostone
+/ru/product-category/vicostone/classic/,/kataloh/kvartsovyi-kamin/,301,category_ru,колекція Vicostone classic -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/crystal/,/kataloh/kvartsovyi-kamin-kroshka/,301,category_ru,колекція Vicostone crystal -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/exotic/,/kataloh/kvartsovyi-kamin/,301,category_ru,колекція Vicostone exotic -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/granite-looking/,/kataloh/kvartsovyi-kamin-pid-granit/,301,category_ru,колекція Vicostone granite-looking -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/marble-effect/,/kataloh/kvartsovyi-kamin-pid-marmur/,301,category_ru,колекція Vicostone marble-effect -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/natural/,/kataloh/kvartsovyi-kamin-pid-kamin/,301,category_ru,колекція Vicostone natural -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/ru/product-category/vicostone/pure/,/kataloh/kvartsovyi-kamin-odnoton/,301,category_ru,колекція Vicostone pure -> підбірка за дизайном (колекцій Vicostone в базі немає)
+/Колір/bezhevyj-uk/,/kataloh/keramogranit-bezhevyi/,301,color_archive,колір -> керамограніт + колір
+/Колір/bilyj/,/kataloh/keramogranit-bilyi/,301,color_archive,колір -> керамограніт + колір
+/Колір/chornyj/,/kataloh/keramogranit-chornyi/,301,color_archive,колір -> керамограніт + колір
+/Колір/derevo-uk/,/kataloh/keramogranit-pid-derevo/,301,color_archive,"Дерево — дизайн, не колір"
+/Колір/korychnevyj/,/kataloh/keramogranit-korychnevyi/,301,color_archive,колір -> керамограніт + колір
+/Колір/siryj/,/kataloh/keramogranit-siryi/,301,color_archive,колір -> керамограніт + колір
+/Колір/synij/,/kataloh/keramogranit-synii/,301,color_archive,колір -> керамограніт + колір
+/Колір/zelenyj-uk/,/kataloh/keramogranit-zelenyi/,301,color_archive,колір -> керамограніт + колір
+/ru/Цвет/belyj/,/kataloh/keramogranit-bilyi/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/bezhevyj/,/kataloh/keramogranit-bezhevyi/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/chernyj/,/kataloh/keramogranit-chornyi/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/derevo/,/kataloh/keramogranit-pid-derevo/,301,color_archive_ru,"Дерево — дизайн, не колір"
+/ru/Цвет/korichnevyj/,/kataloh/keramogranit-korychnevyi/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/seryj/,/kataloh/keramogranit-siryi/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/sinij/,/kataloh/keramogranit-synii/,301,color_archive_ru,колір -> керамограніт + колір
+/ru/Цвет/zelenyj/,/kataloh/keramogranit-zelenyi/,301,color_archive_ru,колір -> керамограніт + колір
+/about-us/,/pro-nas/,301,page,Про нас
+/about/,/laminam/,301,page,Про продукт (Laminam) (сторінка бренду /laminam/)
+/application/,/laminam/,301,page,Застосування Laminam (сторінка бренду /laminam/)
+/arhitektoram-i-dizajneram/,/pro-nas/,301,page,Архітекторам — блок «Бути нашим партнером вигідно» на /pro-nas/
+/cart/,,410,page,WooCommerce — магазину не буде
+/checkout/,,410,page,WooCommerce — магазину не буде
+/contact/,/kontakty/,301,page,Контакти
+/features/,/laminam/,301,page,Особливості матеріалу Laminam (сторінка бренду /laminam/)
+/gde-kupit/,/kontakty/,301,page,Де купити
+/guaranty/,/pro-nas/,301,page,"Гарантія 25 років — згадана на /pro-nas/, окремої сторінки немає"
+/my-account/,,410,page,WooCommerce — магазину не буде
+/news/,/blog/,301,page,Новини -> блог
+/otdel-prodazh/,/kontakty/,301,page,Відділ продажу
+/privacy-policy/,/,301,page,Політики конфіденційності на новому сайті немає -> головна
+/projects/,/proekty/,301,page,Проекти
+/shop/,/kataloh/,301,page,Магазин -> каталог
+/video/,/laminam/,301,page,Відео Laminam -> сторінка бренду (сторінка бренду /laminam/)
+/ru/,/,301,page_ru,рос. головна
+/ru/about-us/,/pro-nas/,301,page_ru,Про нас
+/ru/about/,/laminam/,301,page_ru,Про продукт (Laminam) (сторінка бренду /laminam/)
+/ru/application/,/laminam/,301,page_ru,Застосування Laminam (сторінка бренду /laminam/)
+/ru/arhitektoram-i-dizajneram/,/pro-nas/,301,page_ru,Архітекторам — блок «Бути нашим партнером вигідно» на /pro-nas/
+/ru/cart/,,410,page_ru,WooCommerce — магазину не буде
+/ru/checkout/,,410,page_ru,WooCommerce — магазину не буде
+/ru/contact/,/kontakty/,301,page_ru,Контакти
+/ru/features/,/laminam/,301,page_ru,Особливості матеріалу Laminam (сторінка бренду /laminam/)
+/ru/gde-kupit/,/kontakty/,301,page_ru,Де купити
+/ru/guaranty/,/pro-nas/,301,page_ru,"Гарантія 25 років — згадана на /pro-nas/, окремої сторінки немає"
+/ru/laminam/,/laminam/,301,page_ru,Що таке Laminam (сторінка бренду /laminam/)
+/ru/my-account/,,410,page_ru,WooCommerce — магазину не буде
+/ru/news/,/blog/,301,page_ru,Новини -> блог
+/ru/otdel-prodazh/,/kontakty/,301,page_ru,Відділ продажу
+/ru/palitra/,/kataloh/,301,page_ru,Палітра (тільки рос.) -> каталог
+/ru/privacy-policy/,/,301,page_ru,Політики конфіденційності на новому сайті немає -> головна
+/ru/projects/,/proekty/,301,page_ru,Проекти
+/ru/refund_returns/,/,301,page_ru,"Політика повернення WooCommerce, аналога немає -> головна"
+/ru/video/,/laminam/,301,page_ru,Відео Laminam -> сторінка бренду (сторінка бренду /laminam/)
+/portfolio/collections/,/proekty/,301,portfolio,"галерея портфоліо, конкретного проєкту немає"
+/portfolio/inside/,/proekty/,301,portfolio,"галерея портфоліо, конкретного проєкту немає"
+/portfolio/outside/,/proekty/,301,portfolio,"галерея портфоліо, конкретного проєкту немає"
+/portfolio/vnutrennyaya-otdelka/,/proekty/,301,portfolio,"галерея портфоліо, конкретного проєкту немає"
+/ru/portfolio/collections/,/proekty/,301,portfolio_ru,"галерея портфоліо, конкретного проєкту немає"
+/ru/portfolio/inside/,/proekty/,301,portfolio_ru,"галерея портфоліо, конкретного проєкту немає"
+/ru/portfolio/outside/,/proekty/,301,portfolio_ru,"галерея портфоліо, конкретного проєкту немає"
+/ru/portfolio/vnutrennyaya-otdelka/,/proekty/,301,portfolio_ru,"галерея портфоліо, конкретного проєкту немає"
+/laminam-belarus/,/blog/,301,post,статті немає в блозі нового сайту
+/laminam-poland/,/blog/,301,post,статті немає в блозі нового сайту
+/nash-stend-na-vyistavke-comfort-house/,/blog/,301,post,статті немає в блозі нового сайту
+/nasha-kompaniya-na-festivale-prostoneba/,/blog/,301,post,статті немає в блозі нового сайту
+/ru/laminam-belarus/,/blog/,301,post_ru,статті немає в блозі нового сайту
+/ru/laminam-poland/,/blog/,301,post_ru,статті немає в блозі нового сайту
+/ru/nash-stend-na-vyistavke-comfort-house/,/blog/,301,post_ru,статті немає в блозі нового сайту
+/ru/nasha-kompaniya-na-festivale-prostoneba/,/blog/,301,post_ru,статті немає в блозі нового сайту
+/category/bez-kategoriї/,,410,post_category,«Без категорії» — сміття
+/ru/category/bez-kategorii/,,410,post_category_ru,«Без категорії» — сміття
+/tag/laminam-uk/,/laminam/,301,post_tag,тег Laminam -> сторінка бренду (сторінка бренду /laminam/)
+/ru/tag/laminam/,/laminam/,301,post_tag_ru,тег Laminam -> сторінка бренду (сторінка бренду /laminam/)
+/author/iryna-iashchuk/,,410,author,архів автора не потрібен
+/ru/author/iryna-iashchuk/,,410,author_ru,архів автора не потрібен
+/author-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/category-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/pa_colory-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/page-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/portfolio-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/post-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/post_tag-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/product-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/product_cat-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/product_tag-sitemap.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/ru/author-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/category-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/pa_colory-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/page-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/portfolio-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/post-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/post_tag-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/product-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/product_cat-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/product_tag-sitemap.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/ru/sitemap_index.xml,/sitemap.xml,301,sitemap,старий RU sitemap Yoast
+/sitemap_index.xml,/sitemap.xml,301,sitemap,старий sitemap Yoast
+/product-category/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог
+/product-tag/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог
+/product/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог
+/ru/product-category/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог
+/ru/product-tag/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог
+/ru/product/*,/kataloh/,301,wildcard,невідомий старий адрес WooCommerce -> каталог

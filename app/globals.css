@@ -24,3 +24,53 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Токены дизайн-системы BBS (переменные Figma-файла BBS).
+   Имя `black` из Figma переименовано в `ink`, чтобы не переопределять
+   tailwind-овский text-black (#000), который использует главная страница. */
+@theme {
+  --color-blue: #124574;
+  --color-ink: #171616;
+  --color-card-gray: #54606c;
+  --color-light-gray: #f9f7f7;
+  --color-back-card-gray: #ededed;
+  --color-caption-gray: #c5c5c5;
+  --color-red: #741214;
+}
+
+/* Многослойная тень hover-состояний кнопок и плиток (drop-shadow из Figma). */
+:root {
+  --lift: 3px 3px 4.5px rgb(18 69 116 / 0.1), 11px 12px 8px rgb(18 69 116 / 0.09),
+    24px 27px 10.5px rgb(18 69 116 / 0.05), 42px 47px 12.5px rgb(18 69 116 / 0.01),
+    66px 74px 14px rgb(18 69 116 / 0);
+}
+
+/* Обрезка текстового блока по cap-height/baseline — так Figma считает высоту
+   текста, без неё блоки выше на ~5px на каждый абзац. */
+@utility text-trim {
+  text-box: trim-both cap alphabetic;
+  /* Figma округляет высоту обрезанного текста до целого пикселя
+     (20px → 15, 32px → 23, 16px → 12); без этой добавки страница
+     «съезжает» вверх на полпикселя за каждый текстовый блок. */
+  margin-bottom: calc(round(1cap, 1px) - 1cap);
+}
+
+/* Плавное появление блоков при прокрутке (см. bbs/Reveal.tsx).
+   Скрываем только если JS работает и пользователь не просил меньше анимаций —
+   иначе контент виден сразу. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal] > * {
+    transition:
+      opacity 0.7s ease,
+      translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  [data-reveal] > :not(.is-visible) {
+    opacity: 0;
+    translate: 0 32px;
+  }
+  /* Якорные блоки (#lead-form) только проявляются: смещение сбило бы
+     точку, куда прокручивает ссылка. */
+  [data-reveal] > [id]:not(.is-visible) {
+    translate: none;
+  }
+}

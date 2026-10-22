@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="mdi:palette-advanced" clip-path="url(#clip0_0_6)">
+<path id="Vector" d="M48 47.8H19.2V43H48V47.8ZM0 47.8V43H16.8V47.8H0ZM38.4 38.2V19H48V38.2H38.4ZM38.4 2.2H48V16.6H38.4V2.2ZM0 38.2V2.2H33.6V38.2H0ZM16.8 29.944C18.7096 29.944 20.5409 29.1854 21.8912 27.8352C23.2414 26.4849 24 24.6536 24 22.744C24 17.944 16.8 9.856 16.8 9.856C16.8 9.856 9.6 17.944 9.6 22.744C9.6 24.6536 10.3586 26.4849 11.7088 27.8352C13.0591 29.1854 14.8904 29.944 16.8 29.944Z" fill="#124574"/>
+</g>
+<defs>
+<clipPath id="clip0_0_6">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs>
+</svg>

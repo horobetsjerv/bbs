@@ -1,65 +1,104 @@
-import Image from "next/image";
+import Page from "./_components/bbs/Page";
+import { CtaBanner, FaqSection, LeadForm } from "./_components/bbs/blocks";
+import DecorsSection from "./_components/bbs/DecorsSection";
+import Hero from "./_components/home/Hero";
+import Advantages from "./_components/home/Advantages";
+import Compare from "./_components/home/Compare";
+import Cooperation from "./_components/home/Cooperation";
+import ProjectTypes from "./_components/home/ProjectTypes";
+import Projects from "./_components/home/Projects";
+import WhyBbs from "./_components/home/WhyBbs";
+import WhereToBuy from "./_components/home/WhereToBuy";
+import Reviews from "./_components/home/Reviews";
+import { getPopularDecors } from "@/app/_lib/catalog";
+import MobileHome from "./_components/mobile/Home";
+import { leadPreset } from "./_lib/lead-preset";
 
-export default function Home() {
+// Тексты главной — из SEO-таблицы клиента, лист «Головна».
+export const metadata = {
+  title: "Laminam та Vicostone в Україні – купити | BBS",
+  description:
+    "BBS – офіційний дистриб'ютор Laminam і Vicostone в Україні ⭐ Керамограніт та кварцовий камінь для стільниць, підлоги, фасадів ⭐ Гарантія 25 років ☎️ (044) 228-29-49",
+  alternates: { canonical: "/" },
+};
+
+/** «Часті запитання» главной (десктоп и мобилка): вопрос и ответ. */
+const FAQ = [
+  {
+    question: "Чим керамограніт Laminam відрізняється від іншого керамограніту?",
+    answer:
+      "Ламінам поєднує великий формат із високою стійкістю до хімічних речовин, стирання, барвників, високих температур і вогню. Матеріал не вбирає забруднення, безпечний для контакту з харчовими продуктами та зберігає свої властивості за тривалої експлуатації.",
+  },
+  {
+    question: "Чим кварц відрізняється від керамограніту?",
+    answer:
+      "Кварцовий агломерат і керамограніт відрізняються складом та технологією виробництва. Кварцовий камінь містить значну частку природного кварцу, поєднаного зі смолами та пігментами, тоді як керамограніт виготовляють із мінеральної сировини шляхом пресування та випалу. Матеріали мають різні характеристики й сфери застосування, тому вибір залежить від призначення поверхні.",
+  },
+  {
+    question: "Чи можна замовити зразок?",
+    answer:
+      "Так, у BBS можна замовити зразок обраного матеріалу, щоб оцінити його декор, колір і фактуру перед прийняттям рішення.",
+  },
+  {
+    question: "Де подивитися матеріали наживо?",
+    answer:
+      "Матеріали наживо можна переглянути в шоурумі BBS у Києві. Тут можна ознайомитися зі зразками декорів, кольорів і поверхонь, порівняти доступні варіанти та визначитися з матеріалом для майбутнього проєкту. Шоурум розташований за адресою: вул. Василя Тютюнника, 51/1А, Київ, Україна. Працюємо з понеділка по п'ятницю з 9:30 до 17:00.",
+  },
+  {
+    question: "Чи є доставка по Україні?",
+    answer:
+      "Наразі доставка Україною не здійснюється. Матеріали можна отримати лише самовивозом зі складу BBS у Києві.",
+  },
+  {
+    question: "Як доглядати за кварцовим каменем?",
+    answer:
+      "Для щоденного догляду за кварцовим каменем достатньо м’якої серветки, теплої води та нейтрального мийного засобу. Забруднення бажано видаляти своєчасно, не залишаючи їх надовго на поверхні. Не використовуйте абразивні губки, агресивні хімічні засоби та склади, які можуть пошкодити поверхню.",
+  },
+];
+
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
+  const [decors, params] = await Promise.all([getPopularDecors(), searchParams]);
+  // Кнопки карточки товара ведут сюда: /?lead=sample_order&material=12&about=…#lead-form.
+  const preset = leadPreset((k) => {
+    const v = params[k];
+    return Array.isArray(v) ? v[0] : v;
+  });
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    // До подвала в макете 105px.
+    <Page
+      footerGap={105}
+      mobile={<MobileHome decors={decors} preset={preset} faq={FAQ} />}
+    >
+      <Hero />
+
+      {/* Frame 53: колонка 1120px, между секциями 120px. */}
+      <div
+        className="mt-[40px] flex w-[1120px] flex-col items-start gap-[120px]"
+        data-reveal
+      >
+        <Advantages />
+        <DecorsSection decors={decors} title="Популярні декори" />
+        <Compare />
+        <ProjectTypes />
+        {/* key: новый пресет из адреса — форма пересоздаётся с новым сообщением. */}
+        <LeadForm key={JSON.stringify(preset)} preset={preset} />
+        <Projects />
+        <WhyBbs />
+        <Cooperation />
+        <WhereToBuy />
+        <Reviews />
+        <FaqSection
+          title="Часті запитання"
+          questions={FAQ.map((f) => f.question)}
+          answers={FAQ.map((f) => f.answer)}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <CtaBanner
+          title="Розрахуйте вартість матеріалу для вашого проєкту"
+          text="Залиште заявку-наші менеджери зв’яжуться з вами та допоможуть з вибором."
+        />
+      </div>
+    </Page>
   );
 }
