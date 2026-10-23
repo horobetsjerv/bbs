@@ -248,12 +248,10 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
   );
 }
 
-// Логотип бренда в «Бренди»: серый, при наведении на свою половину панели
-// (или фокусе с клавиатуры) плавно становится цветным — цветная копия
-// лежит поверх. Тёмно-синий цвет логотипов почти не отличается от чёрного,
-// поэтому обычное состояние приглушено — иначе смену не видно.
-const LOGO_MONO =
-  "opacity-50 transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
+// Логотип бренда в «Бренди»: чёрно-белый, при наведении на свою половину
+// панели (или фокусе с клавиатуры) плавно становится цветным — цветная копия
+// лежит поверх.
+const LOGO_MONO = "transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
 const LOGO_COLOR =
   "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100";
 // Ссылка — на всю половину панели (вместе с отступами 32px сверху и снизу),
