@@ -301,9 +301,16 @@ export default function LeadFormFields({
 
   useEffect(() => {
     if (!thanks) return;
-    thanksRef.current?.focus();
+    // Фокус — через кадр: в момент смены слой ещё visibility: hidden
+    // (начало перехода), и focus() бы не сработал.
+    const frame = requestAnimationFrame(() =>
+      requestAnimationFrame(() => thanksRef.current?.focus({ preventScroll: true })),
+    );
     const timer = setTimeout(() => setThanks(false), THANKS_MS);
-    return () => clearTimeout(timer);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+    };
   }, [thanks]);
 
   const layer = "col-start-1 row-start-1 transition-[opacity,visibility] duration-300 ease-out motion-reduce:transition-none";
