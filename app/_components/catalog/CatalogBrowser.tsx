@@ -181,6 +181,26 @@ export default function CatalogBrowser({
   const [sortOpen, setSortOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const sideRef = useRef<HTMLDivElement>(null);
+
+  // Фильтр закреплён при скролле и не обрезается: выше окна — едет вместе со
+  // страницей, пока не покажется его низ, и закрепляется низом; ниже окна —
+  // закрепляется верхом.
+  useEffect(() => {
+    const side = sideRef.current;
+    if (!side) return;
+    const place = () => {
+      side.style.top = `${Math.min(0, window.innerHeight - side.offsetHeight)}px`;
+    };
+    place();
+    const observer = new ResizeObserver(place);
+    observer.observe(side);
+    window.addEventListener("resize", place);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", place);
+    };
+  }, []);
 
   useEffect(() => {
     if (!sortOpen) return;
@@ -234,9 +254,10 @@ export default function CatalogBrowser({
   return (
     <>
       {/* В макете пометка: «фільтр має бути закріпленим при скролі».
-          Панель выше экрана, поэтому она не длиннее окна и прокручивается
-          внутри себя — так закрепление работает при любой длине выдачи. */}
-      <div className="sticky top-0 max-h-dvh self-start overflow-y-auto overscroll-contain [scrollbar-width:thin]">
+          Панель целиком, без своей прокрутки (обрезалась внизу): top
+          подбирает эффект выше. Ряд не ниже панели — на последней странице
+          под карточками остаётся место, панель видна до конца. */}
+      <div ref={sideRef} className="sticky top-0 self-start">
         <FilterSidebar
           bbs={bbs}
           facets={shownFacets}
