@@ -14,6 +14,7 @@ import {
 import { Fragment } from "react";
 
 import { getProjects } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 // SEO-текстов для «Співпраця» нет (docs/seo-texts.md: лист пустой) —
 // title и description собраны из текстов макета.
@@ -90,6 +91,7 @@ export default async function CooperationPage() {
   return (
     // До подвала в макете 60px (About / 5 кончается на 4093, подвал — 4153).
     <Page footerGap={60} mobile={<MobileSpivpratsia advantages={PARTNER} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Співпраця"], "/spivpratsia/")} />
       <HeroBand
         breadcrumb={["Головна", "Співпраця"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}

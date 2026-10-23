@@ -26,6 +26,7 @@ import {
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import MobileProduct from "../mobile/Product";
+import JsonLd from "../seo/JsonLd";
 
 const LIGHT = "var(--color-light-gray)";
 
@@ -175,6 +176,8 @@ export type ProductPageProps = {
   /** Материал для заявки («Замовити зразок», «Запитати ціну»). */
   materialId?: number | null;
   consult: { title: string; text: string };
+  /** Структурированные данные страницы (крошки, товар) — JSON-LD. */
+  ld?: Record<string, unknown>[];
   similar: {
     title: string;
     button: string;
@@ -248,6 +251,7 @@ export default function ProductPage(props: ProductPageProps) {
   return (
     // До подвала в макете 199px (товар) и 65px (изделие).
     <Page footerGap={item ? 65 : 199} mobile={<MobileProduct {...props} />}>
+      {props.ld && <JsonLd data={props.ld} />}
       <div className="mt-[12px] flex w-[1120px] flex-col items-start">
         <Breadcrumbs items={breadcrumb} tone="dark" />
 

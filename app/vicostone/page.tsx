@@ -30,6 +30,7 @@ import {
   WHY,
   WHY_TITLE,
 } from "@/app/_components/vicostone/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 // Страница бренда Vicostone. Тексты — из SEO-таблицы клиента, лист «Vicostone»
 // (app/_components/vicostone/content.ts); блоки — со страницы Laminam.
@@ -44,6 +45,7 @@ export default function VicostonePage() {
   return (
     // До подвала — как у Laminam.
     <Page footerGap={121} mobile={<MobileVicostone />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Vicostone"], "/vicostone/")} />
       <Hero />
 
       {/* Колонка 1120px, между секциями 120px, порядок блоков — как в таблице. */}

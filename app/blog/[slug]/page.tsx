@@ -8,6 +8,8 @@ import PostCard from "@/app/_components/blog/PostCard";
 import { PROSE } from "@/app/_components/blog/prose";
 import MobilePost from "@/app/_components/mobile/Post";
 import { getPost, getPosts } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd, orgRef } from "@/app/_components/seo/JsonLd";
+import { OG_BASE, assetUrl, pageUrl } from "@/app/_lib/site";
 
 type Params = Promise<{ slug: string }>;
 
@@ -25,6 +27,13 @@ export async function generateMetadata({ params }: { params: Params }) {
       `${p.title} | BBS`,
     description: p.seoDescription || p.excerpt || undefined,
     alternates: { canonical: `/blog/${slug}/` },
+    openGraph: {
+      ...OG_BASE,
+      type: "article",
+      publishedTime: p.publishedAt,
+      modifiedTime: p.updatedAt,
+      ...(p.image ? { images: [{ url: assetUrl(p.image), alt: p.title }] } : {}),
+    },
   };
 }
 
@@ -34,9 +43,26 @@ export default async function PostPage({ params }: { params: Params }) {
   const [post, all] = await Promise.all([getPost(slug), getPosts()]);
   if (!post) notFound();
   const more = all.filter((p) => p.href !== post.href).slice(0, 2);
+  const path = `/blog/${slug}/`;
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    url: pageUrl(path),
+    mainEntityOfPage: pageUrl(path),
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    ...(post.excerpt || post.seoDescription ? { description: post.seoDescription || post.excerpt } : {}),
+    ...(post.image ? { image: [assetUrl(post.image)] } : {}),
+    ...(post.category ? { articleSection: post.category } : {}),
+    inLanguage: "uk",
+    author: orgRef,
+    publisher: orgRef,
+  };
 
   return (
     <Page footerGap={120} mobile={<MobilePost post={post} more={more} />}>
+      <JsonLd data={[breadcrumbLd(["Головна", "Публікації", post.title], path), article]} />
       <div className="mt-[12px] flex w-[1120px] flex-col items-start">
         <Breadcrumbs items={["Головна", "Публікації", post.title]} tone="dark" />
 

@@ -7,6 +7,7 @@ import { ProjectCard } from "../_components/bbs/cards";
 import { GhostBtn, H1_L, PrimaryBtn } from "../_components/bbs/ui";
 import { getPopularDecors } from "@/app/_lib/catalog";
 import { getProjects } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 export const metadata = {
   title: "Вироби на замовлення з Laminam і Vicostone | BBS",
@@ -20,6 +21,7 @@ export default async function VyrobyPage() {
   return (
     // До подвала в макете 131px.
     <Page footerGap={131} mobile={<MobileVyroby decors={decors} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Вироби на замовлення"], "/proekty/")} />
       <HeroBand
         breadcrumb={["Головна", "Вироби на замовлення"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}

@@ -21,6 +21,7 @@ import CatalogBrowser from "./CatalogBrowser";
 import { CatalogLandingText, MobileCatalogLandingText } from "./LandingText";
 import MobileCatalogBrowser from "../mobile/Catalog";
 import { MHero, MHeroText } from "../mobile/ui";
+import JsonLd, { breadcrumbLd } from "../seo/JsonLd";
 
 export type CatalogTemplateProps = {
   /** Крошки до текущей страницы; у подборки добавляется её название. */
@@ -80,10 +81,10 @@ export default async function CatalogTemplate({
   // Тексты подборки из SEO-таблицы — только на её первой странице без
   // добавленных фильтров (getCatalogSeo отдаёт их лишь «чистой» подборке).
   const text = query.page === 1 ? seo.text : undefined;
-  const crumbs = [...breadcrumb, ...seo.crumbs];
+  const crumbs = [...breadcrumb, ...seo.crumbs.map((c) => c.name)];
   // Мобильные крошки не переносятся (MHero): промежуточного родителя
   // подборки не показываем, только её название — как было до него.
-  const mobileCrumbs = [...breadcrumb, ...seo.crumbs.slice(-1)];
+  const mobileCrumbs = [...breadcrumb, ...seo.crumbs.slice(-1).map((c) => c.name)];
   const mobile = (
     <>
       <MHero breadcrumb={mobileCrumbs} bg={heroOverlay ? "bbs" : "laminam"}>
@@ -118,6 +119,7 @@ export default async function CatalogTemplate({
           </p>
         </div>
       </HeroBand>
+      <JsonLd data={breadcrumbLd([...breadcrumb, ...seo.crumbs], seo.canonical)} />
 
       {/* Фильтры начинаются на 20px ниже полосы героя (y = 484).
           Без data-reveal: переход на подборку (/kataloh/ → /kataloh/kvartsovyi-kamin/) —

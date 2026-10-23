@@ -4,6 +4,7 @@ import PostCard from "../_components/blog/PostCard";
 import Offers from "../_components/blog/Offers";
 import MobileBlog from "../_components/mobile/Blog";
 import { getPostCategories, getPosts } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
@@ -33,6 +34,7 @@ export default async function BlogPage({ searchParams }: { searchParams: SearchP
       footerGap={105}
       mobile={<MobileBlog categories={categories} active={category} q={q} posts={posts} />}
     >
+      <JsonLd data={breadcrumbLd(["Головна", "Публікації"], "/blog/")} />
       <BlogHero categories={categories} active={category} q={q} total={posts.length} />
 
       {/* Frame 4700: карточки заезжают на полосу героя (y = 435). */}

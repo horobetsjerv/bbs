@@ -11,8 +11,12 @@ import {
   inset,
 } from "./ui";
 import LeadFormFields, { type LeadPreset } from "./LeadFormFields";
+import JsonLd, { faqLd } from "../seo/JsonLd";
 
-/** FAQ: строки 66px, соседние делят общую линию (−1px). */
+/**
+ * FAQ: строки 66px, соседние делят общую линию (−1px).
+ * С ответами — ещё и разметка FAQPage (мобильный MFaq её не дублирует).
+ */
 export function FaqSection({
   title,
   questions,
@@ -33,8 +37,10 @@ export function FaqSection({
   heading?: boolean;
 }) {
   const Question = heading ? "h3" : "span";
+  const ld = answers && faqLd(questions, answers);
   return (
     <section className="flex w-full flex-col items-start gap-[24px]">
+      {ld && <JsonLd data={ld} />}
       <SectionHeader
         title={title}
         action={

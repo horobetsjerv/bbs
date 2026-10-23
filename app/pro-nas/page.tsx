@@ -12,6 +12,7 @@ import {
   TextPhotoSection,
 } from "../_components/about/sections";
 import { getProjects } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 // Title / description — дословно из SEO-таблицы (лист «Про нас», A1–A2).
 export const metadata = {
@@ -94,6 +95,7 @@ export default async function AboutPage() {
   return (
     // До подвала в макете 105px (Frame 41 кончается на 4879, подвал — 4984).
     <Page footerGap={105} mobile={<MobileAbout advantages={ADVANTAGES} who={WHO} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Про компанію"], "/pro-nas/")} />
       <HeroBand
         breadcrumb={["Головна", "Про компанію"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}

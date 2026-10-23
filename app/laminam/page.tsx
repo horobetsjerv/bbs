@@ -11,6 +11,7 @@ import Collections from "@/app/_components/laminam/Collections";
 import Projects from "@/app/_components/laminam/Projects";
 import Video from "@/app/_components/laminam/Video";
 import MobileLaminam from "@/app/_components/mobile/Laminam";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 // Тексты страницы — из SEO-таблицы клиента, лист «Laminam».
 // Meta Description в таблице нет — оставлен прежний.
@@ -69,6 +70,7 @@ export default function LaminamPage() {
   return (
     // До подвала в макете 121px.
     <Page footerGap={121} mobile={<MobileLaminam faq={FAQ} cta={CTA} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Laminam"], "/laminam/")} />
       <Hero />
 
       {/* Frame 53: колонка 1120px, между секциями 120px. Порядок блоков —

@@ -211,6 +211,9 @@ export async function getPost(slug: string) {
     body: p.row.body,
     seoTitle: p.row.seoTitle,
     seoDescription: p.row.seoDescription,
+    /** Даты для Open Graph и JSON-LD (ISO). */
+    publishedAt: p.row.publishedAt.toISOString(),
+    updatedAt: p.row.updatedAt.toISOString(),
     /** Начало текста — Description, если в админке не задан. */
     excerpt: clampText(
       (htmlToText(p.row.body) ?? "")

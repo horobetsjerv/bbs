@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import ProductPage from "@/app/_components/product/ProductPage";
 import { clampText } from "@/app/_lib/catalog";
 import { getProject, getProjects } from "@/app/_lib/content";
+import { breadcrumbLd } from "@/app/_components/seo/JsonLd";
+import { OG_BASE, assetUrl } from "@/app/_lib/site";
 
 type Params = Promise<{ slug: string }>;
 
@@ -36,6 +38,10 @@ export async function generateMetadata({ params }: { params: Params }) {
         160,
       ),
     alternates: { canonical: `/proekty/${slug}/` },
+    // Превью ссылки — первое фото проекта.
+    openGraph: p.images[0]?.full
+      ? { ...OG_BASE, images: [{ url: assetUrl(p.images[0].full), alt: p.name }] }
+      : OG_BASE,
   };
 }
 
@@ -50,6 +56,7 @@ export default async function VyribPage({ params }: { params: Params }) {
     <ProductPage
       variant="item"
       breadcrumb={["Головна", "Вироби на замовлення", p.name]}
+      ld={[breadcrumbLd(["Головна", "Вироби на замовлення", p.name], `/proekty/${slug}/`)]}
       title={p.name}
       brand={m?.brand.name ?? ""}
       images={p.images}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SITE_URL } from "./_lib/site";
+import { OG_BASE, SITE_URL } from "./_lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   // <title> сами — иначе в <head> было бы два заголовка и браузер взял бы первый.
   description:
     "Оригінальний керамограніт Laminam і кварцовий камінь Vicostone для стільниць, фасадів, підлоги та стін. Каталог, зразки й розрахунок вартості від BBS.",
+  // Превью ссылок в Telegram / Facebook / X. og:title и og:description Next
+  // берёт из title / description страницы; twitter — из openGraph.
+  openGraph: OG_BASE,
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

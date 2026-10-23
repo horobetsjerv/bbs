@@ -13,6 +13,8 @@ import Reviews from "./_components/home/Reviews";
 import { getPopularDecors } from "@/app/_lib/catalog";
 import MobileHome from "./_components/mobile/Home";
 import { leadPreset } from "./_lib/lead-preset";
+import JsonLd, { businessLd } from "@/app/_components/seo/JsonLd";
+import { getSettings } from "@/app/_lib/content";
 
 // Тексты главной — из SEO-таблицы клиента, лист «Головна».
 export const metadata = {
@@ -65,12 +67,14 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
     const v = params[k];
     return Array.isArray(v) ? v[0] : v;
   });
+  const settings = await getSettings();
   return (
     // До подвала в макете 105px.
     <Page
       footerGap={105}
       mobile={<MobileHome decors={decors} preset={preset} faq={FAQ} />}
     >
+      <JsonLd data={businessLd(settings)} />
       <Hero />
 
       {/* Frame 53: колонка 1120px, между секциями 120px. */}

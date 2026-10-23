@@ -6,6 +6,8 @@ import DecorsSection from "../_components/bbs/DecorsSection";
 import { GhostBtn, H1_SB, H2_L, PrimaryBtn } from "../_components/bbs/ui";
 import ContactsInfo from "../_components/contacts/ContactsInfo";
 import { getPopularDecors } from "@/app/_lib/catalog";
+import JsonLd, { breadcrumbLd, businessLd } from "@/app/_components/seo/JsonLd";
+import { getSettings } from "@/app/_lib/content";
 
 export const metadata = {
   title: "Контакти — шоурум Laminam, склад і офіс у Києві | BBS",
@@ -16,9 +18,12 @@ export const metadata = {
 
 export default async function ContactsPage() {
   const decors = await getPopularDecors();
+  const settings = await getSettings();
   return (
     // До подвала в макете 76px.
     <Page footerGap={76} mobile={<MobileContacts decors={decors} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Контакти"], "/kontakty/")} />
+      <JsonLd data={businessLd(settings)} />
       <HeroBand
         breadcrumb={["Головна", "Контакти"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}

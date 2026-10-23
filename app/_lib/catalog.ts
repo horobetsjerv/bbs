@@ -751,8 +751,8 @@ type CatalogSeo = {
   title: string;
   description: string;
   h1: { light: string; bold: string };
-  /** Крошки подборки после «Головна / Каталог». */
-  crumbs: string[];
+  /** Крошки подборки после «Головна / Каталог» — с путями для BreadcrumbList. */
+  crumbs: { name: string; path: string }[];
   /** Путь для canonical. */
   canonical: string;
   index: boolean;
@@ -762,6 +762,14 @@ type CatalogSeo = {
    */
   text?: LandingText;
 };
+
+/** Родитель подборки (FIXED_SEO.parent) — другая подборка или каталог типа. */
+function parentCrumb(name: string) {
+  const fixed = Object.entries(FIXED_SEO).find(([, f]) => f.label === name)?.[0];
+  const type = STONE_TYPES.find((t) => TYPE_CRUMB[t] === name);
+  const path = fixed ? `${CATALOG_PATH}${fixed}/` : type ? `${CATALOG_PATH}${TYPE_URL[type]}/` : CATALOG_PATH;
+  return { name, path };
+}
 
 /**
  * Title / Description / H1 / canonical / robots страницы каталога.
@@ -835,7 +843,7 @@ export async function getCatalogSeo({
       title: text?.title ?? titleFor(fixed.name),
       description: text?.description ?? description(lead),
       h1: text?.h1 ?? { light: fixed.h1[0], bold: fixed.h1[1] },
-      crumbs: fixed.parent ? [fixed.parent, fixed.label] : [fixed.label],
+      crumbs: [...(fixed.parent ? [parentCrumb(fixed.parent)] : []), { name: fixed.label, path }],
       canonical,
       index,
       text,
@@ -887,7 +895,11 @@ export async function getCatalogSeo({
     tail = "купити, каталог і ціни";
     heading = { light: "Каталог", bold: TYPE_GENITIVE[type] ?? lower(typeLabel) };
   }
-  const typeCrumb = TYPE_CRUMB[type] ?? `${heading.light} ${heading.bold}`;
+  const typeUrl = (TYPE_URL as Record<string, string | undefined>)[type];
+  const typeCrumb = {
+    name: TYPE_CRUMB[type] ?? `${heading.light} ${heading.bold}`,
+    path: typeUrl ? `${CATALOG_PATH}${typeUrl}/` : path,
+  };
 
   // Подборка типа целиком с листом в SEO-таблице («Каталог керамограніт» /
   // «Каталог кварцовий камінь»): Title / Description / H1 и тексты — из него.
@@ -915,7 +927,7 @@ export async function getCatalogSeo({
     // Title / Description, заголовок по ним не меняется.
     h1: { light: "Каталог", bold: "BBS" },
     // Подборка «тип + …» — под крошкой своего типа.
-    crumbs: color || design || size ? [typeCrumb, `${heading.light} ${heading.bold}`] : [typeCrumb],
+    crumbs: color || design || size ? [typeCrumb, { name: `${heading.light} ${heading.bold}`, path }] : [typeCrumb],
     canonical,
     index,
   };

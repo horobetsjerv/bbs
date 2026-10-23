@@ -17,6 +17,7 @@ import {
 import { LocationIcon, Row } from "../_components/contacts/ContactsInfo";
 import MetaChips, { VISIT_HREF } from "../_components/shourum/MetaChips";
 import { getSettings, telHref } from "@/app/_lib/content";
+import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 
 export const metadata = {
   title: "Шоурум BBS у Києві — зразки Laminam і Vicostone",
@@ -59,6 +60,7 @@ export default async function ShowroomPage() {
   return (
     // До подвала в макете 80px (Frame 41 кончается на 3277, подвал — 3357).
     <Page footerGap={80} mobile={<MobileShourum offers={OFFERS} />}>
+      <JsonLd data={breadcrumbLd(["Головна", "Шоурум"], "/showroom/")} />
       <HeroBand
         breadcrumb={["Головна", "Шоурум"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
