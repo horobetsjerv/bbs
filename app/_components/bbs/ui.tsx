@@ -157,6 +157,7 @@ export function PrimaryBtn({
   type = "button",
   href,
   disabled,
+  loading = false,
 }: {
   children: React.ReactNode;
   icon?: string;
@@ -169,6 +170,8 @@ export function PrimaryBtn({
   href?: string;
   /** Форма отправляется — кнопка неактивна. */
   disabled?: boolean;
+  /** Идёт запрос — вместо иконки крутится индикатор. */
+  loading?: boolean;
 }) {
   const hover =
     hoverIcon ??
@@ -183,7 +186,14 @@ export function PrimaryBtn({
   const content = (
     <>
       <span className="text-trim whitespace-nowrap">{children}</span>
-      <SwapIcon src={icon} hover={hover} />
+      {loading ? (
+        <svg viewBox="0 0 16 16" aria-hidden className="size-[16px] shrink-0 animate-spin motion-reduce:animate-none">
+          <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeOpacity="0.3" strokeWidth="2" />
+          <path d="M8 1.5A6.5 6.5 0 0 1 14.5 8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      ) : (
+        <SwapIcon src={icon} hover={hover} />
+      )}
     </>
   );
   // Ссылка на якорь (#lead-form) — обычный <a>: Link на тот же адрес с тем же

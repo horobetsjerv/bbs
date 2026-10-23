@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { leadPreset } from "@/app/_lib/lead-preset";
 
@@ -19,6 +19,32 @@ export default function LeadModal() {
   const [preset, setPreset] = useState<LeadPreset | null>(null);
   // Номер открытия: форма пересоздаётся, после «Дякуємо» снова пустая.
   const [openId, setOpenId] = useState(0);
+  // data-state="open" — окно и затемнение проявились (CSS-переход).
+  const [shown, setShown] = useState(false);
+  const closing = useRef(false);
+
+  /**
+   * Закрытие с анимацией — одно для крестика, Escape и клика по затемнению:
+   * сначала гасим окно и фон, по окончании перехода — dialog.close().
+   * Таймер — на случай, если transitionend не придёт.
+   */
+  const close = useCallback(() => {
+    const dialog = dialogRef.current;
+    if (!dialog?.open || closing.current) return;
+    closing.current = true;
+    setShown(false);
+    const done = () => {
+      clearTimeout(timer);
+      dialog.removeEventListener("transitionend", onEnd);
+      closing.current = false;
+      dialog.close();
+    };
+    const onEnd = (e: TransitionEvent) => {
+      if (e.target === dialog && e.propertyName === "opacity") done();
+    };
+    dialog.addEventListener("transitionend", onEnd);
+    const timer = setTimeout(done, 400);
+  }, []);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -59,6 +85,8 @@ export default function LeadModal() {
     const dialog = dialogRef.current;
     if (!preset || !dialog || dialog.open) return;
     dialog.showModal();
+    // Через кадр — чтобы браузер успел отрисовать начальное (скрытое) состояние.
+    const frame = requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
     const root = document.documentElement;
     const prev = { overflow: root.style.overflow, paddingRight: root.style.paddingRight };
     // Блокировка прокрутки убирает полосу прокрутки — её ширину возмещаем
@@ -67,8 +95,10 @@ export default function LeadModal() {
     root.style.overflow = "hidden";
     if (scrollbar > 0) root.style.paddingRight = `${scrollbar}px`;
     const onClose = () => {
+      cancelAnimationFrame(frame);
       root.style.overflow = prev.overflow;
       root.style.paddingRight = prev.paddingRight;
+      setShown(false);
       setPreset(null);
     };
     dialog.addEventListener("close", onClose, { once: true });
@@ -78,9 +108,18 @@ export default function LeadModal() {
     <dialog
       ref={dialogRef}
       aria-labelledby="lead-modal-title"
+      data-state={shown ? "open" : "closed"}
+      // Escape: вместо мгновенного закрытия браузером — та же анимация.
+      onCancel={(e) => {
+        e.preventDefault();
+        close();
+      }}
       // Клик по затемнению вокруг окна закрывает его.
-      onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}
-      className="m-auto max-h-[calc(100dvh-32px)] w-[min(557px,calc(100%-32px))] overflow-y-auto bg-light-gray p-0 backdrop:bg-black/60"
+      onClick={(e) => e.target === e.currentTarget && close()}
+      // Появление: фон затемняется, окно проявляется и подъезжает на 16px с
+      // лёгким увеличением; закрытие — обратно. При prefers-reduced-motion —
+      // только прозрачность.
+      className="m-auto max-h-[calc(100dvh-32px)] w-[min(557px,calc(100%-32px))] translate-y-[16px] scale-[0.98] overflow-y-auto bg-light-gray p-0 opacity-0 transition-[opacity,translate,scale] duration-200 ease-out backdrop:bg-black/0 backdrop:transition-[background-color] backdrop:duration-200 data-[state=open]:translate-y-0 data-[state=open]:scale-100 data-[state=open]:opacity-100 data-[state=open]:backdrop:bg-black/60 motion-reduce:translate-y-0 motion-reduce:scale-100"
       style={inset("var(--color-back-card-gray)")}
     >
       {preset && (
@@ -88,7 +127,7 @@ export default function LeadModal() {
           <button
             type="button"
             aria-label="Закрити"
-            onClick={() => dialogRef.current?.close()}
+            onClick={close}
             className="absolute top-[8px] right-[8px] flex cursor-pointer items-center justify-center rounded-[6px] p-[8px]"
           >
             <img src="/figma/mobile/close.svg" alt="" aria-hidden className="block size-[20px]" />

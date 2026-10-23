@@ -10,6 +10,7 @@ import { after } from "next/server";
 import { db } from "@/db";
 import { leads } from "@/db/schema";
 
+import { nameError, phoneError } from "./lead-validation";
 import { notifyLeadTelegram } from "./telegram";
 
 const FORM_TYPES = ["feedback", "sample_order", "price_request"] as const;
@@ -36,11 +37,10 @@ export async function submitLead(_prev: LeadState, form: FormData): Promise<Lead
   const phone = field(form, "phone", 32);
   const message = field(form, "message", 5000) || null;
   const values = { name, phone, message: message ?? "" };
-  if (name.length < 2) return { status: "error", message: "Вкажіть ваше ім’я", values };
-  // Маска формы: +380 (XX) XXX XX XX — 12 цифр с кодом Украины.
-  if (!/^380\d{9}$/.test(phone.replace(/\D/g, ""))) {
-    return { status: "error", message: "Вкажіть номер телефону повністю", values };
-  }
+  // Те же правила, что в форме (lead-validation.ts): форма их уже проверила,
+  // здесь — на случай отправки в обход неё.
+  const invalid = nameError(name) ?? phoneError(phone);
+  if (invalid) return { status: "error", message: invalid, values };
 
   const rawType = field(form, "formType", 32);
   const formType: FormType = FORM_TYPES.includes(rawType as FormType)
