@@ -233,10 +233,12 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
             })}
             <a
               href={telHref(phone)}
-              className="flex w-[164px] shrink-0 items-center justify-center px-[8px] py-[14px]"
+              // Hover — как у пунктов меню: текст краснеет. Рамка — только
+              // фокус с клавиатуры (focus-visible), после клика мышью её нет.
+              className="group flex w-[164px] shrink-0 items-center justify-center px-[8px] py-[14px] outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-blue"
             >
               <span
-                className={`text-trim whitespace-nowrap ${H4_BTN} text-blue`}
+                className={`text-trim whitespace-nowrap ${H4_BTN} text-blue transition-colors duration-200 group-hover:text-red`}
               >
                 {phone}
               </span>
