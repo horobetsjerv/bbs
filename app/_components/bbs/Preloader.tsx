@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 /**
  * Прелоадер главной и каталога: лого BBS, полоса и проценты.
@@ -8,16 +8,18 @@ import { useEffect, useState } from "react";
  * Разметка приходит в HTML и только накрывает страницу — контент под ней
  * отрисован сразу (его видят и поисковики). Проценты считает inline-скрипт,
  * он стартует до гидратации React: разбор HTML, шрифты и картинки, видимые
- * на первом экране (hero, первая порция карточек). Не дольше 4,5 с; за
+ * на первом экране (hero, первая порция карточек). Не дольше 4 с; за
  * сессию — один раз; поисковым роботам не показывается. Если JS не дошёл,
  * CSS сам гасит прелоадер через 6 с (globals.css, .bbs-pl).
  *
  * Разметку держит dangerouslySetInnerHTML: скрипт меняет её до гидратации,
  * React её не сверяет. При переходах внутри сайта компонент ничего не
  * рисует — вставленный React-ом <script> не выполнился бы, и прелоадер
- * завис бы.
+ * завис бы. «Первая загрузка или переход» — по useSyncExternalStore:
+ * при гидратации React берёт серверный снимок (true), при монтировании на
+ * клиенте — клиентский (false); useState запоминает значение первого рендера.
  */
-let booted = false;
+const noop = () => () => {};
 
 const SCRIPT = `(function () {
   var root = document.getElementById("bbs-pl");
@@ -36,7 +38,7 @@ const SCRIPT = `(function () {
   var meter = root.querySelector("[role=progressbar]");
   var status = root.querySelector("[data-status]");
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var start = Date.now(), MIN = 500, MAX = 4500;
+  var start = Date.now(), MIN = 500, MAX = 4000;
   var parsed = false, total = 0, done = 0, shown = 0, timedOut = false, leaving = false;
 
   // 20% — разобранный HTML, 80% — шрифты и картинки первого экрана.
@@ -114,10 +116,8 @@ const HTML = `<div id="bbs-pl" class="bbs-pl fixed inset-0 z-[1000] flex flex-co
 <script>${SCRIPT}</script>`;
 
 export default function Preloader() {
-  const [show] = useState(() => !booted);
-  useEffect(() => {
-    booted = true;
-  }, []);
+  const hydrating = useSyncExternalStore(noop, () => false, () => true);
+  const [show] = useState(hydrating);
   if (!show) return null;
   return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: HTML }} />;
 }
