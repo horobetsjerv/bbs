@@ -218,7 +218,14 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                       {item.menu === "brands" && <BrandsMenu />}
                       {item.menu === "catalog" && <CatalogMenu />}
                       {item.menu === "vyroby" && <MenuGrid items={VYROBY} cols={3} />}
-                      {item.menu === "about" && <MenuGrid items={ABOUT} cols={3} />}
+                      {item.menu === "about" && (
+                        // Пункт один — ставим его под «Про компанію» (606px от
+                        // начала колонки 1120), иначе курсор по пути к нему
+                        // наискосок задевает «Каталог» и «Вироби».
+                        <div className="pl-[606px]">
+                          <MenuGrid items={ABOUT} cols={1} />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
