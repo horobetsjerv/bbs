@@ -15,6 +15,7 @@ import type {
 import { catalogHref, catalogQuery } from "@/app/_lib/catalog-url";
 
 import { CatalogCard } from "../bbs/cards";
+import { CardSkeleton, ListMessage, useDelayed } from "../bbs/loading";
 import { H4_BTN, H4_L, HOVER_EASE, LINE_BASE_GRAY, LINE_FILL, MOB_L, inset } from "../bbs/ui";
 import FilterSidebar, { FilterArrow } from "./filters";
 
@@ -75,10 +76,23 @@ export function useCatalogState({
     bbs
       ? catalogHref(next, nextSort, nextPage)
       : pathname + catalogQuery(next, nextSort, nextPage);
-  const go = (next: Selected, nextSort: SortKey, nextPage: number) =>
+  // Сбой загрузки: нет сети (без неё Next ушёл бы на полную перезагрузку
+  // и страницу браузера «нет соединения») или ответ идёт дольше 12 с.
+  const [offline, setOffline] = useState(false);
+  const last = useRef<[Selected, SortKey, number] | null>(null);
+  const go = (next: Selected, nextSort: SortKey, nextPage: number) => {
+    last.current = [next, nextSort, nextPage];
+    if (!navigator.onLine) return setOffline(true);
+    setOffline(false);
+    // Полоса прогресса вверху экрана (NavProgress): переход без клика по ссылке.
+    window.dispatchEvent(new Event("bbs:navstart"));
     startTransition(() =>
       router.replace(hrefFor(next, nextSort, nextPage), { scroll: false }),
     );
+  };
+  const stuck = useDelayed(pending, 12000);
+  const failed = offline || stuck;
+  const retry = () => last.current && go(...last.current);
 
   const toggle = (key: FilterKey, slug: string) => {
     const on = selected[key].includes(slug);
@@ -121,7 +135,7 @@ export function useCatalogState({
   }));
   const hasFilters = Object.values(selected).some((v) => v.length > 0);
 
-  return { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset };
+  return { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset };
 }
 
 /**
@@ -158,8 +172,9 @@ export default function CatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset } =
+  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset } =
     useCatalogState({ bbs, facets, sort, typeScoped });
+  const slow = useDelayed(pending);
 
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
@@ -315,13 +330,26 @@ export default function CatalogBrowser({
 
         {/* Без якоря прокрутки: карточки переставляются при смене фильтра,
             и браузер утаскивал страницу вслед за «своей» карточкой. */}
-        <div
-          className={`flex flex-col gap-[24px] transition-opacity duration-200 [overflow-anchor:none] ${
-            pending ? "opacity-50" : ""
-          }`}
-          aria-busy={pending}
-        >
-          {items.length > 0 ? (
+        <div className="flex flex-col gap-[24px] [overflow-anchor:none]" aria-busy={pending}>
+          {failed ? (
+            <ListMessage
+              tone="error"
+              title="Не вдалося завантажити дані"
+              text="Перевірте з’єднання з інтернетом і спробуйте ще раз."
+              action="Спробувати ще раз"
+              onAction={retry}
+            />
+          ) : slow ? (
+            // Загрузка дольше 200 мс — скелетоны вместо карточек (столько же, высота не прыгает).
+            <div className="grid grid-cols-3 gap-[24px]">
+              <span role="status" className="sr-only">
+                Завантаження…
+              </span>
+              {Array.from({ length: Math.max(3, items.length) }, (_, i) => (
+                <CardSkeleton key={i} />
+              ))}
+            </div>
+          ) : items.length > 0 ? (
             <div className="grid grid-cols-3 gap-[24px]">
               {items.map((card) => (
                 <CatalogCard
@@ -335,21 +363,12 @@ export default function CatalogBrowser({
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-start gap-[16px] py-[40px]">
-              <p className="text-[20px] font-semibold leading-[20px] tracking-[-1px] text-ink">
-                Нічого не знайдено
-              </p>
-              <p className={`${H4_L} text-card-gray`}>
-                Спробуйте прибрати частину фільтрів.
-              </p>
-              <button
-                type="button"
-                onClick={reset}
-                className={`cursor-pointer ${H4_BTN} text-blue underline transition-colors ${HOVER_EASE} hover:text-red`}
-              >
-                Скинути всі фільтри
-              </button>
-            </div>
+            <ListMessage
+              title="За цими параметрами товарів не знайдено"
+              text="Спробуйте змінити параметри або скиньте фільтри."
+              action="Скинути фільтри"
+              onAction={reset}
+            />
           )}
 
           {pages > 1 && (

@@ -28,7 +28,7 @@ export function DecorCard({
       style={{ width: `${width}px` }}
     >
       <div
-        className="relative w-full shrink-0 overflow-hidden bg-[#d9d9d9]"
+        className="relative w-full shrink-0 overflow-hidden bbs-skeleton"
         style={{ height: `${imageHeight}px` }}
       >
         {image && (
@@ -67,7 +67,7 @@ export function CatalogCard({
       href={href}
       className={`flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px] ${CARD_HOVER}`}
     >
-      <div className="relative h-[304px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[304px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
             src={image}
@@ -125,7 +125,7 @@ export function ProjectCard({
       style={{ width: `${width}px` }}
     >
       <div
-        className="relative w-full shrink-0 overflow-hidden bg-[#d9d9d9]"
+        className="relative w-full shrink-0 overflow-hidden bbs-skeleton"
         style={{ height: `${imageHeight}px` }}
       >
         {image && (
@@ -179,7 +179,7 @@ export function ProjectCardWide({
       href={href}
       className={`flex w-[548px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[16px] ${CARD_HOVER}`}
     >
-      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
             loading="lazy"

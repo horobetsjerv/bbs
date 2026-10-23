@@ -65,7 +65,7 @@ export default async function VyrobyPage() {
           </div>
         ) : (
           <p className="text-[20px] font-semibold leading-[20px] tracking-[-1px] text-ink">
-            Проєкти скоро з’являться
+            Виробів не знайдено
           </p>
         )}
         <CtaBanner

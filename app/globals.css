@@ -86,7 +86,28 @@ body {
   }
 }
 
-/* Плавное появление блоков при прокрутке (см. bbs/Reveal.tsx).
+/* Скелетон (bbs/loading.tsx, подложка фото в карточках): мягкий перелив,
+   пока данные или фото грузятся. Под загруженным фото не виден; перелив
+   ограничен 8 циклами, чтобы не перерисовывать страницу вечно. */
+.bbs-skeleton {
+  background: linear-gradient(90deg, #e6e6e6 0%, #f3f3f3 45%, #e6e6e6 90%) 0 0 / 220% 100%;
+  animation: bbs-shimmer 1.3s ease-in-out 8;
+}
+@keyframes bbs-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bbs-skeleton {
+    animation: none;
+  }
+}
+
+/* Плавное появление блоков при прокрутке/* Плавное появление блоков при прокрутке (см. bbs/Reveal.tsx).
    Скрываем только после запуска JS (data-reveal-armed на <html> ставит Reveal)
    и если пользователь не просил меньше анимаций. До гидратации контент виден:
    иначе на медленной сети под героем секунды пустого белого экрана. */

@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { OG_BASE, SITE_URL } from "./_lib/site";
+import { Suspense } from "react";
+import NavProgress from "./_components/bbs/NavProgress";
 import { PreloaderArm } from "./_components/bbs/Preloader";
 
 const geistSans = Geist({
@@ -45,6 +47,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <PreloaderArm />
+        {/* Полоса прогресса переходов; useSearchParams требует Suspense. */}
+        <Suspense>
+          <NavProgress />
+        </Suspense>
       </body>
     </html>
   );

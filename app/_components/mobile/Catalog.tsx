@@ -12,6 +12,7 @@ import { SORTS, plainClick, useCatalogState } from "../catalog/CatalogBrowser";
 import { ColorGrid, CompactCheck, CountedCheck } from "../catalog/filters";
 import { H4_BTN, H4_L, Icon, MOB_L, MOB_SB } from "../bbs/ui";
 import { MDecorCard } from "./ui";
+import { CardSkeleton, ListMessage, useDelayed } from "../bbs/loading";
 
 type Chip = { key: FilterKey | "sort"; label: string };
 
@@ -185,12 +186,13 @@ export default function MobileCatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset } = useCatalogState({
+  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset } = useCatalogState({
     bbs,
     facets,
     sort,
     typeScoped,
   });
+  const slow = useDelayed(pending);
   const [open, setOpen] = useState<Chip["key"] | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -365,13 +367,26 @@ export default function MobileCatalogBrowser({
           bbs ? "pt-[40px]" : "pt-[20px]"
         }`}
       >
-        <div
-          className={`flex w-full flex-col gap-[24px] transition-opacity duration-200 [overflow-anchor:none] ${
-            pending ? "opacity-50" : ""
-          }`}
-          aria-busy={pending}
-        >
-          {items.length > 0 ? (
+        <div className="flex w-full flex-col gap-[24px] [overflow-anchor:none]" aria-busy={pending}>
+          {failed ? (
+            <ListMessage
+              compact
+              tone="error"
+              title="Не вдалося завантажити дані"
+              text="Перевірте з’єднання з інтернетом і спробуйте ще раз."
+              action="Спробувати ще раз"
+              onAction={retry}
+            />
+          ) : slow ? (
+            <div className="grid w-full grid-cols-2 gap-[8px]">
+              <span role="status" className="sr-only">
+                Завантаження…
+              </span>
+              {Array.from({ length: Math.max(2, items.length) }, (_, i) => (
+                <CardSkeleton key={i} compact />
+              ))}
+            </div>
+          ) : items.length > 0 ? (
             <div className="grid w-full grid-cols-2 gap-[8px]">
               {items.map((card) => (
                 <MDecorCard
@@ -385,19 +400,13 @@ export default function MobileCatalogBrowser({
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-start gap-[16px] py-[24px]">
-              <p className={`text-trim ${MOB_SB} text-ink`}>Нічого не знайдено</p>
-              <p className={`text-trim ${MOB_L} text-card-gray`}>
-                Спробуйте прибрати частину фільтрів.
-              </p>
-              <button
-                type="button"
-                onClick={reset}
-                className={`cursor-pointer ${H4_BTN} text-blue underline`}
-              >
-                Скинути всі фільтри
-              </button>
-            </div>
+            <ListMessage
+              compact
+              title="За цими параметрами товарів не знайдено"
+              text="Спробуйте змінити параметри або скиньте фільтри."
+              action="Скинути фільтри"
+              onAction={reset}
+            />
           )}
           <MPagination page={page} pages={pages} onPage={toPage} href={(p) => hrefFor(selected, sort, p)} />
         </div>

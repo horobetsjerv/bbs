@@ -119,10 +119,13 @@ const HTML = `<div id="bbs-pl" class="bbs-pl fixed inset-0 z-[1000] flex flex-co
     <div class="whitespace-nowrap text-[16px] font-medium leading-[20px] text-[#e52b34]">EXCLUSIVE<br />SURFACE</div>
   </div>
   <div class="flex w-[220px] flex-col items-center gap-[16px]">
-    <div class="h-[2px] w-full overflow-hidden bg-back-card-gray" role="progressbar" aria-label="Завантаження сторінки" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-      <div data-bar class="h-full w-full origin-left bg-blue" style="transform:scaleX(0)"></div>
+    <div class="h-[3px] w-full overflow-hidden rounded-full bg-back-card-gray" role="progressbar" aria-label="Завантаження сторінки" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div data-bar class="h-full w-full origin-left rounded-full bg-blue" style="transform:scaleX(0)"></div>
     </div>
-    <span data-num class="text-[16px] font-semibold leading-[20px] tracking-[-0.8px] text-blue tabular-nums" aria-hidden="true">0%</span>
+    <div class="flex items-baseline gap-[8px] text-[16px] leading-[20px] tracking-[-0.8px]" aria-hidden="true">
+      <span class="font-light text-card-gray">Завантаження</span>
+      <span data-num class="w-[44px] font-semibold text-blue tabular-nums">0%</span>
+    </div>
   </div>
 </div>
 <noscript><style>.bbs-pl{display:none}</style></noscript>

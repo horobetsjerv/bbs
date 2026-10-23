@@ -22,7 +22,7 @@ export default function PostCard({
       href={href}
       className={`flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px] ${CARD_HOVER}`}
     >
-      <div className="relative h-[304px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[304px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img src={image} alt="" className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
         )}

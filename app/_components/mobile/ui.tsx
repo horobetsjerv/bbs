@@ -127,7 +127,7 @@ export function MDecorCard({
         fill ? "aspect-[167.5/240] w-full" : "h-[240px] w-[180px]"
       }`}
     >
-      <div className="relative min-h-px w-full flex-1 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative min-h-px w-full flex-1 overflow-hidden bbs-skeleton">
         {image && (
           <img
             src={image}
@@ -164,7 +164,7 @@ export function MProjectCard({
     <div
       className={`relative flex w-[262px] shrink-0 snap-start flex-col items-center gap-[24px] bg-white ${CARD_HOVER_FLAT}`}
     >
-      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
             src={image}
@@ -215,7 +215,7 @@ export function MProjectSmallCard({
       href={href}
       className={`flex w-[240px] shrink-0 snap-start flex-col items-start justify-center gap-[12px] bg-white pb-[16px] ${CARD_HOVER_FLAT}`}
     >
-      <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
+      <div className="relative h-[180px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
             src={image}
