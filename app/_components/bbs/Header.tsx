@@ -237,11 +237,17 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
   );
 }
 
-// Логотип бренда в «Бренди»: чёрно-белый, при наведении (или фокусе с
-// клавиатуры) плавно становится цветным — цветная копия лежит поверх.
-const LOGO_MONO = "transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
+// Логотип бренда в «Бренди»: серый, при наведении на свою половину панели
+// (или фокусе с клавиатуры) плавно становится цветным — цветная копия
+// лежит поверх. Тёмно-синий цвет логотипов почти не отличается от чёрного,
+// поэтому обычное состояние приглушено — иначе смену не видно.
+const LOGO_MONO =
+  "opacity-50 transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
 const LOGO_COLOR =
   "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100";
+// Ссылка — на всю половину панели (вместе с отступами 32px сверху и снизу),
+// чтобы наведение не терялось между буквами логотипа.
+const LOGO_LINK = "group/logo -my-[32px] flex w-full justify-center py-[32px]";
 
 /**
  * «Бренди» (Figma Variant2, инстанс полосы логотипов как BrandLogosStrip):
@@ -254,24 +260,28 @@ function BrandsMenu() {
         className="flex min-w-px flex-1 flex-col items-center"
         style={{ boxShadow: "inset -1px 0 0 var(--color-blue)" }}
       >
-        <a href="/laminam/" aria-label="Laminam" className="group/logo relative block">
-          <Icon src="/figma/bbs/laminam-logo-dark.svg" width={277} height={40} className={LOGO_MONO} />
-          <span aria-hidden className={LOGO_COLOR}>
-            <Icon src="/figma/bbs/laminam-logo.svg" width={277} height={40} />
-          </span>
+        <a href="/laminam/" aria-label="Laminam" className={LOGO_LINK}>
+          <div className="relative">
+            <Icon src="/figma/bbs/laminam-logo-dark.svg" width={277} height={40} className={LOGO_MONO} />
+            <div aria-hidden className={LOGO_COLOR}>
+              <Icon src="/figma/bbs/laminam-logo.svg" width={277} height={40} />
+            </div>
+          </div>
         </a>
       </div>
       <div
         className="flex min-w-px flex-1 flex-col items-center"
         style={{ boxShadow: "inset 1px 0 0 var(--color-blue)" }}
       >
-        <a href="/vicostone/" className="group/logo relative block">
-          <div className={LOGO_MONO}>
-            <VicostoneLogo size={40} />
+        <a href="/vicostone/" className={LOGO_LINK}>
+          <div className="relative">
+            <div className={LOGO_MONO}>
+              <VicostoneLogo size={40} />
+            </div>
+            <div aria-hidden className={LOGO_COLOR}>
+              <VicostoneBrandLogo />
+            </div>
           </div>
-          <span aria-hidden className={LOGO_COLOR}>
-            <VicostoneBrandLogo />
-          </span>
         </a>
       </div>
     </div>
