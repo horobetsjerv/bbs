@@ -887,8 +887,9 @@ export async function getCatalogSeo({
     const material = size.group?.startsWith("Керамограніт ") ? size.group : typeLabel;
     name = `${material} ${size.label}`;
     tail = "каталог і ціни";
-    // Неразрывные пробелы: «мм» и «3240 × 1620 мм» не отрываются при переносе H1.
-    const nbsp = (t: string) => t.replace(/ (?=мм)/g, "\u00a0");
+    // «12–20 мм» и «3240 × 1620 мм» не рвутся при переносе H1: неразрывные
+    // пробелы, а вокруг тире — word joiner (после тире браузер переносит).
+    const nbsp = (t: string) => t.replace(/ (?=мм)/g, "\u00a0").replace(/–/g, "\u2060–\u2060");
     heading = { light: nbsp(material), bold: size.label.replace(/ /g, "\u00a0") };
   } else {
     // Тип целиком: «Керамограніт Laminam» — точнее и не короче ориентира Title.
