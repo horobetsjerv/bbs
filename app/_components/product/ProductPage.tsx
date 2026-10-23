@@ -13,6 +13,7 @@ import { CatalogCard, ProjectCard } from "../bbs/cards";
 import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
+import { ProjectPhotoGrid, ProjectSlider } from "./ProjectPhotos";
 import MobileProduct from "../mobile/Product";
 import JsonLd from "../seo/JsonLd";
 
@@ -249,13 +250,7 @@ export default function ProductPage(props: ProductPageProps) {
         >
           {item ? (
             <div className="flex w-full flex-col items-start gap-[24px]">
-              <ProductGallery
-                images={images}
-                title={title}
-                thumbsTop={278}
-                lightRightArrow
-                wide
-              />
+              <ProjectSlider images={images} />
               <div className="flex w-full items-start gap-[24px]">
                 <div className="flex min-w-px flex-1 flex-col items-start gap-[16px]">
                   {/* Единственный H1 страницы (таблица SEO): в макете названия
@@ -269,6 +264,10 @@ export default function ProductPage(props: ProductPageProps) {
                   </div>
                 </div>
                 {consultCard}
+              </div>
+              {/* «Палітра» — все фото изделия сеткой, ниже блоков заявки. */}
+              <div className="mt-[56px] w-full">
+                <ProjectPhotoGrid images={images} />
               </div>
             </div>
           ) : (

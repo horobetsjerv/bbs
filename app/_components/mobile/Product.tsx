@@ -11,6 +11,7 @@ import {
 } from "../product/ProductPage";
 import MAccordion from "./Accordion";
 import MobileGallery from "./Gallery";
+import { ProjectPhotoGrid } from "../product/ProjectPhotos";
 import {
   LEAD_ANCHOR,
   MCarousel,
@@ -191,6 +192,12 @@ export default function MobileProduct({
           text={item ? "Наші менеджери допоможуть підібрати матеріал під ваш проєкт" : consult.text}
           href={leadHref()}
         />
+
+        {item && (
+          <div className="w-full px-[16px]">
+            <ProjectPhotoGrid images={images} compact />
+          </div>
+        )}
 
         <MSection gap={20}>
           <MTitle>{similar.title}</MTitle>

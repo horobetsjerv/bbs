@@ -100,7 +100,7 @@ export default async function VyribPage({ params }: { params: Params }) {
       details={[]}
       materialId={m?.id}
       consult={{
-        title: "Бажаєте замовити ?",
+        title: "Бажаєте замовити такий виріб?",
         text: "Наші менеджери допоможуть та зорієнтують під ваш проєкт",
       }}
       similar={{
