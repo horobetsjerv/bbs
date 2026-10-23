@@ -121,7 +121,18 @@ export function useCatalogState({
   }));
   const hasFilters = Object.values(selected).some((v) => v.length > 0);
 
-  return { selected, shownFacets, hasFilters, pending, go, toggle, reset };
+  return { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset };
+}
+
+/**
+ * Обычный клик по ссылке страницы — листаем без перезагрузки: отменяет переход
+ * и возвращает true. Ссылка остаётся для поисковиков и «открыть в новой
+ * вкладке» (Ctrl/Cmd/Shift/средняя кнопка — false, браузер откроет сам).
+ */
+export function plainClick(e: React.MouseEvent<HTMLAnchorElement>) {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return false;
+  e.preventDefault();
+  return true;
 }
 
 /**
@@ -147,7 +158,7 @@ export default function CatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, go, toggle, reset } =
+  const { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset } =
     useCatalogState({ bbs, facets, sort, typeScoped });
 
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
@@ -174,6 +185,35 @@ export default function CatalogBrowser({
   const toPage = (p: number) => {
     go(selected, sort, p);
     listRef.current?.scrollIntoView({ block: "start" });
+  };
+  // Стрелка пагинации: ссылка на соседнюю страницу или неактивная кнопка.
+  const pageArrow = (dir: -1 | 1) => {
+    const to = page + dir;
+    const label = dir < 0 ? "Попередня сторінка" : "Наступна сторінка";
+    const className =
+      "flex size-[36px] cursor-pointer items-center justify-center disabled:cursor-default disabled:opacity-30";
+    const icon = (
+      <img
+        src="/figma/catalog/arrow-filled.svg"
+        alt=""
+        className={`h-[16px] w-[8px] ${dir < 0 ? "-scale-x-100" : ""}`}
+      />
+    );
+    return to < 1 || to > pages ? (
+      <button type="button" aria-label={label} disabled className={className}>
+        {icon}
+      </button>
+    ) : (
+      <a
+        href={hrefFor(selected, sort, to)}
+        rel={dir < 0 ? "prev" : "next"}
+        aria-label={label}
+        onClick={(e) => plainClick(e) && toPage(to)}
+        className={className}
+      >
+        {icon}
+      </a>
+    );
   };
 
   return (
@@ -306,51 +346,29 @@ export default function CatalogBrowser({
           )}
 
           {pages > 1 && (
+            // Страницы — ссылки (?page=N), чтобы поисковик их видел; клик
+            // листает без перезагрузки.
             <nav
               aria-label="Сторінки"
               className="flex items-center justify-center gap-[8px]"
             >
-              <button
-                type="button"
-                aria-label="Попередня сторінка"
-                disabled={page <= 1}
-                onClick={() => toPage(page - 1)}
-                className="flex size-[36px] cursor-pointer items-center justify-center disabled:cursor-default disabled:opacity-30"
-              >
-                <img
-                  src="/figma/catalog/arrow-filled.svg"
-                  alt=""
-                  className="h-[16px] w-[8px] -scale-x-100"
-                />
-              </button>
+              {pageArrow(-1)}
               {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
-                <button
+                <a
                   key={p}
-                  type="button"
+                  href={hrefFor(selected, sort, p)}
                   aria-current={p === page ? "page" : undefined}
-                  onClick={() => toPage(p)}
-                  className={`min-w-[32px] cursor-pointer px-[8px] py-[10px] ${
+                  onClick={(e) => plainClick(e) && toPage(p)}
+                  className={`min-w-[32px] cursor-pointer px-[8px] py-[10px] text-center ${
                     p === page
                       ? `${H4_BTN} text-blue shadow-[inset_0_-1px_0_var(--color-blue)]`
                       : `${H4_L} text-ink hover:text-blue`
                   }`}
                 >
                   {p}
-                </button>
+                </a>
               ))}
-              <button
-                type="button"
-                aria-label="Наступна сторінка"
-                disabled={page >= pages}
-                onClick={() => toPage(page + 1)}
-                className="flex size-[36px] cursor-pointer items-center justify-center disabled:cursor-default disabled:opacity-30"
-              >
-                <img
-                  src="/figma/catalog/arrow-filled.svg"
-                  alt=""
-                  className="h-[16px] w-[8px]"
-                />
-              </button>
+              {pageArrow(1)}
             </nav>
           )}
         </div>

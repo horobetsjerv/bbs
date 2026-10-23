@@ -9,6 +9,7 @@ import { H1_L, H2_L } from "../bbs/ui";
 import type { Metadata } from "next";
 
 import {
+  clampSentences,
   getCatalog,
   getCatalogSeo,
   parseCatalogParams,
@@ -53,9 +54,17 @@ export async function catalogMetadata(
 ): Promise<Metadata> {
   const { selected, page } = parseCatalogParams(params, preset);
   const seo = await getCatalogSeo({ selected, page, landing, brand });
+  // Страницы 2+ — свой Title и Description, иначе дубли с первой страницей.
+  const base = seo.title.replace(/ \| BBS$/, "");
+  const title =
+    page > 1
+      ? [`${base}, сторінка ${page} | BBS`, `${base}, сторінка ${page}`].find((t) => t.length <= 65) ??
+        `${base}, сторінка ${page}`
+      : seo.title;
+  const description = page > 1 ? clampSentences(`Сторінка ${page}. ${seo.description}`, 160) : seo.description;
   return {
-    title: seo.title,
-    description: seo.description,
+    title,
+    description,
     alternates: { canonical: seo.canonical },
     robots: seo.index ? undefined : { index: false, follow: true },
   };

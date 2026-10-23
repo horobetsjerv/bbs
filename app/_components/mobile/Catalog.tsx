@@ -8,7 +8,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 
 import type { CatalogCardData, Facet, FilterKey, SortKey } from "@/app/_lib/catalog";
 
-import { SORTS, useCatalogState } from "../catalog/CatalogBrowser";
+import { SORTS, plainClick, useCatalogState } from "../catalog/CatalogBrowser";
 import { ColorGrid, CompactCheck, CountedCheck } from "../catalog/filters";
 import { H4_BTN, H4_L, Icon, MOB_L, MOB_SB } from "../bbs/ui";
 import { MDecorCard } from "./ui";
@@ -93,31 +93,59 @@ export function MPagination({
   page,
   pages,
   onPage,
+  href,
 }: {
   page: number;
   pages: number;
   onPage: (p: number) => void;
+  /**
+   * Адрес страницы (каталог, ?page=N): тогда пункты — ссылки для поисковиков,
+   * клик листает без перезагрузки. Без него (публикации) — кнопки.
+   */
+  href?: (p: number) => string;
 }) {
   if (pages <= 1) return null;
   const arrow = (dir: -1 | 1) => {
     const disabled = dir < 0 ? page <= 1 : page >= pages;
-    return (
-      <button
-        type="button"
-        aria-label={dir < 0 ? "Попередня сторінка" : "Наступна сторінка"}
-        disabled={disabled}
-        onClick={() => onPage(page + dir)}
-        className={`flex shrink-0 cursor-pointer items-start rounded-[4px] p-[10px] disabled:cursor-default ${
-          disabled ? "" : "bg-back-card-gray"
-        }`}
-        style={disabled ? { boxShadow: "inset 0 0 0 1px var(--color-back-card-gray)" } : undefined}
-      >
-        {/* Неактивная — серая контурная стрелка, активная — залитая blue. */}
-        <span className={dir < 0 === !disabled ? "-scale-x-100" : ""}>
-          <Icon
-            src={disabled ? "/figma/mobile/page-prev.svg" : "/figma/bbs/breadcrumb-arrow-blue.svg"}
-          />
-        </span>
+    const props = {
+      "aria-label": dir < 0 ? "Попередня сторінка" : "Наступна сторінка",
+      className: `flex shrink-0 cursor-pointer items-start rounded-[4px] p-[10px] disabled:cursor-default ${
+        disabled ? "" : "bg-back-card-gray"
+      }`,
+      style: disabled ? { boxShadow: "inset 0 0 0 1px var(--color-back-card-gray)" } : undefined,
+    };
+    const icon = (
+      // Неактивная — серая контурная стрелка, активная — залитая blue.
+      <span className={dir < 0 === !disabled ? "-scale-x-100" : ""}>
+        <Icon src={disabled ? "/figma/mobile/page-prev.svg" : "/figma/bbs/breadcrumb-arrow-blue.svg"} />
+      </span>
+    );
+    return href && !disabled ? (
+      <a {...props} href={href(page + dir)} onClick={(e) => plainClick(e) && onPage(page + dir)}>
+        {icon}
+      </a>
+    ) : (
+      <button {...props} type="button" disabled={disabled} onClick={() => onPage(page + dir)}>
+        {icon}
+      </button>
+    );
+  };
+  const number = (p: number) => {
+    const props = {
+      "aria-current": p === page ? ("page" as const) : undefined,
+      className: `min-w-[28px] shrink-0 cursor-pointer rounded-[4px] p-[10px] text-center ${
+        p === page ? "bg-blue text-white" : "bg-white text-ink"
+      }`,
+      style: p === page ? undefined : { boxShadow: "inset 0 0 0 1px var(--color-back-card-gray)" },
+    };
+    const label = <span className={`text-trim block whitespace-nowrap ${H4_BTN}`}>{p}</span>;
+    return href ? (
+      <a key={p} {...props} href={href(p)} onClick={(e) => plainClick(e) && onPage(p)}>
+        {label}
+      </a>
+    ) : (
+      <button key={p} {...props} type="button" onClick={() => onPage(p)}>
+        {label}
       </button>
     );
   };
@@ -130,20 +158,7 @@ export function MPagination({
             …
           </span>
         ) : (
-          <button
-            key={p}
-            type="button"
-            aria-current={p === page ? "page" : undefined}
-            onClick={() => onPage(p)}
-            className={`min-w-[28px] shrink-0 cursor-pointer rounded-[4px] p-[10px] ${
-              p === page ? "bg-blue text-white" : "bg-white text-ink"
-            }`}
-            style={
-              p === page ? undefined : { boxShadow: "inset 0 0 0 1px var(--color-back-card-gray)" }
-            }
-          >
-            <span className={`text-trim block whitespace-nowrap ${H4_BTN}`}>{p}</span>
-          </button>
+          number(p)
         ),
       )}
       {arrow(1)}
@@ -170,7 +185,7 @@ export default function MobileCatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, go, toggle, reset } = useCatalogState({
+  const { selected, shownFacets, hasFilters, pending, go, hrefFor, toggle, reset } = useCatalogState({
     bbs,
     facets,
     sort,
@@ -384,7 +399,7 @@ export default function MobileCatalogBrowser({
               </button>
             </div>
           )}
-          <MPagination page={page} pages={pages} onPage={toPage} />
+          <MPagination page={page} pages={pages} onPage={toPage} href={(p) => hrefFor(selected, sort, p)} />
         </div>
       </section>
     </>
