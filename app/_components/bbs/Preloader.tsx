@@ -131,8 +131,16 @@ const HTML = `<div id="bbs-pl" class="bbs-pl fixed inset-0 z-[1000] flex flex-co
 <noscript><style>.bbs-pl{display:none}</style></noscript>
 <script>${SCRIPT}</script>`;
 
+/**
+ * Один объект на все рендеры: React 19 сравнивает dangerouslySetInnerHTML по
+ * ссылке и на новом объекте заново вставил бы разметку — при смене фильтров
+ * (та же страница, новые параметры) прелоадер появлялся снова, без скрипта,
+ * и висел до аварийных 6 с.
+ */
+const MARKUP = { __html: HTML };
+
 export default function Preloader() {
   const [show] = useState(() => !booted);
   if (!show) return null;
-  return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: HTML }} />;
+  return <div suppressHydrationWarning dangerouslySetInnerHTML={MARKUP} />;
 }
