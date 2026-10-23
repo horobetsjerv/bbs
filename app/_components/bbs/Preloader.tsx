@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * Прелоадер главной и каталога: лого BBS, полоса и проценты.
@@ -15,11 +15,18 @@ import { useState, useSyncExternalStore } from "react";
  * Разметку держит dangerouslySetInnerHTML: скрипт меняет её до гидратации,
  * React её не сверяет. При переходах внутри сайта компонент ничего не
  * рисует — вставленный React-ом <script> не выполнился бы, и прелоадер
- * завис бы. «Первая загрузка или переход» — по useSyncExternalStore:
- * при гидратации React берёт серверный снимок (true), при монтировании на
- * клиенте — клиентский (false); useState запоминает значение первого рендера.
+ * завис бы. Отличает их флаг `booted`: его ставит PreloaderArm из корневого
+ * layout после первой гидратации — на любой странице, даже без прелоадера.
  */
-const noop = () => () => {};
+let booted = false;
+
+/** В корневом layout: после первой гидратации сайта прелоадер больше не рисуется. */
+export function PreloaderArm() {
+  useEffect(() => {
+    booted = true;
+  }, []);
+  return null;
+}
 
 const SCRIPT = `(function () {
   var root = document.getElementById("bbs-pl");
@@ -116,8 +123,7 @@ const HTML = `<div id="bbs-pl" class="bbs-pl fixed inset-0 z-[1000] flex flex-co
 <script>${SCRIPT}</script>`;
 
 export default function Preloader() {
-  const hydrating = useSyncExternalStore(noop, () => false, () => true);
-  const [show] = useState(hydrating);
+  const [show] = useState(() => !booted);
   if (!show) return null;
   return <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: HTML }} />;
 }
