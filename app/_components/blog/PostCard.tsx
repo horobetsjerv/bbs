@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import { CAPTION, H3_L, H3_SB, inset } from "../bbs/ui";
+import { CAPTION, CARD_HOVER, CARD_IMG, H3_L, H3_SB } from "../bbs/ui";
 
 /** Card публикации: фото 304, заголовок (бокс 60px), рубрика и дата справа. */
 export default function PostCard({
@@ -20,12 +20,11 @@ export default function PostCard({
   return (
     <Link
       href={href}
-      className="flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px]"
-      style={inset("var(--color-light-gray)")}
+      className={`flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px] ${CARD_HOVER}`}
     >
-      <div className="relative h-[304px] w-full shrink-0 bg-[#d9d9d9]">
+      <div className="relative h-[304px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
         {image && (
-          <img src={image} alt="" className="absolute inset-0 size-full max-w-none object-cover" />
+          <img src={image} alt="" className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
         )}
       </div>
       <div className="flex w-full flex-col items-start gap-[8px] px-[16px]">

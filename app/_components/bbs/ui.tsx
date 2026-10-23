@@ -90,6 +90,25 @@ export const LINE_BASE_BLUE =
 export const LINE_BASE_GRAY =
   "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[4px] before:h-px before:bg-card-gray";
 
+/**
+ * Карточки (декоры, товары, проекты, статьи): на hover и при фокусе
+ * с клавиатуры — подъём на 4px, тень и рамка темнее; только translate и
+ * box-shadow, 250 мс, текст внутри не двигается. Рамка — классом (inline
+ * style перебил бы тень). Hover только для устройств с мышью (Tailwind v4:
+ * @media (hover: hover)) — после тапа не залипает.
+ */
+export const CARD_HOVER =
+  "group/card cursor-pointer shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-[translate,box-shadow] duration-250 ease-out hover:shadow-[inset_0_0_0_1px_var(--color-caption-gray),var(--lift)] motion-safe:hover:-translate-y-[4px] focus-visible:shadow-[inset_0_0_0_1px_var(--color-caption-gray),var(--lift)] motion-safe:focus-visible:-translate-y-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue has-[:focus-visible]:shadow-[inset_0_0_0_1px_var(--color-caption-gray),var(--lift)] motion-safe:has-[:focus-visible]:-translate-y-[4px]";
+/**
+ * Мобильные карточки в карусели (overflow-x: auto режет тень и подъём):
+ * только рамка темнее; фокус — рамка blue.
+ */
+export const CARD_HOVER_FLAT =
+  "group/card cursor-pointer shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-shadow duration-250 ease-out hover:shadow-[inset_0_0_0_1px_var(--color-caption-gray)] focus-visible:shadow-[inset_0_0_0_2px_var(--color-blue)] focus-visible:outline-none has-[:focus-visible]:shadow-[inset_0_0_0_2px_var(--color-blue)]";
+/** Фото в карточке: на hover/фокусе карточки слегка увеличивается (рамка фото — overflow-hidden). */
+export const CARD_IMG =
+  "motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out motion-safe:group-hover/card:scale-[1.04] motion-safe:group-focus-visible/card:scale-[1.04] motion-safe:group-has-[:focus-visible]/card:scale-[1.04]";
+
 /** Две формы стрелок сайта (как в файлах Figma). */
 const ARROW_PATH = {
   nav: "M8.73828 6.14648H5.5V10.541H8.73828V12.8838L12.8281 8.34375L8.73828 3.80273V6.14648Z",

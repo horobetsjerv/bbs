@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { catalogHref, typeSelection, type StoneType } from "@/app/_lib/catalog-url";
 
-import { CAPTION, H3_L, H3_SB, H4_L, HOVER_EASE, MOB_SB, ONE_LINE, SwapIcon, TextLink, inset } from "./ui";
+import { CAPTION, CARD_HOVER, CARD_IMG, H3_L, H3_SB, H4_L, HOVER_EASE, MOB_SB, ONE_LINE, SwapIcon, TextLink } from "./ui";
 
 /** Card (декор): 262 × 374, фото 304, подписи H3 sb / H3 l, pb 8. */
 export function DecorCard({
@@ -24,11 +24,11 @@ export function DecorCard({
   return (
     <Link
       href={href}
-      className="flex shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px]"
-      style={{ width: `${width}px`, ...inset("var(--color-light-gray)") }}
+      className={`flex shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px] ${CARD_HOVER}`}
+      style={{ width: `${width}px` }}
     >
       <div
-        className="relative w-full shrink-0 bg-[#d9d9d9]"
+        className="relative w-full shrink-0 overflow-hidden bg-[#d9d9d9]"
         style={{ height: `${imageHeight}px` }}
       >
         {image && (
@@ -36,7 +36,7 @@ export function DecorCard({
             loading="lazy"
             src={image}
             alt={name}
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
@@ -65,8 +65,7 @@ export function CatalogCard({
   return (
     <a
       href={href}
-      className="group flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px]"
-      style={inset("var(--color-light-gray)")}
+      className={`flex w-[262px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[8px] ${CARD_HOVER}`}
     >
       <div className="relative h-[304px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
         {image && (
@@ -74,7 +73,7 @@ export function CatalogCard({
             src={image}
             alt={name}
             loading="lazy"
-            className="absolute inset-0 size-full max-w-none object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
@@ -120,12 +119,13 @@ export function ProjectCard({
 }) {
   return (
     // relative: «Детальніше» растянута на всю карточку — открывается кликом в любом месте.
+    // Кликабельна вся карточка: «Детальніше» растянута на неё (stretched).
     <div
-      className="relative flex shrink-0 flex-col items-center gap-[24px] bg-white"
-      style={{ width: `${width}px`, ...inset("var(--color-light-gray)") }}
+      className={`relative flex shrink-0 flex-col items-center gap-[24px] bg-white ${CARD_HOVER}`}
+      style={{ width: `${width}px` }}
     >
       <div
-        className="relative w-full shrink-0 bg-[#d9d9d9]"
+        className="relative w-full shrink-0 overflow-hidden bg-[#d9d9d9]"
         style={{ height: `${imageHeight}px` }}
       >
         {image && (
@@ -133,7 +133,7 @@ export function ProjectCard({
             loading="lazy"
             src={image}
             alt=""
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
@@ -177,16 +177,15 @@ export function ProjectCardWide({
   return (
     <Link
       href={href}
-      className="flex w-[548px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[16px]"
-      style={inset("var(--color-light-gray)")}
+      className={`flex w-[548px] shrink-0 flex-col items-center gap-[24px] bg-white pb-[16px] ${CARD_HOVER}`}
     >
-      <div className="relative h-[200px] w-full shrink-0 bg-[#d9d9d9]">
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
         {image && (
           <img
             loading="lazy"
             src={image}
             alt=""
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>

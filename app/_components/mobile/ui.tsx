@@ -5,7 +5,7 @@
 import Link from "next/link";
 
 import { Tag } from "../bbs/cards";
-import { Breadcrumbs, CAPTION, H2_L, H2_MOB_SB, H2_SB, H3_L, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, ONE_LINE, OutlineBtn, PrimaryBtn, SwapIcon, TextLink, inset } from "../bbs/ui";
+import { Breadcrumbs, CAPTION, CARD_HOVER_FLAT, CARD_IMG, H2_L, H2_MOB_SB, H2_SB, H3_L, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, ONE_LINE, OutlineBtn, PrimaryBtn, SwapIcon, TextLink, inset } from "../bbs/ui";
 
 /** Форма заявки мобильной главной; десктопная (#lead-form) на мобиле скрыта. */
 export const LEAD_ANCHOR = "lead-form-m";
@@ -123,18 +123,17 @@ export function MDecorCard({
   return (
     <Link
       href={href}
-      className={`flex shrink-0 snap-start flex-col items-center gap-[12px] bg-white pb-[8px] ${
+      className={`flex shrink-0 snap-start flex-col items-center gap-[12px] bg-white pb-[8px] ${CARD_HOVER_FLAT} ${
         fill ? "aspect-[167.5/240] w-full" : "h-[240px] w-[180px]"
       }`}
-      style={inset("var(--color-light-gray)")}
     >
-      <div className="relative min-h-px w-full flex-1 bg-[#d9d9d9]">
+      <div className="relative min-h-px w-full flex-1 overflow-hidden bg-[#d9d9d9]">
         {image && (
           <img
             src={image}
             alt={name}
             loading="lazy"
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
@@ -163,16 +162,15 @@ export function MProjectCard({
   return (
     // relative: «Детальніше» растянута на всю карточку — открывается кликом в любом месте.
     <div
-      className="relative flex w-[262px] shrink-0 snap-start flex-col items-center gap-[24px] bg-white"
-      style={inset("var(--color-light-gray)")}
+      className={`relative flex w-[262px] shrink-0 snap-start flex-col items-center gap-[24px] bg-white ${CARD_HOVER_FLAT}`}
     >
-      <div className="relative h-[200px] w-full shrink-0 bg-[#d9d9d9]">
+      <div className="relative h-[200px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
         {image && (
           <img
             src={image}
             alt=""
             loading="lazy"
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
@@ -215,16 +213,15 @@ export function MProjectSmallCard({
   return (
     <Link
       href={href}
-      className="flex w-[240px] shrink-0 snap-start flex-col items-start justify-center gap-[12px] bg-white pb-[16px]"
-      style={inset("var(--color-light-gray)")}
+      className={`flex w-[240px] shrink-0 snap-start flex-col items-start justify-center gap-[12px] bg-white pb-[16px] ${CARD_HOVER_FLAT}`}
     >
-      <div className="relative h-[180px] w-full shrink-0 bg-[#d9d9d9]">
+      <div className="relative h-[180px] w-full shrink-0 overflow-hidden bg-[#d9d9d9]">
         {image && (
           <img
             src={image}
             alt=""
             loading="lazy"
-            className="absolute inset-0 size-full max-w-none object-cover"
+            className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
       </div>
