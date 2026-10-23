@@ -94,7 +94,7 @@ function Checkbox({
         src="/figma/catalog/check.svg"
         alt=""
         aria-hidden
-        className="absolute top-[-1px] left-[-1px] block size-[16px] max-w-none"
+        className="absolute inset-0 block size-[16px] max-w-none"
       />
     </span>
   );
