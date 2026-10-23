@@ -173,10 +173,10 @@ function Lightbox({
 }
 
 /**
- * Главное фото изделия: целиком (contain) — вертикальные и горизонтальные
- * снимки без обрезки. Поля по бокам заполняет то же фото, размытое и чуть
- * затемнённое (маленькая копия, ~5 КБ), а не пустые серые полосы. Стрелки по
- * бокам, счётчик в углу, клик — крупно. Листание по кругу.
+ * Главное фото изделия: заполняет кадр (cover) — без пустых полос по бокам;
+ * края, особенно у вертикальных снимков, обрезаются, а целиком фото видно в
+ * сетке ниже и крупно по клику. Стрелки по бокам, счётчик в углу, листание
+ * по кругу.
  */
 export function ProjectSlider({ images, compact = false }: { images: GalleryImage[]; compact?: boolean }) {
   const [active, setActive] = useState(0);
@@ -187,7 +187,7 @@ export function ProjectSlider({ images, compact = false }: { images: GalleryImag
   const go = (d: number) => setActive((i) => (i + d + n) % n);
   return (
     <div
-      className={`relative w-full shrink-0 overflow-hidden bg-[#3a3a3a] ${compact ? "h-[360px]" : "h-[640px]"}`}
+      className={`relative w-full shrink-0 overflow-hidden bg-light-gray ${compact ? "h-[360px]" : "h-[640px]"}`}
       onKeyDown={(e) => {
         if (e.key === "ArrowLeft") go(-1);
         if (e.key === "ArrowRight") go(1);
@@ -200,10 +200,7 @@ export function ProjectSlider({ images, compact = false }: { images: GalleryImag
         className="absolute inset-0 cursor-zoom-in"
       >
         <span key={images[active].full} className="absolute inset-0 motion-safe:animate-[bbs-fade_250ms_ease-out]">
-          <span aria-hidden className="absolute inset-0 scale-110 blur-2xl brightness-[0.7]">
-            <Photo img={{ ...images[active], alt: "" }} sizes="200px" fit="cover" />
-          </span>
-          <Photo img={images[active]} sizes={compact ? "100vw" : "1120px"} fit="contain" priority={active === 0} />
+          <Photo img={images[active]} sizes={compact ? "100vw" : "1120px"} fit="cover" priority={active === 0} />
         </span>
       </button>
       {n > 1 && (
