@@ -301,11 +301,7 @@ export default function LeadFormFields({
 
   useEffect(() => {
     if (!thanks) return;
-    // Фокус — через кадр: в момент смены слой ещё visibility: hidden
-    // (начало перехода), и focus() бы не сработал.
-    const frame = requestAnimationFrame(() =>
-      requestAnimationFrame(() => thanksRef.current?.focus({ preventScroll: true })),
-    );
+    const frame = requestAnimationFrame(() => thanksRef.current?.focus({ preventScroll: true }));
     const timer = setTimeout(() => setThanks(false), THANKS_MS);
     return () => {
       cancelAnimationFrame(frame);
@@ -313,10 +309,15 @@ export default function LeadFormFields({
     };
   }, [thanks]);
 
-  const layer = "col-start-1 row-start-1 transition-[opacity,visibility] duration-300 ease-out motion-reduce:transition-none";
+  // Показанный слой видим сразу (иначе focus() на благодарность не сработал
+  // бы до конца перехода) и проявляется; скрытый гаснет и в конце становится
+  // invisible — его нельзя ни нажать, ни выделить.
+  const layer = "col-start-1 row-start-1 duration-300 ease-out motion-reduce:transition-none";
+  const shown = "opacity-100 transition-opacity";
+  const hidden = "invisible opacity-0 transition-[opacity,visibility]";
   return (
     <div className={`grid shrink-0 ${compact ? "w-full" : "w-[477px]"}`}>
-      <div className={`${layer} ${thanks ? "invisible opacity-0" : "opacity-100"}`} inert={thanks}>
+      <div className={`${layer} ${thanks ? hidden : shown}`} inert={thanks}>
         <LeadForm
           key={round}
           preset={preset}
@@ -331,7 +332,7 @@ export default function LeadFormFields({
         ref={thanksRef}
         tabIndex={-1}
         role={thanks ? "status" : undefined}
-        className={`${layer} flex flex-col items-start justify-center gap-[16px] outline-none ${thanks ? "opacity-100" : "invisible opacity-0"}`}
+        className={`${layer} flex flex-col items-start justify-center gap-[16px] outline-none ${thanks ? shown : hidden}`}
         inert={!thanks}
       >
         <p className={`text-trim ${H3_SB} text-ink`}>Дякуємо! Заявку отримано.</p>
