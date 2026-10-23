@@ -1,11 +1,11 @@
 "use client";
 
-import { useActionState, useId, useRef, useState } from "react";
+import { useActionState, useEffect, useId, useRef, useState } from "react";
 
 import { NAME_MAX, nameError, phoneDigits, phoneError } from "@/app/_lib/lead-validation";
 import { submitLead, type LeadState } from "@/app/_lib/leads";
 
-import { H3_L, H3_SB, MOB_L, MOB_SB, PrimaryBtn, inset } from "./ui";
+import { H3_L, H3_SB, H4_L, HOVER_EASE, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, PrimaryBtn, SwapIcon, inset } from "./ui";
 
 export type LeadPreset = {
   formType: "feedback" | "sample_order" | "price_request";
@@ -73,16 +73,25 @@ function formatPhone(digits: string, open: boolean) {
   return out;
 }
 
-/**
- * Отправка через server action. Обрыв сети или сбой сервера — сообщение под
- * формой (введённое остаётся), а не страница ошибки.
- */
-async function send(prev: LeadState, form: FormData): Promise<LeadState> {
+/** Ошибка сети или сервера — сообщение под формой (введённое остаётся), а не страница ошибки. */
+const NETWORK_ERROR = "Не вдалося надіслати заявку. Перевірте з’єднання та спробуйте ще раз.";
+
+/** Повтор той же заявки в течение 10 минут — не отправляем, а уточняем. */
+const REPEAT_WINDOW = 10 * 60 * 1000;
+const REPEAT_KEY = "bbs-last-lead";
+const leadKey = (name: string, phone: string, message: string) =>
+  [name.trim().toLowerCase(), phoneDigits(phone), message.trim()].join("|");
+function lastLead(): { key: string; at: number } | null {
   try {
-    return await submitLead(prev, form);
+    return JSON.parse(sessionStorage.getItem(REPEAT_KEY) ?? "null");
   } catch {
-    return { status: "error", message: "Не вдалося надіслати заявку. Перевірте з’єднання та спробуйте ще раз." };
+    return null;
   }
+}
+function rememberLead(key: string) {
+  try {
+    sessionStorage.setItem(REPEAT_KEY, JSON.stringify({ key, at: Date.now() }));
+  } catch {}
 }
 
 /** Состояние поля: пока не трогали — нейтральное, дальше — по проверке. */
@@ -90,22 +99,34 @@ const stateOf = (shown: boolean, error: string | null): FieldState =>
   !shown ? "neutral" : error ? "error" : "valid";
 
 /**
- * Поля формы заявки (Frame 41): пишет заявку в базу через server action.
- * `compact` — мобильная форма (Consultation): поля столбиком, текст 16mob_l.
- *
- * Проверка своя, без подсказок браузера (noValidate): поле показывает
- * состояние сразу, как только в него начали вводить; по «Залишити заявку» —
- * ошибки у всех полей и фокус на первом неверном. Правила — в
- * lead-validation.ts, сервер проверяет то же.
+ * Сама форма. Проверка своя, без подсказок браузера (noValidate): поле
+ * показывает состояние сразу, как только в него начали вводить; по «Залишити
+ * заявку» — ошибки у всех полей и фокус на первом неверном. Правила — в
+ * lead-validation.ts, сервер проверяет то же. Успех — onSent (благодарность
+ * показывает LeadFormFields).
  */
-export default function LeadFormFields({
+function LeadForm({
   preset,
-  compact = false,
+  compact,
+  onSent,
 }: {
   preset: LeadPreset;
-  compact?: boolean;
+  compact: boolean;
+  onSent: () => void;
 }) {
-  const [state, action, pending] = useActionState<LeadState, FormData>(send, { status: "idle" });
+  const [state, action, pending] = useActionState<LeadState, FormData>(async (prev, form) => {
+    try {
+      const next = await submitLead(prev, form);
+      if (next.status === "ok") {
+        rememberLead(leadKey(String(form.get("name")), String(form.get("phone")), String(form.get("message") ?? "")));
+        onSent();
+      }
+      return next;
+    } catch {
+      return { status: "error", message: NETWORK_ERROR };
+    }
+  }, { status: "idle" });
+  const [repeat, setRepeat] = useState(false);
   const id = useId();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -121,20 +142,6 @@ export default function LeadFormFields({
   const phoneState = stateOf(dirty.phone || submitted, errors.phone);
   const input = `block h-[16px] min-w-px flex-1 bg-transparent p-0 ${compact ? MOB_L : MOB_SB} text-card-gray outline-none placeholder:text-card-gray`;
 
-  if (state.status === "ok") {
-    return (
-      <div
-        className={`flex shrink-0 flex-col items-start gap-[16px] self-stretch justify-center ${compact ? "w-full" : "w-[477px]"}`}
-        role="status"
-      >
-        <p className={`text-trim ${H3_SB} text-ink`}>Дякуємо! Заявку отримано.</p>
-        <p className={`text-trim ${H3_L} text-card-gray`}>
-          Менеджер зв’яжеться з вами найближчим часом.
-        </p>
-      </div>
-    );
-  }
-
   return (
     <form
       action={action}
@@ -147,7 +154,12 @@ export default function LeadFormFields({
         if (errors.name || errors.phone) {
           e.preventDefault();
           (errors.name ? nameRef : phoneRef).current?.focus();
+          return;
         }
+        const last = lastLead();
+        const same = last?.key === leadKey(name, phone, message) && Date.now() - last.at < REPEAT_WINDOW;
+        setRepeat(same);
+        if (same) e.preventDefault();
       }}
       className={`flex shrink-0 flex-col items-start gap-[24px] ${compact ? "w-full" : "w-[477px]"}`}
     >
@@ -176,6 +188,7 @@ export default function LeadFormFields({
               aria-invalid={nameState === "error" || undefined}
               aria-describedby={nameState === "error" ? `${id}-name-error` : undefined}
               onChange={(e) => {
+                setRepeat(false);
                 setName(e.target.value);
                 setDirty((d) => ({ ...d, name: true }));
               }}
@@ -220,6 +233,7 @@ export default function LeadFormFields({
                 if (d.length <= 3) d = "";
                 setPhone(formatPhone(d, true));
                 setDirty((x) => ({ ...x, phone: true }));
+                setRepeat(false);
               }}
               className={input}
             />
@@ -234,20 +248,96 @@ export default function LeadFormFields({
             name="message"
             maxLength={2000}
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setRepeat(false);
+              setMessage(e.target.value);
+            }}
             placeholder="Повідомлення"
             className={`size-full resize-none bg-transparent ${compact ? MOB_L : MOB_SB} text-card-gray outline-none placeholder:text-card-gray`}
           />
         </label>
       </div>
-      {state.status === "error" && !pending && (
-        <p role="alert" className={`${MOB_SB} text-red`}>
-          {state.message}
+      {repeat ? (
+        <p role="alert" className={`${MOB_SB} text-card-gray`}>
+          Таку заявку ви вже надіслали — менеджер зв’яжеться з вами. Щоб щось додати, змініть повідомлення.
         </p>
+      ) : (
+        state.status === "error" &&
+        !pending && (
+          <p role="alert" className={`${MOB_SB} text-red`}>
+            {state.message}
+          </p>
+        )
       )}
       <PrimaryBtn type="submit" className="w-full" disabled={pending} loading={pending}>
         {pending ? "Надсилаємо…" : "Залишити заявку"}
       </PrimaryBtn>
     </form>
+  );
+}
+
+/** Сколько висит благодарность, прежде чем форма вернётся. */
+const THANKS_MS = 5000;
+
+/**
+ * Форма заявки (Frame 41) с благодарностью после отправки. `compact` —
+ * мобильная форма (Consultation): поля столбиком, текст 16mob_l.
+ *
+ * Форма и благодарность — два слоя в одной ячейке сетки (высота блока не
+ * прыгает), смена — плавным проявлением. После успеха под благодарностью
+ * сразу встаёт новая пустая форма (key), через 5 с или по «Надіслати ще одну
+ * заявку» она проявляется обратно.
+ */
+export default function LeadFormFields({
+  preset,
+  compact = false,
+}: {
+  preset: LeadPreset;
+  compact?: boolean;
+}) {
+  const [round, setRound] = useState(0);
+  const [thanks, setThanks] = useState(false);
+  const thanksRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!thanks) return;
+    thanksRef.current?.focus();
+    const timer = setTimeout(() => setThanks(false), THANKS_MS);
+    return () => clearTimeout(timer);
+  }, [thanks]);
+
+  const layer = "col-start-1 row-start-1 transition-[opacity,visibility] duration-300 ease-out motion-reduce:transition-none";
+  return (
+    <div className={`grid shrink-0 ${compact ? "w-full" : "w-[477px]"}`}>
+      <div className={`${layer} ${thanks ? "invisible opacity-0" : "opacity-100"}`} inert={thanks}>
+        <LeadForm
+          key={round}
+          preset={preset}
+          compact={compact}
+          onSent={() => {
+            setThanks(true);
+            setRound((r) => r + 1);
+          }}
+        />
+      </div>
+      <div
+        ref={thanksRef}
+        tabIndex={-1}
+        role={thanks ? "status" : undefined}
+        className={`${layer} flex flex-col items-start justify-center gap-[16px] outline-none ${thanks ? "opacity-100" : "invisible opacity-0"}`}
+        inert={!thanks}
+      >
+        <p className={`text-trim ${H3_SB} text-ink`}>Дякуємо! Заявку отримано.</p>
+        <p className={`text-trim ${H3_L} text-card-gray`}>Менеджер зв’яжеться з вами найближчим часом.</p>
+        <button
+          type="button"
+          onClick={() => setThanks(false)}
+          className={`group mt-[8px] flex cursor-pointer items-center gap-[8px] py-[8px] ${H4_L} text-blue transition-colors ${HOVER_EASE} hover:text-red`}
+        >
+          <span className={`text-trim whitespace-nowrap ${LINE_FILL} ${LINE_BASE_BLUE}`}>Надіслати ще одну заявку</span>
+          <SwapIcon src="/figma/bbs/arrow-link-blue.svg" hover="/figma/bbs/arrow-link-hover.svg" />
+        </button>
+      </div>
+    </div>
   );
 }
