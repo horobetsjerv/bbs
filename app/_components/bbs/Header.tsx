@@ -10,7 +10,7 @@ import {
 import { telHref } from "@/app/_lib/contacts";
 
 import { LEAD_ANCHOR, MTelegram, mobileHref } from "../mobile/ui";
-import { VicostoneLogo } from "./blocks";
+import { VicostoneBrandLogo, VicostoneLogo } from "./blocks";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
@@ -237,6 +237,12 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
   );
 }
 
+// Логотип бренда в «Бренди»: чёрно-белый, при наведении (или фокусе с
+// клавиатуры) плавно становится цветным — цветная копия лежит поверх.
+const LOGO_MONO = "transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
+const LOGO_COLOR =
+  "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100";
+
 /**
  * «Бренди» (Figma Variant2, инстанс полосы логотипов как BrandLogosStrip):
  * px 71 / py 32, две половины, между ними синяя линия 1 + 1px.
@@ -248,16 +254,24 @@ function BrandsMenu() {
         className="flex min-w-px flex-1 flex-col items-center"
         style={{ boxShadow: "inset -1px 0 0 var(--color-blue)" }}
       >
-        <a href="/laminam/" aria-label="Laminam" className="block">
-          <Icon src="/figma/bbs/laminam-logo-dark.svg" width={277} height={40} />
+        <a href="/laminam/" aria-label="Laminam" className="group/logo relative block">
+          <Icon src="/figma/bbs/laminam-logo-dark.svg" width={277} height={40} className={LOGO_MONO} />
+          <span aria-hidden className={LOGO_COLOR}>
+            <Icon src="/figma/bbs/laminam-logo.svg" width={277} height={40} />
+          </span>
         </a>
       </div>
       <div
         className="flex min-w-px flex-1 flex-col items-center"
         style={{ boxShadow: "inset 1px 0 0 var(--color-blue)" }}
       >
-        <a href="/vicostone/" className="block">
-          <VicostoneLogo size={40} />
+        <a href="/vicostone/" className="group/logo relative block">
+          <div className={LOGO_MONO}>
+            <VicostoneLogo size={40} />
+          </div>
+          <span aria-hidden className={LOGO_COLOR}>
+            <VicostoneBrandLogo />
+          </span>
         </a>
       </div>
     </div>
