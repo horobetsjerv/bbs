@@ -923,9 +923,10 @@ export async function getCatalogSeo({
       const short = `${name}${forUses}. ${DESCRIPTION_TAIL_SHORT}`;
       return clampText(full.length <= 160 ? full : short, 160);
     })(),
-    // H1 у подборок «тип + …» постоянный: в SEO-таблице для них задан только
-    // Title / Description, заголовок по ним не меняется.
-    h1: { light: "Каталог", bold: "BBS" },
+    // В SEO-таблице для подборок «тип + …» заданы только Title / Description;
+    // H1 — название подборки («Чорний керамограніт»), как в крошке, чтобы
+    // заголовки страниц не повторялись.
+    h1: heading,
     // Подборка «тип + …» — под крошкой своего типа.
     crumbs: color || design || size ? [typeCrumb, { name: `${heading.light} ${heading.bold}`, path }] : [typeCrumb],
     canonical,
