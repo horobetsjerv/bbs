@@ -80,12 +80,15 @@ export const HOVER_EASE = "duration-250 ease-out";
  * заполняется слева направо цветом текста и так же плавно уходит.
  */
 export const LINE_FILL =
-  "relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-[3px] after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none";
-/** Ссылка подчёркнута и в покое: постоянная линия, поверх неё — LINE_FILL. */
+  "relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-[4px] after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none";
+/**
+ * Ссылка подчёркнута и в покое: постоянная линия, поверх неё — LINE_FILL.
+ * Без LINE_FILL элементу нужен `relative`, иначе линия встанет по предку.
+ */
 export const LINE_BASE_BLUE =
-  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[3px] before:h-px before:bg-blue";
+  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[4px] before:h-px before:bg-blue";
 export const LINE_BASE_GRAY =
-  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[3px] before:h-px before:bg-card-gray";
+  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[4px] before:h-px before:bg-card-gray";
 
 /** Две формы стрелок сайта (как в файлах Figma). */
 const ARROW_PATH = {

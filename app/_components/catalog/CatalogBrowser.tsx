@@ -290,7 +290,7 @@ export default function CatalogBrowser({
             >
               {/* Неактивна — без hover: линия не заполняется, цвет не меняется. */}
               <span
-                className={`text-trim block whitespace-nowrap ${H4_BTN} text-card-gray ${LINE_BASE_GRAY} ${
+                className={`text-trim relative block whitespace-nowrap ${H4_BTN} text-card-gray ${LINE_BASE_GRAY} ${
                   !hasFilters && sort === "popular" ? "" : `transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL}`
                 }`}
               >
