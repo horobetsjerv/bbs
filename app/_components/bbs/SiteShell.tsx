@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Reveal from "./Reveal";
 import LeadModal from "./LeadModal";
+import Preloader from "./Preloader";
 import MobileFooter from "../mobile/MobileFooter";
 
 const inter = Inter({
@@ -19,6 +20,8 @@ export type ShellProps = {
   /** Отступ от последней секции до подвала, px. */
   footerGap: number;
   mobile?: React.ReactNode;
+  /** Прелоадер при первом заходе за сессию (главная и каталог). */
+  preloader?: boolean;
 };
 
 /**
@@ -40,6 +43,7 @@ export default function SiteShell({
   children,
   footerGap,
   mobile,
+  preloader = false,
   settings,
 }: ShellProps & { settings: SiteContacts }) {
   const desktop = (
@@ -55,6 +59,7 @@ export default function SiteShell({
         mobile ? "xl:min-w-[1280px]" : "min-w-[1280px]"
       }`}
     >
+      {preloader && <Preloader />}
       <Header phones={settings.phones} telegram={settings.socials.telegram} mobile={!!mobile} />
       {mobile ? (
         <>

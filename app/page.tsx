@@ -71,6 +71,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   return (
     // До подвала в макете 105px.
     <Page
+      preloader
       footerGap={105}
       mobile={<MobileHome decors={decors} preset={preset} faq={FAQ} />}
     >

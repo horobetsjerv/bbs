@@ -113,7 +113,7 @@ export default async function CatalogTemplate({
   );
   return (
     // После текстов подборки (FAQ) до подвала 120px, как у страниц с FAQ.
-    <Page footerGap={text ? 120 : bottomGap} mobile={mobile}>
+    <Page preloader footerGap={text ? 120 : bottomGap} mobile={mobile}>
       <HeroBand
         breadcrumb={crumbs}
         overlay={heroOverlay ? { src: heroOverlay } : undefined}
