@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { OG_BASE, SITE_URL } from "./_lib/site";
@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   // берёт из title / description страницы; twitter — из openGraph.
   openGraph: OG_BASE,
   twitter: { card: "summary_large_image" },
+};
+
+// Цвет панели браузера на телефоне — как белая шапка сайта.
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({

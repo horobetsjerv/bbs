@@ -22,7 +22,22 @@ const MOVED: [source: string, destination: string][] = [
   ["/pro-kompaniiu", "/pro-nas/"],
 ];
 
+/**
+ * Заголовки безопасности на всех ответах. CSP — только то, что ничего не
+ * ломает (без ограничения скриптов: Next вставляет inline-скрипты, нужен
+ * был бы nonce): сайт нельзя встроить в чужой iframe, нет <object>/<base>.
+ */
+const SECURITY_HEADERS = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'self'; object-src 'none'; base-uri 'self'" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+];
+
 const nextConfig: NextConfig = {
+  // Без «X-Powered-By: Next.js».
+  poweredByHeader: false,
   // Все адреса — со слешем в конце, как в таблице (/kataloh/keramogranit/).
   trailingSlash: true,
   // Встроенный 308 «добавить слеш» срабатывает раньше redirects() и proxy —
@@ -32,11 +47,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return MOVED.map(([source, destination]) => ({ source, destination, statusCode: 301 }));
   },
-  // Демо-копия (например, *.vercel.app): SITE_NOINDEX=1 закрывает все страницы
-  // от индексации, чтобы поисковики не взяли дубль будущего bbs.in.ua.
+  // Заголовки безопасности — везде. Демо-копия (например, *.vercel.app):
+  // SITE_NOINDEX=1 ещё закрывает все страницы от индексации, чтобы поисковики
+  // не взяли дубль будущего bbs.in.ua.
   async headers() {
-    if (process.env.SITE_NOINDEX !== "1") return [];
-    return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+    const noindex = process.env.SITE_NOINDEX === "1" ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] : [];
+    return [{ source: "/:path*", headers: [...SECURITY_HEADERS, ...noindex] }];
   },
   experimental: {
     serverActions: {
