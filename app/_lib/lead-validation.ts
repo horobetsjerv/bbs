@@ -1,5 +1,6 @@
 // Проверка полей заявки — общая для формы (при вводе и при отправке)
 // и server action (leads.ts), чтобы правила не разъезжались.
+// Сообщения короткие: под полем для них зарезервирована одна строка.
 
 export const NAME_MAX = 60;
 
@@ -10,9 +11,9 @@ const NAME_CHARS = /^\p{L}[\p{L}\s'’ʼ-]*$/u;
 export function nameError(value: string): string | null {
   const name = value.trim();
   if (!name) return "Вкажіть ваше ім’я";
-  if (!NAME_CHARS.test(name)) return "Ім’я може містити лише літери, пробіл, апостроф і дефіс";
-  if (name.replace(/[\s'’ʼ-]/g, "").length < 2) return "Ім’я має містити щонайменше 2 літери";
-  if (name.length > NAME_MAX) return `Ім’я задовге (до ${NAME_MAX} символів)`;
+  if (!NAME_CHARS.test(name)) return "Лише літери, апостроф і дефіс";
+  if (name.replace(/[\s'’ʼ-]/g, "").length < 2) return "Мінімум 2 літери";
+  if (name.length > NAME_MAX) return `Максимум ${NAME_MAX} символів`;
   return null;
 }
 
@@ -45,7 +46,7 @@ export function phoneError(value: string): string | null {
   if (!local) return "Вкажіть номер телефону";
   // Неверная первая цифра видна сразу, вторая — когда введены обе.
   if (/^[0-2]/.test(local) || (local.length >= 2 && !CODE.test(local)))
-    return "Перевірте код оператора або міста";
-  if (local.length < 9) return "Номер неповний: потрібно 9 цифр після +380";
+    return "Невірний код оператора";
+  if (local.length < 9) return "Введіть 9 цифр після +380";
   return null;
 }

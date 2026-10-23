@@ -24,7 +24,8 @@ const BORDER: Record<FieldState, string> = {
 
 /**
  * Обёртка поля: рамка по состоянию, галочка у корректного и сообщение об
- * ошибке под полем (aria-describedby у поля).
+ * ошибке под полем (aria-describedby у поля). Строка под сообщение есть
+ * всегда — форма не прыгает, когда ошибка появляется или исчезает.
  */
 function FieldBox({
   state,
@@ -42,7 +43,7 @@ function FieldBox({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`flex flex-col gap-[6px] ${className}`}>
+    <div className={`flex flex-col gap-[4px] ${className}`}>
       <label
         className={`flex items-center gap-[8px] bg-white transition-shadow duration-150 ${compact ? "px-[16px] py-[12px]" : "px-[32px] py-[16px]"}`}
         style={inset(BORDER[state])}
@@ -54,11 +55,9 @@ function FieldBox({
           </svg>
         )}
       </label>
-      {state === "error" && error && (
-        <p id={errorId} className={`${MOB_L} text-[14px] leading-[18px] text-red`}>
-          {error}
-        </p>
-      )}
+      <p id={errorId} className={`h-[18px] truncate ${MOB_L} text-[14px] leading-[18px] text-red`}>
+        {state === "error" ? error : null}
+      </p>
     </div>
   );
 }
