@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { telHref, type SiteContacts } from "@/app/_lib/contacts";
 
-import { INFORMATION, LocationIcon, NAVIGATION } from "../bbs/Footer";
-import { CAPTION, H4_BTN, H4_L, Icon, MOB_L, MOB_SB } from "../bbs/ui";
+import { INFORMATION, LocationIcon, NAVIGATION, StudioCredit } from "../bbs/Footer";
+import { CAPTION, H4_BTN, H4_L, Icon, MOB_SB } from "../bbs/ui";
 import { MTelegram, mobileHref } from "./ui";
 
 function ColumnTitle({ children }: { children: React.ReactNode }) {
@@ -170,10 +170,7 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
       </div>
 
       <div className="relative flex w-full flex-col items-center gap-[12px] text-ink">
-        <div className="flex items-center gap-[8px] whitespace-nowrap">
-          <p className={`text-trim ${MOB_L}`}>Створено</p>
-          <p className={`text-trim ${MOB_SB}`}>KURMAZ web studio</p>
-        </div>
+        <StudioCredit />
         <p className={`text-trim whitespace-nowrap ${CAPTION}`}>© 2026 BBS. Всі права захищені.</p>
       </div>
     </footer>

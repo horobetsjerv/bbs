@@ -39,6 +39,19 @@ function ColumnTitle({ children }: { children: React.ReactNode }) {
 /** Ссылка подвала на hover: красный текст и линия, заполняющаяся слева направо. */
 const FOOTER_LINK = `transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL}`;
 
+/** «Розроблено Kurmaz Web Studio»: ссылка — только название студии. */
+export function StudioCredit() {
+  return (
+    <p className="flex shrink-0 items-center gap-[8px] whitespace-nowrap">
+      <span className={`text-trim ${MOB_L}`}>Розроблено</span>
+      <a href="https://www.kurmaz-web.studio/" target="_blank" rel="noopener" className="group">
+        <span className={`text-trim block ${MOB_SB} text-ink ${FOOTER_LINK}`}>Kurmaz Web Studio</span>
+        <span className="sr-only"> (відкривається в новій вкладці)</span>
+      </a>
+    </p>
+  );
+}
+
 function LinkItem({ href, children }: { href: string | null; children: React.ReactNode }) {
   // Без страницы — текст, а не пустая ссылка «#».
   if (!href)
@@ -238,10 +251,7 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
           <p className={`text-trim min-w-px flex-1 ${CAPTION}`}>
             © 2026 BBS. Всі права захищені.
           </p>
-          <div className="flex shrink-0 items-center gap-[8px] whitespace-nowrap">
-            <p className={`text-trim ${MOB_L}`}>Створено</p>
-            <p className={`text-trim ${MOB_SB}`}>KURMAZ web studio</p>
-          </div>
+          <StudioCredit />
         </div>
       </div>
     </footer>
