@@ -19,12 +19,14 @@ function Photo({
   fit,
   priority = false,
   className = "",
+  onLoad,
 }: {
   img: GalleryImage;
   sizes: string;
   fit: "contain" | "cover";
   priority?: boolean;
   className?: string;
+  onLoad?: () => void;
 }) {
   const cls = `${fit === "contain" ? "object-contain" : "object-cover"} ${className}`;
   if (!img.full.startsWith("/"))
@@ -33,10 +35,76 @@ function Photo({
         src={img.full}
         alt={img.alt}
         loading={priority ? "eager" : "lazy"}
+        onLoad={onLoad}
+        // Уже из кэша — load мог пройти до того, как React повесил обработчик.
+        ref={(el) => {
+          if (el?.complete && el.naturalWidth) onLoad?.();
+        }}
         className={`absolute inset-0 size-full ${cls}`}
       />
     );
-  return <Image src={img.full} alt={img.alt} fill sizes={sizes} priority={priority} className={cls} />;
+  return <Image src={img.full} alt={img.alt} fill sizes={sizes} priority={priority} onLoad={onLoad} className={cls} />;
+}
+
+/**
+ * Фото с плавной сменой без пустого фона: текущее фото остаётся, пока новое
+ * не загрузится, затем новое проявляется поверх и становится подложкой.
+ * Соседние фото (±1) смонтированы заранее — грузятся в фоне, листание
+ * мгновенное.
+ */
+function PhotoStack({
+  images,
+  active,
+  sizes,
+  fit,
+  priority = false,
+}: {
+  images: GalleryImage[];
+  active: number;
+  sizes: string;
+  fit: "contain" | "cover";
+  priority?: boolean;
+}) {
+  const n = images.length;
+  // Полностью видимое фото (подложка) — с самого начала, ещё до загрузки.
+  const [shown, setShown] = useState(active);
+  const [loaded, setLoaded] = useState<ReadonlySet<number>>(() => new Set());
+  const markLoaded = useCallback(
+    (i: number) => setLoaded((prev) => (prev.has(i) ? prev : new Set(prev).add(i))),
+    [],
+  );
+  useEffect(() => {
+    if (active === shown || !loaded.has(active)) return;
+    // Новое проявилось поверх (300 мс) — теперь оно подложка.
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = setTimeout(() => setShown(active), reduce ? 0 : 300);
+    return () => clearTimeout(timer);
+  }, [active, shown, loaded]);
+
+  const mounted = [...new Set([shown, active, (active + 1) % n, (active - 1 + n) % n])];
+  return mounted.map((i) => {
+    const state =
+      i === shown
+        ? "z-[1] opacity-100"
+        : i === active
+          ? `z-[2] ${loaded.has(i) ? "opacity-100" : "opacity-0"}`
+          : "opacity-0";
+    return (
+      <span
+        key={i}
+        aria-hidden={i !== active || undefined}
+        className={`absolute inset-0 transition-opacity duration-300 ease-out motion-reduce:transition-none ${state}`}
+      >
+        <Photo
+          img={images[i]}
+          sizes={sizes}
+          fit={fit}
+          priority={priority && i === active}
+          onLoad={() => markLoaded(i)}
+        />
+      </span>
+    );
+  });
 }
 
 /** Круглая кнопка-стрелка поверх фото: белая, с тенью — видна на любом снимке. */
@@ -141,7 +209,7 @@ function Lightbox({
       {index !== null && (
         <div className="relative size-full">
           <div className="absolute inset-[56px_96px] max-md:inset-[56px_8px]" onClick={(e) => e.stopPropagation()}>
-            <Photo key={images[index].full} img={images[index]} sizes="100vw" fit="contain" priority />
+            <PhotoStack images={images} active={index} sizes="100vw" fit="contain" priority />
           </div>
           {n > 1 && (
             <>
@@ -199,9 +267,7 @@ export function ProjectSlider({ images, compact = false }: { images: GalleryImag
         onClick={() => setZoom(active)}
         className="absolute inset-0 cursor-zoom-in"
       >
-        <span key={images[active].full} className="absolute inset-0 motion-safe:animate-[bbs-fade_250ms_ease-out]">
-          <Photo img={images[active]} sizes={compact ? "100vw" : "1120px"} fit="cover" priority={active === 0} />
-        </span>
+        <PhotoStack images={images} active={active} sizes={compact ? "100vw" : "1120px"} fit="cover" priority />
       </button>
       {n > 1 && (
         <>
