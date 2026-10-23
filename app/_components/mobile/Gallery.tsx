@@ -39,7 +39,9 @@ export default function MobileGallery({
   const end = start + MAX_DOTS - 1;
   const go = (i: number) => {
     const el = trackRef.current;
-    el?.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+    // Без плавного листания, если пользователь просил меньше анимаций.
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el?.scrollTo({ left: i * el.clientWidth, behavior: reduce ? "instant" : "smooth" });
   };
 
   return (

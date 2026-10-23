@@ -30,7 +30,7 @@ export default function RootLayout({
     <html
       lang="uk"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full motion-safe:scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

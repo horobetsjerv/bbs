@@ -74,7 +74,7 @@ export function CatalogCard({
             src={image}
             alt={name}
             loading="lazy"
-            className="absolute inset-0 size-full max-w-none object-cover transition-transform duration-500 group-hover:scale-105"
+            className="absolute inset-0 size-full max-w-none object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
           />
         )}
       </div>

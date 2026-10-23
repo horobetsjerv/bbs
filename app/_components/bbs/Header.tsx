@@ -139,12 +139,13 @@ export default function Header({
 // либо фокус с клавиатуры внутри (focus-visible — клик мышью панель не держит).
 const OPEN_TEXT =
   "group-hover/menu:font-semibold group-hover/menu:text-red group-has-[:focus-visible]/menu:font-semibold group-has-[:focus-visible]/menu:text-red";
-// Появление — плавно: прозрачность и сдвиг на 4px за 200ms. Закрытие с
+// Появление — плавно: прозрачность и сдвиг на 4px за 200ms (сдвиг — только
+// без prefers-reduced-motion). Закрытие с
 // задержкой 150ms (visibility переключается в конце transition): курсор
 // успевает наискосок дойти до панели через пустоту шапки, а панель остаётся
 // наводимой и снова «ловит» hover. Открытая — над закрывающейся.
 const PANEL =
-  "invisible absolute inset-x-0 top-full z-[1] flex -translate-y-[4px] justify-center bg-white opacity-0 shadow-[inset_0_-1px_0_var(--color-light-gray)] transition-[opacity,translate,visibility] delay-150 duration-200 ease-out group-hover/menu:visible group-hover/menu:z-[2] group-hover/menu:translate-y-0 group-hover/menu:opacity-100 group-hover/menu:delay-0 group-has-[:focus-visible]/menu:visible group-has-[:focus-visible]/menu:z-[2] group-has-[:focus-visible]/menu:translate-y-0 group-has-[:focus-visible]/menu:opacity-100 group-has-[:focus-visible]/menu:delay-0";
+  "invisible absolute inset-x-0 top-full z-[1] flex -translate-y-[4px] justify-center motion-reduce:translate-none bg-white opacity-0 shadow-[inset_0_-1px_0_var(--color-light-gray)] transition-[opacity,translate,visibility] delay-150 duration-200 ease-out group-hover/menu:visible group-hover/menu:z-[2] group-hover/menu:translate-y-0 group-hover/menu:opacity-100 group-hover/menu:delay-0 group-has-[:focus-visible]/menu:visible group-has-[:focus-visible]/menu:z-[2] group-has-[:focus-visible]/menu:translate-y-0 group-has-[:focus-visible]/menu:opacity-100 group-has-[:focus-visible]/menu:delay-0";
 // Пока панель открыта, строка шапки сплошная белая и без нижней линии —
 // в макете шапка с панелью один белый блок с линией снизу.
 const HEADER_OPEN =
@@ -316,7 +317,7 @@ function CatalogMenu() {
           <div
             key={s.key}
             data-sec={s.key}
-            className={`invisible col-start-1 row-start-1 grid grid-rows-[0fr] opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-250 ease-out ${SECTION_OPEN[s.key]}`}
+            className={`invisible col-start-1 row-start-1 grid grid-rows-[0fr] opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-250 ease-out motion-reduce:transition-[opacity,visibility] ${SECTION_OPEN[s.key]}`}
           >
             <div className="min-h-0 overflow-hidden pl-[32px] shadow-[inset_2px_0_0_var(--color-blue)]">
               <MenuGrid items={s.items} cols={s.cols} />
