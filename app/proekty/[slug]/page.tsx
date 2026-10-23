@@ -1,25 +1,55 @@
 import { notFound } from "next/navigation";
 
 import ProductPage from "@/app/_components/product/ProductPage";
-import { clampText } from "@/app/_lib/catalog";
+import { firstFitting } from "@/app/_lib/catalog";
 import { getProject, getProjects } from "@/app/_lib/content";
 import { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 import { OG_BASE, assetUrl } from "@/app/_lib/site";
 
 type Params = Promise<{ slug: string }>;
 
+/** «… з керамограніту» / «… з кварцу» в названии проекта (перед автором). */
+const MATERIAL_PHRASE = / з (керамограніту|кварцу|кварцового каменю)(?=,|$)/;
+
 /**
- * Title до 65 символов (ориентир таблицы): укорачиваем хвост, потом название.
- * Обрезка не должна склеивать разные проекты (Pietra Grey … EK Studio /
- * … Oselya Buro) — тогда оставляем полное название, дубль Title хуже длины.
+ * Title до 65 символов (ориентир таблицы) без «…»: сначала короче хвост,
+ * потом из названия уходит материал («з керамограніту»), автор остаётся —
+ * он отличает одинаковые изделия (Pietra Grey … EK Studio / … Oselya Buro).
  */
-async function projectTitle(name: string, full: string) {
-  const fit = [full, `${name} — виріб на замовлення | BBS`, `${name} | BBS`].find((t) => t.length <= 65);
-  if (fit) return fit;
-  const short = (n: string) => `${clampText(n, 59)} | BBS`;
-  const clash = (await getProjects()).some((x) => x.title !== name && short(x.title) === short(name));
-  return clash ? `${name} | BBS` : short(name);
+function titleFor(name: string, full: string) {
+  const bare = name.replace(MATERIAL_PHRASE, "");
+  return firstFitting([full, `${name} — виріб на замовлення | BBS`, `${name} | BBS`, `${bare} | BBS`], 65);
 }
+
+/** Если укороченный Title совпал с чужим — полное название: дубль хуже длины. */
+async function projectTitle(name: string, full: string) {
+  const own = titleFor(name, full);
+  const clash = (await getProjects()).some((x) => x.title !== name && titleFor(x.title, "") === own);
+  return clash ? `${name} | BBS` : own;
+}
+
+/**
+ * Description до 160 символов целыми предложениями. Короткое описание
+ * («Стільниця, фартух та острів з кварцу») обычно повторяет название —
+ * тогда его не дублируем.
+ */
+function projectDescription(name: string, short: string | null, brand: string | undefined) {
+  const norm = (t: string) => t.toLowerCase().replace(/\s*\d+\s*мм/g, "").trim();
+  const lead = `${name} — виріб на замовлення${brand ? ` з ${brand}` : ""}.`;
+  // Уточнение изделия — если влезает; иначе без него, но с хвостом.
+  const leads = short && !norm(name).includes(norm(short)) ? [`${lead} ${upperFirst(short)}.`, lead] : [lead];
+  return firstFitting(
+    leads.flatMap((l) => [
+      `${l} Фото проєкту, матеріал і характеристики. Розрахуємо вартість вашого виробу в BBS.`,
+      `${l} Фото проєкту, матеріал і характеристики.`,
+      `${l} Розрахуємо вартість вашого виробу в BBS.`,
+      l,
+    ]),
+    160,
+  );
+}
+
+const upperFirst = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** SEO-поля из админки, иначе — по шаблону в духе таблицы (Title 45–65, Description до 160). */
 export async function generateMetadata({ params }: { params: Params }) {
@@ -28,15 +58,9 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!p) return {};
   const brand = p.material?.brand.name;
   const full = `${p.name} — виріб на замовлення${brand ? ` з ${brand}` : ""} | BBS`;
-  const materials = p.materials.map((m) => m.name).join(", ");
   return {
     title: p.seoTitle || (await projectTitle(p.name, full)),
-    description:
-      p.seoDescription ||
-      clampText(
-        `${p.name}${p.shortDescription ? `, ${p.shortDescription}` : ""} — виріб на замовлення${materials ? ` з ${materials}` : ""}. Фото проєкту, матеріал і характеристики. Розрахуємо вартість вашого виробу в BBS.`,
-        160,
-      ),
+    description: p.seoDescription || projectDescription(p.name, p.shortDescription, brand),
     alternates: { canonical: `/proekty/${slug}/` },
     // Превью ссылки — первое фото проекта.
     openGraph: p.images[0]?.full

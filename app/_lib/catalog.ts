@@ -565,6 +565,27 @@ export function clampText(text: string, max: number) {
   return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[,;:—–-]+$/, "")}…`;
 }
 
+/**
+ * Обрезка по концу предложения: «…» посреди фразы в сниппете выглядит
+ * сломанным. Если целых предложений набирается меньше половины max —
+ * обычная обрезка по слову.
+ */
+export function clampSentences(text: string, max: number) {
+  if (text.length <= max) return text;
+  const head = text.slice(0, max + 1);
+  const end = Math.max(...[...head.matchAll(/[.!?…](?=\s|$)/g)].map((m) => m.index + 1), 0);
+  return end >= max / 2 ? text.slice(0, end) : clampText(text, max);
+}
+
+/** Первый вариант текста, который влезает в max; иначе — последний, обрезанный. */
+export function firstFitting(variants: string[], max: number) {
+  return variants.find((v) => v.length <= max) ?? clampSentences(variants[variants.length - 1], max);
+}
+
+/** «a, b, c та інші» — первые n пунктов списка. */
+const listHead = (items: string[], n: number) =>
+  items.length > n ? `${items.slice(0, n).join(", ")} та інші` : items.join(", ");
+
 /** Все группы фильтров, пустые — кроме заданных. */
 const toSelected = (partial: Partial<Selected>) =>
   Object.fromEntries(FILTER_KEYS.map((k) => [k, [...(partial[k] ?? [])]])) as Selected;
@@ -953,15 +974,22 @@ export function materialSeo(m: NonNullable<Awaited<ReturnType<typeof getMaterial
   const kind = [m.typeLabel && lower(m.typeLabel), m.designs[0] && lower(m.designs[0])]
     .filter(Boolean)
     .join(" ");
-  const facts = [
-    m.sizes.length ? `Розміри ${m.sizes.join(", ")}` : null,
-    m.thicknesses.length ? `товщина ${m.thicknesses.join(", ")}` : null,
-  ].filter(Boolean);
-  const lead = `${name}${kind ? ` — ${kind}` : ""}.${facts.length ? ` ${facts.join(", ")}.` : ""}`;
-  const description = clampText(
-    [`${lead} Фото, характеристики, застосування й ціна в каталозі BBS.`, `${lead} Ціна в каталозі BBS.`].find(
-      (d) => d.length <= 160,
-    ) ?? lead,
+  // У декоров с десятком размеров и толщин полный список не влезает в 160
+  // символов — тогда первые пункты и «та інші», а не обрезка посреди списка.
+  const all = Math.max(m.sizes.length, m.thicknesses.length);
+  const leads = [all, 3, 2, 1].map((n) => {
+    const facts = [
+      m.sizes.length ? `Розміри ${listHead(m.sizes, n)}` : null,
+      m.thicknesses.length ? `товщина ${listHead(m.thicknesses, n)}` : null,
+    ].filter(Boolean);
+    return `${name}${kind ? ` — ${kind}` : ""}.${facts.length ? ` ${facts.join(", ")}.` : ""}`;
+  });
+  const description = firstFitting(
+    leads.flatMap((lead) => [
+      `${lead} Фото, характеристики, застосування й ціна в каталозі BBS.`,
+      `${lead} Ціна в каталозі BBS.`,
+      lead,
+    ]),
     160,
   );
   return { title, description, canonical: m.href };

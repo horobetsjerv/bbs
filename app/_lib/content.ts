@@ -8,7 +8,7 @@ import { cache } from "react";
 
 import { db } from "@/db";
 
-import { clampText, getMaterial, getProductPaths } from "./catalog";
+import { clampSentences, getMaterial, getProductPaths } from "./catalog";
 // Фолбэк и tel:-ссылка — в модуле без базы (нужны странице 500).
 import { FALLBACK_SETTINGS as FALLBACK, telHref } from "./contacts";
 
@@ -215,7 +215,7 @@ export async function getPost(slug: string) {
     publishedAt: p.row.publishedAt.toISOString(),
     updatedAt: p.row.updatedAt.toISOString(),
     /** Начало текста — Description, если в админке не задан. */
-    excerpt: clampText(
+    excerpt: clampSentences(
       (htmlToText(p.row.body) ?? "")
         .split(/\n{2,}/)
         // Заголовок без точки склеился бы со следующим абзацем.
