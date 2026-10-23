@@ -36,7 +36,7 @@ function Photo({
         className={`absolute inset-0 size-full ${cls}`}
       />
     );
-  return <Image src={img.full} alt={img.alt} fill sizes={sizes} priority={priority} quality={82} className={cls} />;
+  return <Image src={img.full} alt={img.alt} fill sizes={sizes} priority={priority} className={cls} />;
 }
 
 /** Круглая кнопка-стрелка поверх фото: белая, с тенью — видна на любом снимке. */
@@ -136,7 +136,7 @@ function Lightbox({
         if (e.key === "ArrowRight") go(1);
       }}
       onClick={close}
-      className="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 opacity-0 transition-opacity duration-200 ease-out backdrop:bg-black/90 data-[state=open]:opacity-100 motion-reduce:transition-none"
+      className="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 opacity-0 transition-opacity duration-200 ease-out backdrop:bg-black/95 data-[state=open]:opacity-100 motion-reduce:transition-none"
     >
       {index !== null && (
         <div className="relative size-full">
