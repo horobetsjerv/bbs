@@ -216,7 +216,7 @@ export function PrimaryBtn({
     <button
       type={type}
       disabled={disabled}
-      className={`${cls} disabled:cursor-wait disabled:opacity-60`}
+      className={`${cls} disabled:cursor-wait disabled:opacity-60 disabled:hover:bg-blue disabled:hover:shadow-[inset_0_0_0_1px_var(--color-blue)]`}
     >
       {content}
     </button>
