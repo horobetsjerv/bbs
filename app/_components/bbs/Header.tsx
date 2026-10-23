@@ -16,7 +16,7 @@ import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
 import { H3_SB, H4_BTN, H4_L, Icon, PrimaryBtn, SwapIcon } from "./ui";
 
-type Menu = "brands" | "catalog" | "vyroby";
+type Menu = "brands" | "catalog" | "vyroby" | "about";
 type MenuLinkData = { label: string; href: string };
 
 // Ширины пунктов зафиксированы в Figma (null — по содержимому),
@@ -39,7 +39,7 @@ const NAV: {
     href: "/proekty/",
     menu: "vyroby",
   },
-  { label: "Про компанію", width: null, arrow: true, href: "/pro-nas/" },
+  { label: "Про компанію", width: null, arrow: true, href: "/pro-nas/", menu: "about" },
   { label: "Шоурум", width: null, arrow: false, href: "/showroom/" },
   { label: "Співпраця", width: null, arrow: false, href: "/spivpratsia/" },
 ];
@@ -52,6 +52,9 @@ const Q = { type: ["kvarts"] };
  * подборки каталога; у проектов фильтра нет. «Ресепшн» в базе не размечен —
  * общая страница изделий (вопрос заказчику).
  */
+/** «Про компанію»: сам пункт ведёт на /pro-nas/, в панели — блог. */
+const ABOUT: MenuLinkData[] = [{ label: "Блог", href: "/blog/" }];
+
 const VYROBY: MenuLinkData[] = [
   // «Ванна кімната» в фильтрах — пункт «Умивальники»; со стільницями — пересечение.
   { label: "Стільниці у ванну", href: catalogHref({ product: ["stilnytsi"], application: ["umyvalnyky"] }) },
@@ -215,6 +218,7 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                       {item.menu === "brands" && <BrandsMenu />}
                       {item.menu === "catalog" && <CatalogMenu />}
                       {item.menu === "vyroby" && <MenuGrid items={VYROBY} cols={3} />}
+                      {item.menu === "about" && <MenuGrid items={ABOUT} cols={3} />}
                     </div>
                   </div>
                 </div>
