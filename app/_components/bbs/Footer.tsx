@@ -4,7 +4,7 @@ import Link from "next/link";
 import { telHref, type SiteContacts } from "@/app/_lib/contacts";
 
 import Logo from "./Logo";
-import { CAPTION, H4_BTN, H4_L, Icon, MOB_L, MOB_SB } from "./ui";
+import { CAPTION, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB } from "./ui";
 
 // Бренды — на страницы брендов (/laminam/, /vicostone/), не в каталоги.
 export const NAVIGATION = [
@@ -36,15 +36,23 @@ function ColumnTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Ссылка подвала на hover: красный текст и линия, заполняющаяся слева направо. */
+const FOOTER_LINK = `transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL}`;
+
 function LinkItem({ href, children }: { href: string | null; children: React.ReactNode }) {
-  const text = (
-    <span className={`text-trim whitespace-nowrap ${H4_L} text-ink`}>{children}</span>
-  );
   // Без страницы — текст, а не пустая ссылка «#».
-  if (!href) return <span className="flex shrink-0 items-center justify-center p-[10px]">{text}</span>;
+  if (!href)
+    return (
+      <span className="flex shrink-0 items-center justify-center p-[10px]">
+        <span className={`text-trim whitespace-nowrap ${H4_L} text-ink`}>{children}</span>
+      </span>
+    );
+  // Hover: текст краснеет, линия заполняется слева направо.
   return (
-    <Link href={href} className="flex shrink-0 items-center justify-center p-[10px]">
-      {text}
+    <Link href={href} className="group flex shrink-0 items-center justify-center p-[10px]">
+      <span className={`text-trim whitespace-nowrap ${H4_L} text-ink ${FOOTER_LINK}`}>
+        {children}
+      </span>
     </Link>
   );
 }
@@ -129,10 +137,10 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
                 href={socials.telegram ?? "#"}
                 target={socials.telegram ? "_blank" : undefined}
                 rel="noreferrer"
-                className="flex shrink-0 items-start py-[16px]"
+                className="group flex shrink-0 items-start py-[16px]"
               >
                 <span
-                  className={`text-trim whitespace-nowrap ${H4_BTN} text-blue underline decoration-solid transition-colors duration-200 [text-underline-position:from-font] hover:text-red`}
+                  className={`text-trim whitespace-nowrap ${H4_BTN} text-blue transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL} ${LINE_BASE_BLUE}`}
                 >
                   Зв’язатися через Telegram
                 </span>
@@ -195,19 +203,17 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
             <div className="flex min-w-px flex-1 flex-col items-start gap-[8px]">
               <ColumnTitle>Контакти</ColumnTitle>
               <ContactRow icon={<Icon src="/figma/bbs/phone.svg" size={20} />}>
-                <a
-                  href={telHref(phones[0])}
-                  className={`text-trim whitespace-nowrap ${H4_L} text-ink`}
-                >
-                  {phones[0]}
+                <a href={telHref(phones[0])} className="group">
+                  <span className={`text-trim block whitespace-nowrap ${H4_L} text-ink ${FOOTER_LINK}`}>
+                    {phones[0]}
+                  </span>
                 </a>
               </ContactRow>
               <ContactRow icon={<Icon src="/figma/bbs/mail.svg" size={20} />}>
-                <a
-                  href={`mailto:${emails[0]}`}
-                  className={`text-trim whitespace-nowrap ${H4_L} text-ink`}
-                >
-                  {emails[0]}
+                <a href={`mailto:${emails[0]}`} className="group">
+                  <span className={`text-trim block whitespace-nowrap ${H4_L} text-ink ${FOOTER_LINK}`}>
+                    {emails[0]}
+                  </span>
                 </a>
               </ContactRow>
               <ContactRow icon={<LocationIcon />} full>

@@ -88,7 +88,7 @@ function Offers() {
               {o.dark ? (
                 <a
                   href={o.href}
-                  className={`group flex w-full items-center justify-center gap-[8px] bg-blue px-[24px] py-[14px] ${H4_BTN} text-white shadow-[inset_0_0_0_1px_#ffffff] transition-[background-color,box-shadow] duration-200 hover:bg-red`}
+                  className={`group flex w-full items-center justify-center gap-[8px] bg-blue px-[24px] py-[14px] ${H4_BTN} text-white shadow-[inset_0_0_0_1px_#ffffff] transition-[background-color,box-shadow] duration-250 ease-out hover:bg-red`}
                 >
                   <span className="text-trim whitespace-nowrap">{o.button}</span>
                   <SwapIcon src="/figma/bbs/arrow-cta-hover.svg" hover="/figma/bbs/arrow-btn-hover.svg" />

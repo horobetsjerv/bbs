@@ -15,7 +15,7 @@ import type {
 import { catalogHref, catalogQuery } from "@/app/_lib/catalog-url";
 
 import { CatalogCard } from "../bbs/cards";
-import { H4_BTN, H4_L, MOB_L, inset } from "../bbs/ui";
+import { H4_BTN, H4_L, HOVER_EASE, LINE_BASE_GRAY, LINE_FILL, MOB_L, inset } from "../bbs/ui";
 import FilterSidebar, { FilterArrow } from "./filters";
 
 export const SORTS: [slug: SortKey, label: string][] = [
@@ -286,9 +286,16 @@ export default function CatalogBrowser({
               type="button"
               onClick={reset}
               disabled={!hasFilters && sort === "popular"}
-              className={`text-trim cursor-pointer whitespace-nowrap ${H4_BTN} text-card-gray underline decoration-solid [text-underline-position:from-font] hover:text-red disabled:cursor-default disabled:hover:text-card-gray`}
+              className="group cursor-pointer disabled:cursor-default"
             >
-              Скинути все
+              {/* Неактивна — без hover: линия не заполняется, цвет не меняется. */}
+              <span
+                className={`text-trim block whitespace-nowrap ${H4_BTN} text-card-gray ${LINE_BASE_GRAY} ${
+                  !hasFilters && sort === "popular" ? "" : `transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL}`
+                }`}
+              >
+                Скинути все
+              </span>
             </button>
           </div>
           {/* Каталог Laminam (макет 1288:7741): счётчик прижат к правому краю
@@ -338,7 +345,7 @@ export default function CatalogBrowser({
               <button
                 type="button"
                 onClick={reset}
-                className={`cursor-pointer ${H4_BTN} text-blue underline hover:text-red`}
+                className={`cursor-pointer ${H4_BTN} text-blue underline transition-colors ${HOVER_EASE} hover:text-red`}
               >
                 Скинути всі фільтри
               </button>

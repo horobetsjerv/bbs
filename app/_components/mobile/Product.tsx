@@ -1,7 +1,7 @@
 // Мобильная карточка товара и изделия (Figma 1260:9821 — товар,
 // 1281:5533 — виріб). Пропсы те же, что у десктопного ProductPage.
 
-import { Breadcrumbs, H4_BTN, H4_L, Icon, MOB_L, MOB_SB, inset } from "../bbs/ui";
+import { Breadcrumbs, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, inset } from "../bbs/ui";
 import {
   SERVICES,
   TILES,
@@ -34,7 +34,7 @@ function InfoRow({ label, value, href }: InfoRowData) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`text-trim text-right ${H4_BTN} text-blue transition-colors hover:text-red`}
+          className={`group text-trim text-right ${H4_BTN} text-blue transition-colors ${HOVER_EASE} hover:text-red ${LINE_FILL}`}
         >
           {value}
         </a>

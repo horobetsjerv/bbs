@@ -80,7 +80,7 @@ export default function Offers() {
               {/* Hover как у btn: red, светлая обводка, тень. */}
               <a
                 href={o.href}
-                className={`group flex w-full items-center justify-center gap-[8px] px-[24px] py-[14px] ${H4_BTN} transition-[background-color,color,box-shadow] duration-200 hover:bg-red hover:text-back-card-gray hover:shadow-[inset_0_0_0_1px_var(--color-light-gray),var(--lift)] ${
+                className={`group flex w-full items-center justify-center gap-[8px] px-[24px] py-[14px] ${H4_BTN} transition-[background-color,color,box-shadow] duration-250 ease-out hover:bg-red hover:text-back-card-gray hover:shadow-[inset_0_0_0_1px_var(--color-light-gray),var(--lift)] ${
                   o.dark
                     ? "bg-blue text-white shadow-[inset_0_0_0_1px_#ffffff]"
                     : "bg-white text-blue shadow-[inset_0_0_0_1px_var(--color-blue)]"

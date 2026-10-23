@@ -44,7 +44,7 @@ export function ProjectLinks({ onGray = false }: { onGray?: boolean }) {
         <li key={l.label}>
           <Link
             href={l.href}
-            className={`flex items-start px-[8px] py-[9px] text-card-gray transition-colors hover:text-blue ${
+            className={`flex items-start px-[8px] py-[9px] text-card-gray transition-colors duration-250 ease-out hover:text-blue ${
               onGray ? "bg-white" : "bg-back-card-gray"
             }`}
           >

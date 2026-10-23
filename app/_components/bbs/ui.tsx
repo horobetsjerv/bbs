@@ -72,6 +72,98 @@ export function Icon({
  * `menu` — родитель `group/menu` (пункт шапки с выпадающей панелью): иконка
  * остаётся залитой, пока курсор на панели или фокус с клавиатуры внутри.
  */
+/** Плавность наведения — одна для всех ссылок и кнопок: цвет, линия, стрелка. */
+export const HOVER_EASE = "duration-250 ease-out";
+
+/**
+ * Линия под текстом ссылки (на span с text-trim внутри `group`): при наведении
+ * заполняется слева направо цветом текста и так же плавно уходит.
+ */
+export const LINE_FILL =
+  "relative after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-[3px] after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none";
+/** Ссылка подчёркнута и в покое: постоянная линия, поверх неё — LINE_FILL. */
+export const LINE_BASE_BLUE =
+  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[3px] before:h-px before:bg-blue";
+export const LINE_BASE_GRAY =
+  "before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-[3px] before:h-px before:bg-card-gray";
+
+/** Две формы стрелок сайта (как в файлах Figma). */
+const ARROW_PATH = {
+  nav: "M8.73828 6.14648H5.5V10.541H8.73828V12.8838L12.8281 8.34375L8.73828 3.80273V6.14648Z",
+  link: "M9 5.5H1V10.5H9V14.293L15.293 8L9 1.70703V5.5Z",
+};
+type ArrowColor = "ink" | "blue" | "red" | "light" | "white";
+type ArrowState = { shape: keyof typeof ARROW_PATH; color: ArrowColor; filled: boolean; stroke?: number };
+
+/**
+ * Файлы стрелок → форма и состояние. Раньше на hover подменялась картинка
+ * (рывок); теперь одна SVG меняет цвет и заливку плавно.
+ */
+const ARROWS: Record<string, ArrowState> = {
+  "/figma/bbs/arrow-nav.svg": { shape: "nav", color: "ink", filled: false },
+  "/figma/bbs/arrow-nav-hover.svg": { shape: "nav", color: "ink", filled: true },
+  "/figma/bbs/arrow-link-blue.svg": { shape: "link", color: "blue", filled: false, stroke: 1.5 },
+  "/figma/bbs/arrow-link-hover.svg": { shape: "link", color: "red", filled: true },
+  "/figma/bbs/arrow-btn-blue.svg": { shape: "link", color: "blue", filled: true },
+  "/figma/bbs/arrow-btn-hover.svg": { shape: "link", color: "light", filled: true },
+  "/figma/bbs/arrow-btn-white.svg": { shape: "link", color: "white", filled: true },
+  "/figma/bbs/arrow-cta-white.svg": { shape: "link", color: "white", filled: false },
+  "/figma/bbs/arrow-cta-hover.svg": { shape: "link", color: "white", filled: true },
+};
+const ARROW_COLOR: Record<ArrowColor, string> = {
+  ink: "text-ink",
+  blue: "text-blue",
+  red: "text-red",
+  light: "text-back-card-gray",
+  white: "text-white",
+};
+const ARROW_HOVER_COLOR: Record<ArrowColor, string> = {
+  ink: "group-hover:text-ink",
+  blue: "group-hover:text-blue",
+  red: "group-hover:text-red",
+  light: "group-hover:text-back-card-gray",
+  white: "group-hover:text-white",
+};
+
+/**
+ * Стрелка ссылки/кнопки: на hover меняет цвет, заливается и чуть сдвигается
+ * вправо. Стрелка пункта меню (nav) вместо сдвига поворачивается вниз —
+ * как в Figma; в шапке (`menu`) — и при фокусе с клавиатуры внутри пункта.
+ */
+function Arrow({ from, to, size, menu }: { from: ArrowState; to: ArrowState; size: number; menu: boolean }) {
+  const fill = from.filled
+    ? "[fill-opacity:1]"
+    : `[fill-opacity:0] ${
+        !to.filled
+          ? ""
+          : menu
+            ? "group-hover/menu:[fill-opacity:1] group-has-[:focus-visible]/menu:[fill-opacity:1]"
+            : "group-hover:[fill-opacity:1]"
+      }`;
+  const move =
+    from.shape === "nav"
+      ? menu
+        ? "group-hover/menu:rotate-90 group-has-[:focus-visible]/menu:rotate-90"
+        : "group-hover:rotate-90"
+      : "group-hover:translate-x-[3px]";
+  const color = `${ARROW_COLOR[from.color]} ${to.color !== from.color ? ARROW_HOVER_COLOR[to.color] : ""}`;
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      width={size}
+      height={size}
+      aria-hidden
+      className={`block shrink-0 overflow-visible transition-[color,fill-opacity,translate,rotate] ${HOVER_EASE} motion-reduce:transition-none ${color} ${fill} ${move}`}
+    >
+      <path d={ARROW_PATH[from.shape]} fill="currentColor" stroke="currentColor" strokeWidth={from.stroke ?? 1} />
+    </svg>
+  );
+}
+
+/**
+ * Иконка с hover-состоянием. Стрелки — одной SVG (Arrow); прочие иконки
+ * (две картинки) плавно перетекают одна в другую.
+ */
 export function SwapIcon({
   src,
   hover,
@@ -83,6 +175,10 @@ export function SwapIcon({
   size?: number;
   menu?: boolean;
 }) {
+  if (ARROWS[src] && ARROWS[hover])
+    return <Arrow from={ARROWS[src]} to={ARROWS[hover]} size={size} menu={menu} />;
+  if (src === hover) return <Icon src={src} size={size} />;
+  const fade = `transition-opacity ${HOVER_EASE} motion-reduce:transition-none`;
   return (
     <span
       className="relative block shrink-0"
@@ -92,20 +188,20 @@ export function SwapIcon({
         src={src}
         alt=""
         aria-hidden
-        className={`block size-full ${
+        className={`block size-full ${fade} ${
           menu
-            ? "group-hover/menu:invisible group-has-[:focus-visible]/menu:invisible"
-            : "group-hover:invisible"
+            ? "group-hover/menu:opacity-0 group-has-[:focus-visible]/menu:opacity-0"
+            : "group-hover:opacity-0"
         }`}
       />
       <img
         src={hover}
         alt=""
         aria-hidden
-        className={`invisible absolute inset-0 block size-full ${
+        className={`absolute inset-0 block size-full opacity-0 ${fade} ${
           menu
-            ? "group-hover/menu:visible group-has-[:focus-visible]/menu:visible"
-            : "group-hover:visible"
+            ? "group-hover/menu:opacity-100 group-has-[:focus-visible]/menu:opacity-100"
+            : "group-hover:opacity-100"
         }`}
       />
     </span>
@@ -114,7 +210,7 @@ export function SwapIcon({
 
 // Hover всех кнопок по Figma: заливка red, светлая обводка, многослойная тень.
 const BTN_BASE =
-  "group flex cursor-pointer items-center gap-[8px] transition-[background-color,color,box-shadow] duration-200";
+  "group flex cursor-pointer items-center gap-[8px] transition-[background-color,color,box-shadow] duration-250 ease-out";
 const HOVER_RED = "hover:bg-red hover:text-back-card-gray";
 
 /** btn: белая заливка, обводка blue, px 24 / py 14, высота 44. */
@@ -248,7 +344,11 @@ export function GhostBtn({
   );
 }
 
-/** Подчёркнутая ссылка со стрелкой, py 16. На hover — semibold red, стрелка залитая. */
+/**
+ * Подчёркнутая ссылка со стрелкой, py 16. На hover — red, линия заполняется
+ * слева направо, стрелка заливается и сдвигается. Толщина шрифта не меняется —
+ * иначе текст и соседи прыгают.
+ */
 export function TextLink({
   children,
   weight = "light",
@@ -268,17 +368,11 @@ export function TextLink({
       href={href}
       className={`group flex shrink-0 items-start gap-[8px] py-[16px] ${
         weight === "light" ? H4_L : H4_BTN
-      } text-blue hover:font-semibold hover:text-red ${
+      } text-blue transition-colors ${HOVER_EASE} hover:text-red ${
         stretched ? "after:absolute after:inset-0 after:content-['']" : ""
       }`}
     >
-      <span
-        className={`text-trim whitespace-nowrap ${
-          underline
-            ? "underline decoration-solid [text-underline-position:from-font]"
-            : ""
-        }`}
-      >
+      <span className={`text-trim whitespace-nowrap ${LINE_FILL} ${underline ? LINE_BASE_BLUE : ""}`}>
         {children}
       </span>
       <SwapIcon
@@ -460,7 +554,7 @@ export function Breadcrumbs({
           ) : (
             <Link
               href={CRUMB_HREF[item] ?? "#"}
-              className={`text-trim whitespace-nowrap ${muted} transition-colors ${
+              className={`text-trim whitespace-nowrap ${muted} transition-colors ${HOVER_EASE} ${
                 tone === "dark" ? "hover:text-blue" : "hover:text-white"
               }`}
             >

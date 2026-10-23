@@ -10,19 +10,7 @@ import { catalogHref } from "@/app/_lib/catalog-url";
 import type { ProjectCardData } from "@/app/_lib/content";
 
 import { CatalogCard, ProjectCard } from "../bbs/cards";
-import {
-  Breadcrumbs,
-  H2_SB,
-  H3_L,
-  H3_SB,
-  H4_L,
-  Icon,
-  MOB_L,
-  MOB_SB,
-  OutlineBtn,
-  PrimaryBtn,
-  inset,
-} from "../bbs/ui";
+import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import MobileProduct from "../mobile/Product";
@@ -54,7 +42,7 @@ export function UsageTile({ slug, mirror = false }: { slug: string; mirror?: boo
   return (
     <a
       href={catalogHref({ application: [slug] })}
-      className="flex size-[62px] shrink-0 flex-col items-center justify-center gap-[8px] bg-white transition-shadow hover:shadow-[var(--lift)]"
+      className="flex size-[62px] shrink-0 flex-col items-center justify-center gap-[8px] bg-white transition-shadow duration-250 ease-out hover:shadow-[var(--lift)]"
       style={{ boxShadow: `inset 0 0 0 0.569px ${LIGHT}` }}
     >
       {tile.floor ? (
@@ -122,7 +110,7 @@ function InfoRow({ label, value, href }: InfoRowData) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`text-trim text-right ${MOB_SB} text-blue transition-colors hover:text-red`}
+          className={`group text-trim text-right ${MOB_SB} text-blue transition-colors ${HOVER_EASE} hover:text-red ${LINE_FILL}`}
         >
           {value}
         </a>

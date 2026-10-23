@@ -5,23 +5,7 @@
 import Link from "next/link";
 
 import { Tag } from "../bbs/cards";
-import {
-  Breadcrumbs,
-  CAPTION,
-  H2_L,
-  H2_MOB_SB,
-  H2_SB,
-  H3_L,
-  H4_L,
-  Icon,
-  MOB_L,
-  MOB_SB,
-  OutlineBtn,
-  PrimaryBtn,
-  TextLink,
-  inset,
-  ONE_LINE,
-} from "../bbs/ui";
+import { Breadcrumbs, CAPTION, H2_L, H2_MOB_SB, H2_SB, H3_L, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, ONE_LINE, OutlineBtn, PrimaryBtn, SwapIcon, TextLink, inset } from "../bbs/ui";
 
 /** Форма заявки мобильной главной; десктопная (#lead-form) на мобиле скрыта. */
 export const LEAD_ANCHOR = "lead-form-m";
@@ -483,10 +467,10 @@ export function MTelegram({
           arrow ? "min-w-px flex-1 justify-between" : ""
         }`}
       >
-        <span className="text-trim whitespace-nowrap underline decoration-solid [text-underline-position:from-font] group-hover:text-red">
+        <span className={`text-trim whitespace-nowrap transition-colors ${HOVER_EASE} group-hover:text-red ${LINE_FILL} ${LINE_BASE_BLUE}`}>
           Зв’язатися через Telegram
         </span>
-        {arrow && <Icon src="/figma/bbs/arrow-link-blue.svg" />}
+        {arrow && <SwapIcon src="/figma/bbs/arrow-link-blue.svg" hover="/figma/bbs/arrow-link-hover.svg" />}
       </span>
     </a>
   );

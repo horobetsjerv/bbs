@@ -14,7 +14,7 @@ import { VicostoneBrandLogo, VicostoneLogo } from "./blocks";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
-import { H3_SB, H4_BTN, H4_L, Icon, PrimaryBtn, SwapIcon } from "./ui";
+import { H3_SB, H4_BTN, H4_L, HOVER_EASE, Icon, PrimaryBtn, SwapIcon } from "./ui";
 
 type Menu = "brands" | "catalog" | "vyroby" | "about";
 type MenuLinkData = { label: string; href: string };
@@ -140,8 +140,8 @@ export default function Header({
 
 // Открытая панель: курсор на пункте или на самой панели (она внутри группы),
 // либо фокус с клавиатуры внутри (focus-visible — клик мышью панель не держит).
-const OPEN_TEXT =
-  "group-hover/menu:font-semibold group-hover/menu:text-red group-has-[:focus-visible]/menu:font-semibold group-has-[:focus-visible]/menu:text-red";
+// Текст только краснеет: смена толщины шрифта сдвигала соседние пункты.
+const OPEN_TEXT = `transition-colors ${HOVER_EASE} group-hover/menu:text-red group-has-[:focus-visible]/menu:text-red`;
 // Появление — плавно: прозрачность и сдвиг на 4px за 200ms (сдвиг — только
 // без prefers-reduced-motion). Закрытие с
 // задержкой 150ms (visibility переключается в конце transition): курсор
@@ -181,7 +181,7 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                       />
                     )}
                     <span
-                      className={`text-trim whitespace-nowrap ${H4_L} text-ink group-hover:font-semibold group-hover:text-red`}
+                      className={`text-trim whitespace-nowrap ${H4_L} text-ink transition-colors ${HOVER_EASE} group-hover:text-red`}
                     >
                       {item.label}
                     </span>
@@ -238,7 +238,7 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
               className="group flex w-[164px] shrink-0 items-center justify-center px-[8px] py-[14px] outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-solid focus-visible:outline-blue"
             >
               <span
-                className={`text-trim whitespace-nowrap ${H4_BTN} text-blue transition-colors duration-200 group-hover:text-red`}
+                className={`text-trim whitespace-nowrap ${H4_BTN} text-blue transition-colors ${HOVER_EASE} group-hover:text-red`}
               >
                 {phone}
               </span>
@@ -253,9 +253,9 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
 // Логотип бренда в «Бренди»: чёрно-белый, при наведении на свою половину
 // панели (или фокусе с клавиатуры) плавно становится цветным — цветная копия
 // лежит поверх.
-const LOGO_MONO = "transition-opacity duration-200 group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
+const LOGO_MONO = "transition-opacity duration-250 ease-out group-hover/logo:opacity-0 group-focus-visible/logo:opacity-0";
 const LOGO_COLOR =
-  "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100";
+  "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-250 ease-out group-hover/logo:opacity-100 group-focus-visible/logo:opacity-100";
 // Ссылка — на всю половину панели (вместе с отступами 32px сверху и снизу),
 // чтобы наведение не терялось между буквами логотипа.
 const LOGO_LINK = "group/logo -my-[32px] flex w-full justify-center py-[32px]";
@@ -339,7 +339,7 @@ function CatalogMenu() {
               className="relative flex w-full py-[14px] pr-[40px] pl-[8px] after:absolute after:inset-y-0 after:left-full after:-z-10 after:w-[calc(1120px-100%)] after:content-['']"
             >
               <span
-                className={`text-trim whitespace-nowrap ${H3_SB} text-ink transition-colors duration-200 hover:text-red ${SECTION_ACTIVE[s.key]}`}
+                className={`text-trim whitespace-nowrap ${H3_SB} text-ink transition-colors ${HOVER_EASE} hover:text-red ${SECTION_ACTIVE[s.key]}`}
               >
                 {s.title}
               </span>
@@ -383,7 +383,7 @@ function MenuGrid({ items, cols }: { items: MenuLinkData[]; cols: number }) {
               hover="/figma/bbs/arrow-nav-hover.svg"
             />
             <span
-              className={`text-trim whitespace-nowrap ${H4_L} text-ink group-hover:font-semibold group-hover:text-red`}
+              className={`text-trim whitespace-nowrap ${H4_L} text-ink transition-colors ${HOVER_EASE} group-hover:text-red`}
             >
               {l.label}
             </span>

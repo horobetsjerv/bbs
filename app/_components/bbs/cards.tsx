@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { catalogHref, typeSelection, type StoneType } from "@/app/_lib/catalog-url";
 
-import { CAPTION, H3_L, H3_SB, H4_L, MOB_SB, ONE_LINE, SwapIcon, TextLink, inset } from "./ui";
+import { CAPTION, H3_L, H3_SB, H4_L, HOVER_EASE, MOB_SB, ONE_LINE, SwapIcon, TextLink, inset } from "./ui";
 
 /** Card (декор): 262 × 374, фото 304, подписи H3 sb / H3 l, pb 8. */
 export function DecorCard({
@@ -258,13 +258,13 @@ function TileIconImg({ name }: { name: TileIcon }) {
           src={src}
           alt=""
           aria-hidden
-          className="absolute inset-0 block size-full max-w-none group-hover:invisible"
+          className={`absolute inset-0 block size-full max-w-none transition-opacity ${HOVER_EASE} group-hover:opacity-0`}
         />
         <img
           src={hover}
           alt=""
           aria-hidden
-          className="invisible absolute inset-0 block size-full max-w-none group-hover:visible"
+          className={`absolute inset-0 block size-full max-w-none opacity-0 transition-opacity ${HOVER_EASE} group-hover:opacity-100`}
         />
       </span>
     </span>
@@ -303,14 +303,14 @@ export function TypeTile({
           ? `${catalog}?application=${TILE_APPLICATION[icon]}`
           : catalogHref({ ...TILE_SELECTION[icon], ...(type ? typeSelection(type) : {}) })
       }
-      className={`group relative flex shrink-0 flex-col items-center justify-center bg-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-shadow duration-200 hover:shadow-[var(--lift)] ${
+      className={`group relative flex shrink-0 flex-col items-center justify-center bg-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-shadow ${HOVER_EASE} hover:shadow-[var(--lift)] ${
         compact ? "aspect-[167.5/167] w-full gap-[12px]" : "gap-[24px]"
       }`}
       style={compact ? undefined : { width: size, height: size }}
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity ${HOVER_EASE} group-hover:opacity-100`}
         style={{
           backgroundImage:
             "linear-gradient(-11.99deg, var(--color-card-gray) 1.8969%, #ffffff 83.882%)",
@@ -329,7 +329,7 @@ export function TypeTile({
         <TileIconImg name={icon} />
       </span>
       <p
-        className={`text-trim relative w-full text-center ${compact ? MOB_SB : H3_SB} text-[#171616] transition-colors duration-200 group-hover:text-card-gray`}
+        className={`text-trim relative w-full text-center ${compact ? MOB_SB : H3_SB} text-[#171616] transition-colors ${HOVER_EASE} group-hover:text-card-gray`}
       >
         {label}
       </p>
