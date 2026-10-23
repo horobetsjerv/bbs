@@ -27,8 +27,9 @@ export type ShellProps = {
  * (строки примерно равной длины), поэтому text-wrap: balance по умолчанию.
  *
  * `mobile` — мобильная вёрстка страницы (макеты ui-mobile-*, 375px).
- * Десктоп свёрстан под фиксированные 1280px, поэтому до 768px показывается
- * отдельная ветка со своей шапкой и подвалом; данные у веток общие.
+ * Десктоп свёрстан под фиксированные 1280px, поэтому до 1280px (xl) показывается
+ * отдельная ветка со своей шапкой и подвалом — она резиновая и на планшетах
+ * не даёт горизонтальной прокрутки; данные у веток общие.
  * Без `mobile` страница везде остаётся десктопной.
  *
  * Сам каркас к базе не обращается — контакты приходят в `settings`.
@@ -51,14 +52,14 @@ export default function SiteShell({
   return (
     <div
       className={`${inter.className} flex w-full flex-col items-center overflow-x-clip bg-white [&_:is(p,h1,h2,h3)]:text-balance ${
-        mobile ? "md:min-w-[1280px]" : "min-w-[1280px]"
+        mobile ? "xl:min-w-[1280px]" : "min-w-[1280px]"
       }`}
     >
       <Header phones={settings.phones} telegram={settings.socials.telegram} mobile={!!mobile} />
       {mobile ? (
         <>
-          <div className="contents max-md:hidden">{desktop}</div>
-          <div className="flex w-full flex-col md:hidden">
+          <div className="contents max-xl:hidden">{desktop}</div>
+          <div className="flex w-full flex-col xl:hidden">
             <main className="flex w-full flex-col">{mobile}</main>
             <MobileFooter settings={settings} />
           </div>

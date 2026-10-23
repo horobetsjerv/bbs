@@ -128,7 +128,7 @@ export default function MobileBlog({
       >
         <MHeroText
           title="Публікації"
-          text="Ми завжди на зв’язку та готові допомогти з виборои матеріалу для вашого проєкту."
+          text="Поради з вибору, застосування та догляду за керамогранітом Laminam і кварцовим каменем Vicostone."
         />
         {/* Поиск (?q=) и рубрики (?category=), как на десктопе; между ними gap 24. */}
         <div className="flex w-full flex-col items-start gap-[24px]">

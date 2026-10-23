@@ -262,7 +262,7 @@ function WhyBbs() {
       <MTitle>Чому обирають BBS</MTitle>
       <div className="relative h-[322px] w-full shrink-0">
         <img
-          src="/figma/bbs/why-bbs.png"
+          src="/figma/bbs/why-bbs.webp"
           alt="Шоурум BBS"
           loading="lazy"
           className="absolute inset-0 size-full max-w-none object-cover"

@@ -94,7 +94,10 @@ export default function MobileProduct({
     return `/?${q}#${LEAD_ANCHOR}`;
   };
   // У изделия в макете одна кнопка — «Запитати ціну».
-  const services = item ? SERVICES.filter((s) => s.lead === "price_request") : SERVICES;
+  // Без ссылки на PDF кнопки спецификации нет.
+  const services = item
+    ? SERVICES.filter((s) => s.lead === "price_request")
+    : SERVICES.filter((s) => !s.pdf || specPdfUrl);
 
   return (
     <>

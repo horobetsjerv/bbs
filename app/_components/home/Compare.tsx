@@ -56,7 +56,8 @@ export default function Compare() {
           заголовка (как в макете) и выступает за таблицу на 20px сверху и
           снизу (таблица: y 122–717). */}
       <img
-        src="/figma/bbs/compare-bg.jpg"
+        loading="lazy"
+        src="/figma/bbs/compare-bg.webp"
         alt=""
         aria-hidden
         className="pointer-events-none absolute top-[102px] left-[calc(560px-50vw)] h-[635px] w-[max(1283px,100vw)] max-w-none object-cover"

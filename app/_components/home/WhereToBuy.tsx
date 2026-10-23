@@ -23,6 +23,7 @@ export default function WhereToBuy() {
         </div>
         <div className="relative h-[500px] w-full">
           <img
+            loading="lazy"
             src="/figma/bbs/showroom.webp"
             alt="Шоурум BBS"
             className="absolute inset-0 size-full max-w-none object-fill"

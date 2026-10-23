@@ -31,13 +31,16 @@ export default async function MaterialPage({ params }: { params: Params }) {
   const similar = await getSimilar(m.id);
 
   const crumb = `${(m.collection?.name ?? m.brand.name).toUpperCase()}.${m.name.toUpperCase()}`;
+  // Одно название декора бывает в разных коллекциях (Blend / Calce Avorio) —
+  // в H1 коллекция идёт перед названием, как в крошке.
+  const title = (m.collection ? `${m.collection.name} ${m.name}` : m.name).toUpperCase();
   const techRows = Object.entries(m.techSpecs ?? {}).map(([label, value]) => ({ label, value }));
 
   return (
     <ProductPage
       variant="material"
       breadcrumb={["Головна", "Каталог", crumb]}
-      title={m.name.toUpperCase()}
+      title={title}
       brand={m.brand.name}
       images={m.images}
       info={[
@@ -51,7 +54,9 @@ export default async function MaterialPage({ params }: { params: Params }) {
       ]}
       applications={m.applications.map((a) => a.slug)}
       details={[
-        { label: "Артикул", value: m.article },
+        // У Laminam артикулов в данных клиента нет: импорт кладёт в поле slug
+        // (ключ повторного импорта) — такой «артикул» не показываем.
+        ...(m.article !== m.slug ? [{ label: "Артикул", value: m.article }] : []),
         ...(m.designs.length ? [{ label: "Дизайн", value: m.designs.join(", ") }] : []),
         {
           label: "Застосування",

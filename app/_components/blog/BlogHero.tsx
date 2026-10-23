@@ -37,8 +37,8 @@ export default function BlogHero({
       <div className="flex w-full flex-col items-start gap-[40px]">
         <h1 className={`text-trim w-full ${H1_SB} text-white`}>Публікації</h1>
         <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
-          Ми завжди на зв’язку та готові допомогти з виборои матеріалу для
-          вашого проєкту.
+          Поради з вибору, застосування та догляду за керамогранітом Laminam і
+          кварцовим каменем Vicostone.
         </p>
 
         {/* Фильтр публикаций: рубрики, поиск, счётчик. */}

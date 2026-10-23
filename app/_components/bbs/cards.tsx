@@ -33,6 +33,7 @@ export function DecorCard({
       >
         {image && (
           <img
+            loading="lazy"
             src={image}
             alt={name}
             className="absolute inset-0 size-full max-w-none object-cover"
@@ -129,6 +130,7 @@ export function ProjectCard({
       >
         {image && (
           <img
+            loading="lazy"
             src={image}
             alt=""
             className="absolute inset-0 size-full max-w-none object-cover"
@@ -181,6 +183,7 @@ export function ProjectCardWide({
       <div className="relative h-[200px] w-full shrink-0 bg-[#d9d9d9]">
         {image && (
           <img
+            loading="lazy"
             src={image}
             alt=""
             className="absolute inset-0 size-full max-w-none object-cover"
@@ -223,6 +226,23 @@ export const TILE_APPLICATION: Record<TileIcon, string> = {
   facade: "fasad",
   stairs: "skhody",
   furniture: "kukhonni-mebli-fasady",
+};
+
+/**
+ * Фильтры плитки в едином каталоге — такие, чтобы catalogHref вёл на
+ * статичный адрес подборки, а не на ?application=…: «Стільниці» — виріб
+ * (/kataloh/stilnytsi/), «Підлога» и «Стіни» в базе только у керамограніту
+ * (/kataloh/keramogranit-dlia-pidlohy/), «Сходи» — /kataloh/skhody/.
+ * Тип каменя плитки (`type`) заменяет тип из выбора.
+ */
+const TILE_SELECTION: Record<TileIcon, Record<string, string[]>> = {
+  kitchen: { application: ["ostrovy-kukhonni"] },
+  countertop: { product: ["stilnytsi"] },
+  floor: { application: ["pidloha"], type: ["keramohranit"] },
+  wall: { application: ["stiny"], type: ["keramohranit"] },
+  facade: { application: ["fasad"] },
+  stairs: { application: ["skhody"] },
+  furniture: { application: ["kukhonni-mebli-fasady"] },
 };
 
 function TileIconImg({ name }: { name: TileIcon }) {
@@ -281,7 +301,7 @@ export function TypeTile({
       href={
         catalog
           ? `${catalog}?application=${TILE_APPLICATION[icon]}`
-          : catalogHref({ ...(type ? typeSelection(type) : {}), application: [TILE_APPLICATION[icon]] })
+          : catalogHref({ ...TILE_SELECTION[icon], ...(type ? typeSelection(type) : {}) })
       }
       className={`group relative flex shrink-0 flex-col items-center justify-center bg-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-shadow duration-200 hover:shadow-[var(--lift)] ${
         compact ? "aspect-[167.5/167] w-full gap-[12px]" : "gap-[24px]"
@@ -297,7 +317,8 @@ export function TypeTile({
         }}
       >
         <img
-          src="/figma/bbs/tile-hover-bg.png"
+          loading="lazy"
+          src="/figma/bbs/tile-hover-bg.webp"
           alt=""
           className="absolute inset-0 size-full max-w-none object-fill"
         />

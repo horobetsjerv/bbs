@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <Link href="/" className="flex h-[40px] w-[203px] shrink-0 items-center gap-[4px]">
       <img
-        src="/figma/bbs/bbs-logo.png"
+        src="/figma/bbs/bbs-logo.webp"
         alt="BBS"
         width={104}
         height={40}

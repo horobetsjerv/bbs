@@ -6,7 +6,6 @@ import { getSettings, telHref } from "@/app/_lib/content";
 
 import { GhostBtn, Icon, MOB_L, MOB_SB, PrimaryBtn } from "../bbs/ui";
 import MobileDecors from "./Decors";
-import { MFaq } from "./Home";
 import { LEAD_ANCHOR, MCta, MHero, MHeroText, MTitle } from "./ui";
 
 /** Кнопки героя: консультация и партнёрам — в мобильную форму заявки. */
@@ -112,7 +111,7 @@ export default function MobileContacts({ decors }: { decors: Decor[][] }) {
       <MHero breadcrumb={["Головна", "Контакти"]} bg="overlay">
         <MHeroText
           title="Контакти"
-          text="Ми завжди на зв’язку та готові допомогти з виборои матеріалу для вашого проєкту."
+          text="Ми завжди на зв’язку та готові допомогти з вибором матеріалу для вашого проєкту."
         />
         <HeroButtons />
       </MHero>
@@ -126,11 +125,8 @@ export default function MobileContacts({ decors }: { decors: Decor[][] }) {
           title="Зустрінемося, обговоримо?"
           text="Любі гості, консультація та перегляд зразків матеріалів проводиться за попереднім узгодженням."
         />
-        <MFaq
-          bg="white"
-          title="Часті запитання про BBS"
-          questions={["Доставка", "Гарантія якості", "Повернення", "Оплата"]}
-        />
+        {/* FAQ «Часті запитання про BBS» (Доставка, Гарантія якості,
+            Повернення, Оплата) убран, пока нет текстов ответов. */}
         <MobileDecors decors={decors} buttonStart />
       </div>
     </>

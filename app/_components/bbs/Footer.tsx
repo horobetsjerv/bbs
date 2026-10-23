@@ -77,6 +77,7 @@ export function LocationIcon() {
       <div className="absolute inset-[8.33%_8.33%_10.42%_8.33%]">
         <div className="absolute inset-[-6.15%_-6%]">
           <img
+            loading="lazy"
             src="/figma/bbs/location-mask.svg"
             alt=""
             aria-hidden
@@ -101,7 +102,8 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
       style={{ boxShadow: "inset 0 1px 0 var(--color-back-card-gray)" }}
     >
       <img
-        src="/figma/bbs/footer-bg.png"
+        loading="lazy"
+        src="/figma/bbs/footer-bg.webp"
         alt=""
         aria-hidden
         className="pointer-events-none absolute inset-0 size-full max-w-none"
@@ -159,6 +161,7 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
                 >
                   <span className="absolute inset-[22.73%_20.45%_22.73%_22.73%]">
                     <img
+                      loading="lazy"
                       src="/figma/bbs/instagram-glyph.svg"
                       alt=""
                       aria-hidden

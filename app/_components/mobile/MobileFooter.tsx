@@ -49,7 +49,8 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
       style={{ boxShadow: "inset 0 1px 0 var(--color-back-card-gray)" }}
     >
       <img
-        src="/figma/mobile/footer-bg.png"
+        loading="lazy"
+        src="/figma/mobile/footer-bg.webp"
         alt=""
         aria-hidden
         className="pointer-events-none absolute inset-0 size-full max-w-none"
@@ -63,7 +64,8 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
           <div className="flex w-full flex-col items-start gap-[8px]">
             <Link href="/" className="flex h-[28px] items-center gap-[2.8px]">
               <img
-                src="/figma/bbs/bbs-logo.png"
+                loading="lazy"
+                src="/figma/bbs/bbs-logo.webp"
                 alt="BBS"
                 className="block h-[28.071px] w-[73.063px] shrink-0 object-cover"
               />
@@ -101,6 +103,7 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
               >
                 <span className="absolute inset-[22.73%_20.45%_22.73%_22.73%]">
                   <img
+                    loading="lazy"
                     src="/figma/bbs/instagram-glyph.svg"
                     alt=""
                     aria-hidden

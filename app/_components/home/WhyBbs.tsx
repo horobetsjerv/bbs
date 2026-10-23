@@ -28,7 +28,8 @@ export default function WhyBbs() {
       </div>
       <div className="relative min-w-px flex-1 self-stretch">
         <img
-          src="/figma/bbs/why-bbs.png"
+          loading="lazy"
+          src="/figma/bbs/why-bbs.webp"
           alt="Шоурум BBS"
           className="absolute inset-0 size-full max-w-none object-cover"
         />

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { catalogHref, typeSelection } from "@/app/_lib/catalog-url";
+import { catalogHref, landingHref, typeSelection } from "@/app/_lib/catalog-url";
 
 import { TypeTile } from "../bbs/cards";
 import { CAPTION, OutlineBtn, SectionHeader, SectionLead } from "../bbs/ui";
@@ -17,12 +17,12 @@ export const PROJECT_LINKS = [
   { label: "керамограніт для сходів", href: catalogHref({ ...K, application: ["skhody"] }) },
   { label: "керамограніт для каміну", href: catalogHref({ ...K, product: ["kaminy"] }) },
   { label: "керамограніт для вулиці", href: catalogHref({ ...K, application: ["vulytsia"] }) },
-  // Отдельного пункта «Ванна кімната» в фильтрах нет — «Для умивальників».
-  { label: "керамограніт для ванної кімнати", href: catalogHref({ ...K, application: ["umyvalnyky"] }) },
+  // Своя страница-вход (фильтры — как «Для умивальників» + керамограніт).
+  { label: "керамограніт для ванної кімнати", href: landingHref("keramogranit-dlia-vannoi-kimnaty") },
   { label: "керамограніт для тераси", href: catalogHref({ ...K, application: ["terasa"] }) },
   { label: "керамограніт для стін", href: catalogHref({ ...K, application: ["stiny"] }) },
-  // Плінтуса в базе нет — общая подборка керамограніту.
-  { label: "керамограніт для плінтуса", href: catalogHref(K) },
+  // Своя страница-вход (фильтры — как «Для підлоги» + керамограніт).
+  { label: "керамограніт для плінтуса", href: landingHref("keramogranit-dlia-plintusa") },
   { label: "керамограніт для підлоги", href: catalogHref({ ...K, application: ["pidloha"] }) },
   { label: "стільниці з керамограніту", href: catalogHref({ ...K, product: ["stilnytsi"] }) },
   { label: "підвіконня з керамограніту", href: catalogHref({ ...K, product: ["pidvikonnia"] }) },

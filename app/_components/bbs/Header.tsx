@@ -5,6 +5,7 @@ import {
   CATALOG_PATH,
   TYPE_URL,
   catalogHref,
+  landingHref,
 } from "@/app/_lib/catalog-url";
 import { telHref } from "@/app/_lib/contacts";
 
@@ -87,16 +88,14 @@ const CATALOG: {
       { label: "Для фасадів", href: catalogHref({ application: ["fasad"], ...K }) },
       { label: "Для облицювання стін", href: catalogHref({ application: ["stiny"], ...K }) },
       { label: "Для камінів", href: catalogHref({ product: ["kaminy"], ...K }) },
-      // Отдельного пункта «Ванна кімната» в фильтрах нет: применение базы
-      // показано как «Для умивальників» (вопрос заказчику).
-      { label: "Для ванної кімнати", href: catalogHref({ product: ["umyvalnyky"], ...K }) },
+      // Свои страницы-входы из SEO-таблицы (фильтры совпадают с другими подборками).
+      { label: "Для ванної кімнати", href: landingHref("keramogranit-dlia-vannoi-kimnaty") },
       { label: "Для умивальників", href: catalogHref({ product: ["umyvalnyky"], ...K }) },
       { label: "Для підлоги", href: catalogHref({ application: ["pidloha"], ...K }) },
       { label: "Для вулиці", href: catalogHref({ application: ["vulytsia"], ...K }) },
       { label: "Для тераси", href: catalogHref({ application: ["terasa"], ...K }) },
       { label: "Для сходів", href: catalogHref({ application: ["skhody"], ...K }) },
-      // Плінтуса в базе нет — ближайшее по смыслу «Для підлоги» (вопрос заказчику).
-      { label: "Для плінтуса", href: catalogHref({ application: ["pidloha"], ...K }) },
+      { label: "Для плінтуса", href: landingHref("keramogranit-dlia-plintusa") },
     ],
   },
   {
@@ -114,7 +113,7 @@ const CATALOG: {
 
 /**
  * Шапка сайта: десктоп (1280) и мобильная (Figma MobileHeader 1288:7547).
- * `mobile` — у страницы есть мобильная вёрстка: до 768px показывается
+ * `mobile` — у страницы есть мобильная вёрстка: до 1280px (xl) показывается
  * мобильный вариант, иначе десктопный на любой ширине.
  * Без обращения к базе: телефон передаёт каркас (Page / SiteShell),
  * поэтому шапку можно показать и на странице 500.
@@ -130,7 +129,7 @@ export default function Header({
 }) {
   return (
     <>
-      <DesktopHeader phone={phones[0]} className={mobile ? "max-md:hidden" : ""} />
+      <DesktopHeader phone={phones[0]} className={mobile ? "max-xl:hidden" : ""} />
       {mobile && <MobileHeader phone={phones[0]} telegram={telegram} />}
     </>
   );
@@ -383,12 +382,12 @@ function MobileHeader({ phone, telegram }: { phone: string; telegram: string | n
 
   return (
     <header
-      className="sticky top-0 z-30 flex w-full items-center justify-between bg-white p-[16px] md:hidden"
+      className="sticky top-0 z-30 flex w-full items-center justify-between bg-white p-[16px] xl:hidden"
       style={{ boxShadow: "inset 0 -1px 0 var(--color-light-gray)" }}
     >
       <Link href="/" className="flex shrink-0 items-center gap-[4px]">
         <img
-          src="/figma/bbs/bbs-logo.png"
+          src="/figma/bbs/bbs-logo.webp"
           alt="BBS"
           width={72}
           height={28}

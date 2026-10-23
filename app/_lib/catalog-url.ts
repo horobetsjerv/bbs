@@ -66,6 +66,8 @@ export const FIXED_LANDINGS: { slug: string; selected: Selection; entryOnly?: bo
   { slug: "kaminy", selected: { product: ["kaminy"] } },
   // «Фасади» — сфера використання, а не виріб: пункт «Для фасадів» в «Призначенні».
   { slug: "fasady", selected: { application: ["fasad"] } },
+  // «Сходи» — то же: оба материала, пункт «Для сходів» (плитка «Сходи» главной).
+  { slug: "skhody", selected: { application: ["skhody"] } },
   // Виріб + матеріал.
   { slug: "stilnytsi-z-keramogranitu", selected: { product: ["stilnytsi"], ...K } },
   { slug: "stilnytsi-z-kvartsovoho-kameniu", selected: { product: ["stilnytsi"], ...Q } },
@@ -154,6 +156,12 @@ export function catalogHref(selected: Selection, sort?: string, page?: number) {
   if (landing) return landing + catalogQuery({}, sort, page);
   return CATALOG_PATH + catalogQuery(selected, sort, page);
 }
+
+/**
+ * Адрес подборки по slug — для страниц-входов (entryOnly): catalogHref на них
+ * не ведёт, потому что их фильтры совпадают с другой подборкой.
+ */
+export const landingHref = (slug: string) => `${CATALOG_PATH}${slug}/`;
 
 /** Выбор типа каменя для ссылок на каталог (бренд не добавляется). */
 export const typeSelection = (type: StoneType) => ({ type: [type] });

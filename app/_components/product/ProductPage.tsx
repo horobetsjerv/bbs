@@ -334,9 +334,9 @@ export default function ProductPage(props: ProductPageProps) {
                 </div>
               </div>
 
-              {/* Быстрые действия */}
+              {/* Быстрые действия; без ссылки на PDF кнопки спецификации нет. */}
               <div className="flex w-full items-center gap-[24px]">
-                {SERVICES.map((s) =>
+                {SERVICES.filter((s) => !s.pdf || specPdfUrl).map((s) =>
                   service(s, "min-w-px flex-1 justify-center px-[32px] py-[16px]"),
                 )}
               </div>

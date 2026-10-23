@@ -37,6 +37,24 @@ export default function LeadModal() {
     return () => document.removeEventListener("click", onClick, true);
   }, []);
 
+  // Прямой переход на /?…#lead-form (новая вкладка, клик до загрузки скриптов):
+  // сам браузер к форме не докручивает — плавная прокрутка html (scroll-smooth)
+  // при загрузке сбивается, а якорь может быть от другой вёрстки (#lead-form —
+  // десктоп, #lead-form-m — мобилка, видна одна). Крутим сразу к видимой форме;
+  // после load — ещё раз, если картинки выше успели её сдвинуть.
+  useEffect(() => {
+    if (!/^#lead-form(-m)?$/.test(location.hash)) return;
+    const toForm = () =>
+      ["lead-form", "lead-form-m"]
+        .map((id) => document.getElementById(id))
+        .find((el) => el?.getClientRects().length)
+        ?.scrollIntoView({ behavior: "instant", block: "start" });
+    toForm();
+    if (document.readyState === "complete") return;
+    window.addEventListener("load", toForm, { once: true });
+    return () => window.removeEventListener("load", toForm);
+  }, []);
+
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!preset || !dialog || dialog.open) return;

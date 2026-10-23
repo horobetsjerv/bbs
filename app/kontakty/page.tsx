@@ -1,7 +1,7 @@
 import Page from "../_components/bbs/Page";
 import MobileContacts from "../_components/mobile/Contacts";
 import HeroBand from "../_components/bbs/HeroBand";
-import { CtaBanner, FaqSection } from "../_components/bbs/blocks";
+import { CtaBanner } from "../_components/bbs/blocks";
 import DecorsSection from "../_components/bbs/DecorsSection";
 import { GhostBtn, H1_SB, H2_L, PrimaryBtn } from "../_components/bbs/ui";
 import ContactsInfo from "../_components/contacts/ContactsInfo";
@@ -26,7 +26,7 @@ export default async function ContactsPage() {
         <div className="flex w-[834px] flex-col items-start gap-[40px]">
           <h1 className={`text-trim w-full ${H1_SB} text-white`}>Контакти</h1>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
-            Ми завжди на зв’язку та готові допомогти з виборои матеріалу для
+            Ми завжди на зв’язку та готові допомогти з вибором матеріалу для
             вашого проєкту.
           </p>
           <div className="flex items-start gap-[24px]">
@@ -60,10 +60,8 @@ export default async function ContactsPage() {
           text="Любі гості, консультація та перегляд зразків матеріалів проводиться за попереднім узгодженням."
           button="Зв’язатися з нами"
         />
-        <FaqSection
-          title="Часті запитання про BBS"
-          questions={["Доставка", "Гарантія якості", "Повернення", "Оплата"]}
-        />
+        {/* FAQ «Часті запитання про BBS» (Доставка, Гарантія якості,
+            Повернення, Оплата) убран, пока нет текстов ответов. */}
         <DecorsSection decors={decors} title="Популярні декори" />
       </div>
     </Page>
