@@ -14,6 +14,7 @@ import {
 import FaqDetails from "./FaqDetails";
 import LeadFormFields, { type LeadPreset } from "./LeadFormFields";
 import JsonLd, { faqLd } from "../seo/JsonLd";
+import { getSettings } from "@/app/_lib/content";
 
 /**
  * FAQ: строки 66px, соседние делят общую линию (−1px).
@@ -121,7 +122,7 @@ export function CtaBanner({
  * `preset` — из адреса (/?lead=sample_order&material=…): кнопки карточки товара.
  * `title`/`text` — подписи экземпляра (по умолчанию — как на главной).
  */
-export function LeadForm({
+export async function LeadForm({
   preset = { formType: "feedback" },
   title = "Готові обрати ідеальну поверхню для вашого проєкту?",
   text = (
@@ -136,6 +137,7 @@ export function LeadForm({
   title?: React.ReactNode;
   text?: React.ReactNode;
 }) {
+  const { socials } = await getSettings();
   return (
     // id — якорь для «Розрахувати вартість проєкта» в герое главной.
     <section
@@ -147,7 +149,9 @@ export function LeadForm({
         <p className={`text-trim w-full ${H3_L} text-card-gray`}>{text}</p>
         <div className="flex w-full items-center gap-[8px]">
           <Icon src="/figma/bbs/telegram.svg" size={48} />
-          <TextLink weight="semibold">Зв’язатися через Telegram</TextLink>
+          <TextLink weight="semibold" href={socials.telegram ?? "#"}>
+            Зв’язатися через Telegram
+          </TextLink>
         </div>
       </div>
 

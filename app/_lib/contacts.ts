@@ -14,7 +14,7 @@ export const FALLBACK_SETTINGS = {
   workingHours: "Пн-Пт: 9:30 - 17:00\nСб-Нд: вихідні",
   /** Пустая ссылка — соцсеть не заполнена в админке. */
   socials: {
-    telegram: null as string | null,
+    telegram: "https://t.me/+380673347744" as string | null,
     facebook: "https://www.facebook.com/share/1J9WnrF5Nh/" as string | null,
     instagram: "https://www.instagram.com/bbs.stone.ua/" as string | null,
   },

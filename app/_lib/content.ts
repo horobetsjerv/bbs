@@ -25,7 +25,7 @@ export const getSettings = cache(async () => {
     workingHours: s?.workingHours || FALLBACK.workingHours,
     /** Пустая ссылка — соцсеть не заполнена в админке. */
     socials: {
-      telegram: socials.telegram ?? null,
+      telegram: socials.telegram || FALLBACK.socials.telegram,
       facebook: socials.facebook || FALLBACK.socials.facebook,
       instagram: socials.instagram || FALLBACK.socials.instagram,
     },
