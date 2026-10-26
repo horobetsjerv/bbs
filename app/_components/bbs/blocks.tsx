@@ -14,7 +14,8 @@ import {
 import FaqDetails from "./FaqDetails";
 import LeadFormFields, { type LeadPreset } from "./LeadFormFields";
 import JsonLd, { faqLd } from "../seo/JsonLd";
-import { getSettings } from "@/app/_lib/content";
+// Без базы: blocks попадает и в клиентский бандл (шапка страницы 500).
+import { FALLBACK_SETTINGS } from "@/app/_lib/contacts";
 
 /**
  * FAQ: строки 66px, соседние делят общую линию (−1px).
@@ -122,7 +123,7 @@ export function CtaBanner({
  * `preset` — из адреса (/?lead=sample_order&material=…): кнопки карточки товара.
  * `title`/`text` — подписи экземпляра (по умолчанию — как на главной).
  */
-export async function LeadForm({
+export function LeadForm({
   preset = { formType: "feedback" },
   title = "Готові обрати ідеальну поверхню для вашого проєкту?",
   text = (
@@ -137,7 +138,6 @@ export async function LeadForm({
   title?: React.ReactNode;
   text?: React.ReactNode;
 }) {
-  const { socials } = await getSettings();
   return (
     // id — якорь для «Розрахувати вартість проєкта» в герое главной.
     <section
@@ -149,7 +149,7 @@ export async function LeadForm({
         <p className={`text-trim w-full ${H3_L} text-card-gray`}>{text}</p>
         <div className="flex w-full items-center gap-[8px]">
           <Icon src="/figma/bbs/telegram.svg" size={48} />
-          <TextLink weight="semibold" href={socials.telegram ?? "#"}>
+          <TextLink weight="semibold" href={FALLBACK_SETTINGS.socials.telegram ?? "#"}>
             Зв’язатися через Telegram
           </TextLink>
         </div>
