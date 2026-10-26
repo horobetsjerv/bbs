@@ -4,11 +4,11 @@
 // в 16px паддинге с общей рамкой (обводка внутренняя, поэтому inset-тени).
 // Состав групп и пунктов — из базы (см. app/_lib/catalog.ts).
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import type { Facet, FacetOption, FilterKey } from "@/app/_lib/catalog";
 
-import { Icon } from "../bbs/ui";
+import { HOVER_EASE, Icon } from "../bbs/ui";
 
 const BORDER = "var(--color-card-gray)";
 /** Первая группа с рамкой по кругу, остальные — без верхней (границы общие). */
@@ -28,13 +28,42 @@ export function FilterArrow({
 }) {
   return (
     <div className="relative flex h-[8px] w-[16px] shrink-0 items-center justify-center">
-      <div className={direction === "down" ? "-rotate-90" : "rotate-90"}>
+      <div className={`transition-transform ${HOVER_EASE} ${direction === "down" ? "-rotate-90" : "rotate-90"}`}>
         <img
           src={src}
           alt=""
           aria-hidden
           className="block h-[16px] w-[8px] max-w-none"
         />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Плавное раскрытие группы: высота через grid-rows 0fr → 1fr. Содержимое
+ * обрезается только пока группа закрыта или раскрывается — у выбранного цвета
+ * кольцо выходит за край группы. Отступ 16px от заголовка — внутри.
+ */
+function Collapse({ open, children }: { open: boolean; children: React.ReactNode }) {
+  const [settled, setSettled] = useState(open);
+  const [prev, setPrev] = useState(open);
+  if (prev !== open) {
+    setPrev(open);
+    if (!open) setSettled(false);
+  }
+  return (
+    <div
+      inert={!open}
+      onTransitionEnd={(e) => {
+        if (e.target === e.currentTarget && open) setSettled(true);
+      }}
+      className={`grid w-full transition-[grid-template-rows] ${HOVER_EASE} motion-reduce:duration-[1ms] ${
+        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+      }`}
+    >
+      <div className={`min-h-0 ${settled ? "" : "overflow-hidden"}`}>
+        <div className="flex w-full flex-col items-start gap-[16px] pt-[16px]">{children}</div>
       </div>
     </div>
   );
@@ -367,7 +396,7 @@ export default function FilterSidebar({
         return (
           <div
             key={g.key}
-            className="relative flex w-full shrink-0 flex-col items-start gap-[16px] p-[16px]"
+            className="relative flex w-full shrink-0 flex-col items-start p-[16px]"
             style={{ boxShadow: i === 0 ? BOX_FIRST : BOX_REST }}
           >
             <GroupHeader
@@ -375,8 +404,7 @@ export default function FilterSidebar({
               open={open}
               onToggle={() => onCollapse(g.key)}
             />
-            {open && (
-              <>
+            <Collapse open={open}>
                 {g.kind === "color" && (
                   <ColorGrid options={shown} onToggle={toggle} />
                 )}
@@ -424,8 +452,7 @@ export default function FilterSidebar({
                     padded={g.kind !== "color"}
                   />
                 )}
-              </>
-            )}
+            </Collapse>
           </div>
         );
       })}
