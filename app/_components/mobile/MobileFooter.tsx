@@ -117,9 +117,13 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
           <div className="flex w-full flex-col items-start gap-[8px]">
             <ColumnTitle>Контакти</ColumnTitle>
             <ContactRow icon={<Icon src="/figma/bbs/phone.svg" size={20} />}>
-              <a href={telHref(phones[0])} className={`text-trim whitespace-nowrap ${H4_L} text-ink`}>
-                {phones[0]}
-              </a>
+              <div className="flex flex-col items-start gap-[8px]">
+                {phones.map((tel) => (
+                  <a key={tel} href={telHref(tel)} className={`text-trim whitespace-nowrap ${H4_L} text-ink`}>
+                    {tel}
+                  </a>
+                ))}
+              </div>
             </ContactRow>
             <ContactRow icon={<Icon src="/figma/bbs/mail.svg" size={20} />}>
               <a href={`mailto:${emails[0]}`} className={`text-trim whitespace-nowrap ${H4_L} text-ink`}>

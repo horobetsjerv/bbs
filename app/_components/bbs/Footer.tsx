@@ -216,11 +216,15 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
             <div className="flex min-w-px flex-1 flex-col items-start gap-[8px]">
               <ColumnTitle>Контакти</ColumnTitle>
               <ContactRow icon={<Icon src="/figma/bbs/phone.svg" size={20} />}>
-                <a href={telHref(phones[0])} className="group">
-                  <span className={`text-trim block whitespace-nowrap ${H4_L} text-ink ${FOOTER_LINK}`}>
-                    {phones[0]}
-                  </span>
-                </a>
+                <div className="flex flex-col items-start gap-[8px]">
+                  {phones.map((tel) => (
+                    <a key={tel} href={telHref(tel)} className="group">
+                      <span className={`text-trim block whitespace-nowrap ${H4_L} text-ink ${FOOTER_LINK}`}>
+                        {tel}
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </ContactRow>
               <ContactRow icon={<Icon src="/figma/bbs/mail.svg" size={20} />}>
                 <a href={`mailto:${emails[0]}`} className="group">
