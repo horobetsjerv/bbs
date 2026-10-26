@@ -20,7 +20,7 @@ import { getSettings } from "@/app/_lib/content";
 export const metadata = {
   title: "Laminam та Vicostone в Україні – купити | BBS",
   description:
-    "BBS – офіційний дистриб'ютор Laminam і Vicostone в Україні ⭐ Керамограніт та кварцовий камінь для стільниць, підлоги, фасадів ⭐ Гарантія 25 років ☎️ (044) 228-29-49",
+    "BBS – офіційний дистриб'ютор Laminam і Vicostone в Україні ⭐ Керамограніт та кварцовий камінь для стільниць, підлоги, фасадів ⭐ Гарантія 25 років ☎️ (067) 334-77-44",
   alternates: { canonical: "/" },
 };
 

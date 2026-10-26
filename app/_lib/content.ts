@@ -26,8 +26,8 @@ export const getSettings = cache(async () => {
     /** Пустая ссылка — соцсеть не заполнена в админке. */
     socials: {
       telegram: socials.telegram ?? null,
-      facebook: socials.facebook ?? null,
-      instagram: socials.instagram ?? null,
+      facebook: socials.facebook || FALLBACK.socials.facebook,
+      instagram: socials.instagram || FALLBACK.socials.instagram,
     },
   };
 });

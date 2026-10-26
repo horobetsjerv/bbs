@@ -8,15 +8,15 @@
  * workingHours — по строке на период, подвал выводит их отдельными строками.
  */
 export const FALLBACK_SETTINGS = {
-  phones: ["+38 (044) 228 29 49", "+380 67 334 77 44", "+380 67 474 63 56", "+380 66 556 49 07"],
+  phones: ["+380 67 334 77 44", "+380 67 474 63 56", "+380 66 556 49 07"],
   emails: ["vs@vicostone.com.ua"],
   address: "вул. Мрії 8, Київ, Україна",
   workingHours: "Пн-Пт: 9:30 - 17:00\nСб-Нд: вихідні",
   /** Пустая ссылка — соцсеть не заполнена в админке. */
   socials: {
     telegram: null as string | null,
-    facebook: null as string | null,
-    instagram: null as string | null,
+    facebook: "https://www.facebook.com/share/1J9WnrF5Nh/" as string | null,
+    instagram: "https://www.instagram.com/bbs.stone.ua/" as string | null,
   },
 };
 

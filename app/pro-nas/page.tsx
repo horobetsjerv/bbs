@@ -18,7 +18,7 @@ import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 export const metadata = {
   title: "Про компанію BBS – офіційний дистриб'ютор",
   description:
-    "BBS – офіційний дистриб'ютор Laminam і представник Vicostone в Україні ⭐ Багаторічний досвід та гарантія якості ☎️ (044) 228-29-49",
+    "BBS – офіційний дистриб'ютор Laminam і представник Vicostone в Україні ⭐ Багаторічний досвід та гарантія якості ☎️ (067) 334-77-44",
   alternates: { canonical: "/pro-nas/" },
 };
 
