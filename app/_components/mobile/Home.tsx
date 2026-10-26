@@ -15,6 +15,7 @@ import {
 } from "../home/Cooperation";
 import { BRAND_COPY, BRANDS_TITLE } from "../home/Hero";
 import { ProjectLinks } from "../home/ProjectTypes";
+import { REVIEWS, ReviewCard } from "../home/ReviewCard";
 import LeadFormFields, { type LeadPreset } from "../bbs/LeadFormFields";
 import {
   GhostBtn,
@@ -336,8 +337,8 @@ function Reviews() {
     <MSection>
       <MTitle>Відгуки клієнтів і партнерів BBS</MTitle>
       <MCarousel gap={16}>
-        {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="h-[379px] w-[262px] shrink-0 snap-start bg-back-card-gray" />
+        {REVIEWS.map((r) => (
+          <ReviewCard key={r.name} {...r} />
         ))}
       </MCarousel>
     </MSection>
