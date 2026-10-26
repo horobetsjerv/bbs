@@ -5,6 +5,7 @@
 import Link from "next/link";
 
 import { Tag } from "../bbs/cards";
+import FaqDetails from "../bbs/FaqDetails";
 import { Breadcrumbs, CAPTION, CARD_HOVER_FLAT, CARD_IMG, H2_L, H2_MOB_SB, H2_SB, H3_L, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, ONE_LINE, OutlineBtn, PrimaryBtn, SwapIcon, TextLink, inset } from "../bbs/ui";
 
 /** Форма заявки мобильной главной; десктопная (#lead-form) на мобиле скрыта. */
@@ -393,29 +394,32 @@ export function MFaqList({
   return (
     <div className="flex w-full flex-col items-start gap-[12px]">
       {questions.map((q, i) => (
-        <details
+        <FaqDetails
           key={q}
           className="group w-full bg-white"
           style={{
             boxShadow:
               "inset 0 1px 0 var(--color-light-gray), inset 0 -1px 0 var(--color-light-gray)",
           }}
+          summaryClassName="flex cursor-pointer list-none items-center gap-[10px] py-[21px] pr-[10px] pl-[20px] [&::-webkit-details-marker]:hidden"
+          summary={
+            <>
+              <Question className={`text-trim min-w-px flex-1 ${MOB_L} text-ink`}>{q}</Question>
+              <Icon
+                src="/figma/bbs/chevron-down.svg"
+                size={24}
+                className={`transition-transform ${HOVER_EASE} group-open:rotate-180 group-data-closing:rotate-0`}
+              />
+            </>
+          }
         >
-          <summary className="flex cursor-pointer list-none items-center gap-[10px] py-[21px] pr-[10px] pl-[20px] [&::-webkit-details-marker]:hidden">
-            <Question className={`text-trim min-w-px flex-1 ${MOB_L} text-ink`}>{q}</Question>
-            <Icon
-              src="/figma/bbs/chevron-down.svg"
-              size={24}
-              className="transition-transform group-open:rotate-180"
-            />
-          </summary>
           {answers?.[i] && (
             // pre-line: пункты списка в ответе — с новой строки.
             <p className={`pr-[54px] pb-[21px] pl-[20px] whitespace-pre-line ${H4_L} text-card-gray`}>
               {answers[i]}
             </p>
           )}
-        </details>
+        </FaqDetails>
       ))}
     </div>
   );
