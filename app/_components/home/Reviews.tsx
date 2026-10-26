@@ -5,12 +5,12 @@ import { SectionHeader, SwapIcon, inset } from "../bbs/ui";
 import { REVIEWS, ReviewCard } from "./ReviewCard";
 
 /** Пауза между автоматическими перелистываниями. */
-const INTERVAL = 5000;
+const INTERVAL = 4000;
 
 /**
  * Слайдер ленты отзывов: шаг — одна карточка (ширина + зазор ленты),
  * с конца возвращается в начало и наоборот. Сам листает каждые INTERVAL,
- * пока курсор, фокус или палец не на ленте; ручное листание сбрасывает отсчёт.
+ * пока курсор или палец не на карточках; ручное листание сбрасывает отсчёт.
  */
 function useSlider(getTrack: () => HTMLElement | null) {
   const paused = useRef(false);
@@ -52,8 +52,6 @@ function useSlider(getTrack: () => HTMLElement | null) {
     return {
       onMouseEnter: () => pause(true),
       onMouseLeave: () => pause(false),
-      onFocus: () => pause(true),
-      onBlur: () => pause(false),
       onTouchStart: () => pause(true),
       onTouchEnd: () => pause(false),
     };
@@ -92,7 +90,7 @@ export default function Reviews() {
   const track = useRef<HTMLDivElement>(null);
   const { go, handlers } = useSlider(useCallback(() => track.current, []));
   return (
-    <section className="flex w-full flex-col items-start gap-[24px]" {...handlers}>
+    <section className="flex w-full flex-col items-start gap-[24px]">
       <SectionHeader
         title="Відгуки клієнтів і партнерів BBS"
         action={
@@ -104,6 +102,7 @@ export default function Reviews() {
       />
       <div
         ref={track}
+        {...handlers}
         className="flex w-full snap-x snap-mandatory items-stretch gap-[24px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {REVIEWS.map((r) => (
