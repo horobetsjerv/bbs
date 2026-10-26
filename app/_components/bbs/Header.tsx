@@ -41,7 +41,6 @@ const NAV: {
   },
   { label: "Про компанію", width: null, arrow: true, href: "/pro-nas/", menu: "about" },
   { label: "Шоурум", width: null, arrow: false, href: "/showroom/" },
-  { label: "Співпраця", width: null, arrow: false, href: "/spivpratsia/" },
 ];
 
 const K = { type: ["keramohranit"] };
@@ -54,11 +53,13 @@ const Q = { type: ["kvarts"] };
  */
 /**
  * «Про компанію»: сам пункт ведёт на /pro-nas/, в панели — та же страница
- * явной ссылкой (не все догадываются нажать на заголовок меню) и блог.
+ * явной ссылкой (не все догадываются нажать на заголовок меню), блог и
+ * «Співпраця» (из верхнего ряда убрана — место под «Залишити заявку»).
  */
 const ABOUT: MenuLinkData[] = [
   { label: "Про компанію", href: "/pro-nas/" },
   { label: "Блог", href: "/blog/" },
+  { label: "Співпраця", href: "/spivpratsia/" },
 ];
 
 const VYROBY: MenuLinkData[] = [
@@ -225,10 +226,10 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                       {item.menu === "catalog" && <CatalogMenu />}
                       {item.menu === "vyroby" && <MenuGrid items={VYROBY} cols={3} />}
                       {item.menu === "about" && (
-                        // Пункты ставим под «Про компанію» (606px от начала
+                        // Пункты ставим под «Про компанію» (566px от начала
                         // колонки 1120), иначе курсор по пути к ним
                         // наискосок задевает «Каталог» и «Вироби».
-                        <div className="pl-[606px]">
+                        <div className="pl-[566px]">
                           <MenuGrid items={ABOUT} cols={1} />
                         </div>
                       )}
@@ -241,7 +242,7 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
               href={telHref(phone)}
               // Hover — как у пунктов меню: текст краснеет. Рамка — только
               // фокус с клавиатуры (focus-visible), после клика мышью её нет.
-              className="group flex w-[164px] shrink-0 items-center justify-center px-[8px] py-[14px] outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-solid focus-visible:outline-blue"
+              className="group flex shrink-0 items-center justify-center px-[8px] py-[14px] outline-none focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-solid focus-visible:outline-blue"
             >
               <span
                 className={`text-trim whitespace-nowrap ${H4_BTN} text-blue transition-colors ${HOVER_EASE} group-hover:text-red`}
@@ -249,6 +250,10 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                 {phone}
               </span>
             </a>
+            {/* Форма заявки — на главной (LeadForm). */}
+            <PrimaryBtn href="/#lead-form" py={14} className="px-[16px]!">
+              Залишити заявку
+            </PrimaryBtn>
           </nav>
         </div>
       </div>
