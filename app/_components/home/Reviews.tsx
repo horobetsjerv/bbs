@@ -1,11 +1,65 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { SectionHeader, SwapIcon, inset } from "../bbs/ui";
 import { REVIEWS, ReviewCard } from "./ReviewCard";
 
-/** Шаг прокрутки — карточка 262 + зазор 24. */
-const STEP = 286;
+/** Пауза между автоматическими перелистываниями. */
+const INTERVAL = 5000;
+
+/**
+ * Слайдер ленты отзывов: шаг — одна карточка (ширина + зазор ленты),
+ * с конца возвращается в начало и наоборот. Сам листает каждые INTERVAL,
+ * пока курсор, фокус или палец не на ленте; ручное листание сбрасывает отсчёт.
+ */
+function useSlider(getTrack: () => HTMLElement | null) {
+  const paused = useRef(false);
+  const lastMove = useRef(0);
+
+  const go = useCallback(
+    (dir: -1 | 1) => {
+      const t = getTrack();
+      const card = t?.firstElementChild as HTMLElement | null;
+      if (!t || !card) return;
+      const step = card.offsetWidth + (parseFloat(getComputedStyle(t).columnGap) || 0);
+      const max = t.scrollWidth - t.clientWidth;
+      const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+      // По номеру карточки, а не по пикселям: клик посреди плавной прокрутки не сбивает цикл.
+      const last = Math.ceil(max / step - 0.05);
+      const i = Math.round(t.scrollLeft / step);
+      const next = dir > 0 ? (i >= last ? 0 : i + 1) : i <= 0 ? last : i - 1;
+      const left = Math.min(next * step, max);
+      t.scrollTo({ left, behavior: smooth ? "smooth" : "auto" });
+      lastMove.current = Date.now();
+    },
+    [getTrack],
+  );
+
+  useEffect(() => {
+    lastMove.current = Date.now();
+    const id = setInterval(() => {
+      if (paused.current || document.hidden || Date.now() - lastMove.current < INTERVAL) return;
+      go(1);
+    }, 500);
+    return () => clearInterval(id);
+  }, [go]);
+
+  const handlers = useMemo(() => {
+    const pause = (on: boolean) => {
+      paused.current = on;
+      lastMove.current = Date.now();
+    };
+    return {
+      onMouseEnter: () => pause(true),
+      onMouseLeave: () => pause(false),
+      onFocus: () => pause(true),
+      onBlur: () => pause(false),
+      onTouchStart: () => pause(true),
+      onTouchEnd: () => pause(false),
+    };
+  }, []);
+  return { go, handlers };
+}
 
 function ScrollBtn({ dir, onClick }: { dir: -1 | 1; onClick: () => void }) {
   return (
@@ -23,18 +77,28 @@ function ScrollBtn({ dir, onClick }: { dir: -1 | 1; onClick: () => void }) {
   );
 }
 
+/** Мобильная карусель (MCarousel внутри) с тем же автолистанием. */
+export function AutoSlide({ children }: { children: React.ReactNode }) {
+  const box = useRef<HTMLDivElement>(null);
+  const { handlers } = useSlider(useCallback(() => box.current?.firstElementChild as HTMLElement | null, []));
+  return (
+    <div ref={box} className="w-full" {...handlers}>
+      {children}
+    </div>
+  );
+}
+
 export default function Reviews() {
   const track = useRef<HTMLDivElement>(null);
-  const scroll = (dir: -1 | 1) =>
-    track.current?.scrollBy({ left: dir * STEP, behavior: "smooth" });
+  const { go, handlers } = useSlider(useCallback(() => track.current, []));
   return (
-    <section className="flex w-full flex-col items-start gap-[24px]">
+    <section className="flex w-full flex-col items-start gap-[24px]" {...handlers}>
       <SectionHeader
         title="Відгуки клієнтів і партнерів BBS"
         action={
           <div className="flex gap-[8px]">
-            <ScrollBtn dir={-1} onClick={() => scroll(-1)} />
-            <ScrollBtn dir={1} onClick={() => scroll(1)} />
+            <ScrollBtn dir={-1} onClick={() => go(-1)} />
+            <ScrollBtn dir={1} onClick={() => go(1)} />
           </div>
         }
       />

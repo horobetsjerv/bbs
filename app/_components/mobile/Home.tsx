@@ -16,6 +16,7 @@ import {
 import { BRAND_COPY, BRANDS_TITLE } from "../home/Hero";
 import { ProjectLinks } from "../home/ProjectTypes";
 import { REVIEWS, ReviewCard } from "../home/ReviewCard";
+import { AutoSlide } from "../home/Reviews";
 import LeadFormFields, { type LeadPreset } from "../bbs/LeadFormFields";
 import {
   GhostBtn,
@@ -336,11 +337,13 @@ function Reviews() {
   return (
     <MSection>
       <MTitle>Відгуки клієнтів і партнерів BBS</MTitle>
-      <MCarousel gap={16}>
-        {REVIEWS.map((r) => (
-          <ReviewCard key={r.name} {...r} />
-        ))}
-      </MCarousel>
+      <AutoSlide>
+        <MCarousel gap={16}>
+          {REVIEWS.map((r) => (
+            <ReviewCard key={r.name} {...r} />
+          ))}
+        </MCarousel>
+      </AutoSlide>
     </MSection>
   );
 }
