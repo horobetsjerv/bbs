@@ -348,16 +348,20 @@ export function GhostBtn({
   hoverIcon,
   href = "#",
   className = "",
+  download,
 }: {
   children: React.ReactNode;
   icon: string;
   hoverIcon?: string;
   href?: string;
   className?: string;
+  /** Имя файла — ссылка скачивает файл (каталог PDF), а не открывает его. */
+  download?: string;
 }) {
   return (
     <a
       href={href}
+      download={download}
       className={`${BTN_BASE} shrink-0 px-[24px] py-[16px] ${H4_BTN} text-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] hover:bg-red hover:shadow-[inset_0_0_0_1px_#ffffff,var(--lift)] ${className}`}
     >
       <span className="text-trim whitespace-nowrap">{children}</span>

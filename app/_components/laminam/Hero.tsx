@@ -7,6 +7,12 @@ import {
   PrimaryBtn,
 } from "../bbs/ui";
 
+/** Каталог Laminam Surfaces Book (06-2025) от клиента; кнопка в герое скачивает его. */
+export const LAMINAM_PDF = {
+  href: "/files/laminam-surfaces-book-2025.pdf",
+  name: "Laminam Surfaces Book 2025.pdf",
+};
+
 export default function Hero() {
   return (
     // min-h = низ фото (4 + 626): следующий блок отступает от фото, а не от
@@ -51,7 +57,7 @@ export default function Hero() {
             <PrimaryBtn className="w-[228px] justify-start" href="/kataloh/laminam/">
               Перейти до каталогу
             </PrimaryBtn>
-            <GhostBtn icon="/figma/bbs/download-white.svg">
+            <GhostBtn icon="/figma/bbs/download-white.svg" href={LAMINAM_PDF.href} download={LAMINAM_PDF.name}>
               Завантажити каталог (PDF)
             </GhostBtn>
           </div>

@@ -7,6 +7,7 @@ import { getTopCollections } from "@/app/_lib/catalog";
 
 import { GhostBtn, H2_L, H3_L, Icon, MOB_L, MOB_SB, PrimaryBtn, TextLink, inset } from "../bbs/ui";
 import { ABOUT_TEXT, ABOUT_TITLE } from "../laminam/About";
+import { LAMINAM_PDF } from "../laminam/Hero";
 import { TILES, USES, USES_TITLE } from "../laminam/Applications";
 import { SPECS, SPECS_LEAD, SPECS_TITLE } from "../laminam/Specs";
 import { WHY, WHY_TITLE } from "../laminam/WhyBbs";
@@ -44,7 +45,12 @@ function Hero() {
         <PrimaryBtn href={LAMINAM_CATALOG_PATH} className="w-full">
           Перейти до каталогу
         </PrimaryBtn>
-        <GhostBtn icon="/figma/bbs/download-white.svg" className="w-full justify-center">
+        <GhostBtn
+          icon="/figma/bbs/download-white.svg"
+          className="w-full justify-center"
+          href={LAMINAM_PDF.href}
+          download={LAMINAM_PDF.name}
+        >
           Завантажити каталог (PDF)
         </GhostBtn>
       </div>
