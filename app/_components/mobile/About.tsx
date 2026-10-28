@@ -213,7 +213,12 @@ export default async function MobileAbout({
   return (
     <>
       {/* В макете крошки скопированы с публикаций — ставим как на десктопе. */}
-      <MHero breadcrumb={["Головна", "Про компанію"]} bg="overlay" gap={24}>
+      {/* Hero-Section (1556:11015): кроп Laminam, фото с образцами (cover), затемнение 60%. */}
+      <MHero
+        breadcrumb={["Головна", "Про компанію"]}
+        photo="/figma/about/hero-samples.webp"
+        gap={24}
+      >
         <MHeroText
           title="Про компанію BBS"
           text={

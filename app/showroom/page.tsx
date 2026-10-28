@@ -58,12 +58,14 @@ function Lead({ children }: { children: React.ReactNode }) {
 export default async function ShowroomPage() {
   const { phones, emails } = await getSettings();
   return (
-    // До подвала в макете 80px (Frame 41 кончается на 3277, подвал — 3357).
-    <Page footerGap={80} mobile={<MobileShourum offers={OFFERS} />}>
+    // Подвал — сразу под Frame 41 (в макете 1624:13714 он даже наезжает
+    // на форму на 26px: 3357 < 3383 — это не повторяем, зазор 0).
+    <Page footerGap={0} mobile={<MobileShourum offers={OFFERS} />}>
       <JsonLd data={breadcrumbLd(["Головна", "Шоурум"], "/showroom/")} />
       <HeroBand
         breadcrumb={["Головна", "Шоурум"]}
-        overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
+        // Rectangle 1624:13715: фото шоурума (cover) под затемнением 60%.
+        overlay={{ src: "/figma/bbs/showroom-hero.webp" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
           <h1 className={`text-trim w-full ${H1_SB} text-white`}>Шоурум</h1>
@@ -74,7 +76,8 @@ export default async function ShowroomPage() {
       {/* About / 5: секции 1280 с отступами 80 встык, первая — сразу под
           полосой героя (y = 464). */}
       <div className="mt-[186px] flex w-full flex-col items-center" data-reveal>
-        {/* Layout / 1: текст и Main_cta слева, фото и адрес справа. */}
+        {/* Layout / 1: текст и Main_cta слева, фото 548×294 и адрес справа
+            (Frame 4746, 344) — левая колонка по центру. */}
         <section className="flex w-[1120px] items-center gap-[24px] py-[80px]">
           <div className="flex min-w-px flex-1 flex-col items-start gap-[24px]">
             <Title>Шоурум BBS — центр вибору матеріалів для дизайнерів та обробників</Title>
@@ -87,14 +90,12 @@ export default async function ShowroomPage() {
               Записатися на візит
             </PrimaryBtn>
           </div>
-          <div className="flex min-w-px flex-1 flex-col items-start gap-[24px] self-stretch">
-            <div className="relative min-h-px w-full flex-1">
-              <img
-                src="/figma/bbs/showroom-hall.jpg"
-                alt="Шоурум BBS у Києві"
-                className="absolute inset-0 size-full max-w-none object-cover"
-              />
-            </div>
+          <div className="flex min-w-px flex-1 flex-col items-start gap-[24px]">
+            <img
+              src="/figma/bbs/showroom-desk.webp"
+              alt="Шоурум BBS у Києві"
+              className="block h-[294px] w-full max-w-none object-cover"
+            />
             <MetaChips />
           </div>
         </section>
@@ -169,7 +170,7 @@ export default async function ShowroomPage() {
           />
         </section>
 
-        {/* Frame 46: «Простір вибору та натхнення» — два фото 548×340. */}
+        {/* Frame 46: «Простір вибору та натхнення» — gallery-row, два фото 548×340. */}
         <section className="flex w-[1120px] flex-col items-start gap-[24px] py-[80px]">
           <Title ink>Простір вибору та натхнення</Title>
           <Lead>
@@ -178,13 +179,13 @@ export default async function ShowroomPage() {
           </Lead>
           <div className="flex w-full items-start gap-[24px]">
             <img
-              src="/figma/bbs/showroom-hall.jpg"
+              src="/figma/bbs/showroom-gallery-hall.webp"
               alt="Простір вибору матеріалів"
               loading="lazy"
               className="block h-[340px] min-w-px flex-1 object-cover"
             />
             <img
-              src="/figma/bbs/showroom-kitchen.jpg"
+              src="/figma/bbs/showroom-gallery-lounge.webp"
               alt="Матеріали в інтер’єрі"
               loading="lazy"
               className="block h-[340px] min-w-px flex-1 object-cover"

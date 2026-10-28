@@ -98,7 +98,8 @@ export default async function AboutPage() {
       <JsonLd data={breadcrumbLd(["Головна", "Про компанію"], "/pro-nas/")} />
       <HeroBand
         breadcrumb={["Головна", "Про компанію"]}
-        overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
+        // Rectangle 1245:2881: фото с образцами (cover) под затемнением 60%.
+        overlay={{ src: "/figma/about/hero-samples.webp" }}
         // Текст из SEO-таблицы на 2 строки (2×32) длиннее макета: полоса
         // 368 + 64, чтобы под кнопками остались те же 34px, что в Figma.
         height={432}

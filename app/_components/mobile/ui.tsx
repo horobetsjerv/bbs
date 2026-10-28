@@ -249,15 +249,18 @@ export type HeroBg = "laminam" | "bbs" | "overlay";
 /**
  * Hero-Section внутренних страниц: pt 24, pb 40, gap 24, крошки и контент.
  * `bg`: laminam — только кроп; bbs — + фото ванной; overlay — + волны поверх.
+ * `photo` — своё фото (cover) под затемнением поверх слоёв `bg`.
  */
 export function MHero({
   breadcrumb,
   bg = "laminam",
   gap = 32,
+  photo,
   children,
 }: {
   breadcrumb: string[];
   bg?: HeroBg;
+  photo?: string;
   /** Между блоками контента: 32, у публикаций 24. */
   gap?: number;
   children: React.ReactNode;
@@ -276,6 +279,9 @@ export function MHero({
             alt=""
             className="absolute inset-0 size-full max-w-none object-cover"
           />
+        )}
+        {photo && (
+          <img src={photo} alt="" className="absolute inset-0 size-full max-w-none object-cover" />
         )}
         <div className="absolute inset-0 bg-black/60" />
         {bg === "overlay" && (

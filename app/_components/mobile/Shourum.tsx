@@ -110,12 +110,12 @@ export default async function MobileShourum({ offers }: { offers: Offer[] }) {
         <MSection bg="light" gap={32}>
           <div className="flex w-full flex-col items-start gap-[24px]">
             <MTitle>Простір вибору та натхнення</MTitle>
-            <Photo src="/figma/bbs/showroom-hall.jpg" alt="Простір вибору матеріалів" height={340} />
+            <Photo src="/figma/bbs/showroom-gallery-hall-m.webp" alt="Простір вибору матеріалів" height={340} />
             <p className={`text-trim w-full ${MOB_L} text-card-gray`}>
               Перегляньте матеріали наживо та уявіть, як вони виглядатимуть у вашому
               інтер’єрі.
             </p>
-            <Photo src="/figma/bbs/showroom-kitchen.jpg" alt="Матеріали в інтер’єрі" height={340} />
+            <Photo src="/figma/bbs/showroom-gallery-lounge-m.webp" alt="Матеріали в інтер’єрі" height={340} />
           </div>
 
           <div className="flex w-full flex-col items-start gap-[24px] py-[20px]">
