@@ -5,7 +5,7 @@ import { getPosts, getProjects } from "./_lib/content";
 import { SITE_URL } from "./_lib/site";
 
 // Адреса — со слешем в конце (trailingSlash в next.config.ts), как в таблице структуры.
-const STATIC = ["/", "/laminam/", "/vicostone/", "/kataloh/", "/kataloh/laminam/", "/proekty/", "/blog/", "/kontakty/", "/pro-nas/", "/spivpratsia/", "/showroom/"];
+const STATIC = ["/", "/laminam/", "/vicostone/", "/kataloh/", "/kataloh/laminam/", "/proekty/", "/blog/", "/kontakty/", "/pro-nas/", "/spivpratsia/", "/showroom/", "/dostavka-ta-oplata/"];
 
 /**
  * sitemap.xml: только индексируемые адреса — страницы, подборки каталога

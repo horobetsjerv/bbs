@@ -18,9 +18,9 @@ export const NAVIGATION = [
   { label: "Готові роботи", href: "/proekty/" },
   { label: "Співпраця", href: "/spivpratsia/" },
 ];
-// Страниц пока нет — ссылки появятся вместе с ними.
+// Остальных страниц пока нет — ссылки появятся вместе с ними.
 export const INFORMATION = [
-  { label: "Доставка та оплата", href: null },
+  { label: "Доставка та оплата", href: "/dostavka-ta-oplata/" },
   { label: "Гарантія та догляд", href: null },
   { label: "Публічна оферта", href: null },
   { label: "Політика конфіденційності", href: null },
