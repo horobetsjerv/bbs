@@ -42,7 +42,8 @@ export default async function MobileShourum({ offers }: { offers: Offer[] }) {
   const { phones, emails } = await getSettings();
   return (
     <>
-      <MHero breadcrumb={["Головна", "Шоурум"]} bg="overlay">
+      {/* Hero-Section (1624:13570): фото шоурума (cover), затемнение 60%. */}
+      <MHero breadcrumb={["Головна", "Шоурум"]} photo="/figma/bbs/showroom-hero.webp">
         <MHeroText title="Шоурум" text="Шоурум штучного каменю" />
       </MHero>
       <div className="contents" data-reveal>
