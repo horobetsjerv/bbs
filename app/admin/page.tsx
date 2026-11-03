@@ -201,12 +201,6 @@ export default async function AdminDashboard() {
                         : "Усі статті з рубриками"
                     }
                   />
-                  <ContentRow
-                    href="/admin/pages"
-                    title="Сторінки"
-                    count={content.pages}
-                    hint="Редаговані блоки сайту"
-                  />
                 </VStack>
               </Card>
             </Grid>

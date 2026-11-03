@@ -17,7 +17,6 @@ const CATALOG = [
 const CONTENT = [
   { href: "/admin/projects", label: "Проекти" },
   { href: "/admin/posts", label: "Блог" },
-  { href: "/admin/pages", label: "Сторінки" },
 ];
 
 const SALES = [{ href: "/admin/leads", label: "Заявки" }];

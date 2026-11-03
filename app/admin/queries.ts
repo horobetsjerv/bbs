@@ -7,7 +7,6 @@ import {
   leads,
   materialImages,
   materials,
-  pages,
   posts,
   projects,
 } from "@/db/schema";
@@ -82,7 +81,6 @@ export async function getContentSummary() {
       postsWithoutCategory: sql<number>`(select count(*) from ${posts} where category_id is null)::int`,
       projects: sql<number>`(select count(*) from ${projects})::int`,
       projectsPublished: sql<number>`(select count(*) from ${projects} where is_published = true)::int`,
-      pages: sql<number>`(select count(*) from ${pages})::int`,
     })
     .from(sql`(select 1) as t`);
 
