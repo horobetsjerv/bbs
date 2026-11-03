@@ -8,9 +8,11 @@ import {
   landingHref,
 } from "@/app/_lib/catalog-url";
 import { telHref } from "@/app/_lib/contacts";
+import type { ProjectCardData } from "@/app/_lib/content";
 
 import { LEAD_ANCHOR, MTelegram, mobileHref } from "../mobile/ui";
 import { VicostoneBrandLogo, VicostoneLogo } from "./blocks";
+import { ProjectCard } from "./cards";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
@@ -131,15 +133,18 @@ const CATALOG: {
 export default function Header({
   phones,
   telegram,
+  projects = [],
   mobile = false,
 }: {
   phones: string[];
   telegram: string | null;
+  /** Последние проекты для «Готові роботи» (на странице 500 — пусто). */
+  projects?: ProjectCardData[];
   mobile?: boolean;
 }) {
   return (
     <>
-      <DesktopHeader phone={phones[0]} className={mobile ? "max-xl:hidden" : ""} />
+      <DesktopHeader phone={phones[0]} projects={projects} className={mobile ? "max-xl:hidden" : ""} />
       {mobile && <MobileHeader phone={phones[0]} telegram={telegram} />}
     </>
   );
@@ -161,7 +166,15 @@ const PANEL =
 const HEADER_OPEN =
   "transition-[background-color,box-shadow] delay-150 duration-200 ease-out has-[[data-menu]:hover]:bg-white has-[[data-menu]:hover]:shadow-none has-[[data-menu]:hover]:delay-0 has-[[data-menu]_:focus-visible]:bg-white has-[[data-menu]_:focus-visible]:shadow-none has-[[data-menu]_:focus-visible]:delay-0";
 
-function DesktopHeader({ phone, className }: { phone: string; className: string }) {
+function DesktopHeader({
+  phone,
+  projects,
+  className,
+}: {
+  phone: string;
+  projects: ProjectCardData[];
+  className: string;
+}) {
   return (
     <header
       className={`relative z-20 flex w-full min-w-[1280px] justify-center bg-white/40 shadow-[inset_0_-1px_0_var(--color-light-gray)] backdrop-blur-[19.25px] ${HEADER_OPEN} ${className}`}
@@ -223,8 +236,40 @@ function DesktopHeader({ phone, className }: { phone: string; className: string 
                   <div className={PANEL}>
                     <div className="flex w-[1120px] pb-[24px]">
                       {item.menu === "brands" && <BrandsMenu />}
-                      {item.menu === "catalog" && <CatalogMenu />}
-                      {item.menu === "vyroby" && <MenuGrid items={VYROBY} cols={3} />}
+                      {item.menu === "catalog" && (
+                        <SectionsMenu
+                          sections={CATALOG.map((s) => ({
+                            key: s.key,
+                            title: s.title,
+                            href: s.href,
+                            content: <MenuGrid items={s.items} cols={s.cols} />,
+                          }))}
+                        />
+                      )}
+                      {item.menu === "vyroby" && (
+                        <SectionsMenu
+                          sections={[
+                            {
+                              key: "vyroby",
+                              title: "Вироби на замовлення",
+                              href: "/proekty/",
+                              content: <MenuGrid items={VYROBY} cols={3} />,
+                            },
+                            {
+                              key: "roboty",
+                              title: "Готові роботи",
+                              href: "/proekty/",
+                              content: projects.length > 0 && (
+                                <div className="flex items-stretch gap-[24px] pb-[4px]">
+                                  {projects.map((p) => (
+                                    <ProjectCard key={p.href} {...p} width={248} imageHeight={140} />
+                                  ))}
+                                </div>
+                              ),
+                            },
+                          ]}
+                        />
+                      )}
                       {item.menu === "about" && (
                         // Пункты ставим под «Про компанію» (566px от начала
                         // колонки 1120), иначе курсор по пути к ним
@@ -320,29 +365,45 @@ const SECTION_OPEN = {
     "group-has-[[data-sec=keramohranit]:hover]/cat:visible group-has-[[data-sec=keramohranit]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]:hover]/cat:opacity-100 group-has-[[data-sec=keramohranit]:hover]/cat:pointer-events-auto group-has-[[data-sec=keramohranit]:focus-visible]/cat:visible group-has-[[data-sec=keramohranit]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]:focus-visible]/cat:opacity-100 group-has-[[data-sec=keramohranit]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=keramohranit]_:focus-visible]/cat:visible group-has-[[data-sec=keramohranit]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=keramohranit]_:focus-visible]/cat:pointer-events-auto",
   kvarts:
     "group-has-[[data-sec=kvarts]:hover]/cat:visible group-has-[[data-sec=kvarts]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]:hover]/cat:opacity-100 group-has-[[data-sec=kvarts]:hover]/cat:pointer-events-auto group-has-[[data-sec=kvarts]:focus-visible]/cat:visible group-has-[[data-sec=kvarts]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]:focus-visible]/cat:opacity-100 group-has-[[data-sec=kvarts]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=kvarts]_:focus-visible]/cat:visible group-has-[[data-sec=kvarts]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=kvarts]_:focus-visible]/cat:pointer-events-auto",
+  vyroby:
+    "group-has-[[data-sec=vyroby]:hover]/cat:visible group-has-[[data-sec=vyroby]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]:hover]/cat:opacity-100 group-has-[[data-sec=vyroby]:hover]/cat:pointer-events-auto group-has-[[data-sec=vyroby]:focus-visible]/cat:visible group-has-[[data-sec=vyroby]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]:focus-visible]/cat:opacity-100 group-has-[[data-sec=vyroby]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=vyroby]_:focus-visible]/cat:visible group-has-[[data-sec=vyroby]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=vyroby]_:focus-visible]/cat:pointer-events-auto",
+  roboty:
+    "group-has-[[data-sec=roboty]:hover]/cat:visible group-has-[[data-sec=roboty]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]:hover]/cat:opacity-100 group-has-[[data-sec=roboty]:hover]/cat:pointer-events-auto group-has-[[data-sec=roboty]:focus-visible]/cat:visible group-has-[[data-sec=roboty]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]:focus-visible]/cat:opacity-100 group-has-[[data-sec=roboty]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=roboty]_:focus-visible]/cat:visible group-has-[[data-sec=roboty]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=roboty]_:focus-visible]/cat:pointer-events-auto",
 };
 const SECTION_ACTIVE = {
   keramohranit:
     "group-has-[[data-sec=keramohranit]:hover]/cat:text-red group-has-[[data-sec=keramohranit]_:focus-visible]/cat:text-red",
   kvarts:
     "group-has-[[data-sec=kvarts]:hover]/cat:text-red group-has-[[data-sec=kvarts]_:focus-visible]/cat:text-red",
+  vyroby:
+    "group-has-[[data-sec=vyroby]:hover]/cat:text-red group-has-[[data-sec=vyroby]_:focus-visible]/cat:text-red",
+  roboty:
+    "group-has-[[data-sec=roboty]:hover]/cat:text-red group-has-[[data-sec=roboty]_:focus-visible]/cat:text-red",
+};
+
+type MenuSection = {
+  key: keyof typeof SECTION_OPEN;
+  title: string;
+  href: string;
+  content: React.ReactNode;
 };
 
 /**
- * «Каталог» (в макете нет, собран в стиле Variant2/3): сначала только два
- * раздела — «Керамограніт» и «Кварцовий камінь»; при наведении на раздел
- * справа за синей линией раскрываются его пункты (колонками в ряд).
- * Пункты обоих разделов лежат в одной ячейке грида — панель плавно меняет
+ * Панель с разделами: «Каталог» (в макете нет, собран в стиле Variant2/3) и
+ * «Вироби на замовлення» (разделы «Вироби на замовлення» / «Готові роботи»).
+ * Сначала только названия разделов; при наведении на раздел справа за синей
+ * линией раскрывается его содержимое (пункты колонками или карточки проектов).
+ * Содержимое всех разделов лежит в одной ячейке грида — панель плавно меняет
  * высоту при смене раздела. Название раздела невидимым продолжением (after)
  * тянется вправо на всю колонку пунктов: пока они раскрываются, курсор
  * по этой строке не теряет hover. Продолжение лежит под пунктами (-z-10),
  * колонка пунктов сама курсор не ловит (pointer-events-none).
  */
-function CatalogMenu() {
+function SectionsMenu({ sections }: { sections: MenuSection[] }) {
   return (
     <div className="group/cat flex w-full items-start">
       <ul className="flex shrink-0 flex-col">
-        {CATALOG.map((s) => (
+        {sections.map((s) => (
           <li key={s.key} className="flex">
             <a
               data-sec={s.key}
@@ -359,14 +420,14 @@ function CatalogMenu() {
         ))}
       </ul>
       <div className="pointer-events-none grid min-w-px flex-1">
-        {CATALOG.map((s) => (
+        {sections.map((s) => (
           <div
             key={s.key}
             data-sec={s.key}
             className={`invisible col-start-1 row-start-1 grid grid-rows-[0fr] opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-250 ease-out motion-reduce:transition-[opacity,visibility] ${SECTION_OPEN[s.key]}`}
           >
             <div className="min-h-0 overflow-hidden pl-[32px] shadow-[inset_2px_0_0_var(--color-blue)]">
-              <MenuGrid items={s.items} cols={s.cols} />
+              {s.content}
             </div>
           </div>
         ))}

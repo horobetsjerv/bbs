@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 
 import type { SiteContacts } from "@/app/_lib/contacts";
+import type { ProjectCardData } from "@/app/_lib/content";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -45,7 +46,8 @@ export default function SiteShell({
   mobile,
   preloader = false,
   settings,
-}: ShellProps & { settings: SiteContacts }) {
+  projects = [],
+}: ShellProps & { settings: SiteContacts; projects?: ProjectCardData[] }) {
   const desktop = (
     <>
       {children}
@@ -60,7 +62,12 @@ export default function SiteShell({
       }`}
     >
       {preloader && <Preloader />}
-      <Header phones={settings.phones} telegram={settings.socials.telegram} mobile={!!mobile} />
+      <Header
+        phones={settings.phones}
+        telegram={settings.socials.telegram}
+        projects={projects}
+        mobile={!!mobile}
+      />
       {mobile ? (
         <>
           <div className="contents max-xl:hidden">{desktop}</div>
