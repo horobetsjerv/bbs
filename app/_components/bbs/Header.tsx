@@ -16,7 +16,7 @@ import { ProjectCard } from "./cards";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
-import { H3_SB, H4_BTN, H4_L, HOVER_EASE, Icon, PrimaryBtn, SwapIcon } from "./ui";
+import { H3_SB, H4_BTN, H4_L, HOVER_EASE, Icon, OutlineBtn, PrimaryBtn, SwapIcon } from "./ui";
 
 type Menu = "brands" | "catalog" | "vyroby" | "about";
 type MenuLinkData = { label: string; href: string };
@@ -260,10 +260,14 @@ function DesktopHeader({
                               title: "Готові роботи",
                               href: "/proekty/",
                               content: projects.length > 0 && (
-                                <div className="flex items-stretch gap-[24px] pb-[4px]">
-                                  {projects.map((p) => (
-                                    <ProjectCard key={p.href} {...p} width={248} imageHeight={140} />
-                                  ))}
+                                // pb: тень наведения кнопки не обрезается краем раскрытия.
+                                <div className="flex flex-col items-start gap-[24px] pb-[16px]">
+                                  <div className="flex items-stretch gap-[24px]">
+                                    {projects.map((p) => (
+                                      <ProjectCard key={p.href} {...p} width={248} imageHeight={140} />
+                                    ))}
+                                  </div>
+                                  <OutlineBtn href="/proekty/">Переглянути більше</OutlineBtn>
                                 </div>
                               ),
                             },
