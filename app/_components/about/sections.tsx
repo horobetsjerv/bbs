@@ -84,17 +84,26 @@ export function AdvantagesSection({ title, items }: { title: string; items: Adva
   );
 }
 
+/** Фото Header / 76 по умолчанию — два кадра шоуруму («Про компанію»). */
+const SHOWROOM_PAIR = [
+  { src: "/figma/about/showroom-counter.jpg", alt: "Стійка шоуруму BBS" },
+  { src: "/figma/about/showroom-shelf.jpg", alt: "Зразки матеріалів у шоурумі BBS" },
+];
+
 /**
- * Header / 76: текст и кнопка по центру слева (pr 80), два фото шоуруму
- * справа (548 × 440, gap 16) — в обоих макетах одни и те же кадры.
+ * Header / 76: текст и кнопка по центру слева (pr 80), справа колонка
+ * высотой 900 с фото 548 × 440 (gap 16) по центру: в «Про компанію» —
+ * два кадра шоуруму, в «Співпраця» — один.
  */
 export function PhotoPairSection({
   children,
   cta,
+  images = SHOWROOM_PAIR,
 }: {
   children: React.ReactNode;
   /** Main_cta во всю ширину колонки. */
   cta: React.ReactNode;
+  images?: { src: string; alt: string }[];
 }) {
   return (
     <section className="flex w-[1120px] items-stretch gap-[24px]">
@@ -103,17 +112,15 @@ export function PhotoPairSection({
         <div className="flex w-full flex-col items-start gap-[24px]">{children}</div>
         {cta}
       </div>
-      <div className="flex h-[900px] min-w-px flex-1 flex-col items-start gap-[16px]">
-        <img
-          src="/figma/about/showroom-counter.jpg"
-          alt="Стійка шоуруму BBS"
-          className="block h-[440px] w-full shrink-0 object-cover"
-        />
-        <img
-          src="/figma/about/showroom-shelf.jpg"
-          alt="Зразки матеріалів у шоурумі BBS"
-          className="block h-[440px] w-full shrink-0 object-cover"
-        />
+      <div className="flex h-[900px] min-w-px flex-1 flex-col items-start justify-center gap-[16px]">
+        {images.map((im) => (
+          <img
+            key={im.src}
+            src={im.src}
+            alt={im.alt}
+            className="block h-[440px] w-full shrink-0 object-cover"
+          />
+        ))}
       </div>
     </section>
   );
