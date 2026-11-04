@@ -94,15 +94,18 @@ export default async function CooperationPage() {
       <JsonLd data={breadcrumbLd(["Головна", "Співпраця"], "/spivpratsia/")} />
       <HeroBand
         breadcrumb={["Головна", "Співпраця"]}
-        overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
+        // Rectangle 1664:6251: фото с образцами и каталогом (cover) под затемнением 60%.
+        overlay={{ src: "/figma/spivpratsia/hero-samples.webp" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
           <h1 className={`text-trim w-full ${H1_SB} text-white`}>Співпраця з BBS</h1>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
-            BBS — <B>офіційний дистриб’ютор Laminam</B> і{" "}
-            <B>представник Vicostone</B> в Україні. З 2012 року працюємо з
-            керамогранітом і кварцовим агломератом, забезпечуючи постачання
-            оригінальних матеріалів без посередників.
+            <B>
+              BBS запрошує до співпраці дизайнерів, архітекторів, виробників і
+              компанії
+            </B>
+            , які працюють із каменем. Ми пропонуємо партнерство у сфері
+            постачання Laminam і Vicostone.
           </p>
           {/* CTA_HOVER: одна кнопка; ширина экземпляра в Figma — 250, содержимое слева. */}
           <PrimaryBtn
@@ -119,7 +122,10 @@ export default async function CooperationPage() {
       <div className="mt-[34px] flex w-full flex-col items-center" data-reveal>
         {/* Layout / 1: «Нині BBS це:» — пункты одним текстом с пустой строкой
             между ними (от базовой линии до заглавных следующего — 40 − 15). */}
-        <TextPhotoSection image="/figma/spivpratsia/showroom-table.jpg" alt="Шоурум BBS у Києві">
+        <TextPhotoSection
+          image="/figma/spivpratsia/consultation.webp"
+          alt="Консультація з підбору зразків каменю"
+        >
           <SectionTitle>Нині BBS це:</SectionTitle>
           <div className={`flex w-full flex-col items-start gap-[25px] ${H3_L} text-card-gray`}>
             {NOW.map((it) => (
@@ -154,8 +160,14 @@ export default async function CooperationPage() {
         {/* Layout / 118: «BBS — надійний партнер». */}
         <AdvantagesSection title="BBS — надійний партнер" items={PARTNER} />
 
-        {/* Header / 76: «Співпраця з BBS» и Main_cta слева, два фото справа. */}
+        {/* Header / 76: «Співпраця з BBS» и Main_cta слева, одно фото справа по центру. */}
         <PhotoPairSection
+          images={[
+            {
+              src: "/figma/spivpratsia/kitchen-island.webp",
+              alt: "Кухонний острів зі стільницею з каменю",
+            },
+          ]}
           cta={
             <PrimaryBtn href={LEAD_HREF} className="w-full">
               Надіслати заявку

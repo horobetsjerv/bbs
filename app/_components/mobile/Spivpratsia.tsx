@@ -32,7 +32,10 @@ function NowItem({ title, children }: { title: string; children: React.ReactNode
 function Now() {
   return (
     <MSection>
-      <Photo src="/figma/spivpratsia/showroom-table-m.jpg" alt="Шоурум BBS у Києві" />
+      <Photo
+        src="/figma/spivpratsia/consultation.webp"
+        alt="Консультація з підбору зразків каменю"
+      />
       <MTitle>Нині BBS це:</MTitle>
       {/* В мобильном макете есть список, которого нет на десктопе (1664:6124). */}
       <p className={`text-trim w-full ${MOB_L} text-card-gray`}>
@@ -106,7 +109,10 @@ function Team() {
 function Partner() {
   return (
     <MSection>
-      <Photo src="/figma/spivpratsia/showroom-shelf-m.jpg" alt="Зразки матеріалів у шоурумі BBS" />
+      <Photo
+        src="/figma/spivpratsia/kitchen-island.webp"
+        alt="Кухонний острів зі стільницею з каменю"
+      />
       <MTitle>Співпраця з BBS</MTitle>
       {/* Строки — как в макете. Третья в Chrome шире колонки на 1.7px и
           переносилась (5 строк вместо 4) — мягкий перенос отключён, как в ONE_LINE. */}
@@ -129,15 +135,22 @@ function Partner() {
 export default function MobileSpivpratsia({ advantages }: { advantages: Advantage[] }) {
   return (
     <>
-      <MHero breadcrumb={["Головна", "Співпраця"]} bg="overlay" gap={24}>
+      {/* Hero-Section (1664:6109): кроп Laminam, фото с образцами (cover), затемнение 60%. */}
+      <MHero
+        breadcrumb={["Головна", "Співпраця"]}
+        photo="/figma/spivpratsia/hero-samples.webp"
+        gap={24}
+      >
         <MHeroText
           title="Співпраця з BBS"
           text={
             <>
-              BBS — <B>офіційний дистриб’ютор Laminam</B> і{" "}
-              <B>представник Vicostone</B> в Україні. З 2012 року працюємо з
-              керамогранітом і кварцовим агломератом, забезпечуючи постачання
-              оригінальних матеріалів без посередників.
+              <B>
+                BBS запрошує до співпраці дизайнерів, архітекторів, виробників і
+                компанії
+              </B>
+              , які працюють із каменем. Ми пропонуємо партнерство у сфері
+              постачання Laminam і Vicostone.
             </>
           }
         />
