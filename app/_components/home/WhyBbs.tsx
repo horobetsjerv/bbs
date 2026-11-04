@@ -27,11 +27,14 @@ export default function WhyBbs() {
         </p>
       </div>
       <div className="relative min-w-px flex-1 self-stretch">
+        {/* Rectangle 982:409: кадр во всю ширину, сдвинут вверх на 39.25% высоты
+            (из 408px лишней высоты при 548×322 — ~31% сверху). */}
         <img
           loading="lazy"
-          src="/figma/bbs/why-bbs.webp"
-          alt="Шоурум BBS"
+          src="/figma/bbs/why-bbs-vase.webp"
+          alt="Ваза з евкаліптом і зразки каменю в шоурумі BBS"
           className="absolute inset-0 size-full max-w-none object-cover"
+          style={{ objectPosition: "50% 31%" }}
         />
       </div>
     </section>

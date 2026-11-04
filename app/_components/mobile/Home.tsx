@@ -263,9 +263,10 @@ function WhyBbs() {
     <MSection>
       <MTitle>Чому обирають BBS</MTitle>
       <div className="relative h-[322px] w-full shrink-0">
+        {/* Rectangle 1796:6658: тот же кадр, cover по центру. */}
         <img
-          src="/figma/bbs/why-bbs.webp"
-          alt="Шоурум BBS"
+          src="/figma/bbs/why-bbs-vase.webp"
+          alt="Ваза з евкаліптом і зразки каменю в шоурумі BBS"
           loading="lazy"
           className="absolute inset-0 size-full max-w-none object-cover"
         />
