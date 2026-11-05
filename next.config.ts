@@ -51,7 +51,7 @@ const nextConfig: NextConfig = {
   // SITE_NOINDEX=1 ещё закрывает все страницы от индексации, чтобы поисковики
   // не взяли дубль будущего bbs.in.ua.
   async headers() {
-    const noindex = process.env.SITE_NOINDEX === "1" ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] : [];
+    const noindex = process.env.SITE_NOINDEX === "1" ? [{ key: "X-Robots-Tag", value: "noindex" }] : [];
     return [{ source: "/:path*", headers: [...SECURITY_HEADERS, ...noindex] }];
   },
   experimental: {
