@@ -35,6 +35,8 @@ function ChipArrow({ open }: { open: boolean }) {
         src="/figma/mobile/chip-arrow.svg"
         alt=""
         aria-hidden
+        width={8}
+        height={16}
         className={`block h-[16px] w-[8px] max-w-none ${open ? "rotate-90" : "-rotate-90"}`}
       />
     </span>

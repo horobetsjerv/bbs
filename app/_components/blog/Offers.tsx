@@ -56,6 +56,8 @@ export default function Offers() {
                 src={src}
                 alt=""
                 aria-hidden
+                width={357}
+                height={350}
                 className="pointer-events-none absolute inset-0 size-full max-w-none object-fill"
               />
             ))}

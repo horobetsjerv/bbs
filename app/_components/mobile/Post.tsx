@@ -28,7 +28,7 @@ export default function MobilePost({ post, more }: { post: Post; more: PostCardD
           <h1 className={`text-trim w-full ${H2_SB} text-ink`}>{post.title}</h1>
         </div>
         {post.image && (
-          <img src={post.image} alt={post.title} className="block aspect-[16/9] w-full object-cover" />
+          <img src={post.image} alt={post.title} width={343} height={193} className="block aspect-[16/9] w-full object-cover" />
         )}
         {post.body && (
           // HTML пишет редактор в админке — источник доверенный.

@@ -30,6 +30,8 @@ function Hero() {
         <img
           src="/figma/mobile/laminam-logo-white.svg"
           alt="Laminam"
+          width={222}
+          height={32}
           className="block h-[31.968px] w-[221.57px] shrink-0"
         />
         {/* H1 из SEO-таблицы (лист «Laminam»). */}
@@ -95,6 +97,8 @@ async function Collections() {
                     src={c.image}
                     alt={c.alt}
                     loading="lazy"
+                    width={180}
+                    height={188}
                     className="absolute inset-0 size-full max-w-none object-cover"
                   />
                 )}
@@ -139,6 +143,8 @@ function Video() {
           src="/figma/mobile/video.webp"
           alt="Керамограніт Laminam 2"
           loading="lazy"
+          width={343}
+          height={200}
           className="absolute inset-0 size-full max-w-none object-cover"
         />
         <div className="absolute inset-0 bg-[rgba(249,249,249,0.2)]" />
@@ -188,6 +194,8 @@ export default function MobileLaminam({
             <img
               src="/figma/mobile/laminam-logo.svg"
               alt="Laminam"
+              width={222}
+              height={32}
               className="block h-[32px] w-[221.793px] shrink-0"
             />
           }

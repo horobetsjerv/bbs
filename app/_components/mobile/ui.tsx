@@ -137,6 +137,8 @@ export function MDecorCard({
             src={image}
             alt={alt ?? name}
             loading="lazy"
+            width={180}
+            height={188}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -174,6 +176,8 @@ export function MProjectCard({
             src={image}
             alt={title}
             loading="lazy"
+            width={262}
+            height={200}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -225,6 +229,8 @@ export function MProjectSmallCard({
             src={image}
             alt={title}
             loading="lazy"
+            width={240}
+            height={180}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -280,23 +286,29 @@ export function MHero({
         <img
           src="/figma/bbs/hero-laminam.jpg"
           alt={bgAlt}
+          width={768}
+          height={1024}
           className="absolute top-[-132.39%] left-[-1.64%] h-[470.15%] w-[174.67%] max-w-none"
         />
         {bg !== "laminam" && (
           <img
             src="/figma/catalog/hero-bbs.png"
             alt=""
+            width={375}
+            height={342}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}
         {photo && (
-          <img src={photo} alt={photoAlt} className="absolute inset-0 size-full max-w-none object-cover" />
+          <img src={photo} alt={photoAlt} width={375} height={342} className="absolute inset-0 size-full max-w-none object-cover" />
         )}
         <div className="absolute inset-0 bg-black/60" />
         {bg === "overlay" && (
           <img
             src="/figma/mobile/hero-overlay.png"
             alt=""
+            width={375}
+            height={342}
             className="absolute inset-0 size-full max-w-none"
           />
         )}

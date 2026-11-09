@@ -34,6 +34,8 @@ export default function MAccordion({
             src={open ? "/figma/mobile/minus.svg" : "/figma/mobile/plus.svg"}
             alt=""
             aria-hidden
+            width={20}
+            height={20}
             className="block size-[20px]"
           />
         </span>

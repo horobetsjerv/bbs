@@ -173,6 +173,8 @@ export function VicostoneBrandLogo() {
           src="/figma/bbs/vicostone-sprite.png"
           alt=""
           aria-hidden
+          width={900}
+          height={661}
           className="absolute top-[-7.93%] left-[-125.63%] h-[258.22%] w-[351.98%] max-w-none"
         />
       </div>
@@ -180,6 +182,8 @@ export function VicostoneBrandLogo() {
         <img
           src="/figma/bbs/vicostone-sprite.png"
           alt="Vicostone"
+          width={900}
+          height={661}
           className="absolute top-[-248.29%] left-[-8.22%] h-[519.65%] w-[116.44%] max-w-none"
         />
       </div>
@@ -270,12 +274,16 @@ export function VicostoneLogo({ size }: { size: 20 | 40 }) {
         src="/figma/bbs/vicostone-mark.png"
         alt=""
         aria-hidden
+        width={size}
+        height={size}
         className="block shrink-0"
         style={{ width: size, height: size }}
       />
       <img
         src="/figma/bbs/vicostone-word.png"
         alt="Vicostone"
+        width={big ? 195 : 97}
+        height={big ? 32 : 16}
         className="block shrink-0"
         style={
           big ? { width: 194.667, height: 32 } : { width: 97.333, height: 16 }

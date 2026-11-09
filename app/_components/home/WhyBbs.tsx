@@ -33,6 +33,8 @@ export default function WhyBbs() {
           loading="lazy"
           src="/figma/bbs/why-bbs-vase.webp"
           alt="Ваза з евкаліптом і зразки каменю в шоурумі BBS"
+          width={548}
+          height={322}
           className="absolute inset-0 size-full max-w-none object-cover"
           style={{ objectPosition: "50% 31%" }}
         />

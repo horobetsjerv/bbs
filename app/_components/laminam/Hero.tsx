@@ -27,6 +27,8 @@ export default function Hero() {
         <img
           src="/figma/bbs/hero-laminam.jpg"
           alt="Керамограніт Laminam 1"
+          width={768}
+          height={1024}
           className="absolute top-[-132.41%] left-[-1.64%] h-[470.24%] w-[174.69%] max-w-none"
         />
         <div className="absolute inset-0 bg-black/60" />

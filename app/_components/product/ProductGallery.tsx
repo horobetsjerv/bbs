@@ -37,6 +37,8 @@ function Arrow({
         }
         alt=""
         aria-hidden
+        width={12}
+        height={24}
         className={`block h-[24px] w-[12px] max-w-none ${back ? "-scale-x-100" : ""}`}
       />
     </button>
@@ -80,6 +82,8 @@ export default function ProductGallery({
           key={current.full}
           src={current.full}
           alt={current.alt || title}
+          width={548}
+          height={398}
           className="absolute inset-0 size-full max-w-none object-cover"
         />
       )}
@@ -114,6 +118,8 @@ export default function ProductGallery({
                   <img
                     src={img.thumb}
                     alt={img.alt}
+                    width={100}
+                    height={100}
                     className="block size-full object-cover"
                   />
                 </button>

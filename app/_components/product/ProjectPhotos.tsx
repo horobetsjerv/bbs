@@ -40,6 +40,8 @@ function Photo({
         ref={(el) => {
           if (el?.complete && el.naturalWidth) onLoad?.();
         }}
+        width={1120}
+        height={640}
         className={`absolute inset-0 size-full ${cls}`}
       />
     );

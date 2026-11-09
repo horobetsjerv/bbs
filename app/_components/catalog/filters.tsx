@@ -33,6 +33,8 @@ export function FilterArrow({
           src={src}
           alt=""
           aria-hidden
+          width={8}
+          height={16}
           className="block h-[16px] w-[8px] max-w-none"
         />
       </div>
@@ -123,6 +125,8 @@ function Checkbox({
         src="/figma/catalog/check.svg"
         alt=""
         aria-hidden
+        width={16}
+        height={16}
         className="absolute inset-0 block size-[16px] max-w-none"
       />
     </span>

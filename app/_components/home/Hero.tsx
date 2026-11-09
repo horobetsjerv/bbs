@@ -21,6 +21,8 @@ export default function Hero() {
         <img
           src="/figma/bbs/hero-main.webp"
           alt="Штучний камінь Laminam та Vicostone в Україні"
+          width={1280}
+          height={626}
           className="absolute inset-0 size-full max-w-none object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />

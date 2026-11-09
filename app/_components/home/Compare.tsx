@@ -60,6 +60,8 @@ export default function Compare() {
         src="/figma/bbs/compare-bg.webp"
         alt=""
         aria-hidden
+        width={1440}
+        height={635}
         className="pointer-events-none absolute top-[102px] left-[calc(560px-50vw)] h-[635px] w-[max(1283px,100vw)] max-w-none object-cover"
       />
 

@@ -27,7 +27,7 @@ export function TextPhotoSection({
     <section className="flex w-[1120px] items-center gap-[24px] py-[80px]">
       <div className="flex min-w-px flex-1 flex-col items-start gap-[24px]">{children}</div>
       <div className="relative min-w-px flex-1 self-stretch">
-        <img src={image} alt={alt} className="absolute inset-0 size-full max-w-none object-cover" />
+        <img src={image} alt={alt} width={548} height={561} className="absolute inset-0 size-full max-w-none object-cover" />
       </div>
     </section>
   );
@@ -58,6 +58,8 @@ export function AdvantagesSection({ title, items }: { title: string; items: Adva
               src="/figma/about/advantage-bg.png"
               alt=""
               aria-hidden
+              width={548}
+              height={140}
               className="pointer-events-none absolute inset-0 size-full max-w-none object-fill"
             />
             {/* Внутренняя обводка поверх фона. */}
@@ -118,6 +120,8 @@ export function PhotoPairSection({
             key={im.src}
             src={im.src}
             alt={im.alt}
+            width={548}
+            height={440}
             className="block h-[440px] w-full shrink-0 object-cover"
           />
         ))}

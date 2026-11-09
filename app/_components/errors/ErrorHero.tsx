@@ -74,6 +74,8 @@ export function ErrorHero({ code }: { code: Code }) {
         <img
           src="/figma/errors/hero-desktop.webp"
           alt=""
+          width={1280}
+          height={736}
           className="absolute top-0 left-0 h-[736px] w-full max-w-none object-cover"
         />
         <div className="absolute inset-0 bg-black/70" />
@@ -126,6 +128,8 @@ export function ErrorHeroMobile({ code }: { code: Code }) {
         <img
           src="/figma/errors/hero-mobile.jpg"
           alt=""
+          width={375}
+          height={694}
           className="absolute inset-0 size-full max-w-none object-cover"
         />
         <div className="absolute inset-0 bg-black/75" />

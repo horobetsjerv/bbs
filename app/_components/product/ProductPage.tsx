@@ -54,6 +54,8 @@ export function UsageTile({ slug, mirror = false }: { slug: string; mirror?: boo
               src={src}
               alt=""
               aria-hidden
+              width={26}
+              height={26}
               className="absolute inset-0 block size-full max-w-none"
             />
           </div>
@@ -63,6 +65,8 @@ export function UsageTile({ slug, mirror = false }: { slug: string; mirror?: boo
           src={src}
           alt=""
           aria-hidden
+          width={27}
+          height={27}
           className={`block size-[27.303px] shrink-0 ${flip}`}
         />
       )}

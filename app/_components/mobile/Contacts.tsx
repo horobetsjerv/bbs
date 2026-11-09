@@ -38,7 +38,7 @@ export function LocationIcon() {
     <div className="relative size-[32px] shrink-0 overflow-clip">
       <div className="absolute inset-[8.33%_8.33%_10.42%_8.33%]">
         <div className="absolute inset-[-2.57%_-2.5%_-2.56%_-2.5%]">
-          <img src="/figma/mobile/contact-loc.svg" alt="" aria-hidden className="block size-full max-w-none" />
+          <img src="/figma/mobile/contact-loc.svg" alt="" aria-hidden width={28} height={27} className="block size-full max-w-none" />
         </div>
       </div>
     </div>

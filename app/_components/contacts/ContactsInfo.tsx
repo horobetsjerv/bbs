@@ -13,6 +13,8 @@ export function LocationIcon() {
             src="/figma/bbs/contact-location.svg"
             alt=""
             aria-hidden
+            width={42}
+            height={41}
             className="block size-full max-w-none"
           />
         </div>

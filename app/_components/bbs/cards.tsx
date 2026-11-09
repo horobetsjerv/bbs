@@ -39,6 +39,8 @@ export function DecorCard({
             loading="lazy"
             src={image}
             alt={alt ?? name}
+            width={width}
+            height={imageHeight}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -79,6 +81,8 @@ export function CatalogCard({
             src={image}
             alt={alt ?? name}
             loading="lazy"
+            width={262}
+            height={304}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -139,6 +143,8 @@ export function ProjectCard({
             loading="lazy"
             src={image}
             alt={title}
+            width={width}
+            height={imageHeight}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -191,6 +197,8 @@ export function ProjectCardWide({
             loading="lazy"
             src={image}
             alt={title}
+            width={548}
+            height={200}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -263,12 +271,16 @@ function TileIconImg({ name }: { name: TileIcon }) {
           src={src}
           alt=""
           aria-hidden
+          width={46}
+          height={45}
           className={`absolute inset-0 block size-full max-w-none transition-opacity ${HOVER_EASE} group-hover:opacity-0`}
         />
         <img
           src={hover}
           alt=""
           aria-hidden
+          width={46}
+          height={45}
           className={`absolute inset-0 block size-full max-w-none opacity-0 transition-opacity ${HOVER_EASE} group-hover:opacity-100`}
         />
       </span>
@@ -325,6 +337,8 @@ export function TypeTile({
           loading="lazy"
           src="/figma/bbs/tile-hover-bg.webp"
           alt=""
+          width={size}
+          height={size}
           className="absolute inset-0 size-full max-w-none object-fill"
         />
       </span>

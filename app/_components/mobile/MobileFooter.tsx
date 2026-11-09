@@ -53,6 +53,8 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
         src="/figma/mobile/footer-bg.webp"
         alt=""
         aria-hidden
+        width={375}
+        height={1038}
         className="pointer-events-none absolute inset-0 size-full max-w-none"
       />
 
@@ -67,6 +69,8 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
                 loading="lazy"
                 src="/figma/bbs/bbs-logo.webp"
                 alt="BBS"
+                width={73}
+                height={28}
                 className="block h-[28.071px] w-[73.063px] shrink-0 object-cover"
               />
               <span className="h-[28px] w-[1.4px] shrink-0 bg-[#1460ad]" />
@@ -107,6 +111,8 @@ export default function MobileFooter({ settings }: { settings: SiteContacts }) {
                     src="/figma/bbs/instagram-glyph.svg"
                     alt=""
                     aria-hidden
+                    width={25}
+                    height={24}
                     className="absolute inset-0 block size-full max-w-none"
                   />
                 </span>

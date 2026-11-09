@@ -34,6 +34,8 @@ export default function HeroBand({
         <img
           src="/figma/bbs/hero-laminam.jpg"
           alt=""
+          width={768}
+          height={1024}
           className="absolute top-[-127.99%] left-0 h-[465.83%] w-[173.05%] max-w-none"
           style={height ? { width: `${173.05 * zoom}%` } : undefined}
         />
@@ -41,6 +43,8 @@ export default function HeroBand({
           <img
             src={overlay.src}
             alt={overlay.alt ?? ""}
+            width={1280}
+            height={height ?? 368}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}
@@ -49,6 +53,8 @@ export default function HeroBand({
           <img
             src={overlay.src}
             alt=""
+            width={1280}
+            height={height ?? 368}
             className="absolute inset-0 size-full max-w-none object-fill"
           />
         )}

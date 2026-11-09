@@ -38,6 +38,8 @@ export function Photo({ src, alt, position }: { src: string; alt: string; positi
         src={src}
         alt={alt}
         loading="lazy"
+        width={343}
+        height={322}
         className="absolute inset-0 size-full max-w-none object-cover"
         style={position ? { objectPosition: position } : undefined}
       />
@@ -125,6 +127,8 @@ export function Advantages({
             src="/figma/about/advantage-bg.png"
             alt=""
             aria-hidden
+            width={343}
+            height={92}
             className="pointer-events-none absolute inset-0 size-full max-w-none object-fill"
           />
           <span

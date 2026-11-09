@@ -57,6 +57,8 @@ export default function MobileGallery({
             src={img.full}
             alt={img.alt || title}
             loading={i === 0 ? "eager" : "lazy"}
+            width={375}
+            height={336}
             className="block size-full max-w-none shrink-0 snap-start object-cover"
           />
         ))}

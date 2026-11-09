@@ -23,6 +23,8 @@ export function PostCard({ title, category, date, image, href }: PostCardData) {
             src={image}
             alt={title}
             loading="lazy"
+            width={168}
+            height={114}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}
@@ -72,6 +74,8 @@ function Offers() {
                 alt=""
                 aria-hidden
                 loading="lazy"
+                width={357}
+                height={275}
                 className="pointer-events-none absolute inset-0 size-full max-w-none"
               />
             ))}

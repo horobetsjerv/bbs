@@ -16,6 +16,8 @@ function CollectionCard({ c }: { c: Collection }) {
           <img
             src={c.image}
             alt={c.alt}
+            width={262}
+            height={304}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}

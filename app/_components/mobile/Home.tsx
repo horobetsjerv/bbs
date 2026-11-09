@@ -49,6 +49,8 @@ function Hero() {
         <img
           src="/figma/mobile/hero-home.webp"
           alt="Штучний камінь Laminam та Vicostone в Україні"
+          width={375}
+          height={403}
           className="absolute inset-0 size-full max-w-none object-cover"
         />
         <div className="absolute inset-0 bg-black/65" />
@@ -129,6 +131,8 @@ export function Brands({
             <img
               src="/figma/mobile/laminam-logo.svg"
               alt="Laminam"
+              width={222}
+              height={32}
               className="block h-[32px] w-[221.793px] shrink-0"
             />
           }
@@ -145,6 +149,8 @@ export function Brands({
                   src="/figma/bbs/vicostone-sprite.png"
                   alt=""
                   aria-hidden
+                  width={900}
+                  height={661}
                   className="absolute top-[-7.93%] left-[-125.62%] h-[258.2%] w-[351.99%] max-w-none"
                 />
               </div>
@@ -152,6 +158,8 @@ export function Brands({
                 <img
                   src="/figma/bbs/vicostone-sprite.png"
                   alt="Vicostone"
+                  width={900}
+                  height={661}
                   className="absolute top-[-248.34%] left-[-8.22%] h-[519.75%] w-[116.44%] max-w-none"
                 />
               </div>
@@ -268,6 +276,8 @@ function WhyBbs() {
           src="/figma/bbs/why-bbs-vase.webp"
           alt="Ваза з евкаліптом і зразки каменю в шоурумі BBS"
           loading="lazy"
+          width={343}
+          height={322}
           className="absolute inset-0 size-full max-w-none object-cover"
         />
       </div>

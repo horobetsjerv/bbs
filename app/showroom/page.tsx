@@ -104,6 +104,8 @@ export default async function ShowroomPage() {
             <img
               src="/figma/bbs/showroom-desk.webp"
               alt="Шоурум BBS у Києві"
+              width={548}
+              height={294}
               className="block h-[294px] w-full max-w-none object-cover"
             />
             <MetaChips />
@@ -192,12 +194,16 @@ export default async function ShowroomPage() {
               src="/figma/bbs/showroom-gallery-hall.webp"
               alt="Простір вибору матеріалів"
               loading="lazy"
+              width={548}
+              height={340}
               className="block h-[340px] min-w-px flex-1 object-cover"
             />
             <img
               src="/figma/bbs/showroom-gallery-lounge.webp"
               alt="Матеріали в інтер’єрі"
               loading="lazy"
+              width={548}
+              height={340}
               className="block h-[340px] min-w-px flex-1 object-cover"
             />
           </div>

@@ -102,6 +102,8 @@ export function LocationIcon() {
             src="/figma/bbs/location-mask.svg"
             alt=""
             aria-hidden
+            width={19}
+            height={18}
             className="block size-full max-w-none"
           />
         </div>
@@ -127,6 +129,8 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
         src="/figma/bbs/footer-bg.webp"
         alt=""
         aria-hidden
+        width={1280}
+        height={552}
         className="pointer-events-none absolute inset-0 size-full max-w-none"
       />
 
@@ -186,6 +190,8 @@ export default function Footer({ settings }: { settings: SiteContacts }) {
                       src="/figma/bbs/instagram-glyph.svg"
                       alt=""
                       aria-hidden
+                      width={25}
+                      height={24}
                       className="absolute inset-0 block size-full max-w-none"
                     />
                   </span>

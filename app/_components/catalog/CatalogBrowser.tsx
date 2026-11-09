@@ -231,6 +231,8 @@ export default function CatalogBrowser({
       <img
         src="/figma/catalog/arrow-filled.svg"
         alt=""
+        width={8}
+        height={16}
         className={`h-[16px] w-[8px] ${dir < 0 ? "-scale-x-100" : ""}`}
       />
     );

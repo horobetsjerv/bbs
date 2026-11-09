@@ -210,6 +210,8 @@ export function SwapIcon({
         src={src}
         alt=""
         aria-hidden
+        width={size}
+        height={size}
         className={`block size-full ${fade} ${
           menu
             ? "group-hover/menu:opacity-0 group-has-[:focus-visible]/menu:opacity-0"
@@ -220,6 +222,8 @@ export function SwapIcon({
         src={hover}
         alt=""
         aria-hidden
+        width={size}
+        height={size}
         className={`absolute inset-0 block size-full opacity-0 ${fade} ${
           menu
             ? "group-hover/menu:opacity-100 group-has-[:focus-visible]/menu:opacity-100"

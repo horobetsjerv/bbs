@@ -130,7 +130,7 @@ export default function LeadModal() {
             onClick={close}
             className="absolute top-[8px] right-[8px] flex cursor-pointer items-center justify-center rounded-[6px] p-[8px]"
           >
-            <img src="/figma/mobile/close.svg" alt="" aria-hidden className="block size-[20px]" />
+            <img src="/figma/mobile/close.svg" alt="" aria-hidden width={20} height={20} className="block size-[20px]" />
           </button>
           <h2 id="lead-modal-title" className={`text-trim w-full pr-[32px] ${H2_SB} text-ink`}>
             Залиште заявку

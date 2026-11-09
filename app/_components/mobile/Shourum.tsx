@@ -24,6 +24,8 @@ function Photo({ src, alt, height }: { src: string; alt: string; height: number 
         src={src}
         alt={alt}
         loading="lazy"
+        width={343}
+        height={height}
         className="absolute inset-0 size-full max-w-none object-cover"
       />
     </div>

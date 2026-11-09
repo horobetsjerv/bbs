@@ -26,6 +26,8 @@ export default function WhereToBuy() {
             loading="lazy"
             src="/figma/bbs/showroom.webp"
             alt="Шоурум BBS"
+            width={1120}
+            height={500}
             className="absolute inset-0 size-full max-w-none object-fill"
           />
         </div>
