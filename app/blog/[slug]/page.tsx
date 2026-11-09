@@ -79,7 +79,7 @@ export default async function PostPage({ params }: { params: Params }) {
               {post.image && (
                 <img
                   src={post.image}
-                  alt=""
+                  alt={post.title}
                   className="block aspect-[16/9] w-full object-cover"
                 />
               )}

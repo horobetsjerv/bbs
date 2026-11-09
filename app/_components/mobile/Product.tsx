@@ -220,6 +220,7 @@ export default function MobileProduct({
                     brand={c.brand}
                     image={c.image}
                     href={c.href}
+                    alt={c.alt}
                   />
                 ))}
               </MCarousel>

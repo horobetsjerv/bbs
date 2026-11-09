@@ -43,7 +43,7 @@ export default async function MobileShourum({ offers }: { offers: Offer[] }) {
   return (
     <>
       {/* Hero-Section (1624:13570): фото шоурума (cover), затемнение 60%. */}
-      <MHero breadcrumb={["Головна", "Шоурум"]} photo="/figma/bbs/showroom-hero.webp">
+      <MHero breadcrumb={["Головна", "Шоурум"]} photo="/figma/bbs/showroom-hero.webp" photoAlt="Шоурум BBS">
         <MHeroText title="Шоурум" text="Шоурум штучного каменю" />
       </MHero>
       <div className="contents" data-reveal>

@@ -113,11 +113,14 @@ export function MDecorCard({
   image,
   href,
   fill = false,
+  alt,
 }: {
   name: string;
   brand: string;
   image: string | null;
   href: string;
+  /** alt фото: тип, бренд, коллекция и название (decorAlt в catalog.ts). */
+  alt?: string;
   /** Карточка сетки каталога: ширина колонки, пропорции 167.5 × 240. */
   fill?: boolean;
 }) {
@@ -132,7 +135,7 @@ export function MDecorCard({
         {image && (
           <img
             src={image}
-            alt={name}
+            alt={alt ?? name}
             loading="lazy"
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
@@ -169,7 +172,7 @@ export function MProjectCard({
         {image && (
           <img
             src={image}
-            alt=""
+            alt={title}
             loading="lazy"
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
@@ -220,7 +223,7 @@ export function MProjectSmallCard({
         {image && (
           <img
             src={image}
-            alt=""
+            alt={title}
             loading="lazy"
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
@@ -256,11 +259,17 @@ export function MHero({
   bg = "laminam",
   gap = 32,
   photo,
+  photoAlt = "",
+  bgAlt = "",
   children,
 }: {
   breadcrumb: string[];
   bg?: HeroBg;
   photo?: string;
+  /** alt своего фото героя. */
+  photoAlt?: string;
+  /** alt кропа Laminam — только там, где это фото героя страницы (/laminam/), а не фон. */
+  bgAlt?: string;
   /** Между блоками контента: 32, у публикаций 24. */
   gap?: number;
   children: React.ReactNode;
@@ -270,7 +279,7 @@ export function MHero({
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <img
           src="/figma/bbs/hero-laminam.jpg"
-          alt=""
+          alt={bgAlt}
           className="absolute top-[-132.39%] left-[-1.64%] h-[470.15%] w-[174.67%] max-w-none"
         />
         {bg !== "laminam" && (
@@ -281,7 +290,7 @@ export function MHero({
           />
         )}
         {photo && (
-          <img src={photo} alt="" className="absolute inset-0 size-full max-w-none object-cover" />
+          <img src={photo} alt={photoAlt} className="absolute inset-0 size-full max-w-none object-cover" />
         )}
         <div className="absolute inset-0 bg-black/60" />
         {bg === "overlay" && (

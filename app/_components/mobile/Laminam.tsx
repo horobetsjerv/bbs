@@ -25,7 +25,7 @@ import { LAMINAM_CATALOG_PATH } from "@/app/_lib/catalog-url";
 
 function Hero() {
   return (
-    <MHero breadcrumb={["Головна", "Laminam"]}>
+    <MHero breadcrumb={["Головна", "Laminam"]} bgAlt="Керамограніт Laminam 1">
       <div className="flex w-full flex-col items-start gap-[24px]">
         <img
           src="/figma/mobile/laminam-logo-white.svg"
@@ -93,7 +93,7 @@ async function Collections() {
                 {c.image && (
                   <img
                     src={c.image}
-                    alt={c.name}
+                    alt={c.alt}
                     loading="lazy"
                     className="absolute inset-0 size-full max-w-none object-cover"
                   />
@@ -137,7 +137,7 @@ function Video() {
       <div className="relative h-[200px] w-full shrink-0 overflow-clip">
         <img
           src="/figma/mobile/video.webp"
-          alt=""
+          alt="Керамограніт Laminam 2"
           loading="lazy"
           className="absolute inset-0 size-full max-w-none object-cover"
         />

@@ -48,7 +48,7 @@ function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <img
           src="/figma/mobile/hero-home.webp"
-          alt=""
+          alt="Штучний камінь Laminam та Vicostone в Україні"
           className="absolute inset-0 size-full max-w-none object-cover"
         />
         <div className="absolute inset-0 bg-black/65" />

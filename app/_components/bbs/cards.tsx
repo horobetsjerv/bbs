@@ -13,6 +13,7 @@ export function DecorCard({
   imageHeight = 304,
   width = 262,
   href = "#",
+  alt,
 }: {
   name?: string;
   brand?: string;
@@ -20,6 +21,8 @@ export function DecorCard({
   imageHeight?: number;
   width?: number;
   href?: string;
+  /** alt фото: тип, бренд, коллекция и название (decorAlt в catalog.ts). */
+  alt?: string;
 }) {
   return (
     <Link
@@ -35,7 +38,7 @@ export function DecorCard({
           <img
             loading="lazy"
             src={image}
-            alt={name}
+            alt={alt ?? name}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -55,12 +58,15 @@ export function CatalogCard({
   texture,
   image,
   href = "#",
+  alt,
 }: {
   name: string;
   collection: string;
   texture: string;
   image: string | null;
   href?: string;
+  /** alt фото: тип, бренд, коллекция и название (decorAlt в catalog.ts). */
+  alt?: string;
 }) {
   return (
     <a
@@ -71,7 +77,7 @@ export function CatalogCard({
         {image && (
           <img
             src={image}
-            alt={name}
+            alt={alt ?? name}
             loading="lazy"
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
@@ -132,7 +138,7 @@ export function ProjectCard({
           <img
             loading="lazy"
             src={image}
-            alt=""
+            alt={title}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}
@@ -184,7 +190,7 @@ export function ProjectCardWide({
           <img
             loading="lazy"
             src={image}
-            alt=""
+            alt={title}
             className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`}
           />
         )}

@@ -365,6 +365,7 @@ export default function ProductPage(props: ProductPageProps) {
                       texture={c.detail}
                       image={c.image}
                       href={c.href}
+                      alt={c.alt}
                     />
                   ))}
             </div>

@@ -395,6 +395,7 @@ export default function MobileCatalogBrowser({
                   brand={card.brand}
                   image={card.image}
                   href={card.href}
+                  alt={card.alt}
                   fill
                 />
               ))}

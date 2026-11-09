@@ -78,6 +78,7 @@ export default function MobileDecors({
               brand={d.brand}
               image={d.image}
               href={d.href}
+              alt={d.alt}
             />
           ))}
         </MCarousel>

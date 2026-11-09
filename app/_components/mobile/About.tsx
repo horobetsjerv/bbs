@@ -217,6 +217,7 @@ export default async function MobileAbout({
       <MHero
         breadcrumb={["Головна", "Про компанію"]}
         photo="/figma/about/hero-samples.webp"
+        photoAlt="Про компанію BBS"
         gap={24}
       >
         <MHeroText

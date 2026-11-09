@@ -380,6 +380,7 @@ export default function CatalogBrowser({
                   texture={card.detail}
                   image={card.image}
                   href={card.href}
+                  alt={card.alt}
                 />
               ))}
             </div>

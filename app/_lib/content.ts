@@ -8,7 +8,7 @@ import { cache } from "react";
 
 import { db } from "@/db";
 
-import { clampSentences, getMaterial, getProductPaths } from "./catalog";
+import { clampSentences, galleryAlt, getMaterial, getProductPaths } from "./catalog";
 // Фолбэк и tel:-ссылка — в модуле без базы (нужны странице 500).
 import { FALLBACK_SETTINGS as FALLBACK, telHref } from "./contacts";
 
@@ -135,10 +135,10 @@ export async function getProject(slug: string) {
     year: p.row.year,
     description: htmlToText(p.row.body) ?? p.row.shortDescription,
     credits: parseCredits(p.row.body),
-    images: (images.length ? images.map((i) => i.url) : [p.row.coverImage]).map((url) => ({
+    images: (images.length ? images.map((i) => i.url) : [p.row.coverImage]).map((url, k, all) => ({
       full: url,
       thumb: url,
-      alt: p.row.name,
+      alt: galleryAlt(p.row.name, k, all.length),
     })),
     tags: p.row.tags.map(({ tag }) => tag.name),
     materials: p.materials.map((m) => ({

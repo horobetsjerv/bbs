@@ -38,6 +38,7 @@ export async function BrandDecors({
             brand={d.brand}
             image={d.image}
             href={d.href}
+            alt={d.alt}
           />
         ))}
       </div>

@@ -113,7 +113,7 @@ export default function ProductGallery({
                 >
                   <img
                     src={img.thumb}
-                    alt=""
+                    alt={img.alt}
                     className="block size-full object-cover"
                   />
                 </button>

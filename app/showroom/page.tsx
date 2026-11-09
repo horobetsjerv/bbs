@@ -75,7 +75,7 @@ export default async function ShowroomPage() {
       <HeroBand
         breadcrumb={["Головна", "Шоурум"]}
         // Rectangle 1624:13715: фото шоурума (cover) под затемнением 60%.
-        overlay={{ src: "/figma/bbs/showroom-hero.webp" }}
+        overlay={{ src: "/figma/bbs/showroom-hero.webp", alt: "Шоурум BBS" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
           <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Шоурум</Heading>

@@ -24,7 +24,7 @@ export default function PostCard({
     >
       <div className="relative h-[304px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
-          <img src={image} alt="" className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
+          <img src={image} alt={title} className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
         )}
       </div>
       <div className="flex w-full flex-col items-start gap-[8px] px-[16px]">

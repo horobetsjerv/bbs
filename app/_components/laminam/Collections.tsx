@@ -15,7 +15,7 @@ function CollectionCard({ c }: { c: Collection }) {
         {c.image && (
           <img
             src={c.image}
-            alt=""
+            alt={c.alt}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}

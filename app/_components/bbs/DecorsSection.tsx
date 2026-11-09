@@ -42,6 +42,7 @@ export default function DecorsSection({
             brand={d.brand}
             image={d.image}
             href={d.href}
+            alt={d.alt}
           />
         ))}
       </div>

@@ -43,6 +43,7 @@ export async function MBrandDecors({
               brand={d.brand}
               image={d.image}
               href={d.href}
+              alt={d.alt}
             />
           ))}
         </MCarousel>

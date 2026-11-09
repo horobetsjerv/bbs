@@ -16,7 +16,8 @@ export default function HeroBand({
   children,
 }: {
   breadcrumb: string[];
-  overlay?: { src: string; above?: boolean };
+  /** `alt` — у фото героя страницы; у текстуры (волны блога) пустой. */
+  overlay?: { src: string; above?: boolean; alt?: string };
   height?: number;
   children: React.ReactNode;
 }) {
@@ -39,7 +40,7 @@ export default function HeroBand({
         {overlay && !overlay.above && (
           <img
             src={overlay.src}
-            alt=""
+            alt={overlay.alt ?? ""}
             className="absolute inset-0 size-full max-w-none object-cover"
           />
         )}

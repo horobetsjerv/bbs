@@ -181,6 +181,24 @@ export function imageUrl(url: string | null | undefined, width: number) {
   return url;
 }
 
+/**
+ * alt фото декора в карточках: «Керамограніт Laminam Blend Avorio».
+ * Коллекцию не повторяем, если она уже есть в названии.
+ */
+function decorAlt(m: CatalogItem) {
+  const type = BRAND_TYPE[m.brand.slug]?.label;
+  const collection = m.collection?.name;
+  const withCollection =
+    collection && !m.name.toLowerCase().includes(collection.toLowerCase());
+  return [type, m.brand.name, withCollection ? collection : null, m.name]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/** alt фото галереи страницы: «{H1} {номер}»; фото одно — просто H1. */
+export const galleryAlt = (title: string, i: number, total: number) =>
+  total > 1 ? `${title} ${i + 1}` : title;
+
 /** 12+ мм → 12plus (плюс в адресе превратился бы в пробел). */
 const thicknessSlug = (label: string) =>
   label.replace(/\s*мм\s*/i, "").replace("+", "plus").trim();
@@ -402,6 +420,7 @@ export async function getCatalog({ selected, sort, page, brand, perPage = PER_PA
     detail: m.facets.design.map((d) => d.label).join(", ") || m.brand.name,
     brand: m.brand.name,
     image: imageUrl(m.image, 800),
+    alt: decorAlt(m),
   }));
 
   // typeScoped — клиенту: при смене типа эти группы сбрасываются.
@@ -476,6 +495,8 @@ export const getMaterial = cache(async (id: number) => {
     (a, b) => a.thickness.valueMm - b.thickness.valueMm,
   );
   const href = (await getProductPaths()).get(m.id) ?? productPath(m.slug);
+  // H1 страницы товара (там он капсом): коллекция перед названием.
+  const title = m.collection ? `${m.collection.name} ${m.name}` : m.name;
   return {
     id: m.id,
     slug: m.slug,
@@ -490,10 +511,10 @@ export const getMaterial = cache(async (id: number) => {
     techSpecs: m.techSpecs,
     specPdfUrl: m.specPdfUrl,
     inStock: m.inStock,
-    images: images.map((i) => ({
+    images: images.map((i, k) => ({
       full: imageUrl(i.url, 1200)!,
       thumb: imageUrl(i.url, 300)!,
-      alt: i.alt ?? m.name,
+      alt: galleryAlt(title, k, images.length),
     })),
     sizes: sizes.map(({ size: s }) => `${s.widthMm}×${s.heightMm} мм`),
     thicknesses: thicknesses.map(({ thickness: t }) => t.label),
@@ -527,6 +548,7 @@ export async function getSimilar(id: number, limit = 3) {
       detail: m.facets.design.map((d) => d.label).join(", ") || m.brand.name,
       brand: m.brand.name,
       image: imageUrl(m.image, 800),
+      alt: decorAlt(m),
     }));
 }
 
@@ -544,6 +566,7 @@ export async function getPopularDecors(limit = 4) {
         name: m.name,
         brand: m.brand.name,
         image: imageUrl(m.image, 600),
+        alt: decorAlt(m),
       })),
   );
 }
@@ -1057,6 +1080,7 @@ export async function getTopCollections(brand: string, limit = 4) {
         name: c.name.toUpperCase(),
         text: c.description || `${items.length} ${decorsWord(items.length)} у колекції`,
         image: imageUrl(sorted.find((m) => m.image)?.image, 600),
+        alt: `Колекція ${sorted[0].brand.name} ${c.name}`,
         colors: [...colors.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6).map(([hex]) => hex),
         // Как до переезда: каталог бренда с выбранной коллекцией.
         href:

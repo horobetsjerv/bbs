@@ -20,8 +20,7 @@ export default function Hero() {
       <div className="absolute inset-x-0 top-[4px] h-[626px] overflow-hidden">
         <img
           src="/figma/bbs/hero-main.webp"
-          alt=""
-          aria-hidden
+          alt="Штучний камінь Laminam та Vicostone в Україні"
           className="absolute inset-0 size-full max-w-none object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/60" />

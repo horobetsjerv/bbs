@@ -139,6 +139,7 @@ export default function MobileSpivpratsia({ advantages }: { advantages: Advantag
       <MHero
         breadcrumb={["Головна", "Співпраця"]}
         photo="/figma/spivpratsia/hero-samples.webp"
+        photoAlt="Співпраця з BBS"
         gap={24}
       >
         <MHeroText

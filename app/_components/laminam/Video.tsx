@@ -21,7 +21,7 @@ export default function Video() {
       <div className="relative h-[500px] w-full">
         <img
           src="/figma/bbs/video.webp"
-          alt=""
+          alt="Керамограніт Laminam 2"
           className="absolute inset-0 size-full max-w-none object-fill"
         />
         <div className="absolute inset-0 bg-[rgba(249,249,249,0.2)]" />

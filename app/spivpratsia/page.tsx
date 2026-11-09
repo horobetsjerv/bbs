@@ -95,7 +95,7 @@ export default async function CooperationPage() {
       <HeroBand
         breadcrumb={["Головна", "Співпраця"]}
         // Rectangle 1664:6251: фото с образцами и каталогом (cover) под затемнением 60%.
-        overlay={{ src: "/figma/spivpratsia/hero-samples.webp" }}
+        overlay={{ src: "/figma/spivpratsia/hero-samples.webp", alt: "Співпраця з BBS" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
           <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Співпраця з BBS</Heading>

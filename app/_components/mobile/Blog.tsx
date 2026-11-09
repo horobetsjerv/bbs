@@ -21,7 +21,7 @@ export function PostCard({ title, category, date, image, href }: PostCardData) {
         {image && (
           <img
             src={image}
-            alt=""
+            alt={title}
             loading="lazy"
             className="absolute inset-0 size-full max-w-none object-cover"
           />
