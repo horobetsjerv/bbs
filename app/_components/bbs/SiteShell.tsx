@@ -7,6 +7,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Reveal from "./Reveal";
 import LeadModal from "./LeadModal";
+import DataHrefLinks from "./DataHrefLinks";
 import Preloader from "./Preloader";
 import MobileFooter from "../mobile/MobileFooter";
 
@@ -82,6 +83,8 @@ export default function SiteShell({
       <Reveal />
       {/* Кнопки заявки открывают форму поверх страницы. */}
       <LeadModal />
+      {/* Ссылки с параметрами без href (SEO): переход по data-href. */}
+      <DataHrefLinks />
     </div>
   );
 }

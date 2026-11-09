@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import type { PostCardData } from "@/app/_lib/content";
 
-import { CAPTION, H2_SB, H4_BTN, H4_L, Icon, MOB_L, MOB_SB, OutlineBtn, SwapIcon, inset } from "../bbs/ui";
+import { CAPTION, H2_SB, H4_BTN, H4_L, Icon, MOB_L, MOB_SB, OutlineBtn, SiteLink, SwapIcon, inset } from "../bbs/ui";
 import MobilePager from "./Pager";
 import { MHero, MHeroText, MSection, MTitle } from "./ui";
 
@@ -159,7 +159,7 @@ export default function MobileBlog({
               if (q) query.set("q", q);
               const qs = query.toString();
               return (
-                <Link
+                <SiteLink
                   key={c.slug ?? "all"}
                   href={`/blog/${qs ? `?${qs}` : ""}`}
                   scroll={false}
@@ -180,7 +180,7 @@ export default function MobileBlog({
                       {c.name}
                     </span>
                   </span>
-                </Link>
+                </SiteLink>
               );
             })}
           </div>

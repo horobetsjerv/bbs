@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+
+import { hrefProps, isParamHref } from "@/app/_lib/links";
 // Общие примитивы сайта BBS. Геометрия и стили сняты с компонентов
 // Figma-файла BBS (десктоп 1280px, контентная колонка 1120px).
 //
@@ -258,7 +260,7 @@ export function OutlineBtn({
 }) {
   return (
     <a
-      href={href}
+      {...hrefProps(href)}
       target={newTab ? "_blank" : undefined}
       rel={newTab ? "noopener noreferrer" : undefined}
       className={`${BTN_BASE} shrink-0 bg-white px-[24px] py-[14px] ${H4_BTN} text-blue shadow-[inset_0_0_0_1px_var(--color-blue)] ${HOVER_RED} hover:shadow-[inset_0_0_0_1px_var(--color-light-gray),var(--lift)] ${className}`}
@@ -320,9 +322,10 @@ export function PrimaryBtn({
   );
   // Ссылка на якорь (#lead-form) — обычный <a>: Link на тот же адрес с тем же
   // хешем повторно не прокручивает, и кнопка «никуда не шла» со второго клика.
-  if (href?.includes("#")) {
+  // С параметрами (/?about=…#lead-form) — тот же <a>, но без href (links.ts).
+  if (href && (href.includes("#") || isParamHref(href))) {
     return (
-      <a href={href} className={cls}>
+      <a {...hrefProps(href)} className={cls}>
         {content}
       </a>
     );
@@ -364,7 +367,7 @@ export function GhostBtn({
 }) {
   return (
     <a
-      href={href}
+      {...hrefProps(href)}
       download={download}
       className={`${BTN_BASE} shrink-0 px-[24px] py-[16px] ${H4_BTN} text-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] hover:bg-red hover:shadow-[inset_0_0_0_1px_#ffffff,var(--lift)] ${className}`}
     >
@@ -395,7 +398,7 @@ export function TextLink({
 }) {
   return (
     <a
-      href={href}
+      {...hrefProps(href)}
       className={`group flex shrink-0 items-start gap-[8px] py-[16px] ${
         weight === "light" ? H4_L : H4_BTN
       } text-blue transition-colors ${HOVER_EASE} hover:text-red ${
@@ -411,6 +414,19 @@ export function TextLink({
       />
     </a>
   );
+}
+
+/**
+ * next/link для адресов без параметров; адрес с параметрами (кроме ?page=N) —
+ * тот же <a> без href (app/_lib/links.ts), переход — DataHrefLinks.
+ */
+export function SiteLink({
+  href,
+  scroll,
+  ...rest
+}: Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & { href: string; scroll?: boolean }) {
+  if (isParamHref(href)) return <a {...rest} {...hrefProps(href, { scroll })} />;
+  return <Link href={href} scroll={scroll} {...rest} />;
 }
 
 /**

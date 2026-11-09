@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 // Мобильная страница Laminam (Figma ui-mobile-main-laminam, 1255:3919).
 
-import Link from "next/link";
 
 import { getTopCollections } from "@/app/_lib/catalog";
 
-import { GhostBtn, H2_L, H3_L, Icon, MOB_L, MOB_SB, PrimaryBtn, TextLink, inset } from "../bbs/ui";
+import { GhostBtn, H2_L, H3_L, Icon, MOB_L, MOB_SB, PrimaryBtn, SiteLink, TextLink, inset } from "../bbs/ui";
 import { ABOUT_TEXT, ABOUT_TITLE } from "../laminam/About";
 import { LAMINAM_PDF } from "../laminam/Hero";
 import { TILES, USES, USES_TITLE } from "../laminam/Applications";
@@ -91,7 +90,7 @@ async function Collections() {
               className="flex w-[180px] shrink-0 snap-start flex-col items-center gap-[12px] bg-white"
               style={inset("var(--color-light-gray)")}
             >
-              <Link href={c.href} className="relative block h-[188px] w-full shrink-0 bg-[#d9d9d9]">
+              <SiteLink href={c.href} className="relative block h-[188px] w-full shrink-0 bg-[#d9d9d9]">
                 {c.image && (
                   <img
                     src={c.image}
@@ -102,7 +101,7 @@ async function Collections() {
                     className="absolute inset-0 size-full max-w-none object-cover"
                   />
                 )}
-              </Link>
+              </SiteLink>
               <div className="flex w-full flex-col items-start gap-[12px] px-[8px]">
                 <div className="flex h-[64px] w-full flex-col items-start gap-[8px]">
                   <p className={`text-trim w-full ${MOB_SB} text-ink`}>{c.name}</p>

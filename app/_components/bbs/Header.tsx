@@ -8,6 +8,7 @@ import {
   landingHref,
 } from "@/app/_lib/catalog-url";
 import { telHref } from "@/app/_lib/contacts";
+import { hrefProps } from "@/app/_lib/links";
 import type { ProjectCardData } from "@/app/_lib/content";
 
 import { LEAD_ANCHOR, MTelegram, mobileHref } from "../mobile/ui";
@@ -453,7 +454,7 @@ function MenuGrid({ items, cols }: { items: MenuLinkData[]; cols: number }) {
     >
       {items.map((l) => (
         <li key={l.label} className="flex">
-          <a href={l.href} className="group flex items-center px-[8px] py-[14px]">
+          <a {...hrefProps(l.href)} className="group flex items-center px-[8px] py-[14px]">
             <SwapIcon
               src="/figma/bbs/arrow-nav.svg"
               hover="/figma/bbs/arrow-nav-hover.svg"

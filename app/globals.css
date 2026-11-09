@@ -25,6 +25,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Ссылки с параметрами без href (app/_lib/links.ts): курсор как у ссылки.
+   В base-слое — утилиты (cursor-wait и т. п.) по-прежнему перебивают. */
+@layer base {
+  a[data-href] {
+    cursor: pointer;
+  }
+}
+
 /* Токены дизайн-системы BBS (переменные Figma-файла BBS).
    Имя `black` из Figma переименовано в `ink`, чтобы не переопределять
    tailwind-овский text-black (#000), который использует главная страница. */

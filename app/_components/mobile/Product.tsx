@@ -1,6 +1,8 @@
 // Мобильная карточка товара и изделия (Figma 1260:9821 — товар,
 // 1281:5533 — виріб). Пропсы те же, что у десктопного ProductPage.
 
+import { hrefProps } from "@/app/_lib/links";
+
 import { Breadcrumbs, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, inset } from "../bbs/ui";
 import {
   SERVICES,
@@ -143,7 +145,7 @@ export default function MobileProduct({
           {services.map((s) => (
             <a
               key={s.title}
-              href={s.pdf ? (specPdfUrl ?? "#") : leadHref(s.lead)}
+              {...hrefProps(s.pdf ? (specPdfUrl ?? "#") : leadHref(s.lead))}
               target={s.pdf && specPdfUrl ? "_blank" : undefined}
               className="flex w-full items-center gap-[8px] p-[16px] text-blue"
               style={inset("var(--color-blue)")}

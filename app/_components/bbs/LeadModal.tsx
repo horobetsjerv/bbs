@@ -50,9 +50,11 @@ export default function LeadModal() {
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
         return;
-      const a = (e.target as Element | null)?.closest?.("a[href]");
-      if (!(a instanceof HTMLAnchorElement)) return;
-      const url = new URL(a.href);
+      // [data-href] — ссылки с параметрами без href (app/_lib/links.ts).
+      const a = (e.target as Element | null)?.closest?.("a[href], [data-href]");
+      const href = a?.getAttribute("href") ?? a?.getAttribute("data-href");
+      if (!href) return;
+      const url = new URL(href, location.href);
       if (url.origin !== location.origin || !/^#lead-form(-m)?$/.test(url.hash)) return;
       e.preventDefault();
       setPreset(leadPreset((k) => url.searchParams.get(k)));

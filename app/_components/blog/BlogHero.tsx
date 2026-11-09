@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import HeroBand from "../bbs/HeroBand";
-import { H1_SB, H2_L, H4_BTN, H4_L, Heading, Icon, inset } from "../bbs/ui";
+import { H1_SB, H2_L, H4_BTN, H4_L, Heading, Icon, SiteLink, inset } from "../bbs/ui";
 
 /** 1 стаття, 2 статті, 5 статей. */
 function articlesWord(n: number) {
@@ -54,7 +52,7 @@ export default function BlogHero({
               if (q) query.set("q", q);
               const qs = query.toString();
               return (
-                <Link
+                <SiteLink
                   key={c.slug ?? "all"}
                   href={`/blog/${qs ? `?${qs}` : ""}`}
                   scroll={false}
@@ -77,7 +75,7 @@ export default function BlogHero({
                       {c.name}
                     </span>
                   </span>
-                </Link>
+                </SiteLink>
               );
             })}
           </div>

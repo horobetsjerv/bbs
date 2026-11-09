@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import { catalogHref, typeSelection, type StoneType } from "@/app/_lib/catalog-url";
+import { catalogHref, landingPath, splitLanding, typeSelection, type StoneType } from "@/app/_lib/catalog-url";
+import { hrefProps } from "@/app/_lib/links";
 
 import { CAPTION, CARD_HOVER, CARD_IMG, H3_L, H3_SB, H4_L, HOVER_EASE, MOB_SB, ONE_LINE, SwapIcon, TextLink } from "./ui";
 
@@ -258,6 +259,26 @@ const TILE_SELECTION: Record<TileIcon, Record<string, string[]>> = {
   furniture: { application: ["kukhonni-mebli-fasady"] },
 };
 
+/**
+ * Фильтры плитки по slug применения из базы (плитки применений на странице
+ * товара): те же, что у TypeTile, — статичный адрес подборки, где он есть.
+ */
+export function applicationSelection(slug: string): Record<string, string[]> {
+  const icon = (Object.keys(TILE_APPLICATION) as TileIcon[]).find((k) => TILE_APPLICATION[k] === slug);
+  return icon ? TILE_SELECTION[icon] : { application: [slug] };
+}
+
+/**
+ * Адрес плитки в каталоге бренда (/kataloh/keramogranit/): статичная подборка
+ * «тип + применение/виріб», если она есть (те же товары, что и с фильтром),
+ * иначе — каталог бренда с ?application=.
+ */
+function brandTileHref(catalog: string, icon: TileIcon) {
+  const t = splitLanding(catalog.split("/").filter(Boolean).at(-1) ?? "");
+  const landing = t && !t.rest ? landingPath({ ...TILE_SELECTION[icon], ...typeSelection(t.type) }) : null;
+  return landing ?? `${catalog}?application=${TILE_APPLICATION[icon]}`;
+}
+
 function TileIconImg({ name }: { name: TileIcon }) {
   const file = TILE_ICONS[name];
   const src = `/figma/bbs/${file}.svg`;
@@ -308,18 +329,21 @@ export function TypeTile({
    * /kataloh/keramogranit-dlia-fasadiv/, если такая есть). Без типа — все материалы.
    */
   type?: StoneType;
-  /** Свой каталог (каталог Laminam): плитка открывает его с ?application=. */
+  /**
+   * Свой каталог (каталог Laminam): плитка открывает подборку «тип + применение»
+   * или, если её нет, этот каталог с ?application=.
+   */
   catalog?: string;
   /** Мобильная сетка: по ширине колонки (167.5 × 167 в макете), gap 12, подпись 16mob_sb. */
   compact?: boolean;
 }) {
   return (
     <a
-      href={
+      {...hrefProps(
         catalog
-          ? `${catalog}?application=${TILE_APPLICATION[icon]}`
-          : catalogHref({ ...TILE_SELECTION[icon], ...(type ? typeSelection(type) : {}) })
-      }
+          ? brandTileHref(catalog, icon)
+          : catalogHref({ ...TILE_SELECTION[icon], ...(type ? typeSelection(type) : {}) }),
+      )}
       className={`group relative flex shrink-0 flex-col items-center justify-center bg-white shadow-[inset_0_0_0_1px_var(--color-light-gray)] transition-shadow ${HOVER_EASE} hover:shadow-[var(--lift)] ${
         compact ? "aspect-[167.5/167] w-full gap-[12px]" : "gap-[24px]"
       }`}

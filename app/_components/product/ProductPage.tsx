@@ -8,8 +8,9 @@ import Page from "../bbs/Page";
 import type { CatalogCardData } from "@/app/_lib/catalog";
 import { catalogHref } from "@/app/_lib/catalog-url";
 import type { ProjectCardData } from "@/app/_lib/content";
+import { hrefProps } from "@/app/_lib/links";
 
-import { CatalogCard, ProjectCard } from "../bbs/cards";
+import { CatalogCard, ProjectCard, applicationSelection } from "../bbs/cards";
 import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
@@ -42,7 +43,9 @@ export function UsageTile({ slug, mirror = false }: { slug: string; mirror?: boo
   const flip = mirror && slug !== "skhody" ? "-scale-x-100" : "";
   return (
     <a
-      href={catalogHref({ application: [slug] })}
+      // Как плитки главной: «Стіни», «Підлога» (в базе только у керамограніту)
+      // и «Стільниці» — статичные подборки с теми же товарами.
+      {...hrefProps(catalogHref(applicationSelection(slug)))}
       className="flex size-[62px] shrink-0 flex-col items-center justify-center gap-[8px] bg-white transition-shadow duration-250 ease-out hover:shadow-[var(--lift)]"
       style={{ boxShadow: `inset 0 0 0 0.569px ${LIGHT}` }}
     >
@@ -211,7 +214,7 @@ export default function ProductPage(props: ProductPageProps) {
   const service = (s: (typeof SERVICES)[number], className: string) => (
     <a
       key={s.title}
-      href={s.pdf ? (specPdfUrl ?? "#") : leadHref(s.lead)}
+      {...hrefProps(s.pdf ? (specPdfUrl ?? "#") : leadHref(s.lead))}
       target={s.pdf && specPdfUrl ? "_blank" : undefined}
       className={`flex items-center gap-[8px] text-blue ${className}`}
       style={inset("var(--color-blue)")}
