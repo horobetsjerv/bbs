@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { H2_SB } from "../bbs/ui";
+import { H2_SB, Heading } from "../bbs/ui";
 import type { GalleryImage } from "./ProductGallery";
 
 // Фото изделия (/proekty/…): сверху — главное фото целиком, со стрелками и
@@ -288,9 +288,14 @@ export function ProjectPhotoGrid({ images, compact = false }: { images: GalleryI
   if (images.length < 2) return null;
   return (
     <section className="flex w-full flex-col items-start gap-[24px]">
-      <h2 className={`text-trim ${compact ? "text-[24px] leading-[24px] font-semibold tracking-[-1.2px]" : H2_SB} text-ink`}>
-        Фото виробу
-      </h2>
+      {/* compact — мобильная копия: настоящий h2 только там (см. Heading). */}
+      {compact ? (
+        <h2 className="text-trim text-[24px] leading-[24px] font-semibold tracking-[-1.2px] text-ink">Фото виробу</h2>
+      ) : (
+        <Heading level={2} className={`text-trim ${H2_SB} text-ink`}>
+          Фото виробу
+        </Heading>
+      )}
       <ul className={`grid w-full ${compact ? "grid-cols-2 gap-[8px]" : "grid-cols-4 gap-[16px]"}`}>
         {images.map((img, i) => (
           <li key={img.full + i}>

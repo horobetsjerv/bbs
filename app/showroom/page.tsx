@@ -9,6 +9,7 @@ import {
   H2_SB,
   H3_L,
   H3_SB,
+  Heading,
   Icon,
   MOB_L,
   PrimaryBtn,
@@ -47,7 +48,7 @@ const B = ({ children }: { children: React.ReactNode }) => (
 /** Заголовок секции H2 sb: в макете то black #000, то ink #171616. */
 function Title({ children, ink = false }: { children: React.ReactNode; ink?: boolean }) {
   return (
-    <h2 className={`text-trim w-full ${H2_SB} ${ink ? "text-ink" : "text-black"}`}>{children}</h2>
+    <Heading level={2} className={`text-trim w-full ${H2_SB} ${ink ? "text-ink" : "text-black"}`}>{children}</Heading>
   );
 }
 
@@ -77,7 +78,7 @@ export default async function ShowroomPage() {
         overlay={{ src: "/figma/bbs/showroom-hero.webp" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>Шоурум</h1>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Шоурум</Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>Шоурум штучного каменю</p>
         </div>
       </HeroBand>
@@ -120,7 +121,7 @@ export default async function ShowroomPage() {
             {OFFERS.map((o) => (
               <div key={o.title} className="flex min-w-px flex-1 flex-col items-center gap-[12px]">
                 <Icon src={`/figma/bbs/${o.icon}.svg`} size={48} />
-                <h3 className={`text-trim w-full text-center ${H3_SB} text-ink`}>{o.title}</h3>
+                <Heading level={3} className={`text-trim w-full text-center ${H3_SB} text-ink`}>{o.title}</Heading>
                 <p className={`text-trim w-full text-center ${MOB_L} text-card-gray`}>{o.text}</p>
               </div>
             ))}

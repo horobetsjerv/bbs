@@ -10,7 +10,7 @@ import { catalogHref } from "@/app/_lib/catalog-url";
 import type { ProjectCardData } from "@/app/_lib/content";
 
 import { CatalogCard, ProjectCard } from "../bbs/cards";
-import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
+import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import { ProjectPhotoGrid, ProjectSlider } from "./ProjectPhotos";
@@ -255,7 +255,7 @@ export default function ProductPage(props: ProductPageProps) {
                 <div className="flex min-w-px flex-1 flex-col items-start gap-[16px]">
                   {/* Единственный H1 страницы (таблица SEO): в макете названия
                       изделия на странице нет, кроме крошек — заголовок скрытый. */}
-                  <h1 className="sr-only">{title}</h1>
+                  <Heading level={1} className="sr-only">{title}</Heading>
                   {info.map((r) => (
                     <InfoRow key={r.label} {...r} />
                   ))}
@@ -285,11 +285,11 @@ export default function ProductPage(props: ProductPageProps) {
                       {brand}
                     </p>
                     {/* Единственный H1 страницы (таблица SEO): название товара. */}
-                    <h1
+                    <Heading level={1}
                       className={`text-trim text-right ${H3_SB} text-ink`}
                     >
                       {title}
-                    </h1>
+                    </Heading>
                   </div>
                   {info.map((r) => (
                     <InfoRow key={r.label} label={r.label} value={r.value} />
@@ -346,9 +346,9 @@ export default function ProductPage(props: ProductPageProps) {
             style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}
           >
             <div className="flex w-full items-center justify-between">
-              <h2 className={`text-trim whitespace-nowrap ${H2_SB} text-black`}>
+              <Heading level={2} className={`text-trim whitespace-nowrap ${H2_SB} text-black`}>
                 {similar.title}
-              </h2>
+              </Heading>
               <OutlineBtn href={similar.href}>{similar.button}</OutlineBtn>
             </div>
             {/* items-stretch: карточки разной длины текста — одной высоты, верх на одном уровне. */}

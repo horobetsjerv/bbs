@@ -4,6 +4,7 @@ import {
   GhostBtn,
   H1_L,
   H2_L,
+  Heading,
   PrimaryBtn,
 } from "../bbs/ui";
 
@@ -43,9 +44,9 @@ export default function Hero() {
             className="block h-[79px] w-[547px] shrink-0"
           />
           {/* H1 из SEO-таблицы (лист «Laminam»). */}
-          <h1 className={`text-trim w-full ${H1_L} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>
             Керамограніт <span className="font-semibold">Laminam</span>
-          </h1>
+          </Heading>
           <div className={`text-trim w-full ${H2_L} text-caption-gray`}>
             <p>
               Laminam - італійський виробник великоформатної кераміки для

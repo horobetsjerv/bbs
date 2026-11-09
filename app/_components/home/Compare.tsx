@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { VicostoneLogo } from "../bbs/blocks";
-import { H2_SB, H3_L, H3_SB, Icon, PrimaryBtn } from "../bbs/ui";
+import { H2_SB, H3_L, H3_SB, Heading, Icon, PrimaryBtn } from "../bbs/ui";
 
 // Ячейки таблицы в Figma с внешней обводкой: высота = padding + текст + 2px,
 // соседние ячейки перекрываются на 1px (mr/mb −1px).
@@ -68,9 +68,9 @@ export default function Compare() {
         style={{ boxShadow: "inset 0 -1px 0 var(--color-light-gray)" }}
       >
         <div className="flex w-[560px] shrink-0 flex-col items-start justify-center gap-[24px]">
-          <h2 className={`text-trim whitespace-nowrap ${H2_SB} text-ink`}>
+          <Heading level={2} className={`text-trim whitespace-nowrap ${H2_SB} text-ink`}>
             Що вибрати — Laminam чи Vicostone?
-          </h2>
+          </Heading>
           <p className={`text-trim w-[560px] ${H3_L} text-card-gray`}>
             Порівняйте ключові характеристики матеріалів та оберіть оптимальне
             рішення для вашого проекту.

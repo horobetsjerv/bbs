@@ -4,6 +4,7 @@ import {
   H3_L,
   H4_L,
   HOVER_EASE,
+  Heading,
   Icon,
   OutlineBtn,
   PrimaryBtn,
@@ -40,7 +41,6 @@ export function FaqSection({
   /** Вопросы — заголовки h3 (в SEO-таблице помечены h3), вид тот же. */
   heading?: boolean;
 }) {
-  const Question = heading ? "h3" : "span";
   const ld = answers && faqLd(questions, answers);
   return (
     <section className="flex w-full flex-col items-start gap-[24px]">
@@ -64,9 +64,13 @@ export function FaqSection({
             summaryClassName="flex cursor-pointer list-none items-center gap-[10px] py-[21px] pr-[10px] pl-[20px] [&::-webkit-details-marker]:hidden"
             summary={
               <>
-                <Question className={`text-trim min-w-px flex-1 ${H3_L} text-ink`}>
-                  {q}
-                </Question>
+                {heading ? (
+                  <Heading level={3} className={`text-trim min-w-px flex-1 ${H3_L} text-ink`}>
+                    {q}
+                  </Heading>
+                ) : (
+                  <span className={`text-trim min-w-px flex-1 ${H3_L} text-ink`}>{q}</span>
+                )}
                 <Icon
                   src="/figma/bbs/chevron-down.svg"
                   size={24}
@@ -108,7 +112,7 @@ export function CtaBanner({
       style={inset("var(--color-back-card-gray)")}
     >
       <div className="flex w-[477px] shrink-0 flex-col items-start gap-[24px]">
-        <h2 className={`text-trim w-full ${H2_SB} text-ink`}>{title}</h2>
+        <Heading level={2} className={`text-trim w-full ${H2_SB} text-ink`}>{title}</Heading>
         {text && <p className={`text-trim w-full ${H3_L} text-card-gray`}>{text}</p>}
       </div>
       <PrimaryBtn className="min-w-px flex-1" href={href}>
@@ -145,7 +149,7 @@ export function LeadForm({
       className="flex w-full scroll-mt-[40px] items-center gap-[24px] bg-light-gray px-[71px] py-[32px]"
     >
       <div className="flex w-[477px] shrink-0 flex-col items-start gap-[24px]">
-        <h2 className={`text-trim w-full ${H2_SB} text-ink`}>{title}</h2>
+        <Heading level={2} className={`text-trim w-full ${H2_SB} text-ink`}>{title}</Heading>
         <p className={`text-trim w-full ${H3_L} text-card-gray`}>{text}</p>
         <div className="flex w-full items-center gap-[8px]">
           <Icon src="/figma/bbs/telegram.svg" size={48} />
@@ -235,7 +239,7 @@ export function BrandsPanel({
       className={`flex w-full flex-col items-start gap-[32px] bg-light-gray px-[71px] py-[32px] ${className}`}
       style={inset("var(--color-back-card-gray)")}
     >
-      {title && <h2 className={`text-trim ${H2_SB} text-ink`}>{title}</h2>}
+      {title && <Heading level={2} className={`text-trim ${H2_SB} text-ink`}>{title}</Heading>}
       <div className="flex w-full items-stretch justify-between">
         <BrandColumn
           logo={<Icon src="/figma/bbs/laminam-logo.svg" width={277} height={40} />}

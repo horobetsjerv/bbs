@@ -1,6 +1,6 @@
 import Page from "@/app/_components/bbs/Page";
 import { CtaBanner } from "@/app/_components/bbs/blocks";
-import { Breadcrumbs, H1_SB } from "@/app/_components/bbs/ui";
+import { Breadcrumbs, H1_SB, Heading } from "@/app/_components/bbs/ui";
 import { PROSE } from "@/app/_components/blog/prose";
 import DeliveryText from "@/app/_components/delivery/DeliveryText";
 import MobileDelivery from "@/app/_components/mobile/Delivery";
@@ -23,10 +23,10 @@ export default function DeliveryPage() {
 
         <div className="mt-[40px] flex w-full flex-col gap-[80px]" data-reveal>
           <article className="flex w-[834px] flex-col gap-[32px]">
-            <h1 className={`text-trim ${H1_SB} text-ink`}>Доставка та оплата</h1>
+            <Heading level={1} className={`text-trim ${H1_SB} text-ink`}>Доставка та оплата</Heading>
             {/* pretty, а не balance сайта: в длинных абзацах balance рвёт строки коротко. */}
             <div className={`${PROSE} [&_li]:[text-wrap:pretty] [&_p]:[text-wrap:pretty]`}>
-              <DeliveryText />
+              <DeliveryText desktop />
             </div>
           </article>
 

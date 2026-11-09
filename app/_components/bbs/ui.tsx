@@ -409,6 +409,30 @@ export function TextLink({
   );
 }
 
+/**
+ * Заголовок десктопной вёрстки. Страница рендерит две копии — десктоп и
+ * мобилку (лишняя скрыта CSS), поэтому настоящие h1–h3 только в мобильной:
+ * её индексирует Google, а в HTML остаётся один H1 (SEO-аудит). Здесь —
+ * <p role="heading">: вид тот же, читалки видят заголовок.
+ */
+export function Heading({
+  level,
+  className,
+  id,
+  children,
+}: {
+  level: 1 | 2 | 3;
+  className?: string;
+  id?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <p role="heading" aria-level={level} className={className} id={id}>
+      {children}
+    </p>
+  );
+}
+
 /** Шапка секции: заголовок H2 слева, кнопка справа. */
 export function SectionHeader({
   title,
@@ -419,9 +443,9 @@ export function SectionHeader({
 }) {
   return (
     <div className="flex w-full items-center justify-between">
-      <h2 className={`text-trim whitespace-nowrap ${H2_SB} text-ink`}>
+      <Heading level={2} className={`text-trim whitespace-nowrap ${H2_SB} text-ink`}>
         {title}
-      </h2>
+      </Heading>
       {action}
     </div>
   );

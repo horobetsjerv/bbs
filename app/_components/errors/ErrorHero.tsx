@@ -9,7 +9,7 @@
 // каждой страницы, и серверные <img> отсюда давали preload-хинты картинок
 // 404 на всех страницах сайта. Клиентский герой рендерит их только при показе.
 
-import { GhostBtn, H1_SB, H2_L, H2_SB, H4_L, PrimaryBtn } from "../bbs/ui";
+import { GhostBtn, H1_SB, H2_L, H2_SB, H4_L, Heading, PrimaryBtn } from "../bbs/ui";
 
 type Code = 404 | 500;
 
@@ -82,7 +82,7 @@ export function ErrorHero({ code }: { code: Code }) {
       <div className={`relative flex w-[930px] flex-col items-start ${e.column}`}>
         {!e.digitsOnTop && digits}
         <div className="relative flex w-full flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>
             {e.title[0]}{" "}
             <span className="font-light">
               {e.titleBreak ? (
@@ -95,7 +95,7 @@ export function ErrorHero({ code }: { code: Code }) {
                 e.title[1]
               )}
             </span>
-          </h1>
+          </Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>{e.text}</p>
           {/* Кнопки всегда над цифрами (у 404 цифры лежат поверх текста). */}
           <div className="relative z-10 flex items-start gap-[24px]">

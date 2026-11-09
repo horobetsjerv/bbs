@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { BrandsPanel } from "../bbs/blocks";
-import { GhostBtn, H1_SB, H2_L, PrimaryBtn } from "../bbs/ui";
+import { GhostBtn, H1_SB, H2_L, Heading, PrimaryBtn } from "../bbs/ui";
 
 // «Два бренди — два рішення» из SEO-таблицы (лист «Головна»).
 export const BRANDS_TITLE = "Два бренди — два рішення";
@@ -29,11 +29,11 @@ export default function Hero() {
 
       <div className="relative flex w-[1120px] flex-col items-start pt-[76px]">
         <div className="flex w-[833px] flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>
             <span className="font-light">Штучний камінь </span>
             Laminam <span className="font-light">та </span>
             Vicostone<span className="font-light"> в Україні</span>
-          </h1>
+          </Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
             Оригінальні керамічні та кварцові поверхні для стільниць, меблів,
             підлоги, стін і фасадів.

@@ -1,6 +1,6 @@
 import { VicostoneBrandLogo } from "../bbs/blocks";
 import HeroBand from "../bbs/HeroBand";
-import { H1_L, PrimaryBtn } from "../bbs/ui";
+import { H1_L, Heading, PrimaryBtn } from "../bbs/ui";
 
 import { H1, VICOSTONE_CATALOG_PATH } from "./content";
 
@@ -22,9 +22,9 @@ export default function Hero() {
             <VicostoneBrandLogo />
           </div>
           {/* H1 из SEO-таблицы (лист «Vicostone»). */}
-          <h1 className={`text-trim w-full ${H1_L} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>
             {H1.light} <span className="font-semibold">{H1.bold}</span>
-          </h1>
+          </Heading>
           <PrimaryBtn className="w-[228px] justify-start" href={VICOSTONE_CATALOG_PATH}>
             Перейти до каталогу
           </PrimaryBtn>

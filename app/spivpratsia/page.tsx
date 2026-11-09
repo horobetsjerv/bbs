@@ -1,7 +1,7 @@
 import Page from "../_components/bbs/Page";
 import MobileSpivpratsia from "../_components/mobile/Spivpratsia";
 import HeroBand from "../_components/bbs/HeroBand";
-import { H1_SB, H2_L, H3_L, H3_SB, PrimaryBtn } from "../_components/bbs/ui";
+import { H1_SB, H2_L, H3_L, H3_SB, Heading, PrimaryBtn } from "../_components/bbs/ui";
 import {
   AdvantagesSection,
   ContactsSection,
@@ -98,7 +98,7 @@ export default async function CooperationPage() {
         overlay={{ src: "/figma/spivpratsia/hero-samples.webp" }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>Співпраця з BBS</h1>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Співпраця з BBS</Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
             <B>
               BBS запрошує до співпраці дизайнерів, архітекторів, виробників і

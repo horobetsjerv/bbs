@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { H2_SB, H3_L } from "../bbs/ui";
+import { H2_SB, H3_L, Heading } from "../bbs/ui";
 
 export default function WhyBbs() {
   return (
     <section className="flex w-full items-start gap-[24px]">
       <div className="flex min-w-px flex-1 flex-col items-start gap-[24px]">
-        <h2 className={`text-trim w-full ${H2_SB} text-ink`}>Чому обирають BBS</h2>
+        <Heading level={2} className={`text-trim w-full ${H2_SB} text-ink`}>Чому обирають BBS</Heading>
         <p className={`text-trim w-full ${H3_L} text-card-gray`}>
           <span className="font-semibold">
             BBS — офіційний дистриб’ютор Laminam та Vicostone

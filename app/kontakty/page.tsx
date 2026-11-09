@@ -3,7 +3,7 @@ import MobileContacts from "../_components/mobile/Contacts";
 import HeroBand from "../_components/bbs/HeroBand";
 import { CtaBanner } from "../_components/bbs/blocks";
 import DecorsSection from "../_components/bbs/DecorsSection";
-import { GhostBtn, H1_SB, H2_L, PrimaryBtn } from "../_components/bbs/ui";
+import { GhostBtn, H1_SB, H2_L, Heading, PrimaryBtn } from "../_components/bbs/ui";
 import ContactsInfo from "../_components/contacts/ContactsInfo";
 import { getPopularDecors } from "@/app/_lib/catalog";
 import JsonLd, { breadcrumbLd, businessLd } from "@/app/_components/seo/JsonLd";
@@ -29,7 +29,7 @@ export default async function ContactsPage() {
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
       >
         <div className="flex w-[834px] flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>Контакти</h1>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Контакти</Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
             Ми завжди на зв’язку та готові допомогти з вибором матеріалу для
             вашого проєкту.

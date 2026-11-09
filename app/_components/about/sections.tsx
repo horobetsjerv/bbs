@@ -4,13 +4,13 @@
 // текстами. Колонка 1120, отступы секций — py 80 (кроме Header / 76).
 
 import { ProjectCardWide } from "../bbs/cards";
-import { H2_SB, H3_L, H3_SB, Icon, MOB_L, OutlineBtn, SectionHeader, inset } from "../bbs/ui";
+import { H2_SB, H3_L, H3_SB, Heading, Icon, MOB_L, OutlineBtn, SectionHeader, inset } from "../bbs/ui";
 import ContactsInfo from "../contacts/ContactsInfo";
 import type { ProjectCardData } from "@/app/_lib/content";
 
 /** Заголовок секции: H2 sb, в этих макетах — чёрный #000 (стиль Black). */
 export function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h2 className={`text-trim w-full ${H2_SB} text-black`}>{children}</h2>;
+  return <Heading level={2} className={`text-trim w-full ${H2_SB} text-black`}>{children}</Heading>;
 }
 
 /** Layout / 1: текст слева, фото справа по высоте текста. */
@@ -68,11 +68,11 @@ export function AdvantagesSection({ title, items }: { title: string; items: Adva
             />
             <div className="relative flex w-full items-center gap-[12px]">
               <Icon src={a.icon} size={48} />
-              <h3
+              <Heading level={3}
                 className={`text-trim ${a.text ? "shrink-0 whitespace-nowrap" : "min-w-px flex-1"} ${H3_SB} text-black`}
               >
                 {a.title}
-              </h3>
+              </Heading>
             </div>
             {a.text && (
               <p className={`text-trim relative w-full ${MOB_L} text-card-gray`}>{a.text}</p>

@@ -5,7 +5,7 @@
 
 import Page from "../bbs/Page";
 import HeroBand from "../bbs/HeroBand";
-import { H1_L, H2_L } from "../bbs/ui";
+import { H1_L, H2_L, Heading } from "../bbs/ui";
 import type { Metadata } from "next";
 
 import {
@@ -119,9 +119,9 @@ export default async function CatalogTemplate({
         overlay={heroOverlay ? { src: heroOverlay } : undefined}
       >
         <div className="flex w-[834px] flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_L} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>
             {title.light} <span className="font-semibold">{title.bold}</span>
-          </h1>
+          </Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
             Оберіть колір, фактуру та параметри, щоб знайти ідеальний матеріал
             для вашого проєкту.

@@ -17,7 +17,19 @@ const BASE = [
 export const PROSE = [
   ...BASE,
   "[&_p]:text-[1.125rem] [&_li]:text-[1.125rem] [&_h2]:text-[2rem]",
+  // Десктопная копия: заголовки — p[data-h] (см. desktopHeadings), вид как у h2/h3.
+  "[&_[data-h='2']]:mt-[1rem] [&_[data-h='2']]:text-[2rem] [&_[data-h='2']]:font-semibold [&_[data-h='2']]:leading-[0.9] [&_[data-h='2']]:tracking-[-0.05em]",
+  "[&_[data-h='3']]:mt-[0.5rem] [&_[data-h='3']]:text-[1.25rem] [&_[data-h='3']]:font-semibold [&_[data-h='3']]:leading-[0.9] [&_[data-h='3']]:tracking-[-0.05em]",
 ].join(" ");
+
+/**
+ * HTML статьи для десктопной копии: h2–h6 → <p role="heading" data-h>, чтобы
+ * настоящие заголовки были только в мобильной копии (SEO-аудит, см. Heading).
+ */
+export const desktopHeadings = (html: string) =>
+  html
+    .replace(/<h([2-6])(\s[^>]*)?>/gi, (_, l, attrs = "") => `<p role="heading" aria-level="${l}" data-h="${l}"${attrs}>`)
+    .replace(/<\/h[2-6]>/gi, "</p>");
 
 /** Мобильная статья: текст 16, подзаголовки 24 (как H2_mob в макетах). */
 export const PROSE_MOBILE = [...BASE, "[&_p]:text-[1rem] [&_li]:text-[1rem] [&_h2]:text-[1.5rem]"].join(" ");

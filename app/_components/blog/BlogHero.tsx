@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import HeroBand from "../bbs/HeroBand";
-import { H1_SB, H2_L, H4_BTN, H4_L, Icon, inset } from "../bbs/ui";
+import { H1_SB, H2_L, H4_BTN, H4_L, Heading, Icon, inset } from "../bbs/ui";
 
 /** 1 стаття, 2 статті, 5 статей. */
 function articlesWord(n: number) {
@@ -35,7 +35,7 @@ export default function BlogHero({
       overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
     >
       <div className="flex w-full flex-col items-start gap-[40px]">
-        <h1 className={`text-trim w-full ${H1_SB} text-white`}>Публікації</h1>
+        <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Публікації</Heading>
         <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
           Поради з вибору, застосування та догляду за керамогранітом Laminam і
           кварцовим каменем Vicostone.

@@ -2,7 +2,7 @@ import Page from "../_components/bbs/Page";
 import MobileAbout from "../_components/mobile/About";
 import HeroBand from "../_components/bbs/HeroBand";
 import { BrandsPanel, LeadForm } from "../_components/bbs/blocks";
-import { GhostBtn, H1_SB, H2_L, H3_L, H3_SB, PrimaryBtn } from "../_components/bbs/ui";
+import { GhostBtn, H1_SB, H2_L, H3_L, H3_SB, Heading, PrimaryBtn } from "../_components/bbs/ui";
 import {
   AdvantagesSection,
   ContactsSection,
@@ -105,7 +105,7 @@ export default async function AboutPage() {
         height={432}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_SB} text-white`}>Про компанію BBS</h1>
+          <Heading level={1} className={`text-trim w-full ${H1_SB} text-white`}>Про компанію BBS</Heading>
           <p className={`text-trim w-full ${H2_L} text-caption-gray`}>
             BBS — <B>офіційний дистриб’ютор Laminam</B> і{" "}
             <B>представник Vicostone</B> в Україні. З 2012 року працюємо з
@@ -148,7 +148,7 @@ export default async function AboutPage() {
           <Title>Чим займається компанія</Title>
           <Paragraphs>
             <div className={`flex w-full flex-col items-start ${ITEM_GAP}`}>
-              <h3 className={`text-trim w-full ${H3_SB} text-black`}>Постачання матеріалів</h3>
+              <Heading level={3} className={`text-trim w-full ${H3_SB} text-black`}>Постачання матеріалів</Heading>
               <p className="text-trim w-full">
                 <B>Постачаємо плити</B> Laminam і Vicostone{" "}
                 <B>для приватних клієнтів та бізнесу.</B> Працюємо в
@@ -157,9 +157,9 @@ export default async function AboutPage() {
               </p>
             </div>
             <div className={`flex w-full flex-col items-start ${ITEM_GAP}`}>
-              <h3 className={`text-trim w-full ${H3_SB} text-black`}>
+              <Heading level={3} className={`text-trim w-full ${H3_SB} text-black`}>
                 Виготовлення виробів на замовлення
-              </h3>
+              </Heading>
               <p className="text-trim w-full">
                 <B>Виготовляємо вироби з керамограніту та кварцового каменю</B>{" "}
                 за індивідуальними параметрами. Рішення розробляються з
@@ -168,7 +168,7 @@ export default async function AboutPage() {
               </p>
             </div>
             <div className={`flex w-full flex-col items-start ${ITEM_GAP}`}>
-              <h3 className={`text-trim w-full ${H3_SB} text-black`}>Супровід проєкту</h3>
+              <Heading level={3} className={`text-trim w-full ${H3_SB} text-black`}>Супровід проєкту</Heading>
               <p className="text-trim w-full">
                 <B>Супроводжуємо проєкт на всіх етапах реалізації:</B>{" "}
                 консультуємо щодо вибору матеріалу, організовуємо замір і
@@ -195,7 +195,7 @@ export default async function AboutPage() {
           <Paragraphs>
             {WHO.map((w) => (
               <div key={w.title} className={`flex w-full flex-col items-start ${ITEM_GAP}`}>
-                <h3 className={`text-trim w-full ${H3_SB} text-black`}>{w.title}</h3>
+                <Heading level={3} className={`text-trim w-full ${H3_SB} text-black`}>{w.title}</Heading>
                 <p className="text-trim w-full">{w.text}</p>
               </div>
             ))}

@@ -4,7 +4,7 @@ import HeroBand from "../_components/bbs/HeroBand";
 import { CtaBanner } from "../_components/bbs/blocks";
 import DecorsSection from "../_components/bbs/DecorsSection";
 import { ProjectCard } from "../_components/bbs/cards";
-import { GhostBtn, H1_L, PrimaryBtn } from "../_components/bbs/ui";
+import { GhostBtn, H1_L, Heading, PrimaryBtn } from "../_components/bbs/ui";
 import { getPopularDecors } from "@/app/_lib/catalog";
 import { getProjects } from "@/app/_lib/content";
 import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
@@ -27,10 +27,10 @@ export default async function VyrobyPage() {
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
-          <h1 className={`text-trim w-full ${H1_L} text-white`}>
+          <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>
             <span className="font-semibold">Вироби з матеріалу</span> Laminam і
             Vicostone
-          </h1>
+          </Heading>
           <div className="flex items-start gap-[24px]">
             {/* Как в контактах: форма заявки (модалка), для партнёров — с темой. */}
             <PrimaryBtn

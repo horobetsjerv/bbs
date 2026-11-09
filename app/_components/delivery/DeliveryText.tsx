@@ -7,10 +7,21 @@ import { telHref } from "@/app/_lib/contacts";
 const PHONES = ["+380 67 334 77 44", "+380 66 556 49 07"];
 const EMAIL = "vs@vicostone.com.ua";
 
-export default function DeliveryText() {
+/** Подзаголовок: в десктопной копии — p[data-h] (см. Heading и PROSE). */
+function H2({ desktop, children }: { desktop: boolean; children: React.ReactNode }) {
+  return desktop ? (
+    <p role="heading" aria-level={2} data-h="2">
+      {children}
+    </p>
+  ) : (
+    <h2>{children}</h2>
+  );
+}
+
+export default function DeliveryText({ desktop = false }: { desktop?: boolean }) {
   return (
     <>
-      <h2>Оплата</h2>
+      <H2 desktop={desktop}>Оплата</H2>
       <p>
         Ми працюємо з юридичними особами, ФОП та приватними клієнтами. Оплатити
         замовлення можна:
@@ -28,7 +39,7 @@ export default function DeliveryText() {
         рахунок.
       </p>
 
-      <h2>Доставка</h2>
+      <H2 desktop={desktop}>Доставка</H2>
       <p>
         Ми доставляємо замовлення по всій Україні. Обрати спосіб можна під час
         оформлення або домовитися з менеджером.
@@ -53,7 +64,7 @@ export default function DeliveryText() {
         час узгодження замовлення.
       </p>
 
-      <h2>Приймання товару</h2>
+      <H2 desktop={desktop}>Приймання товару</H2>
       <p>
         Великоформатні та крихкі матеріали потребують уважного приймання. Тому
         просимо:
@@ -73,7 +84,7 @@ export default function DeliveryText() {
       </ul>
       <p>Розвантаження та підйом на поверх за окремою домовленістю.</p>
 
-      <h2>Повернення та обмін</h2>
+      <H2 desktop={desktop}>Повернення та обмін</H2>
       <p>
         Повернення та обмін товару належної якості здійснюються відповідно до
         чинного законодавства України та умов договору. Матеріали, які були
@@ -84,7 +95,7 @@ export default function DeliveryText() {
         звернення та запропонуємо заміну, перерахунок або повернення коштів.
       </p>
 
-      <h2>Зв’язок</h2>
+      <H2 desktop={desktop}>Зв’язок</H2>
       <p>
         Питання щодо оплати та доставки можна поставити нашим менеджерам:{" "}
         {PHONES.map((tel) => (

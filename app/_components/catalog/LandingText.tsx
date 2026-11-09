@@ -7,7 +7,7 @@
 import type { LandingBlock, LandingSection, LandingText } from "@/app/_lib/catalog-texts";
 
 import { FaqSection } from "../bbs/blocks";
-import { H3_L, H3_SB, H4_L, MOB_L, MOB_SB, PrimaryBtn, SectionHeader } from "../bbs/ui";
+import { H3_L, H3_SB, H4_L, Heading, MOB_L, MOB_SB, PrimaryBtn, SectionHeader } from "../bbs/ui";
 import { StepList } from "../home/Cooperation";
 import { MFaq, MStepList } from "../mobile/Home";
 import { MSection, MTitle, mobileHref } from "../mobile/ui";
@@ -47,7 +47,7 @@ function Block({ block }: { block: LandingBlock }) {
         <ul className={`grid w-full ${cols} gap-x-[24px] gap-y-[40px]`}>
           {block.rows.map((row) => (
             <li key={row.title} className="flex flex-col items-start gap-[16px] pt-[24px]" style={TOP_LINE}>
-              <h3 className={`text-trim ${H3_SB} text-ink`}>{row.title}</h3>
+              <Heading level={3} className={`text-trim ${H3_SB} text-ink`}>{row.title}</Heading>
               <p className={`text-trim ${H4_L} text-card-gray`}>{row.text}</p>
             </li>
           ))}

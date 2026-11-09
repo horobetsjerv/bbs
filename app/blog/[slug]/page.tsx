@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 
 import Page from "@/app/_components/bbs/Page";
 import { CtaBanner } from "@/app/_components/bbs/blocks";
-import { Breadcrumbs, CAPTION, H1_SB, H3_L, H3_SB } from "@/app/_components/bbs/ui";
+import { Breadcrumbs, CAPTION, H1_SB, H3_L, H3_SB, Heading } from "@/app/_components/bbs/ui";
 import PostCard from "@/app/_components/blog/PostCard";
-import { PROSE } from "@/app/_components/blog/prose";
+import { PROSE, desktopHeadings } from "@/app/_components/blog/prose";
 import MobilePost from "@/app/_components/mobile/Post";
 import { getPost, getPosts } from "@/app/_lib/content";
 import JsonLd, { breadcrumbLd, orgRef } from "@/app/_components/seo/JsonLd";
@@ -74,7 +74,7 @@ export default async function PostPage({ params }: { params: Params }) {
                   {post.category && <span className="text-trim">{post.category}</span>}
                   <span className={`text-trim ${CAPTION}`}>{post.date}</span>
                 </div>
-                <h1 className={`text-trim ${H1_SB} text-ink`}>{post.title}</h1>
+                <Heading level={1} className={`text-trim ${H1_SB} text-ink`}>{post.title}</Heading>
               </header>
               {post.image && (
                 <img
@@ -85,7 +85,7 @@ export default async function PostPage({ params }: { params: Params }) {
               )}
               {post.body && (
                 // HTML пишет редактор в админке — источник доверенный.
-                <div className={PROSE} dangerouslySetInnerHTML={{ __html: post.body }} />
+                <div className={PROSE} dangerouslySetInnerHTML={{ __html: desktopHeadings(post.body) }} />
               )}
             </article>
 
