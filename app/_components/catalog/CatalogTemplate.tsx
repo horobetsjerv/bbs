@@ -94,7 +94,8 @@ function SubcategoryLinks({ section }: { section: Subcategories }) {
   return (
     <nav
       aria-label={`${section.title} за призначенням`}
-      className="mt-[174px] flex w-[1120px] flex-col items-start gap-[20px] pb-[32px]"
+      // По 40px от полосы героя (её низ — 154px от начала колонки) и до фильтров.
+      className="mt-[194px] flex w-[1120px] flex-col items-start gap-[20px]"
     >
       <Heading level={2} className={`text-trim whitespace-nowrap ${H3_SB} text-ink`}>
         {section.title} за призначенням
