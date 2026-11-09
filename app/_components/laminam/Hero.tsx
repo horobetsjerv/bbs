@@ -54,7 +54,7 @@ export default function Hero() {
             <p>Інновації, естетика та довговічність у кожній плиті.</p>
           </div>
           <div className="flex items-start gap-[24px]">
-            <PrimaryBtn className="w-[228px] justify-start" href="/kataloh/laminam/">
+            <PrimaryBtn className="w-[228px] justify-start" href="/kataloh/keramogranit/">
               Перейти до каталогу
             </PrimaryBtn>
             <GhostBtn icon="/figma/bbs/download-white.svg" href={LAMINAM_PDF.href} download={LAMINAM_PDF.name}>

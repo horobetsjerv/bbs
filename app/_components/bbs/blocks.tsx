@@ -241,7 +241,7 @@ export function BrandsPanel({
           logo={<Icon src="/figma/bbs/laminam-logo.svg" width={277} height={40} />}
           text={laminam}
           link="Перейти в каталог Laminam"
-          href="/kataloh/laminam/"
+          href="/kataloh/keramogranit/"
           spread={spread}
         />
         <div className="w-[2px] shrink-0 self-stretch bg-blue" />

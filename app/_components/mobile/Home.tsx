@@ -134,7 +134,7 @@ export function Brands({
           }
           text={copy.laminam}
           link="Перейти в каталог Laminam"
-          href="/kataloh/laminam/"
+          href="/kataloh/keramogranit/"
         />
         <BrandCard
           logo={

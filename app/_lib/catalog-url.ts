@@ -45,11 +45,11 @@ const K = { type: ["keramohranit"] };
 const Q = { type: ["kvarts"] };
 
 /**
- * /kataloh/laminam/ — каталог бренда Laminam (макет Catalog LAM, раньше
- * /laminam/catalog). Страница бренда — /laminam/. /kataloh/keramogranit/ —
- * обычная подборка «Керамограніт» единого каталога.
+ * Полный каталог Laminam — подборка «Керамограніт» (весь керамограніт в базе —
+ * Laminam). Отдельный /kataloh/laminam/ убран по SEO-аудиту как дубль
+ * страницы бренда /laminam/: 301 на эту подборку (next.config.ts).
  */
-export const LAMINAM_CATALOG_PATH = "/kataloh/laminam/";
+export const LAMINAM_CATALOG_PATH = "/kataloh/keramogranit/";
 
 /**
  * Подборки «виріб / призначення (+ тип)» с адресами из таблицы. `selected` —

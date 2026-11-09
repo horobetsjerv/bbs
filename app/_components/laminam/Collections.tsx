@@ -54,7 +54,7 @@ export default async function Collections() {
     <section className="flex w-full flex-col items-start gap-[24px]">
       <SectionHeader
         title="Колекції Laminam"
-        action={<OutlineBtn href="/kataloh/laminam/">Переглянути усі колекції</OutlineBtn>}
+        action={<OutlineBtn href="/kataloh/keramogranit/">Переглянути усі колекції</OutlineBtn>}
       />
       <div className="flex w-full items-center gap-[24px]">
         {collections.map((c) => (

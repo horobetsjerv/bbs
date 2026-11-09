@@ -12,8 +12,10 @@ const MOVED: [source: string, destination: string][] = [
   ["/catalog/keramohranit-:rest", "/kataloh/keramogranit-:rest/"],
   ["/catalog/kvarts", "/kataloh/kvartsovyi-kamin/"],
   ["/catalog/kvarts-:rest", "/kataloh/kvartsovyi-kamin-:rest/"],
-  // Страница бренда — /laminam/, каталог бренда — /kataloh/laminam/.
-  ["/laminam/catalog", "/kataloh/laminam/"],
+  // Страница бренда — /laminam/; отдельного каталога бренда нет (дубль по
+  // SEO-аудиту) — полный каталог Laminam = подборка «Керамограніт».
+  ["/laminam/catalog", "/kataloh/keramogranit/"],
+  ["/kataloh/laminam", "/kataloh/keramogranit/"],
   // Отдельной подборки Vicostone нет: весь кварцовий камінь в базе — Vicostone.
   ["/kataloh/vicostone", "/kataloh/kvartsovyi-kamin/"],
   ["/vyroby", "/proekty/"],
