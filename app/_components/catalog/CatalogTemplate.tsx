@@ -22,7 +22,7 @@ import CatalogBrowser from "./CatalogBrowser";
 import { CatalogLandingText, MobileCatalogLandingText } from "./LandingText";
 import MobileCatalogBrowser from "../mobile/Catalog";
 import { MHero, MHeroText } from "../mobile/ui";
-import JsonLd, { breadcrumbLd } from "../seo/JsonLd";
+import JsonLd, { breadcrumbLd, collectionLd } from "../seo/JsonLd";
 
 export type CatalogTemplateProps = {
   /** Крошки до текущей страницы; у подборки добавляется её название. */
@@ -129,6 +129,15 @@ export default async function CatalogTemplate({
         </div>
       </HeroBand>
       <JsonLd data={breadcrumbLd([...breadcrumb, ...seo.crumbs], seo.canonical)} />
+      {/* CollectionPage + ItemList: товары текущей страницы выдачи (SEO-аудит). */}
+      <JsonLd
+        data={collectionLd({
+          name: seo.title.replace(/ \| BBS$/, ""),
+          path: seo.canonical,
+          description: seo.description,
+          items: catalog.items,
+        })}
+      />
 
       {/* Фильтры начинаются на 20px ниже полосы героя (y = 484).
           Без data-reveal: переход на подборку (/kataloh/ → /kataloh/kvartsovyi-kamin/) —

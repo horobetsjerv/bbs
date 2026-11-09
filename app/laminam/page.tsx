@@ -11,7 +11,8 @@ import Collections from "@/app/_components/laminam/Collections";
 import Projects from "@/app/_components/laminam/Projects";
 import Video from "@/app/_components/laminam/Video";
 import MobileLaminam from "@/app/_components/mobile/Laminam";
-import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
+import JsonLd, { breadcrumbLd, collectionLd } from "@/app/_components/seo/JsonLd";
+import { getPopularDecors } from "@/app/_lib/catalog";
 
 // Тексты страницы — из SEO-таблицы клиента, лист «Laminam».
 // Meta Description в таблице нет — оставлен прежний.
@@ -66,11 +67,21 @@ const CTA = {
   button: "Отримати консультацію",
 };
 
-export default function LaminamPage() {
+export default async function LaminamPage() {
+  // Популярные декоры бренда — ItemList для CollectionPage (SEO-аудит).
+  const decors = (await getPopularDecors(12))[0];
   return (
     // До подвала в макете 121px.
     <Page footerGap={121} mobile={<MobileLaminam faq={FAQ} cta={CTA} />}>
       <JsonLd data={breadcrumbLd(["Головна", "Laminam"], "/laminam/")} />
+      <JsonLd
+        data={collectionLd({
+          name: "Керамограніт Laminam",
+          path: "/laminam/",
+          description: "Великоформатний керамограніт Laminam: декори, колекції та формати плит.",
+          items: decors,
+        })}
+      />
       <Hero />
 
       {/* Frame 53: колонка 1120px, между секциями 120px. Порядок блоков —

@@ -23,7 +23,7 @@ export default async function ContactsPage() {
     // До подвала в макете 76px.
     <Page footerGap={76} mobile={<MobileContacts decors={decors} />}>
       <JsonLd data={breadcrumbLd(["Головна", "Контакти"], "/kontakty/")} />
-      <JsonLd data={businessLd(settings)} />
+      <JsonLd data={businessLd(settings, { path: "/kontakty/" })} />
       <HeroBand
         breadcrumb={["Головна", "Контакти"]}
         overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}

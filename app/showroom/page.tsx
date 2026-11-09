@@ -17,7 +17,7 @@ import {
 import { LocationIcon, Row } from "../_components/contacts/ContactsInfo";
 import MetaChips, { VISIT_HREF } from "../_components/shourum/MetaChips";
 import { getSettings, telHref } from "@/app/_lib/content";
-import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
+import JsonLd, { breadcrumbLd, businessLd } from "@/app/_components/seo/JsonLd";
 
 export const metadata = {
   title: "Шоурум BBS у Києві — зразки Laminam і Vicostone",
@@ -56,12 +56,21 @@ function Lead({ children }: { children: React.ReactNode }) {
 }
 
 export default async function ShowroomPage() {
-  const { phones, emails } = await getSettings();
+  const settings = await getSettings();
+  const { phones, emails } = settings;
   return (
     // Подвал — сразу под Frame 41 (в макете 1624:13714 он даже наезжает
     // на форму на 26px: 3357 < 3383 — это не повторяем, зазор 0).
     <Page footerGap={0} mobile={<MobileShourum offers={OFFERS} />}>
       <JsonLd data={breadcrumbLd(["Головна", "Шоурум"], "/showroom/")} />
+      {/* Физическая точка — LocalBusiness с адресом шоурума (SEO-аудит). */}
+      <JsonLd
+        data={businessLd(settings, {
+          path: "/showroom/",
+          name: "Шоурум BBS",
+          address: "вул. Василя Тютюнника 51/1А, Київ",
+        })}
+      />
       <HeroBand
         breadcrumb={["Головна", "Шоурум"]}
         // Rectangle 1624:13715: фото шоурума (cover) под затемнением 60%.

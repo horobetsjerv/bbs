@@ -1,5 +1,6 @@
 import { getProjects, getSettings } from "@/app/_lib/content";
 
+import JsonLd, { orgLd } from "../seo/JsonLd";
 import SiteShell, { type ShellProps } from "./SiteShell";
 
 /**
@@ -10,5 +11,11 @@ import SiteShell, { type ShellProps } from "./SiteShell";
 export default async function Page(props: ShellProps) {
   // Проекты — для «Готові роботи» в меню «Вироби на замовлення».
   const [settings, projects] = await Promise.all([getSettings(), getProjects(3)]);
-  return <SiteShell preloader {...props} settings={settings} projects={projects} />;
+  return (
+    <SiteShell preloader {...props} settings={settings} projects={projects}>
+      {/* Organization — на всех страницах (SEO-аудит). */}
+      <JsonLd data={orgLd(settings)} />
+      {props.children}
+    </SiteShell>
+  );
 }

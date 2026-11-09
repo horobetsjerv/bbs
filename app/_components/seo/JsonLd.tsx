@@ -75,25 +75,18 @@ function openingHours(text: string): string[] {
   });
 }
 
-/** Компания с шоурумом: контакты из админки (те же, что в подвале). */
-export function businessLd(c: SiteContacts): Data {
-  const hours = openingHours(c.workingHours);
+/** Общие поля компании: контакты из админки (те же, что в подвале). */
+function companyFields(c: SiteContacts): Data {
   const sameAs = Object.values(c.socials).filter((s): s is string => !!s);
   return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": ORG_ID,
     name: SITE_NAME,
     alternateName: "BBS Exclusive Surface",
     description:
       "Офіційний постачальник керамограніту Laminam і кварцового каменю Vicostone в Україні: каталог, шоурум, вироби на замовлення.",
-    url: pageUrl("/"),
     logo: assetUrl("/figma/bbs/bbs-logo.webp"),
     image: assetUrl("/og/bbs.jpg"),
     telephone: c.phones[0],
     ...(c.emails[0] ? { email: c.emails[0] } : {}),
-    address: { "@type": "PostalAddress", streetAddress: c.address, addressCountry: "UA" },
-    ...(hours.length ? { openingHours: hours } : {}),
     ...(c.phones.length > 1
       ? {
           contactPoint: c.phones.map((telephone) => ({
@@ -106,6 +99,85 @@ export function businessLd(c: SiteContacts): Data {
         }
       : {}),
     ...(sameAs.length ? { sameAs } : {}),
+  };
+}
+
+/**
+ * Organization — на всех страницах (выводит Page). Компания — дистрибьютор
+ * по всей Україні, поэтому основная разметка — Organization, а не LocalBusiness
+ * (SEO-аудит).
+ */
+export function orgLd(c: SiteContacts): Data {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORG_ID,
+    url: pageUrl("/"),
+    areaServed: "UA",
+    ...companyFields(c),
+    address: { "@type": "PostalAddress", streetAddress: c.address, addressCountry: "UA" },
+  };
+}
+
+/** WebSite — на главной. Поиска по сайту нет, поэтому без SearchAction. */
+export function websiteLd(): Data {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": pageUrl("/#website"),
+    url: pageUrl("/"),
+    name: SITE_NAME,
+    inLanguage: "uk",
+    publisher: { "@id": ORG_ID },
+  };
+}
+
+/**
+ * LocalBusiness — только где есть физическая точка: контакты (склад и офис)
+ * и шоурум. Филиал компании (parentOrganization).
+ */
+export function businessLd(
+  c: SiteContacts,
+  place: { path: string; name?: string; address?: string } = { path: "/kontakty/" },
+): Data {
+  const hours = openingHours(c.workingHours);
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": pageUrl(`${place.path}#localbusiness`),
+    url: pageUrl(place.path),
+    ...companyFields(c),
+    ...(place.name ? { name: place.name } : {}),
+    address: { "@type": "PostalAddress", streetAddress: place.address ?? c.address, addressCountry: "UA" },
+    ...(hours.length ? { openingHours: hours } : {}),
+    parentOrganization: { "@id": ORG_ID },
+  };
+}
+
+/** CollectionPage + ItemList: страницы брендов, каталога и подборок. */
+export function collectionLd(page: {
+  name: string;
+  path: string;
+  description?: string;
+  items: { name: string; href: string }[];
+}): Data {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: page.name,
+    url: pageUrl(page.path),
+    ...(page.description ? { description: page.description } : {}),
+    isPartOf: { "@id": pageUrl("/#website") },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: page.items.length,
+      itemListElement: page.items.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: it.name,
+        url: pageUrl(it.href),
+      })),
+    },
   };
 }
 

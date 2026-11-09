@@ -30,7 +30,8 @@ import {
   WHY,
   WHY_TITLE,
 } from "@/app/_components/vicostone/content";
-import JsonLd, { breadcrumbLd } from "@/app/_components/seo/JsonLd";
+import JsonLd, { breadcrumbLd, collectionLd } from "@/app/_components/seo/JsonLd";
+import { getPopularDecors } from "@/app/_lib/catalog";
 
 // Страница бренда Vicostone. Тексты — из SEO-таблицы клиента, лист «Vicostone»
 // (app/_components/vicostone/content.ts); блоки — со страницы Laminam.
@@ -41,11 +42,21 @@ export const metadata = {
   alternates: { canonical: "/vicostone/" },
 };
 
-export default function VicostonePage() {
+export default async function VicostonePage() {
+  // Популярные декоры бренда — ItemList для CollectionPage (SEO-аудит).
+  const decors = (await getPopularDecors(12))[1];
   return (
     // До подвала — как у Laminam.
     <Page footerGap={121} mobile={<MobileVicostone />}>
       <JsonLd data={breadcrumbLd(["Головна", "Vicostone"], "/vicostone/")} />
+      <JsonLd
+        data={collectionLd({
+          name: "Кварцовий камінь Vicostone",
+          path: "/vicostone/",
+          description: "Кварцовий агломерат Vicostone: декори та кольори для стільниць, підвіконь і сходів.",
+          items: decors,
+        })}
+      />
       <Hero />
 
       {/* Колонка 1120px, между секциями 120px, порядок блоков — как в таблице. */}
