@@ -18,7 +18,7 @@ export async function generateMetadata({ searchParams }: { searchParams: SearchP
     description:
       "Огляди, поради й новини BBS: як обрати керамограніт чи кварцовий камінь, доглядати за стільницею та поєднувати матеріали в інтер’єрі.",
     alternates: { canonical: "/blog/" },
-    robots: first(params.q) ? { index: false, follow: true } : undefined,
+    robots: first(params.q) ? { index: false, follow: true } : { index: true, follow: true },
   };
 }
 

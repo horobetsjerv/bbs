@@ -66,7 +66,8 @@ export async function catalogMetadata(
     title,
     description,
     alternates: { canonical: seo.canonical },
-    robots: seo.index ? undefined : { index: false, follow: true },
+    // Явно: undefined здесь стёр бы index, follow из layout.
+    robots: seo.index ? { index: true, follow: true } : { index: false, follow: true },
   };
 }
 

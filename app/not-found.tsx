@@ -1,4 +1,7 @@
 import Page from "./_components/bbs/Page";
+
+// 404 — без index, follow из layout (Next сам ставит noindex на 404).
+export const metadata = { robots: { index: false, follow: true } };
 import { ErrorHero, ErrorHeroMobile } from "./_components/errors/ErrorHero";
 
 /** Страница 404 (Figma 1039:7903, мобилка 1281:5952): герой сразу переходит в подвал. */

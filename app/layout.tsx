@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   // берёт из title / description страницы; twitter — из openGraph.
   openGraph: OG_BASE,
   twitter: { card: "summary_large_image" },
+  // meta robots на всех открытых страницах (SEO-аудит). Закрытые — варианты
+  // фильтров каталога, поиск по блогу, админка — ставят noindex сами.
+  // Демо-копию (*.vercel.app) от индекса держит заголовок X-Robots-Tag.
+  robots: { index: true, follow: true },
 };
 
 // Цвет панели браузера на телефоне — как белая шапка сайта.
