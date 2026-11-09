@@ -5,7 +5,6 @@
 
 import Page from "../bbs/Page";
 import HeroBand from "../bbs/HeroBand";
-import { MenuGrid } from "../bbs/Header";
 import { H1_L, H2_L, H3_SB, HOVER_EASE, Heading, MOB_SB } from "../bbs/ui";
 import type { Metadata } from "next";
 
@@ -87,21 +86,31 @@ function typeSubcategories(landing: string | undefined, selected: Selected) {
 
 type Subcategories = NonNullable<ReturnType<typeof typeSubcategories>>;
 
-/** Десктоп: заголовок H3 и пункты как в панели «Каталог» (btn_header). */
+/**
+ * Десктоп: заголовок H3 и подборки чипами в обводке с переносом строк —
+ * тот же чип, что на мобилке (вариант A, согласован с клиентом).
+ */
 function SubcategoryLinks({ section }: { section: Subcategories }) {
   return (
     <nav
       aria-label={`${section.title} за призначенням`}
-      className="mt-[174px] flex w-[1120px] flex-col items-start gap-[10px] pb-[24px]"
-      style={{ boxShadow: "inset 0 -1px 0 var(--color-light-gray)" }}
+      className="mt-[174px] flex w-[1120px] flex-col items-start gap-[20px] pb-[32px]"
     >
       <Heading level={2} className={`text-trim whitespace-nowrap ${H3_SB} text-ink`}>
         {section.title} за призначенням
       </Heading>
-      {/* -ml 8: стрелка пункта на линии колонки, как заголовок. */}
-      <div className="-ml-[8px] w-[calc(100%+8px)]">
-        <MenuGrid items={section.items} cols={section.key === "kvarts" ? 3 : 4} />
-      </div>
+      <ul className="flex w-full flex-wrap items-start gap-[8px]">
+        {section.items.map((l) => (
+          <li key={l.label} className="flex">
+            <a
+              href={l.href}
+              className={`flex items-center bg-white px-[16px] py-[12px] text-blue shadow-[inset_0_0_0_1px_var(--color-blue)] transition-colors ${HOVER_EASE} hover:bg-red hover:text-back-card-gray`}
+            >
+              <span className={`text-trim whitespace-nowrap ${MOB_SB}`}>{l.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
