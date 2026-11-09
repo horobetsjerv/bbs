@@ -167,7 +167,8 @@ export function collectionLd(page: {
     name: page.name,
     url: pageUrl(page.path),
     ...(page.description ? { description: page.description } : {}),
-    isPartOf: { "@id": pageUrl("/#website") },
+    // С типом: без него валидатор видит безымянный CreativeWork.
+    isPartOf: { "@type": "WebSite", "@id": pageUrl("/#website"), url: pageUrl("/"), name: SITE_NAME },
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: page.items.length,
