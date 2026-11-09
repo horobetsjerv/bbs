@@ -143,6 +143,7 @@ export async function getProject(slug: string) {
     tags: p.row.tags.map(({ tag }) => tag.name),
     materials: p.materials.map((m) => ({
       name: m.name,
+      brand: m.brand.slug,
       // Снятый с публикации материал своей страницы не имеет.
       href: productPaths.get(m.id) ?? null,
     })),

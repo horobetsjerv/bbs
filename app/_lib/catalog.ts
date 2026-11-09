@@ -779,6 +779,9 @@ const FIXED_SEO: Record<
   },
 };
 
+/** Название статичной подборки (FIXED_LANDINGS) — подпись ссылок на неё. */
+export const fixedLandingName = (slug: string) => FIXED_SEO[slug]?.name ?? null;
+
 /** Хвост Description по шаблону таблицы. */
 const DESCRIPTION_TAIL = "Переглядайте декори, розміри, характеристики й актуальні ціни в каталозі BBS.";
 const DESCRIPTION_TAIL_SHORT = "Декори, розміри й актуальні ціни в каталозі BBS.";

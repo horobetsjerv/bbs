@@ -1,12 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import {
-  CATALOG_PATH,
-  TYPE_URL,
-  catalogHref,
-  landingHref,
-} from "@/app/_lib/catalog-url";
+import { CATALOG_MENU, type MenuLinkData } from "@/app/_lib/catalog-menu";
+import { catalogHref } from "@/app/_lib/catalog-url";
 import { telHref } from "@/app/_lib/contacts";
 import { hrefProps } from "@/app/_lib/links";
 import type { ProjectCardData } from "@/app/_lib/content";
@@ -20,7 +16,6 @@ import Logo from "./Logo";
 import { H3_SB, H4_BTN, H4_L, HOVER_EASE, Icon, OutlineBtn, PrimaryBtn, SwapIcon } from "./ui";
 
 type Menu = "brands" | "catalog" | "vyroby" | "about";
-type MenuLinkData = { label: string; href: string };
 
 // Ширины пунктов зафиксированы в Figma (null — по содержимому),
 // раскладка — justify-between.
@@ -47,7 +42,6 @@ const NAV: {
 ];
 
 const K = { type: ["keramohranit"] };
-const Q = { type: ["kvarts"] };
 
 /**
  * «Вироби на замовлення» (Variant3). Своих страниц у изделий нет — ведём в
@@ -79,49 +73,6 @@ const VYROBY: MenuLinkData[] = [
   { label: "Ресепшн", href: "/proekty/" },
   // «Столи» — применение базы вне списка ТЗ: в панели фильтров скрыто, ссылка работает.
   { label: "Обідні та журнальні столи", href: catalogHref({ application: ["stoly"] }) },
-];
-
-/** «Каталог»: разделы по типу каменя, пункты — подборки «призначення + тип». */
-const CATALOG: {
-  key: "keramohranit" | "kvarts";
-  title: string;
-  href: string;
-  cols: number;
-  items: MenuLinkData[];
-}[] = [
-  {
-    key: "keramohranit",
-    title: "Керамограніт",
-    href: `${CATALOG_PATH}${TYPE_URL.keramohranit}/`,
-    cols: 3,
-    items: [
-      { label: "Для стільниць та островів", href: catalogHref({ product: ["stilnytsi"], ...K }) },
-      { label: "Для кухонних фартухів", href: catalogHref({ product: ["fartukhy"], ...K }) },
-      { label: "Для підвіконь", href: catalogHref({ product: ["pidvikonnia"], ...K }) },
-      { label: "Для фасадів", href: catalogHref({ application: ["fasad"], ...K }) },
-      { label: "Для облицювання стін", href: catalogHref({ application: ["stiny"], ...K }) },
-      { label: "Для камінів", href: catalogHref({ product: ["kaminy"], ...K }) },
-      // Свои страницы-входы из SEO-таблицы (фильтры совпадают с другими подборками).
-      { label: "Для ванної кімнати", href: landingHref("keramogranit-dlia-vannoi-kimnaty") },
-      { label: "Для умивальників", href: catalogHref({ product: ["umyvalnyky"], ...K }) },
-      { label: "Для підлоги", href: catalogHref({ application: ["pidloha"], ...K }) },
-      { label: "Для вулиці", href: catalogHref({ application: ["vulytsia"], ...K }) },
-      { label: "Для тераси", href: catalogHref({ application: ["terasa"], ...K }) },
-      { label: "Для сходів", href: catalogHref({ application: ["skhody"], ...K }) },
-      { label: "Для плінтуса", href: landingHref("keramogranit-dlia-plintusa") },
-    ],
-  },
-  {
-    key: "kvarts",
-    title: "Кварцовий камінь",
-    href: `${CATALOG_PATH}${TYPE_URL.kvarts}/`,
-    cols: 1,
-    items: [
-      { label: "Для стільниць, островів та кухонних фартухів", href: catalogHref({ product: ["stilnytsi"], ...Q }) },
-      { label: "Для підвіконь", href: catalogHref({ product: ["pidvikonnia"], ...Q }) },
-      { label: "Для сходів", href: catalogHref({ ...Q, application: ["skhody"] }) },
-    ],
-  },
 ];
 
 /**
@@ -239,7 +190,7 @@ function DesktopHeader({
                       {item.menu === "brands" && <BrandsMenu />}
                       {item.menu === "catalog" && (
                         <SectionsMenu
-                          sections={CATALOG.map((s) => ({
+                          sections={CATALOG_MENU.map((s) => ({
                             key: s.key,
                             title: s.title,
                             href: s.href,
@@ -446,7 +397,7 @@ function SectionsMenu({ sections }: { sections: MenuSection[] }) {
  * hover — semibold red, стрелка вниз). По просьбе заказчика не столбиком,
  * а в ряд: равные колонки, порядок слева направо.
  */
-function MenuGrid({ items, cols }: { items: MenuLinkData[]; cols: number }) {
+export function MenuGrid({ items, cols }: { items: MenuLinkData[]; cols: number }) {
   return (
     <ul
       className="grid w-full"

@@ -3,7 +3,7 @@
 
 import { hrefProps } from "@/app/_lib/links";
 
-import { Breadcrumbs, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, inset } from "../bbs/ui";
+import { Breadcrumbs, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, TextLink, inset } from "../bbs/ui";
 import {
   SERVICES,
   TILES,
@@ -79,6 +79,8 @@ export default function MobileProduct({
   info,
   specs,
   applications,
+  stoneType,
+  related,
   details,
   description,
   specPdfUrl,
@@ -134,7 +136,7 @@ export default function MobileProduct({
               <p className={`text-trim whitespace-nowrap ${MOB_L} text-ink`}>Застосування</p>
               <div className="grid w-full grid-cols-5 gap-[8px]">
                 {tiles.map((slug) => (
-                  <UsageTile key={slug} slug={slug} mirror />
+                  <UsageTile key={slug} slug={slug} type={stoneType} mirror />
                 ))}
               </div>
             </div>
@@ -199,6 +201,19 @@ export default function MobileProduct({
           <div className="w-full px-[16px]">
             <ProjectPhotoGrid images={images} compact />
           </div>
+        )}
+
+        {related && related.length > 0 && (
+          <MSection gap={12}>
+            <MTitle>Пов’язані сторінки</MTitle>
+            <ul className="flex w-full flex-col items-start">
+              {related.map((l) => (
+                <li key={l.href} className="flex">
+                  <TextLink href={l.href}>{l.label}</TextLink>
+                </li>
+              ))}
+            </ul>
+          </MSection>
         )}
 
         <MSection gap={20}>

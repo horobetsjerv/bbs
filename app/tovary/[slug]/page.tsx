@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 import { findMaterialId, getMaterial, getSimilar, materialSeo } from "@/app/_lib/catalog";
 import ProductPage from "@/app/_components/product/ProductPage";
-import { CATALOG_PATH } from "@/app/_lib/catalog-url";
+import { CATALOG_PATH, STONE_TYPES, TYPE_BRAND } from "@/app/_lib/catalog-url";
 import { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 import { OG_BASE, assetUrl, pageUrl } from "@/app/_lib/site";
 
@@ -76,6 +76,7 @@ export default async function MaterialPage({ params }: { params: Params }) {
         { label: "Фактура поверхні", values: m.surfaces },
       ]}
       applications={m.applications.map((a) => a.slug)}
+      stoneType={STONE_TYPES.find((t) => TYPE_BRAND[t] === m.brand.slug)}
       details={[
         ...(article ? [{ label: "Артикул", value: article }] : []),
         ...(m.designs.length ? [{ label: "Дизайн", value: m.designs.join(", ") }] : []),

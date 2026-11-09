@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 
 import ProductPage from "@/app/_components/product/ProductPage";
-import { firstFitting } from "@/app/_lib/catalog";
+import { firstFitting, fixedLandingName } from "@/app/_lib/catalog";
+import { STONE_TYPES, TYPE_BRAND, landingPath, type StoneType } from "@/app/_lib/catalog-url";
 import { getProject, getProjects } from "@/app/_lib/content";
 import { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 import { OG_BASE, assetUrl } from "@/app/_lib/site";
@@ -51,6 +52,55 @@ function projectDescription(name: string, short: string | null, brand: string | 
 
 const upperFirst = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
+/** Страницы брендов и подпись ссылки на них. */
+const BRAND_PAGE: Record<StoneType, { label: string; href: string }> = {
+  keramohranit: { label: "Керамограніт Laminam", href: "/laminam/" },
+  kvarts: { label: "Кварцовий камінь Vicostone", href: "/vicostone/" },
+};
+
+/**
+ * Что сделано в проекте → фильтры подборки (вместе с типом камня). Слова
+ * ищутся в названии, кратком описании и тегах проекта. «Меблеві фасади
+ * кухні» — не фасад здания, перед поиском убираются.
+ */
+const PROJECT_PARTS: [RegExp, Record<string, string[]>][] = [
+  [/стільниц|острів|барн\S* стійк/, { product: ["stilnytsi"] }],
+  [/фартух/, { product: ["fartukhy"] }],
+  [/підвіконн/, { product: ["pidvikonnia"] }],
+  [/умивальник|раковин/, { product: ["umyvalnyky"] }],
+  [/камін(?!ь)/, { product: ["kaminy"] }],
+  [/фасад/, { application: ["fasad"] }],
+  [/стін/, { application: ["stiny"] }],
+  [/підлог/, { application: ["pidloha"] }],
+  [/терас/, { application: ["terasa"] }],
+  [/сход/, { application: ["skhody"] }],
+];
+
+/**
+ * «Пов’язані сторінки» проекта: бренд материала и подборки каталога
+ * «виріб / призначення + тип», которые есть в FIXED_LANDINGS. Тип — по
+ * брендам материалов; без материалов — по названию («з кварцу»).
+ */
+function relatedPages(p: { name: string; shortDescription: string | null; tags: string[]; materials: { brand: string }[] }) {
+  const text = [p.name, p.shortDescription ?? "", ...p.tags]
+    .join(" ")
+    .toLowerCase()
+    .replace(/меблев\S*\s+фасад\S*|фасад\S*\s+кухн\S*/g, "");
+  const byBrand = STONE_TYPES.filter((t) => p.materials.some((m) => m.brand === TYPE_BRAND[t]));
+  const types = byBrand.length
+    ? byBrand
+    : STONE_TYPES.filter((t) => (t === "kvarts" ? /кварц/ : /керамограніт/).test(text));
+  const links = types.map((t) => BRAND_PAGE[t]);
+  for (const t of types)
+    for (const [re, selection] of PROJECT_PARTS) {
+      if (!re.test(text)) continue;
+      const href = landingPath({ ...selection, type: [t] });
+      const label = href && fixedLandingName(href.split("/").filter(Boolean).at(-1) ?? "");
+      if (href && label && !links.some((l) => l.href === href)) links.push({ label, href });
+    }
+  return links;
+}
+
 /** SEO-поля из админки, иначе — по шаблону в духе таблицы (Title 45–65, Description до 160). */
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
@@ -97,6 +147,7 @@ export default async function VyribPage({ params }: { params: Params }) {
         .concat(p.credits)}
       specs={[]}
       applications={[]}
+      related={relatedPages(p)}
       details={[]}
       materialId={m?.id}
       consult={{

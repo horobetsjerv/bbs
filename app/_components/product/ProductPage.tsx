@@ -6,12 +6,12 @@
 
 import Page from "../bbs/Page";
 import type { CatalogCardData } from "@/app/_lib/catalog";
-import { catalogHref } from "@/app/_lib/catalog-url";
+import { catalogHref, landingPath, typeSelection, type StoneType } from "@/app/_lib/catalog-url";
 import type { ProjectCardData } from "@/app/_lib/content";
 import { hrefProps } from "@/app/_lib/links";
 
 import { CatalogCard, ProjectCard, applicationSelection } from "../bbs/cards";
-import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, inset } from "../bbs/ui";
+import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, TextLink, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import { ProjectPhotoGrid, ProjectSlider } from "./ProjectPhotos";
@@ -33,19 +33,39 @@ export const TILES: Record<string, { icon: string; label: string; floor?: boolea
   };
 
 /**
+ * Адрес плитки применения. С типом камня товара — его подборка «тип +
+ * применение» (/kataloh/stilnytsi-z-keramogranitu/, /kataloh/skhody-z-kvartsovoho-kameniu/),
+ * если она есть; иначе — как у плиток главной (общая подборка или ?application=).
+ */
+function usageHref(slug: string, type?: StoneType) {
+  const base = applicationSelection(slug);
+  return (type && landingPath({ ...base, ...typeSelection(type) })) || catalogHref(base);
+}
+
+/**
  * btn_vybir 62px: иконка 27.3, подпись 9.1px, обводка 0.569px.
  * `mirror` — мобильный макет: плитка там отражена по горизонтали (подпись
  * обратно), иконки зеркальные; у «Сходи» отражение двойное — как есть.
  */
-export function UsageTile({ slug, mirror = false }: { slug: string; mirror?: boolean }) {
+export function UsageTile({
+  slug,
+  type,
+  mirror = false,
+}: {
+  slug: string;
+  /** Тип камня товара (Laminam — керамограніт, Vicostone — кварц). */
+  type?: StoneType;
+  mirror?: boolean;
+}) {
   const tile = TILES[slug];
   const src = `/figma/bbs/${tile.icon}.svg`;
   const flip = mirror && slug !== "skhody" ? "-scale-x-100" : "";
   return (
     <a
       // Как плитки главной: «Стіни», «Підлога» (в базе только у керамограніту)
-      // и «Стільниці» — статичные подборки с теми же товарами.
-      {...hrefProps(catalogHref(applicationSelection(slug)))}
+      // и «Стільниці» — статичные подборки с теми же товарами; с типом товара —
+      // подборка его типа.
+      {...hrefProps(usageHref(slug, type))}
       className="flex size-[62px] shrink-0 flex-col items-center justify-center gap-[8px] bg-white transition-shadow duration-250 ease-out hover:shadow-[var(--lift)]"
       style={{ boxShadow: `inset 0 0 0 0.569px ${LIGHT}` }}
     >
@@ -165,6 +185,10 @@ export type ProductPageProps = {
   specs: { label: string; values: string[] }[];
   /** slug применений из базы — показываются те, для которых есть иконка. */
   applications: string[];
+  /** Тип камня товара: плитки применений ведут в подборки этого типа. */
+  stoneType?: StoneType;
+  /** «Пов’язані сторінки» изделия: бренд материала и подборки каталога (статичные адреса). */
+  related?: { label: string; href: string }[];
   /** Вкладка «Характеристики». */
   details: { label: string; value: string }[];
   description?: string | null;
@@ -194,6 +218,8 @@ export default function ProductPage(props: ProductPageProps) {
     info,
     specs,
     applications,
+    stoneType,
+    related,
     details,
     description,
     specPdfUrl,
@@ -325,7 +351,7 @@ export default function ProductPage(props: ProductPageProps) {
                       }`}
                     >
                       {tiles.map((slug) => (
-                        <UsageTile key={slug} slug={slug} />
+                        <UsageTile key={slug} slug={slug} type={stoneType} />
                       ))}
                     </div>
                   </div>
@@ -345,6 +371,25 @@ export default function ProductPage(props: ProductPageProps) {
                 {consultCard}
               </div>
             </div>
+          )}
+
+          {/* Пов’язані сторінки изделия: бренд и подборки каталога — как «Схожі», с линией сверху. */}
+          {related && related.length > 0 && (
+            <section
+              className="flex w-full flex-col items-start gap-[8px] pt-[40px]"
+              style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}
+            >
+              <Heading level={2} className={`text-trim whitespace-nowrap ${H2_SB} text-black`}>
+                Пов’язані сторінки
+              </Heading>
+              <ul className="flex w-full flex-wrap items-start gap-x-[40px]">
+                {related.map((l) => (
+                  <li key={l.href} className="flex">
+                    <TextLink href={l.href}>{l.label}</TextLink>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
 
           {/* Схожі кольори / вироби */}
