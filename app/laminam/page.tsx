@@ -17,7 +17,7 @@ import { getPopularDecors } from "@/app/_lib/catalog";
 // Тексты страницы — из SEO-таблицы клиента, лист «Laminam».
 // Meta Description в таблице нет — оставлен прежний.
 export const metadata = {
-  title: "Керамограніт Laminam – купити в Україні | BBS",
+  title: "Керамограніт Laminam – купити в Україні, ціни та каталог | BBS",
   description:
     "Laminam — італійські керамічні плити великого формату для фасадів, стін, підлоги й стільниць. Колекції, декори та консультація офіційного дистриб’ютора BBS.",
   alternates: { canonical: "/laminam/" },

@@ -17,7 +17,7 @@ import type { BrandSpec, BrandTile, BrandWhyItem } from "../brand/sections";
 export const VICOSTONE_CATALOG_PATH = "/kataloh/kvartsovyi-kamin/";
 
 export const META = {
-  title: "Кварцовий камінь Vicostone – купити в Україні | BBS",
+  title: "Кварцовий камінь Vicostone – купити в Україні, ціни та каталог | BBS",
   description:
     "BBS – офіційний представник Vicostone в Україні ⭐ Кварцовий агломерат для стільниць, підвіконь, умивальників ⭐ Широка палітра кольорів ☎️ (067) 334-77-44",
 };
