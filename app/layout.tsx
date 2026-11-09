@@ -28,7 +28,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   // meta robots на всех открытых страницах (SEO-аудит). Закрытые — варианты
   // фильтров каталога, поиск по блогу, админка — ставят noindex сами.
-  // Демо-копию (*.vercel.app) от индекса держит заголовок X-Robots-Tag.
+  // Демо-копия (*.vercel.app) открыта для индексации по просьбе клиента
+  // (SITE_NOINDEX на Vercel снят).
   robots: { index: true, follow: true },
 };
 
