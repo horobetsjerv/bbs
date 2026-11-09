@@ -10,15 +10,19 @@ type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
 const first = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
 
-/** Рубрики и поиск — варианты одной страницы: canonical на /blog/, поиск не индексируем. */
+/**
+ * Рубрики и поиск — варианты одной страницы (фильтры): canonical на /blog/
+ * и noindex, follow (SEO-аудит).
+ */
 export async function generateMetadata({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;
+  const filtered = Boolean(first(params.q) || first(params.category));
   return {
     title: "Публікації про керамограніт і кварцовий камінь | BBS",
     description:
       "Огляди, поради й новини BBS: як обрати керамограніт чи кварцовий камінь, доглядати за стільницею та поєднувати матеріали в інтер’єрі.",
     alternates: { canonical: "/blog/" },
-    robots: first(params.q) ? { index: false, follow: true } : { index: true, follow: true },
+    robots: filtered ? { index: false, follow: true } : { index: true, follow: true },
   };
 }
 
