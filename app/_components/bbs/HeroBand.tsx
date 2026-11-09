@@ -8,17 +8,22 @@ import { Breadcrumbs } from "./ui";
  * или над ним (блог, заливка во весь бокс).
  * `height` — высота полосы, если текст героя длиннее макета (по умолчанию
  * 368); кадр фото при этом масштабируется равномерно, без растяжения.
+ * `fit` — полоса растёт вместе с текстом (каталог: длинные H1 подборок):
+ * низ на 154px ниже текста, как в макете, но не меньше 368. Только с
+ * непрозрачным overlay (cover) — базовый кроп под ним не виден.
  */
 export default function HeroBand({
   breadcrumb,
   overlay,
   height,
+  fit = false,
   children,
 }: {
   breadcrumb: string[];
   /** `alt` — у фото героя страницы; у текстуры (волны блога) пустой. */
   overlay?: { src: string; above?: boolean; alt?: string };
   height?: number;
+  fit?: boolean;
   children: React.ReactNode;
 }) {
   // Ширина кадра задана в % от ширины, высота — в % от высоты полосы:
@@ -29,7 +34,7 @@ export default function HeroBand({
       <div
         aria-hidden
         className="absolute inset-x-0 top-[4px] h-[368px] overflow-hidden"
-        style={height ? { height } : undefined}
+        style={fit ? { height: "auto", bottom: -154, minHeight: 368 } : height ? { height } : undefined}
       >
         <img
           src="/figma/bbs/hero-laminam.jpg"

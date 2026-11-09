@@ -186,6 +186,9 @@ export default async function CatalogTemplate({
       <HeroBand
         breadcrumb={crumbs}
         overlay={heroOverlay ? { src: heroOverlay } : undefined}
+        // Длинный H1 подборки (3 строки) не вылезает за полосу и не отодвигает
+        // фильтры от неё: полоса тянется по тексту (только с фото-overlay).
+        fit={Boolean(heroOverlay)}
       >
         <div className="flex w-[834px] flex-col items-start gap-[40px]">
           <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>
