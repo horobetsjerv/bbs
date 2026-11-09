@@ -8,7 +8,7 @@ import HeroBand from "../bbs/HeroBand";
 import { H1_L, H2_L, H3_SB, HOVER_EASE, Heading, MOB_SB } from "../bbs/ui";
 import type { Metadata } from "next";
 
-import { CATALOG_MENU } from "@/app/_lib/catalog-menu";
+import { CATALOG_MENU, VYROBY_MENU } from "@/app/_lib/catalog-menu";
 import { TYPE_URL, landingPath } from "@/app/_lib/catalog-url";
 
 import {
@@ -75,12 +75,18 @@ export async function catalogMetadata(
 }
 
 /**
- * Подкатегории страницы типа (/kataloh/keramogranit/): подборки
- * «призначення + тип» — те же подписи и адреса, что в меню «Каталог» шапки.
- * Только на «чистой» странице типа: с добавленными фильтрами — нет.
+ * Подкатегории подборки: на странице типа (/kataloh/keramogranit/) — подборки
+ * «призначення + тип», как в меню «Каталог» шапки; на «Стільниці»
+ * (/kataloh/stilnytsi/) — стільниці по материалу, как в меню «Вироби».
+ * Только на «чистой» подборке: с добавленными фильтрами — нет.
  */
 function typeSubcategories(landing: string | undefined, selected: Selected) {
-  const section = CATALOG_MENU.find((s) => landing === TYPE_URL[s.key]);
+  const type = CATALOG_MENU.find((s) => landing === TYPE_URL[s.key]);
+  const section = type
+    ? { href: type.href, heading: `${type.title} за призначенням`, items: type.items }
+    : landing === "stilnytsi"
+      ? { href: VYROBY_MENU[0].href, heading: "Стільниці за матеріалом", items: VYROBY_MENU[0].items }
+      : null;
   return section && landingPath(selected) === section.href ? section : null;
 }
 
@@ -93,12 +99,12 @@ type Subcategories = NonNullable<ReturnType<typeof typeSubcategories>>;
 function SubcategoryLinks({ section }: { section: Subcategories }) {
   return (
     <nav
-      aria-label={`${section.title} за призначенням`}
+      aria-label={section.heading}
       // По 40px от полосы героя (её низ — 154px от начала колонки) и до фильтров.
       className="mt-[194px] flex w-[1120px] flex-col items-start gap-[20px]"
     >
       <Heading level={2} className={`text-trim whitespace-nowrap ${H3_SB} text-ink`}>
-        {section.title} за призначенням
+        {section.heading}
       </Heading>
       <ul className="flex w-full flex-wrap items-start gap-[8px]">
         {section.items.map((l) => (
@@ -120,7 +126,7 @@ function SubcategoryLinks({ section }: { section: Subcategories }) {
 function MobileSubcategoryLinks({ section }: { section: Subcategories }) {
   return (
     <MSection className="pt-[24px] pb-[4px]" gap={16}>
-      <MTitle>{section.title} за призначенням</MTitle>
+      <MTitle>{section.heading}</MTitle>
       <ul className="-mx-[16px] flex w-[calc(100%+32px)] items-start gap-[8px] overflow-x-auto px-[16px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {section.items.map((l) => (
           <li key={l.label} className="flex shrink-0">

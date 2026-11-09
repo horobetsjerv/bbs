@@ -52,3 +52,49 @@ export const CATALOG_MENU: {
     ],
   },
 ];
+
+/**
+ * «Вироби на замовлення» по схеме из SEO-аудита: группа — виріб, внутри —
+ * подборки по материалу (те же адреса, что в каталоге). Группа без `href`
+ * («Кухонні фартухи», «Каміни») — не посадочная страница, только заголовок.
+ * Отдельной подборки «фартухи з кварцу» нет: кварц для фартухов — в подборке
+ * «Стільниці з кварцового каменю» (её H1 — «…для стільниць та кухонних фартухів»).
+ */
+export const VYROBY_MENU: { title: string; href: string | null; items: MenuLinkData[] }[] = [
+  {
+    title: "Стільниці",
+    href: landingHref("stilnytsi"),
+    items: [
+      { label: "Стільниці з керамограніту", href: landingHref("stilnytsi-z-keramogranitu") },
+      { label: "Стільниці з кварцового каменю", href: landingHref("stilnytsi-z-kvartsovoho-kameniu") },
+    ],
+  },
+  {
+    title: "Кухонні фартухи",
+    href: null,
+    items: [
+      { label: "Фартухи з керамограніту", href: landingHref("fartukhy-z-keramogranitu") },
+      { label: "Фартухи з кварцового каменю", href: landingHref("stilnytsi-z-kvartsovoho-kameniu") },
+    ],
+  },
+  {
+    title: "Підвіконня",
+    href: landingHref("pidvikonnia"),
+    items: [
+      { label: "Підвіконня з керамограніту", href: landingHref("pidvikonnia-z-keramogranitu") },
+      { label: "Підвіконня з кварцового каменю", href: landingHref("pidvikonnia-z-kvartsovoho-kameniu") },
+    ],
+  },
+  {
+    title: "Умивальники",
+    href: landingHref("umyvalnyky"),
+    items: [{ label: "Умивальники з керамограніту", href: landingHref("umyvalnyky-z-keramogranitu") }],
+  },
+  {
+    title: "Каміни",
+    href: null,
+    items: [
+      { label: "Облицювання камінів керамогранітом", href: landingHref("oblytsiuvannia-kaminiv-keramogranitom") },
+    ],
+  },
+];

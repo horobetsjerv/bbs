@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import { CATALOG_MENU, type MenuLinkData } from "@/app/_lib/catalog-menu";
-import { catalogHref } from "@/app/_lib/catalog-url";
+import { CATALOG_MENU, VYROBY_MENU, type MenuLinkData } from "@/app/_lib/catalog-menu";
 import { telHref } from "@/app/_lib/contacts";
 import { hrefProps } from "@/app/_lib/links";
 import type { ProjectCardData } from "@/app/_lib/content";
@@ -41,13 +40,6 @@ const NAV: {
   { label: "Шоурум", width: null, arrow: false, href: "/showroom/" },
 ];
 
-const K = { type: ["keramohranit"] };
-
-/**
- * «Вироби на замовлення» (Variant3). Своих страниц у изделий нет — ведём в
- * подборки каталога; у проектов фильтра нет. «Ресепшн» в базе не размечен —
- * общая страница изделий (вопрос заказчику).
- */
 /**
  * «Про компанію»: сам пункт ведёт на /pro-nas/, в панели — та же страница
  * явной ссылкой (не все догадываются нажать на заголовок меню), блог и
@@ -57,22 +49,6 @@ const ABOUT: MenuLinkData[] = [
   { label: "Про компанію", href: "/pro-nas/" },
   { label: "Блог", href: "/blog/" },
   { label: "Співпраця", href: "/spivpratsia/" },
-];
-
-const VYROBY: MenuLinkData[] = [
-  // «Ванна кімната» в фильтрах — пункт «Умивальники»; со стільницями — пересечение.
-  { label: "Стільниці у ванну", href: catalogHref({ product: ["stilnytsi"], application: ["umyvalnyky"] }) },
-  { label: "Стільниці на кухню", href: catalogHref({ product: ["stilnytsi"] }) },
-  { label: "Підвіконня", href: catalogHref({ product: ["pidvikonnia"] }) },
-  { label: "Раковини та умивальники", href: catalogHref({ product: ["umyvalnyky"] }) },
-  // «Стіни» в базе только у керамограніту — подборка совпадает со всем каталогом.
-  { label: "Стінові панелі", href: catalogHref({ application: ["stiny"], ...K }) },
-  { label: "Облицьовування каміна", href: catalogHref({ product: ["kaminy"] }) },
-  // Сходи есть у обоих типов, поэтому без типа.
-  { label: "Сходи", href: catalogHref({ application: ["skhody"] }) },
-  { label: "Ресепшн", href: "/proekty/" },
-  // «Столи» — применение базы вне списка ТЗ: в панели фильтров скрыто, ссылка работает.
-  { label: "Обідні та журнальні столи", href: catalogHref({ application: ["stoly"] }) },
 ];
 
 /**
@@ -205,7 +181,7 @@ function DesktopHeader({
                               key: "vyroby",
                               title: "Вироби на замовлення",
                               href: "/proekty/",
-                              content: <MenuGrid items={VYROBY} cols={3} />,
+                              content: <VyrobyGroups />,
                             },
                             {
                               key: "roboty",
@@ -397,6 +373,34 @@ function SectionsMenu({ sections }: { sections: MenuSection[] }) {
  * hover — semibold red, стрелка вниз). По просьбе заказчика не столбиком,
  * а в ряд: равные колонки, порядок слева направо.
  */
+/**
+ * «Вироби на замовлення» (схема SEO-аудита): группы-изделия в 3 колонки,
+ * под заголовком группы — подборки по материалу пунктами btn_header.
+ * Заголовок со страницей — ссылка, без неё («Кухонні фартухи») — текст.
+ */
+function VyrobyGroups() {
+  return (
+    <div className="grid w-full grid-cols-3 gap-y-[16px]">
+      {VYROBY_MENU.map((g) => (
+        <div key={g.title} className="flex flex-col items-start">
+          {g.href ? (
+            <a href={g.href} className="group flex px-[8px] pt-[14px] pb-[4px]">
+              <span className={`text-trim whitespace-nowrap ${H4_BTN} text-ink transition-colors ${HOVER_EASE} group-hover:text-red`}>
+                {g.title}
+              </span>
+            </a>
+          ) : (
+            <span className={`text-trim whitespace-nowrap px-[8px] pt-[14px] pb-[4px] ${H4_BTN} text-card-gray`}>
+              {g.title}
+            </span>
+          )}
+          <MenuGrid items={g.items} cols={1} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function MenuGrid({ items, cols }: { items: MenuLinkData[]; cols: number }) {
   return (
     <ul
