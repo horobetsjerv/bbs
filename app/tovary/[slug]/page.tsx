@@ -1,8 +1,8 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
-import { findMaterialId, getMaterial, getSimilar, materialSeo } from "@/app/_lib/catalog";
+import { findMaterialId, findMovedProduct, getMaterial, getSimilar, materialSeo } from "@/app/_lib/catalog";
 import ProductPage from "@/app/_components/product/ProductPage";
-import { CATALOG_PATH, STONE_TYPES, TYPE_BRAND } from "@/app/_lib/catalog-url";
+import { CATALOG_PATH, STONE_TYPES, TYPE_BRAND, TYPE_URL } from "@/app/_lib/catalog-url";
 import { breadcrumbLd } from "@/app/_components/seo/JsonLd";
 import { OG_BASE, assetUrl, pageUrl } from "@/app/_lib/site";
 
@@ -11,7 +11,12 @@ type Params = Promise<{ slug: string }>;
 
 async function load(slug: string) {
   const id = await findMaterialId(slug);
-  return id === null ? null : getMaterial(id);
+  if (id !== null) return getMaterial(id);
+  // Старый адрес (/tovary/blend-avorio/) или товар сменил толщины / формат —
+  // постоянный редирект на текущий адрес.
+  const moved = await findMovedProduct(slug);
+  if (moved) permanentRedirect(moved);
+  return null;
 }
 
 export async function generateMetadata({ params }: { params: Params }) {
@@ -37,9 +42,13 @@ export default async function MaterialPage({ params }: { params: Params }) {
   const similar = await getSimilar(m.id);
 
   const crumb = `${(m.collection?.name ?? m.brand.name).toUpperCase()}.${m.name.toUpperCase()}`;
-  // Одно название декора бывает в разных коллекциях (Blend / Calce Avorio) —
-  // в H1 коллекция идёт перед названием, как в крошке.
-  const title = (m.collection ? `${m.collection.name} ${m.name}` : m.name).toUpperCase();
+  // H1: «Керамограніт Laminam BLEND AVORIO 3мм 3000×1000» (SEO-аудит).
+  const title = m.heading;
+  const stoneType = STONE_TYPES.find((t) => TYPE_BRAND[t] === m.brand.slug);
+  // Крошки: подкатегория типа камня между каталогом и товаром (SEO-аудит).
+  const typeCrumb =
+    stoneType && m.typeLabel ? { name: m.typeLabel, path: `${CATALOG_PATH}${TYPE_URL[stoneType]}/` } : null;
+  const crumbs = ["Головна", "Каталог", ...(typeCrumb ? [typeCrumb.name] : []), crumb];
   const techRows = Object.entries(m.techSpecs ?? {}).map(([label, value]) => ({ label, value }));
   const seo = materialSeo(m);
   // У Laminam артикулов в данных клиента нет: импорт кладёт в поле slug
@@ -61,8 +70,8 @@ export default async function MaterialPage({ params }: { params: Params }) {
   return (
     <ProductPage
       variant="material"
-      breadcrumb={["Головна", "Каталог", crumb]}
-      ld={[breadcrumbLd(["Головна", "Каталог", crumb], seo.canonical), product]}
+      breadcrumb={crumbs}
+      ld={[breadcrumbLd(["Головна", "Каталог", ...(typeCrumb ? [typeCrumb] : []), crumb], seo.canonical), product]}
       title={title}
       brand={m.brand.name}
       images={m.images}
@@ -76,7 +85,7 @@ export default async function MaterialPage({ params }: { params: Params }) {
         { label: "Фактура поверхні", values: m.surfaces },
       ]}
       applications={m.applications.map((a) => a.slug)}
-      stoneType={STONE_TYPES.find((t) => TYPE_BRAND[t] === m.brand.slug)}
+      stoneType={stoneType}
       details={[
         ...(article ? [{ label: "Артикул", value: article }] : []),
         ...(m.designs.length ? [{ label: "Дизайн", value: m.designs.join(", ") }] : []),

@@ -11,7 +11,7 @@ import type { ProjectCardData } from "@/app/_lib/content";
 import { hrefProps } from "@/app/_lib/links";
 
 import { CatalogCard, ProjectCard, applicationSelection } from "../bbs/cards";
-import { Breadcrumbs, H2_SB, H3_L, H3_SB, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, TextLink, inset } from "../bbs/ui";
+import { Breadcrumbs, H2_SB, H3_L, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, MOB_L, MOB_SB, OutlineBtn, PrimaryBtn, TextLink, inset } from "../bbs/ui";
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import { ProjectPhotoGrid, ProjectSlider } from "./ProjectPhotos";
@@ -312,18 +312,11 @@ export default function ProductPage(props: ProductPageProps) {
 
                 {/* Характеристики: 453px, строки «название / значение». */}
                 <div className="flex w-[453px] shrink-0 flex-col items-start gap-[24px]">
-                  {/* Длинное название переносится справа и не наезжает на бренд. */}
-                  <div className="flex w-full items-start justify-between gap-[16px]">
-                    <p className={`text-trim shrink-0 whitespace-nowrap uppercase ${H3_L} text-ink`}>
-                      {brand}
-                    </p>
-                    {/* Единственный H1 страницы (таблица SEO): название товара. */}
-                    <Heading level={1}
-                      className={`text-trim text-right ${H3_SB} text-ink`}
-                    >
-                      {title}
-                    </Heading>
-                  </div>
+                  {/* Единственный H1 страницы: название товара — первым и крупно
+                      (SEO-аудит); бренд уже в нём, отдельной подписи нет. */}
+                  <Heading level={1} className={`text-trim w-full ${H2_SB} text-ink`}>
+                    {title}
+                  </Heading>
                   {info.map((r) => (
                     <InfoRow key={r.label} label={r.label} value={r.value} />
                   ))}

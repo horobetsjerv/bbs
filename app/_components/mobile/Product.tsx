@@ -118,10 +118,8 @@ export default function MobileProduct({
           {item ? (
             <h1 className="sr-only">{title}</h1>
           ) : (
-            <div className="flex w-full items-start justify-between gap-[16px] text-ink">
-              <p className={`text-trim shrink-0 whitespace-nowrap uppercase ${MOB_L}`}>{brand}</p>
-              <h1 className={`text-trim text-right ${MOB_SB}`}>{title}</h1>
-            </div>
+            // Название — первым и крупно (SEO-аудит); бренд уже в нём.
+            <MTitle as="h1">{title}</MTitle>
           )}
           {info.map((r) => (
             <InfoRow key={r.label} {...r} />

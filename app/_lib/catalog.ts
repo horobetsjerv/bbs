@@ -23,6 +23,7 @@ import {
   sameSelection,
   splitLanding,
   type LandingKey,
+  type StoneType,
 } from "./catalog-url";
 import { LANDING_TEXTS, type LandingText } from "./catalog-texts";
 
@@ -156,6 +157,8 @@ export type CatalogItem = {
   slug: string;
   /** Slug в адресе /tovary/{slug}/ — уникален на весь сайт (см. publicSlugs). */
   publicSlug: string;
+  /** Прежний slug (/tovary/blend-avorio/) — 301 на новый адрес. */
+  legacySlug: string;
   href: string;
   name: string;
   article: string;
@@ -206,13 +209,74 @@ const thicknessSlug = (label: string) =>
 /** Адрес карточки товара: один постоянный URL вне вложенности каталога. */
 export const productPath = (publicSlug: string) => `/tovary/${publicSlug}/`;
 
+type SpecRows = {
+  thicknesses: { thickness: { valueMm: number } }[];
+  sizes: { size: { widthMm: number; heightMm: number } }[];
+};
+
 /**
- * Публичные slug товаров. Slug в базе уникален только внутри бренда
- * (taj-mahal есть и у Laminam, и у Vicostone), а /tovary/{slug}/ — общий
- * для сайта. Правило: slug из базы, если среди опубликованных он один;
- * при совпадении — {бренд}-{slug}. Базу не меняем — считаем здесь, в одном месте.
+ * Толщина и формат товара для URL / H1 / Title (SEO-аудит: «керамограніт
+ * BLEND AVORIO 3мм 3000×1000»). Только если вариант один: у декора с
+ * несколькими толщинами или размерами первый из них вводил бы в заблуждение.
  */
-function publicSlugs(rows: { id: number; slug: string; brand: { slug: string } }[]) {
+function singleSpec(m: SpecRows) {
+  const mm = new Set(m.thicknesses.map((t) => t.thickness.valueMm));
+  const size = m.sizes.length === 1 ? m.sizes[0].size : null;
+  return {
+    mm: mm.size === 1 ? [...mm][0] : null,
+    size: size ? `${size.widthMm}x${size.heightMm}` : null,
+  };
+}
+
+/**
+ * Название товара для H1 и Title: «Керамограніт Laminam BLEND AVORIO 3мм 3000×1000» —
+ * тип, бренд, коллекция и декор капсом, толщина и формат (если один).
+ */
+export function productHeading(
+  m: SpecRows & { name: string; brand: { slug: string; name: string }; collection: { name: string } | null },
+) {
+  const { mm, size } = singleSpec(m);
+  return [
+    BRAND_TYPE[m.brand.slug]?.label,
+    m.brand.name,
+    (m.collection ? `${m.collection.name} ${m.name}` : m.name).toUpperCase(),
+    mm ? `${mm}мм` : null,
+    size?.replace("x", "×"),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+/**
+ * Публичные slug товаров (SEO-аудит): {тип}-{slug}-{толщина}-{формат} —
+ * keramogranit-blend-avorio-3mm-3000x1000. Толщина и формат — только если
+ * вариант один (singleSpec). Slug в базе уникален внутри бренда, а бренд
+ * задаёт тип, так что совпадений нет; на всякий случай — суффикс id.
+ */
+function publicSlugs(
+  rows: ({ id: number; slug: string; brand: { slug: string } } & SpecRows)[],
+) {
+  const taken = new Set<string>();
+  return new Map(
+    rows.map((r) => {
+      const { mm, size } = singleSpec(r);
+      const type = BRAND_TYPE[r.brand.slug];
+      let slug = [type ? TYPE_URL[type.slug as StoneType] : r.brand.slug, r.slug, mm ? `${mm}mm` : null, size]
+        .filter(Boolean)
+        .join("-");
+      if (taken.has(slug)) slug = `${slug}-${r.id}`;
+      taken.add(slug);
+      return [r.id, slug];
+    }),
+  );
+}
+
+/**
+ * Прежние публичные slug (/tovary/blend-avorio/) — для 301 на новые адреса.
+ * Правило было: slug из базы, если среди опубликованных он один;
+ * при совпадении — {бренд}-{slug}.
+ */
+function legacySlugs(rows: { id: number; slug: string; brand: { slug: string } }[]) {
   const count = new Map<string, number>();
   for (const r of rows) count.set(r.slug, (count.get(r.slug) ?? 0) + 1);
   const taken = new Set(rows.filter((r) => count.get(r.slug) === 1).map((r) => r.slug));
@@ -240,11 +304,13 @@ const loadMaterials = cache(async (): Promise<CatalogItem[]> => {
       designs: { with: { design: true } },
       applications: { with: { application: true } },
       thicknesses: { with: { thickness: true } },
+      sizes: { with: { size: true } },
       variants: { with: { size: true, thickness: true } },
     },
   });
 
   const slugs = publicSlugs(rows);
+  const legacy = legacySlugs(rows);
   return rows.map((m) => {
     const appSlugs = new Set(m.applications.map(({ application: a }) => a.slug));
     const covered = new Set(PURPOSES.flatMap((p) => p.from));
@@ -256,6 +322,7 @@ const loadMaterials = cache(async (): Promise<CatalogItem[]> => {
       id: m.id,
       slug: m.slug,
       publicSlug: slugs.get(m.id)!,
+      legacySlug: legacy.get(m.id)!,
       href: productPath(slugs.get(m.id)!),
       name: m.name,
       article: m.article,
@@ -459,6 +526,27 @@ export async function findMaterialId(publicSlug: string) {
   return (await loadMaterials()).find((m) => m.publicSlug === publicSlug)?.id ?? null;
 }
 
+/**
+ * Адрес товара по устаревшему slug /tovary/{slug}/ (для 301): прежний вид
+ * (blend-avorio) или прошлый вариант нового — у товара сменились толщины или
+ * формат (keramogranit-blend-avorio-3mm-… → keramogranit-blend-avorio-…).
+ */
+export async function findMovedProduct(slug: string) {
+  const all = await loadMaterials();
+  const old = all.find((m) => m.legacySlug === slug);
+  if (old) return old.href;
+  // {тип}-{slug из базы}, дальше конец или «-{цифра}» (толщина / формат).
+  // Самый длинный slug: avorio-nero не должен уйти на avorio.
+  return (
+    all
+      .filter((m) => {
+        const prefix = `${m.facets.type[0] ? TYPE_URL[m.facets.type[0].slug as StoneType] : m.brand.slug}-${m.slug}`;
+        return slug === prefix || (slug.startsWith(`${prefix}-`) && /^\d/.test(slug.slice(prefix.length + 1)));
+      })
+      .sort((a, b) => b.slug.length - a.slug.length)[0]?.href ?? null
+  );
+}
+
 /** Новый адрес товара по старому /catalog/{brand}/{slug} (для 301). */
 export async function findProductPath(brandSlug: string, slug: string) {
   return (await loadMaterials()).find((m) => m.brand.slug === brandSlug && m.slug === slug)?.href ?? null;
@@ -495,12 +583,13 @@ export const getMaterial = cache(async (id: number) => {
     (a, b) => a.thickness.valueMm - b.thickness.valueMm,
   );
   const href = (await getProductPaths()).get(m.id) ?? productPath(m.slug);
-  // H1 страницы товара (там он капсом): коллекция перед названием.
-  const title = m.collection ? `${m.collection.name} ${m.name}` : m.name;
+  // H1 страницы товара: «Керамограніт Laminam BLEND AVORIO 3мм 3000×1000».
+  const title = productHeading(m);
   return {
     id: m.id,
     slug: m.slug,
     href,
+    heading: title,
     name: m.name,
     article: m.article,
     brand: m.brand,
@@ -987,19 +1076,16 @@ export async function getCatalogSeo({
   };
 }
 
+/** Телефон в Description товара — как в Description подборок (catalog-texts). */
+const SEO_PHONE = "☎️ (067) 334-77-44";
+
 /**
- * SEO карточки товара. Шаблон таблицы: «{Назва товару} — купити, характеристики
- * й ціна | BBS». В названии бренд и коллекция: у Laminam Avorio/Nero повторяются
- * в разных коллекциях, а Title не должны дублироваться.
+ * SEO карточки товара (рекомендации аудита). Title: «{H1} — купити,
+ * характеристики й ціна | BBS», H1 — productHeading. Description — с телефоном.
  */
 export function materialSeo(m: NonNullable<Awaited<ReturnType<typeof getMaterial>>>) {
   const name = [m.brand.name, m.collection?.name, m.name].filter(Boolean).join(" ");
-  // Длинные названия (I Naturali … Book Match) — укорачиваем хвост, а не имя.
-  const title =
-    [
-      `${name} — купити, характеристики й ціна | BBS`,
-      `${name} — характеристики й ціна | BBS`,
-    ].find((t) => t.length <= 65) ?? `${name} | BBS`;
+  const title = `${m.heading} — купити, характеристики й ціна | BBS`;
   const kind = [m.typeLabel && lower(m.typeLabel), m.designs[0] && lower(m.designs[0])]
     .filter(Boolean)
     .join(" ");
@@ -1015,9 +1101,9 @@ export function materialSeo(m: NonNullable<Awaited<ReturnType<typeof getMaterial
   });
   const description = firstFitting(
     leads.flatMap((lead) => [
-      `${lead} Фото, характеристики, застосування й ціна в каталозі BBS.`,
-      `${lead} Ціна в каталозі BBS.`,
-      lead,
+      `${lead} Фото, характеристики, застосування й ціна в каталозі BBS ${SEO_PHONE}`,
+      `${lead} Ціна в каталозі BBS ${SEO_PHONE}`,
+      `${lead} ${SEO_PHONE}`,
     ]),
     160,
   );

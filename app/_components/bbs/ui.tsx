@@ -557,6 +557,9 @@ const CRUMB_HREF: Record<string, string> = {
   // Родители подборок каталога (крошки из getCatalogSeo).
   "Каталог керамограніту": "/kataloh/keramogranit/",
   "Каталог кварцового каменю": "/kataloh/kvartsovyi-kamin/",
+  // Тип камня в крошках карточки товара.
+  Керамограніт: "/kataloh/keramogranit/",
+  "Кварцовий камінь": "/kataloh/kvartsovyi-kamin/",
   Стільниці: "/kataloh/stilnytsi/",
   "Кухонні фартухи": "/kataloh/kukhonni-fartukhy/",
   Підвіконня: "/kataloh/pidvikonnia/",
