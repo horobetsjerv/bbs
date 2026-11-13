@@ -15,7 +15,7 @@ export const FALLBACK_SETTINGS = {
   /** Пустая ссылка — соцсеть не заполнена в админке. */
   socials: {
     telegram: "https://t.me/+380673347744" as string | null,
-    facebook: "https://www.facebook.com/share/1J9WnrF5Nh/" as string | null,
+    facebook: "https://www.facebook.com/bbs.stone.uaa" as string | null,
     instagram: "https://www.instagram.com/bbs.stone.ua/" as string | null,
   },
 };
