@@ -283,8 +283,16 @@ export function ProjectSlider({ images, compact = false }: { images: GalleryImag
   );
 }
 
-/** «Палітра»: сетка всех фото изделия; клик — фото крупно. */
-export function ProjectPhotoGrid({ images, compact = false }: { images: GalleryImage[]; compact?: boolean }) {
+/** «Палітра»: сетка всех фото изделия (и товара); клик — фото крупно. */
+export function ProjectPhotoGrid({
+  images,
+  compact = false,
+  title = "Фото виробу",
+}: {
+  images: GalleryImage[];
+  compact?: boolean;
+  title?: string;
+}) {
   const [zoom, setZoom] = useState<number | null>(null);
   const closeZoom = useCallback(() => setZoom(null), []);
   if (images.length < 2) return null;
@@ -292,10 +300,10 @@ export function ProjectPhotoGrid({ images, compact = false }: { images: GalleryI
     <section className="flex w-full flex-col items-start gap-[24px]">
       {/* compact — мобильная копия: настоящий h2 только там (см. Heading). */}
       {compact ? (
-        <h2 className="text-trim text-[24px] leading-[24px] font-semibold tracking-[-1.2px] text-ink">Фото виробу</h2>
+        <h2 className="text-trim text-[24px] leading-[24px] font-semibold tracking-[-1.2px] text-ink">{title}</h2>
       ) : (
         <Heading level={2} className={`text-trim ${H2_SB} text-ink`}>
-          Фото виробу
+          {title}
         </Heading>
       )}
       <ul className={`grid w-full ${compact ? "grid-cols-2 gap-[8px]" : "grid-cols-4 gap-[16px]"}`}>

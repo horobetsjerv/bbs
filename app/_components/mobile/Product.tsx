@@ -6,6 +6,7 @@ import { hrefProps } from "@/app/_lib/links";
 import { Breadcrumbs, H4_BTN, H4_L, HOVER_EASE, Icon, LINE_FILL, MOB_L, MOB_SB, TextLink, inset } from "../bbs/ui";
 import {
   SERVICES,
+  descriptionSection,
   TILES,
   UsageTile,
   type InfoRowData,
@@ -14,6 +15,7 @@ import {
 import MAccordion from "./Accordion";
 import MobileGallery from "./Gallery";
 import { ProjectPhotoGrid } from "../product/ProjectPhotos";
+import { MobileLandingSection } from "../catalog/LandingText";
 import {
   LEAD_ANCHOR,
   MCarousel,
@@ -109,7 +111,8 @@ export default function MobileProduct({
       <div className="w-full p-[16px]">
         <Breadcrumbs items={breadcrumb} tone="dark" wrap />
       </div>
-      <MobileGallery images={images} title={title} />
+      {/* Товар: наверху одно фото-заставка, все фото — галереей ниже. */}
+      <MobileGallery images={item ? images : images.slice(0, 1)} title={title} />
 
       <div className="contents" data-reveal>
         <MSection gap={16}>
@@ -176,11 +179,6 @@ export default function MobileProduct({
             </div>
           </MAccordion>
         )}
-        {!item && description && (
-          <MAccordion title="Опис">
-            <p className={`w-full whitespace-pre-line ${H4_L} text-ink`}>{description}</p>
-          </MAccordion>
-        )}
 
         <MCta
           variant="card"
@@ -195,11 +193,9 @@ export default function MobileProduct({
           href={leadHref()}
         />
 
-        {item && (
-          <div className="w-full px-[16px]">
-            <ProjectPhotoGrid images={images} compact />
-          </div>
-        )}
+        <div className="w-full px-[16px]">
+          <ProjectPhotoGrid images={images} compact title={item ? "Фото виробу" : "Фото матеріалу"} />
+        </div>
 
         {related && related.length > 0 && (
           <MSection gap={12}>
@@ -243,6 +239,9 @@ export default function MobileProduct({
             </div>
           )}
         </MSection>
+
+        {/* Описание товара — в конце страницы, после всего контента. */}
+        {!item && description && <MobileLandingSection section={descriptionSection(description)} />}
       </div>
     </>
   );

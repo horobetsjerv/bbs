@@ -15,10 +15,17 @@ import { Breadcrumbs, H2_SB, H3_L, H4_L, HOVER_EASE, Heading, Icon, LINE_FILL, M
 import ProductDetails from "./ProductDetails";
 import ProductGallery, { type GalleryImage } from "./ProductGallery";
 import { ProjectPhotoGrid, ProjectSlider } from "./ProjectPhotos";
+import { LandingSectionView } from "../catalog/LandingText";
 import MobileProduct from "../mobile/Product";
 import JsonLd from "../seo/JsonLd";
 
 const LIGHT = "var(--color-light-gray)";
+
+/** Описание товара из таблицы клиента: абзацы через перевод строки. */
+export const descriptionSection = (text: string) => ({
+  title: "Опис",
+  blocks: [{ kind: "text" as const, paragraphs: text.split(/\n+/).map((p) => p.trim()).filter(Boolean) }],
+});
 
 /** Плитки применений: иконка и короткая подпись по slug из базы. */
 export const TILES: Record<string, { icon: string; label: string; floor?: boolean }> =
@@ -308,7 +315,8 @@ export default function ProductPage(props: ProductPageProps) {
               {/* items-start: колонка характеристик бывает выше галереи — фото остаётся наверху. */}
               <div className="flex w-full items-start gap-[24px]">
                 {/* Галерея: превью лежат поверх фото на y 298. */}
-                <ProductGallery images={images} title={title} thumbsTop={298} />
+                {/* Наверху одно фото-заставка; все фото — галереей ниже (просьба клиента). */}
+                <ProductGallery images={images.slice(0, 1)} title={title} thumbsTop={298} />
 
                 {/* Характеристики: 453px, строки «название / значение». */}
                 <div className="flex w-[453px] shrink-0 flex-col items-start gap-[24px]">
@@ -360,9 +368,16 @@ export default function ProductPage(props: ProductPageProps) {
 
               {/* Свойства и консультация */}
               <div className="flex w-full items-start gap-[24px]">
-                <ProductDetails rows={details} description={description} />
+                <ProductDetails rows={details} />
                 {consultCard}
               </div>
+            </div>
+          )}
+
+          {/* Галерея всех фото товара; при одном фото её нет (оно уже наверху). */}
+          {!item && images.length > 1 && (
+            <div className="w-full pt-[40px]" style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}>
+              <ProjectPhotoGrid images={images} title="Фото матеріалу" />
             </div>
           )}
 
@@ -415,6 +430,16 @@ export default function ProductPage(props: ProductPageProps) {
                   ))}
             </div>
           </section>
+
+          {/* Описание из таблицы клиента — в конце страницы, после всего контента. */}
+          {!item && description && (
+            <div className="w-full pt-[40px]" style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}>
+              {/* Длинная строка на 1120px читается тяжело — колонка ~75 знаков. */}
+              <div className="max-w-[75ch]">
+                <LandingSectionView section={descriptionSection(description)} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Page>

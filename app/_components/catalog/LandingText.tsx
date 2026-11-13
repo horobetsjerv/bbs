@@ -224,3 +224,6 @@ export function MobileCatalogLandingText({ text }: { text: LandingText }) {
     </>
   );
 }
+
+/** Те же секции для описания товара (страница /tovary/…/). */
+export { Section as LandingSectionView, MSectionBlock as MobileLandingSection };
