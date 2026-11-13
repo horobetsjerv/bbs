@@ -374,6 +374,16 @@ export default function ProductPage(props: ProductPageProps) {
             </div>
           )}
 
+
+          {/* Описание из таблицы клиента — над галереей (фото у Vicostone бывает до 46). */}
+          {!item && description && (
+            <div className="w-full pt-[40px]" style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}>
+              {/* Длинная строка на 1120px читается тяжело — колонка ~75 знаков. */}
+              <div className="max-w-[75ch]">
+                <LandingSectionView section={descriptionSection(description)} />
+              </div>
+            </div>
+          )}
           {/* Галерея всех фото товара; при одном фото её нет (оно уже наверху). */}
           {!item && images.length > 1 && (
             <div className="w-full pt-[40px]" style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}>
@@ -430,16 +440,6 @@ export default function ProductPage(props: ProductPageProps) {
                   ))}
             </div>
           </section>
-
-          {/* Описание из таблицы клиента — в конце страницы, после всего контента. */}
-          {!item && description && (
-            <div className="w-full pt-[40px]" style={{ boxShadow: `inset 0 1px 0 ${LIGHT}` }}>
-              {/* Длинная строка на 1120px читается тяжело — колонка ~75 знаков. */}
-              <div className="max-w-[75ch]">
-                <LandingSectionView section={descriptionSection(description)} />
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </Page>

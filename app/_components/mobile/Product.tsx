@@ -193,6 +193,9 @@ export default function MobileProduct({
           href={leadHref()}
         />
 
+        {/* Описание товара — над галереей фото. */}
+        {!item && description && <MobileLandingSection section={descriptionSection(description)} />}
+
         <div className="w-full px-[16px]">
           <ProjectPhotoGrid images={images} compact title={item ? "Фото виробу" : "Фото матеріалу"} />
         </div>
@@ -239,9 +242,6 @@ export default function MobileProduct({
             </div>
           )}
         </MSection>
-
-        {/* Описание товара — в конце страницы, после всего контента. */}
-        {!item && description && <MobileLandingSection section={descriptionSection(description)} />}
       </div>
     </>
   );
