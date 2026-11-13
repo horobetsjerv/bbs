@@ -146,6 +146,26 @@ function Counter({ index, total }: { index: number; total: number }) {
  * Фото крупно: <dialog> на весь экран, стрелки и ←/→, Escape и клик по фону
  * закрывают. Открытие и закрытие — плавное проявление (как у формы заявки).
  */
+/**
+ * Попал ли клик в видимую часть фото: <img> растянут на весь контейнер
+ * (object-contain), поэтому считаем прямоугольник картинки по её пропорциям.
+ * Берём верхнее видимое фото стопки (соседние смонтированы прозрачными).
+ */
+function hitsPhoto(box: HTMLElement, x: number, y: number) {
+  // Прозрачность — на обёртке фото (PhotoStack), проверяем всю цепочку до контейнера.
+  const visible = (el: Element | null): boolean =>
+    !el || el === box || (getComputedStyle(el).opacity !== "0" && visible(el.parentElement));
+  const img = [...box.querySelectorAll("img")].filter((i) => i.naturalWidth > 0 && visible(i)).at(-1);
+  if (!img) return false;
+  const r = img.getBoundingClientRect();
+  const scale = Math.min(r.width / img.naturalWidth, r.height / img.naturalHeight);
+  const w = img.naturalWidth * scale;
+  const h = img.naturalHeight * scale;
+  const left = r.left + (r.width - w) / 2;
+  const top = r.top + (r.height - h) / 2;
+  return x >= left && x <= left + w && y >= top && y <= top + h;
+}
+
 function Lightbox({
   images,
   index,
@@ -210,7 +230,14 @@ function Lightbox({
     >
       {index !== null && (
         <div className="relative size-full">
-          <div className="absolute inset-[56px_96px] max-md:inset-[56px_8px]" onClick={(e) => e.stopPropagation()}>
+          {/* Клик по самому фото окно не закрывает, по чёрным полям вокруг — закрывает
+              (фото вписано в контейнер на весь экран, поля — часть контейнера). */}
+          <div
+            className="absolute inset-[56px_96px] max-md:inset-[56px_8px]"
+            onClick={(e) => {
+              if (hitsPhoto(e.currentTarget, e.clientX, e.clientY)) e.stopPropagation();
+            }}
+          >
             <PhotoStack images={images} active={index} sizes="100vw" fit="contain" priority />
           </div>
           {n > 1 && (
