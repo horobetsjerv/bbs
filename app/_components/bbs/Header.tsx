@@ -12,7 +12,8 @@ import { ProjectCard } from "./cards";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
-import { H3_SB, H4_BTN, H4_L, HOVER_EASE, Icon, OutlineBtn, PrimaryBtn, SwapIcon } from "./ui";
+import SectionsMenu from "./SectionsMenu";
+import { H4_BTN, H4_L, HOVER_EASE, Icon, OutlineBtn, PrimaryBtn, SwapIcon } from "./ui";
 
 type Menu = "brands" | "catalog" | "vyroby" | "about";
 
@@ -282,87 +283,6 @@ function BrandsMenu() {
             </div>
           </div>
         </a>
-      </div>
-    </div>
-  );
-}
-
-// Пункты раздела раскрываются, пока курсор на его названии или на самих
-// пунктах (или фокус с клавиатуры внутри): высота 0fr → 1fr и проявление за
-// 250ms. Ловят курсор только пункты открытого раздела (pointer-events),
-// закрывающийся — уже нет, пока плавно гаснет. Строки статичные — их
-// собирает Tailwind.
-const SECTION_OPEN = {
-  keramohranit:
-    "group-has-[[data-sec=keramohranit]:hover]/cat:visible group-has-[[data-sec=keramohranit]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]:hover]/cat:opacity-100 group-has-[[data-sec=keramohranit]:hover]/cat:pointer-events-auto group-has-[[data-sec=keramohranit]:focus-visible]/cat:visible group-has-[[data-sec=keramohranit]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]:focus-visible]/cat:opacity-100 group-has-[[data-sec=keramohranit]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=keramohranit]_:focus-visible]/cat:visible group-has-[[data-sec=keramohranit]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=keramohranit]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=keramohranit]_:focus-visible]/cat:pointer-events-auto",
-  kvarts:
-    "group-has-[[data-sec=kvarts]:hover]/cat:visible group-has-[[data-sec=kvarts]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]:hover]/cat:opacity-100 group-has-[[data-sec=kvarts]:hover]/cat:pointer-events-auto group-has-[[data-sec=kvarts]:focus-visible]/cat:visible group-has-[[data-sec=kvarts]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]:focus-visible]/cat:opacity-100 group-has-[[data-sec=kvarts]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=kvarts]_:focus-visible]/cat:visible group-has-[[data-sec=kvarts]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=kvarts]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=kvarts]_:focus-visible]/cat:pointer-events-auto",
-  vyroby:
-    "group-has-[[data-sec=vyroby]:hover]/cat:visible group-has-[[data-sec=vyroby]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]:hover]/cat:opacity-100 group-has-[[data-sec=vyroby]:hover]/cat:pointer-events-auto group-has-[[data-sec=vyroby]:focus-visible]/cat:visible group-has-[[data-sec=vyroby]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]:focus-visible]/cat:opacity-100 group-has-[[data-sec=vyroby]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=vyroby]_:focus-visible]/cat:visible group-has-[[data-sec=vyroby]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=vyroby]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=vyroby]_:focus-visible]/cat:pointer-events-auto",
-  roboty:
-    "group-has-[[data-sec=roboty]:hover]/cat:visible group-has-[[data-sec=roboty]:hover]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]:hover]/cat:opacity-100 group-has-[[data-sec=roboty]:hover]/cat:pointer-events-auto group-has-[[data-sec=roboty]:focus-visible]/cat:visible group-has-[[data-sec=roboty]:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]:focus-visible]/cat:opacity-100 group-has-[[data-sec=roboty]:focus-visible]/cat:pointer-events-auto group-has-[[data-sec=roboty]_:focus-visible]/cat:visible group-has-[[data-sec=roboty]_:focus-visible]/cat:grid-rows-[1fr] group-has-[[data-sec=roboty]_:focus-visible]/cat:opacity-100 group-has-[[data-sec=roboty]_:focus-visible]/cat:pointer-events-auto",
-};
-const SECTION_ACTIVE = {
-  keramohranit:
-    "group-has-[[data-sec=keramohranit]:hover]/cat:text-red group-has-[[data-sec=keramohranit]_:focus-visible]/cat:text-red",
-  kvarts:
-    "group-has-[[data-sec=kvarts]:hover]/cat:text-red group-has-[[data-sec=kvarts]_:focus-visible]/cat:text-red",
-  vyroby:
-    "group-has-[[data-sec=vyroby]:hover]/cat:text-red group-has-[[data-sec=vyroby]_:focus-visible]/cat:text-red",
-  roboty:
-    "group-has-[[data-sec=roboty]:hover]/cat:text-red group-has-[[data-sec=roboty]_:focus-visible]/cat:text-red",
-};
-
-type MenuSection = {
-  key: keyof typeof SECTION_OPEN;
-  title: string;
-  href: string;
-  content: React.ReactNode;
-};
-
-/**
- * Панель с разделами: «Каталог» (в макете нет, собран в стиле Variant2/3) и
- * «Вироби на замовлення» (разделы «Вироби на замовлення» / «Готові роботи»).
- * Сначала только названия разделов; при наведении на раздел справа за синей
- * линией раскрывается его содержимое (пункты колонками или карточки проектов).
- * Содержимое всех разделов лежит в одной ячейке грида — панель плавно меняет
- * высоту при смене раздела. Название раздела невидимым продолжением (after)
- * тянется вправо на всю колонку пунктов: пока они раскрываются, курсор
- * по этой строке не теряет hover. Продолжение лежит под пунктами (-z-10),
- * колонка пунктов сама курсор не ловит (pointer-events-none).
- */
-function SectionsMenu({ sections }: { sections: MenuSection[] }) {
-  return (
-    <div className="group/cat flex w-full items-start">
-      <ul className="flex shrink-0 flex-col">
-        {sections.map((s) => (
-          <li key={s.key} className="flex">
-            <a
-              data-sec={s.key}
-              href={s.href}
-              className="relative flex w-full py-[14px] pr-[40px] pl-[8px] after:absolute after:inset-y-0 after:left-full after:-z-10 after:w-[calc(1120px-100%)] after:content-['']"
-            >
-              <span
-                className={`text-trim whitespace-nowrap ${H3_SB} text-ink transition-colors ${HOVER_EASE} hover:text-red ${SECTION_ACTIVE[s.key]}`}
-              >
-                {s.title}
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <div className="pointer-events-none grid min-w-px flex-1">
-        {sections.map((s) => (
-          <div
-            key={s.key}
-            data-sec={s.key}
-            className={`invisible col-start-1 row-start-1 grid grid-rows-[0fr] opacity-0 pointer-events-none transition-[grid-template-rows,opacity,visibility] duration-250 ease-out motion-reduce:transition-[opacity,visibility] ${SECTION_OPEN[s.key]}`}
-          >
-            <div className="min-h-0 overflow-hidden pl-[32px] shadow-[inset_2px_0_0_var(--color-blue)]">
-              {s.content}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );
