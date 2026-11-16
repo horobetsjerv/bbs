@@ -50,9 +50,10 @@ const nextConfig: NextConfig = {
     return [
       // Сайт переехал на VPS (bbs.in.ua) — демо на Vercel ведёт туда же, без дубля в поиске.
       {
-        source: "/:path*",
+        // (.*) — путь вместе со слешем в конце: иначе /kataloh/ → /kataloh → ещё один редирект.
+        source: "/:path(.*)",
         has: [{ type: "host", value: "bbs-demo-flax.vercel.app" }],
-        destination: "https://bbs.in.ua/:path*",
+        destination: "https://bbs.in.ua/:path",
         statusCode: 301,
       },
       ...MOVED.map(([source, destination]) => ({ source, destination, statusCode: 301 })),
