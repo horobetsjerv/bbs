@@ -15,10 +15,10 @@ import { TextInput } from "@astryxdesign/core/TextInput";
 import {
   ArrowDownUp,
   Building2,
-  Image as ImageIcon,
   Link2,
   Type as TypeIcon,
 } from "lucide-react";
+import { ImageUpload } from "../ui/ImageUpload";
 import { saveCollection, type CollectionInput } from "./actions";
 import type { Collection, CollectionFormOptions } from "./queries";
 
@@ -130,14 +130,13 @@ export function CollectionForm({ options, collection }: Props) {
           />
 
           <Grid columns={{ minWidth: 240, max: 2 }} gap={3}>
-            <TextInput
+            {/* Как обложка поста и фото проекта: файл грузится на сервер, в поле — его URL.
+                Уже сохранённая ссылка (обложки с сайта Laminam) остаётся, пока её не заменят. */}
+            <ImageUpload
               label="Обкладинка"
               value={image}
               onChange={setImage}
-              isOptional
-              startIcon={ImageIcon}
-              description="Посилання на зображення колекції"
-              width="100%"
+              description="Фото колекції. JPG, PNG або WebP до 10 МБ"
             />
             <NumberInput
               label="Порядок"
