@@ -47,7 +47,16 @@ const nextConfig: NextConfig = {
   // (то же правило, что у Next), но уже после карты редиректов.
   skipTrailingSlashRedirect: true,
   async redirects() {
-    return MOVED.map(([source, destination]) => ({ source, destination, statusCode: 301 }));
+    return [
+      // Сайт переехал на VPS (bbs.in.ua) — демо на Vercel ведёт туда же, без дубля в поиске.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "bbs-demo-flax.vercel.app" }],
+        destination: "https://bbs.in.ua/:path*",
+        statusCode: 301,
+      },
+      ...MOVED.map(([source, destination]) => ({ source, destination, statusCode: 301 })),
+    ];
   },
   // Заголовки безопасности — везде. Демо-копия (например, *.vercel.app):
   // SITE_NOINDEX=1 ещё закрывает все страницы от индексации, чтобы поисковики
