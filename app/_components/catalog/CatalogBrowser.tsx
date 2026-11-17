@@ -12,7 +12,7 @@ import type {
   SortKey,
 } from "@/app/_lib/catalog";
 
-import { catalogHref, catalogQuery } from "@/app/_lib/catalog-url";
+import { catalogHref, catalogQuery, landingPath } from "@/app/_lib/catalog-url";
 
 import { CatalogCard } from "../bbs/cards";
 import { CardSkeleton, ListMessage, useDelayed } from "../bbs/loading";
@@ -94,7 +94,8 @@ export function useCatalogState({
   const failed = offline || stuck;
   const retry = () => last.current && go(...last.current);
 
-  const toggle = (key: FilterKey, slug: string) => {
+  /** Выбор после клика по пункту фильтра. */
+  const nextSelection = (key: FilterKey, slug: string) => {
     const on = selected[key].includes(slug);
     const next = {
       ...selected,
@@ -114,9 +115,16 @@ export function useCatalogState({
       if (!on && selected.brand.length)
         for (const k of typeScoped) next[k] = [];
     }
+    return next;
+  };
+  const toggle = (key: FilterKey, slug: string) => {
+    const next = nextSelection(key, slug);
     setSelected(next);
     go(next, sort, 1);
   };
+  // Пункт ведёт на статичную подборку — её адрес для ссылки (только общий каталог).
+  const linkFor = (key: FilterKey, slug: string) =>
+    bbs ? landingPath(nextSelection(key, slug)) : null;
   const reset = () => {
     const empty = Object.fromEntries(
       Object.keys(selected).map((k) => [k, []]),
@@ -135,7 +143,7 @@ export function useCatalogState({
   }));
   const hasFilters = Object.values(selected).some((v) => v.length > 0);
 
-  return { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset };
+  return { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, linkFor, reset };
 }
 
 /**
@@ -172,7 +180,7 @@ export default function CatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset } =
+  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, linkFor, reset } =
     useCatalogState({ bbs, facets, sort, typeScoped });
   const slow = useDelayed(pending);
 
@@ -264,6 +272,7 @@ export default function CatalogBrowser({
           bbs={bbs}
           facets={shownFacets}
           onToggle={toggle}
+          linkFor={linkFor}
           collapsed={collapsed}
           onCollapse={(k) => setCollapsed((c) => flip(c, k))}
           expanded={expanded}

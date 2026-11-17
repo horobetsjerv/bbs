@@ -188,7 +188,7 @@ export default function MobileCatalogBrowser({
   sort: SortKey;
   typeScoped: FilterKey[];
 }) {
-  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, reset } = useCatalogState({
+  const { selected, shownFacets, hasFilters, pending, failed, retry, go, hrefFor, toggle, linkFor, reset } = useCatalogState({
     bbs,
     facets,
     sort,
@@ -243,13 +243,15 @@ export default function MobileCatalogBrowser({
     if (!open) return null;
     const options = byKey.get(open) ?? [];
     const onToggle = (slug: string) => toggle(open, slug);
-    if (open === "color") return <ColorGrid options={options} onToggle={onToggle} />;
+    const link = (slug: string) => linkFor(open, slug);
+    if (open === "color") return <ColorGrid options={options} onToggle={onToggle} linkFor={link} />;
     if (open === "type" || open === "collection")
       return options.map((o) => (
         <CompactCheck
           key={o.slug}
           option={open === "collection" ? { ...o, label: o.label.toUpperCase() } : o}
           onToggle={() => onToggle(o.slug)}
+          href={link(o.slug)}
         />
       ));
     return options.map((o, idx) => (
@@ -257,7 +259,7 @@ export default function MobileCatalogBrowser({
         {o.group && o.group !== options[idx - 1]?.group && (
           <p className={`text-trim whitespace-nowrap ${MOB_SB} text-card-gray`}>{o.group}</p>
         )}
-        <CountedCheck option={o} onToggle={() => onToggle(o.slug)} />
+        <CountedCheck option={o} onToggle={() => onToggle(o.slug)} href={link(o.slug)} />
       </Fragment>
     ));
   };

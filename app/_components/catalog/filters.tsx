@@ -4,11 +4,12 @@
 // в 16px паддинге с общей рамкой (обводка внутренняя, поэтому inset-тени).
 // Состав групп и пунктов — из базы (см. app/_lib/catalog.ts).
 
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 import type { Facet, FacetOption, FilterKey } from "@/app/_lib/catalog";
 
 import { HOVER_EASE, Icon } from "../bbs/ui";
+import { plainClick } from "./CatalogBrowser";
 
 const BORDER = "var(--color-card-gray)";
 /** Первая группа с рамкой по кругу, остальные — без верхней (границы общие). */
@@ -133,18 +134,41 @@ function Checkbox({
   );
 }
 
-type RowProps = { option: FacetOption; onToggle: () => void };
+/** Адрес статичной подборки, на которую ведёт пункт (null — обычный фильтр). */
+export type LinkFor = (slug: string) => string | null;
+
+type RowProps = { option: FacetOption; onToggle: () => void; href?: string | null };
+
+/**
+ * Пункт фильтра. Ведёт на статичную подборку (/kataloh/keramogranit-bilyi/) —
+ * настоящая ссылка, чтобы поисковик видел внутренние ссылки на подборки
+ * (SEO-аудит); обычный клик всё так же переключает фильтр без перезагрузки.
+ */
+function OptionControl({
+  href,
+  disabled,
+  onToggle,
+  ...rest
+}: {
+  href?: string | null;
+  disabled?: boolean;
+  onToggle: () => void;
+} & Omit<React.HTMLAttributes<HTMLElement>, "onClick">) {
+  if (href && !disabled)
+    return <a href={href} onClick={(e) => plainClick(e) && onToggle()} {...rest} />;
+  return <button type="button" disabled={disabled} onClick={onToggle} {...rest} />;
+}
 
 /** Строка без счётчика (тип, бренд, коллекция): метка по центру строки. */
-export function CompactCheck({ option, onToggle }: RowProps) {
+export function CompactCheck({ option, onToggle, href }: RowProps) {
   const { selected, disabled, label } = option;
   return (
-    <button
-      type="button"
+    <OptionControl
+      href={href}
       role="checkbox"
       aria-checked={selected}
       disabled={disabled}
-      onClick={onToggle}
+      onToggle={onToggle}
       className={`relative flex shrink-0 items-center gap-[8px] text-left ${
         disabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
@@ -159,20 +183,20 @@ export function CompactCheck({ option, onToggle }: RowProps) {
       >
         {label}
       </span>
-    </button>
+    </OptionControl>
   );
 }
 
 /** Строка со счётчиком (фактура, размер, толщина, применение). */
-export function CountedCheck({ option, onToggle }: RowProps) {
+export function CountedCheck({ option, onToggle, href }: RowProps) {
   const { selected, disabled, label, count } = option;
   return (
-    <button
-      type="button"
+    <OptionControl
+      href={href}
       role="checkbox"
       aria-checked={selected}
       disabled={disabled}
-      onClick={onToggle}
+      onToggle={onToggle}
       className={`relative flex max-w-full shrink-0 items-start gap-[8px] text-left ${
         disabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
@@ -195,7 +219,7 @@ export function CountedCheck({ option, onToggle }: RowProps) {
       >
         ({count})
       </span>
-    </button>
+    </OptionControl>
   );
 }
 
@@ -231,22 +255,24 @@ function ShowMore({
 export function ColorGrid({
   options,
   onToggle,
+  linkFor,
 }: {
   options: FacetOption[];
   onToggle: (slug: string) => void;
+  linkFor?: LinkFor;
 }) {
   return (
     <div className="grid w-full grid-cols-[repeat(6,32px)] gap-[8px]">
       {options.map((o) => (
-        <button
+        <OptionControl
           key={o.slug}
-          type="button"
+          href={linkFor?.(o.slug)}
           role="checkbox"
           aria-checked={o.selected}
           aria-label={`${o.label} (${o.count})`}
           title={`${o.label} (${o.count})`}
           disabled={o.disabled}
-          onClick={() => onToggle(o.slug)}
+          onToggle={() => onToggle(o.slug)}
           className={`block size-[32px] rounded-full ${
             o.disabled ? "cursor-not-allowed opacity-30" : "cursor-pointer"
           } ${o.selected ? "outline-2 outline-offset-2 outline-blue" : ""}`}
@@ -366,6 +392,7 @@ export default function FilterSidebar({
   bbs = false,
   facets,
   onToggle,
+  linkFor,
   collapsed,
   onCollapse,
   expanded,
@@ -374,6 +401,8 @@ export default function FilterSidebar({
   bbs?: boolean;
   facets: Facet[];
   onToggle: (key: FilterKey, slug: string) => void;
+  /** Адрес подборки для пункта группы (см. LinkFor). */
+  linkFor?: (key: FilterKey, slug: string) => string | null;
   collapsed: Set<string>;
   onCollapse: (key: FilterKey) => void;
   expanded: Set<string>;
@@ -397,6 +426,7 @@ export default function FilterSidebar({
             ? options.filter((o, idx) => idx < g.limit! || o.selected)
             : options;
         const toggle = (slug: string) => onToggle(g.key, slug);
+        const link = (slug: string) => linkFor?.(g.key, slug) ?? null;
         return (
           <div
             key={g.key}
@@ -410,7 +440,7 @@ export default function FilterSidebar({
             />
             <Collapse open={open}>
                 {g.kind === "color" && (
-                  <ColorGrid options={shown} onToggle={toggle} />
+                  <ColorGrid options={shown} onToggle={toggle} linkFor={link} />
                 )}
                 {g.kind === "compact" && (
                   <div className="relative flex shrink-0 flex-col items-start gap-[8px]">
@@ -421,14 +451,17 @@ export default function FilterSidebar({
                           g.upper ? { ...o, label: o.label.toUpperCase() } : o
                         }
                         onToggle={() => toggle(o.slug)}
+                        href={link(o.slug)}
                       />
                     ))}
                   </div>
                 )}
+                {/* Пункты за «Показати більше» тоже в разметке, только скрыты:
+                    ссылки на подборки (дизайни) видны поисковику. */}
                 {g.kind === "counted" &&
-                  shown.map((o, idx) => (
-                    <Fragment key={o.slug}>
-                      {o.group && o.group !== shown[idx - 1]?.group && (
+                  options.map((o, idx) => (
+                    <div key={o.slug} className={shown.includes(o) ? "contents" : "hidden"}>
+                      {o.group && o.group !== options[idx - 1]?.group && (
                         <p
                           className={`text-trim whitespace-nowrap ${TITLE} text-card-gray`}
                         >
@@ -438,8 +471,9 @@ export default function FilterSidebar({
                       <CountedCheck
                         option={o}
                         onToggle={() => toggle(o.slug)}
+                        href={link(o.slug)}
                       />
-                    </Fragment>
+                    </div>
                   ))}
                 {g.kind === "toggle" &&
                   shown.map((o) => (
