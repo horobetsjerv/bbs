@@ -24,7 +24,7 @@ export default async function VyrobyPage() {
       <JsonLd data={breadcrumbLd(["Головна", "Вироби на замовлення"], "/proekty/")} />
       <HeroBand
         breadcrumb={["Головна", "Вироби на замовлення"]}
-        overlay={{ src: "/figma/bbs/hero-blog-overlay.png", above: true }}
+        overlay={{ src: "/figma/bbs/hero-blog-overlay.webp", above: true }}
       >
         <div className="flex w-full flex-col items-start gap-[40px]">
           <Heading level={1} className={`text-trim w-full ${H1_L} text-white`}>

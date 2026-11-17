@@ -9,6 +9,7 @@ import { PROSE_MOBILE } from "../blog/prose";
 import { Breadcrumbs, CAPTION, H2_SB, MOB_L } from "../bbs/ui";
 import { PostCard } from "./Blog";
 import { MCta, MSection, MTitle } from "./ui";
+import { imgSrc } from "@/app/_lib/img";
 
 type Post = NonNullable<Awaited<ReturnType<typeof getPost>>>;
 
@@ -28,7 +29,7 @@ export default function MobilePost({ post, more }: { post: Post; more: PostCardD
           <h1 className={`text-trim w-full ${H2_SB} text-ink`}>{post.title}</h1>
         </div>
         {post.image && (
-          <img src={post.image} alt={post.title} width={343} height={193} className="block aspect-[16/9] w-full object-cover" />
+          <img {...imgSrc(post.image, 343, 193)} alt={post.title} width={343} height={193} className="block aspect-[16/9] w-full object-cover" />
         )}
         {post.body && (
           // HTML пишет редактор в админке — источник доверенный.

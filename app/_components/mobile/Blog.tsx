@@ -8,6 +8,7 @@ import type { PostCardData } from "@/app/_lib/content";
 import { CAPTION, H2_SB, H4_BTN, H4_L, Icon, MOB_L, MOB_SB, OutlineBtn, SiteLink, SwapIcon, inset } from "../bbs/ui";
 import MobilePager from "./Pager";
 import { MHero, MHeroText, MSection, MTitle } from "./ui";
+import { imgSrc } from "@/app/_lib/img";
 
 /** Card публикации (1268:12759): фото, заголовок в боксе 68, рубрика и дата справа. */
 export function PostCard({ title, category, date, image, href }: PostCardData) {
@@ -20,7 +21,7 @@ export function PostCard({ title, category, date, image, href }: PostCardData) {
       <div className="relative min-h-px w-full flex-1 bg-[#d9d9d9]">
         {image && (
           <img
-            src={image}
+            {...imgSrc(image, 168, 114)}
             alt={title}
             loading="lazy"
             width={168}
@@ -46,7 +47,7 @@ const OFFERS = [
     text: "Понад 400 декорів каменю, керамічних плит та HPL-плит стабільно підтримуються на складах у великому обсязі. Решту доставимо швидко під замовлення.",
     button: "Перейти до каталогу",
     href: "/kataloh/",
-    backgrounds: ["/figma/bbs/offer-bg-1.png"],
+    backgrounds: ["/figma/bbs/offer-bg-1.webp"],
     dark: true,
   },
   {
@@ -54,7 +55,7 @@ const OFFERS = [
     text: "Наші партнери зроблять стільницю, раковину, підвіконня, сходи, інші вироби з каменю і керамічних плит за проєктом будь-якої складності у будь-якій точці України",
     button: "Перейти до виробів на замовлення",
     href: "/proekty/",
-    backgrounds: ["/figma/bbs/offer-bg-1.png", "/figma/bbs/offer-bg-2.png"],
+    backgrounds: ["/figma/bbs/offer-bg-1.webp", "/figma/bbs/offer-bg-2.webp"],
     dark: false,
   },
 ];

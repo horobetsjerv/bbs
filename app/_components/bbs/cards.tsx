@@ -5,12 +5,13 @@ import { catalogHref, landingPath, splitLanding, typeSelection, type StoneType }
 import { hrefProps } from "@/app/_lib/links";
 
 import { CAPTION, CARD_HOVER, CARD_IMG, H3_L, H3_SB, H4_L, HOVER_EASE, MOB_SB, ONE_LINE, SwapIcon, TextLink } from "./ui";
+import { imgSrc } from "@/app/_lib/img";
 
 /** Card (декор): 262 × 374, фото 304, подписи H3 sb / H3 l, pb 8. */
 export function DecorCard({
   name = "AVORIO",
   brand = "Laminam",
-  image = "/figma/bbs/decor-card.png",
+  image = "/figma/bbs/decor-card.webp",
   imageHeight = 304,
   width = 262,
   href = "#",
@@ -38,7 +39,7 @@ export function DecorCard({
         {image && (
           <img
             loading="lazy"
-            src={image}
+            {...imgSrc(image, width, imageHeight)}
             alt={alt ?? name}
             width={width}
             height={imageHeight}
@@ -79,7 +80,7 @@ export function CatalogCard({
       <div className="relative h-[304px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
-            src={image}
+            {...imgSrc(image, 262, 304)}
             alt={alt ?? name}
             loading="lazy"
             width={262}
@@ -142,7 +143,7 @@ export function ProjectCard({
         {image && (
           <img
             loading="lazy"
-            src={image}
+            {...imgSrc(image, width, imageHeight)}
             alt={title}
             width={width}
             height={imageHeight}
@@ -196,7 +197,7 @@ export function ProjectCardWide({
         {image && (
           <img
             loading="lazy"
-            src={image}
+            {...imgSrc(image, 548, 200)}
             alt={title}
             width={548}
             height={200}

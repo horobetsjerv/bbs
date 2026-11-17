@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { H2_SB, Heading } from "../bbs/ui";
+import { imgSrc } from "@/app/_lib/img";
+
 import type { GalleryImage } from "./ProductGallery";
 
 // Фото изделия (/proekty/…): сверху — главное фото целиком, со стрелками и
@@ -12,11 +14,16 @@ import type { GalleryImage } from "./ProductGallery";
 // крупно (lightbox). Фото из админки лежат в public/uploads — их отдаёт
 // next/image: webp/avif нужного размера, ниже первого экрана — лениво.
 
-/** Локальное фото — через next/image (сжатие и размер), внешнее — как есть. */
+/**
+ * Локальное фото — через next/image (сжатие и размер), внешнее — как есть.
+ * `box` — рамка на странице (CSS px): фото под неё в 1x/2x (imgSrc), чтобы
+ * основной src был по размеру рамки, а не самой большой версией.
+ */
 function Photo({
   img,
   sizes,
   fit,
+  box,
   priority = false,
   className = "",
   onLoad,
@@ -24,15 +31,16 @@ function Photo({
   img: GalleryImage;
   sizes: string;
   fit: "contain" | "cover";
+  box?: [number, number];
   priority?: boolean;
   className?: string;
   onLoad?: () => void;
 }) {
   const cls = `${fit === "contain" ? "object-contain" : "object-cover"} ${className}`;
-  if (!img.full.startsWith("/"))
+  if (!img.full.startsWith("/") || box)
     return (
       <img
-        src={img.full}
+        {...imgSrc(img.full, box?.[0] ?? 1120, box?.[1])}
         alt={img.alt}
         loading={priority ? "eager" : "lazy"}
         onLoad={onLoad}
@@ -59,12 +67,14 @@ function PhotoStack({
   active,
   sizes,
   fit,
+  box,
   priority = false,
 }: {
   images: GalleryImage[];
   active: number;
   sizes: string;
   fit: "contain" | "cover";
+  box?: [number, number];
   priority?: boolean;
 }) {
   const n = images.length;
@@ -101,6 +111,7 @@ function PhotoStack({
           img={images[i]}
           sizes={sizes}
           fit={fit}
+          box={box}
           priority={priority && i === active}
           onLoad={() => markLoaded(i)}
         />
@@ -296,7 +307,14 @@ export function ProjectSlider({ images, compact = false }: { images: GalleryImag
         onClick={() => setZoom(active)}
         className="absolute inset-0 cursor-zoom-in"
       >
-        <PhotoStack images={images} active={active} sizes={compact ? "100vw" : "1120px"} fit="cover" priority />
+        <PhotoStack
+          images={images}
+          active={active}
+          sizes={compact ? "100vw" : "1120px"}
+          fit="cover"
+          box={compact ? [390, 360] : [1120, 640]}
+          priority
+        />
       </button>
       {n > 1 && (
         <>
@@ -346,6 +364,7 @@ export function ProjectPhotoGrid({
                 img={img}
                 sizes={compact ? "50vw" : "270px"}
                 fit="cover"
+                box={compact ? [190, 143] : [270, 203]}
                 className="transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
               />
             </button>

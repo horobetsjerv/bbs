@@ -126,7 +126,7 @@ export function ErrorHeroMobile({ code }: { code: Code }) {
     <section className="relative flex min-h-[694px] w-full flex-col items-center px-[16px] pt-[180px]">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <img
-          src="/figma/errors/hero-mobile.jpg"
+          src="/figma/errors/hero-mobile.webp"
           alt=""
           width={375}
           height={694}

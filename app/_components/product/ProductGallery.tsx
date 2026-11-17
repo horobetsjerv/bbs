@@ -4,6 +4,7 @@
 import { useState } from "react";
 
 import { inset } from "../bbs/ui";
+import { imgSrc } from "@/app/_lib/img";
 
 export type GalleryImage = { full: string; thumb: string; alt: string };
 
@@ -80,7 +81,7 @@ export default function ProductGallery({
       {current && (
         <img
           key={current.full}
-          src={current.full}
+          {...imgSrc(current.full, 548, 398)}
           alt={current.alt || title}
           width={548}
           height={398}
@@ -116,7 +117,7 @@ export default function ProductGallery({
                   }`}
                 >
                   <img
-                    src={img.thumb}
+                    {...imgSrc(img.thumb, 100, 100)}
                     alt={img.alt}
                     width={100}
                     height={100}

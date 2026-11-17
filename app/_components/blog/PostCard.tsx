@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 import { CAPTION, CARD_HOVER, CARD_IMG, H3_L, H3_SB } from "../bbs/ui";
+import { imgSrc } from "@/app/_lib/img";
 
 /** Card публикации: фото 304, заголовок (бокс 60px), рубрика и дата справа. */
 export default function PostCard({
@@ -24,7 +25,7 @@ export default function PostCard({
     >
       <div className="relative h-[304px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
-          <img src={image} alt={title} width={262} height={304} className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
+          <img {...imgSrc(image, 262, 304)} alt={title} width={262} height={304} className={`absolute inset-0 size-full max-w-none object-cover ${CARD_IMG}`} />
         )}
       </div>
       <div className="flex w-full flex-col items-start gap-[8px] px-[16px]">

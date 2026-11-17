@@ -124,7 +124,7 @@ export function Advantages({
         >
           {/* Текстура растянута во весь бокс, как в Figma (тот же файл, что на десктопе). */}
           <img
-            src="/figma/about/advantage-bg.png"
+            src="/figma/about/advantage-bg.webp"
             alt=""
             aria-hidden
             width={343}

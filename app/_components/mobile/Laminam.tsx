@@ -21,6 +21,7 @@ import {
 import { MFaq } from "./Home";
 import { MCarousel, MCta, MHero, MIconRow, MOutlineBtn, MSection, MTitle } from "./ui";
 import { LAMINAM_CATALOG_PATH } from "@/app/_lib/catalog-url";
+import { imgSrc } from "@/app/_lib/img";
 
 function Hero() {
   return (
@@ -93,7 +94,7 @@ async function Collections() {
               <SiteLink href={c.href} className="relative block h-[188px] w-full shrink-0 bg-[#d9d9d9]">
                 {c.image && (
                   <img
-                    src={c.image}
+                    {...imgSrc(c.image, 180, 188)}
                     alt={c.alt}
                     loading="lazy"
                     width={180}

@@ -10,6 +10,7 @@ import MobilePost from "@/app/_components/mobile/Post";
 import { getPost, getPosts } from "@/app/_lib/content";
 import JsonLd, { breadcrumbLd, orgRef } from "@/app/_components/seo/JsonLd";
 import { OG_BASE, assetUrl, pageUrl } from "@/app/_lib/site";
+import { imgSrc } from "@/app/_lib/img";
 
 type Params = Promise<{ slug: string }>;
 
@@ -78,7 +79,7 @@ export default async function PostPage({ params }: { params: Params }) {
               </header>
               {post.image && (
                 <img
-                  src={post.image}
+                  {...imgSrc(post.image, 794, 447)}
                   alt={post.title}
                   width={794}
                   height={447}

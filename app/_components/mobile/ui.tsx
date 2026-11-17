@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Tag } from "../bbs/cards";
 import FaqDetails from "../bbs/FaqDetails";
 import { Breadcrumbs, CAPTION, CARD_HOVER_FLAT, CARD_IMG, H2_L, H2_MOB_SB, H2_SB, H3_L, H4_L, HOVER_EASE, Icon, LINE_BASE_BLUE, LINE_FILL, MOB_L, MOB_SB, ONE_LINE, OutlineBtn, PrimaryBtn, SwapIcon, TextLink, inset } from "../bbs/ui";
+import { imgSrc } from "@/app/_lib/img";
 
 /** Форма заявки мобильной главной; десктопная (#lead-form) на мобиле скрыта. */
 export const LEAD_ANCHOR = "lead-form-m";
@@ -134,7 +135,7 @@ export function MDecorCard({
       <div className="relative min-h-px w-full flex-1 overflow-hidden bbs-skeleton">
         {image && (
           <img
-            src={image}
+            {...imgSrc(image, 180, 188)}
             alt={alt ?? name}
             loading="lazy"
             width={180}
@@ -173,7 +174,7 @@ export function MProjectCard({
       <div className="relative h-[200px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
-            src={image}
+            {...imgSrc(image, 262, 200)}
             alt={title}
             loading="lazy"
             width={262}
@@ -226,7 +227,7 @@ export function MProjectSmallCard({
       <div className="relative h-[180px] w-full shrink-0 overflow-hidden bbs-skeleton">
         {image && (
           <img
-            src={image}
+            {...imgSrc(image, 240, 180)}
             alt={title}
             loading="lazy"
             width={240}
@@ -300,12 +301,12 @@ export function MHero({
           />
         )}
         {photo && (
-          <img src={photo} alt={photoAlt} width={375} height={342} className="absolute inset-0 size-full max-w-none object-cover" />
+          <img {...imgSrc(photo, 375, 342)} alt={photoAlt} width={375} height={342} className="absolute inset-0 size-full max-w-none object-cover" />
         )}
         <div className="absolute inset-0 bg-black/60" />
         {bg === "overlay" && (
           <img
-            src="/figma/mobile/hero-overlay.png"
+            src="/figma/mobile/hero-overlay.webp"
             alt=""
             width={375}
             height={342}

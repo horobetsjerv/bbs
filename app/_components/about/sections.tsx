@@ -55,7 +55,7 @@ export function AdvantagesSection({ title, items }: { title: string; items: Adva
           >
             {/* Фон-заливка карточки (в Figma — растянут во весь бокс). */}
             <img
-              src="/figma/about/advantage-bg.png"
+              src="/figma/about/advantage-bg.webp"
               alt=""
               aria-hidden
               width={548}

@@ -15,7 +15,7 @@ const OFFERS = [
     text: "Понад 400 декорів каменю, керамічних плит та HPL-плит стабільно підтримуються на складах у великому обсязі. Решту доставимо швидко під замовлення.",
     button: "Перейти до каталогу",
     href: "/kataloh/",
-    backgrounds: ["/figma/bbs/offer-bg-1.png"],
+    backgrounds: ["/figma/bbs/offer-bg-1.webp"],
     dark: true,
   },
   {
@@ -23,7 +23,7 @@ const OFFERS = [
     text: "Наші партнери зроблять стільницю, раковину, підвіконня, сходи, інші вироби з каменю і керамічних плит за проєктом будь-якої складності у будь-якій точці України",
     button: "Перейти до виробів на замовлення",
     href: "/proekty/",
-    backgrounds: ["/figma/bbs/offer-bg-1.png", "/figma/bbs/offer-bg-2.png"],
+    backgrounds: ["/figma/bbs/offer-bg-1.webp", "/figma/bbs/offer-bg-2.webp"],
     dark: false,
   },
 ];

@@ -3,6 +3,7 @@
 import { randomBytes } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import sharp from "sharp";
 import { db } from "@/db";
 import { media } from "@/db/schema";
 
@@ -22,8 +23,29 @@ const EXT_BY_MIME: Record<string, string> = {
 const MAX_BYTES = 10 * 1024 * 1024;
 
 /**
- * Файл кладётся в public/uploads/ГГГГ/ММ/ и получает случайное имя,
- * запись о нём — в таблицу media. Отдаётся URL для поля формы.
+ * Мастер-копия фото: WebP высокого качества, не больше 2400 px по большей
+ * стороне (SEO-аудит: тяжёлые картинки). Под конкретное место на сайте
+ * размер уменьшает оптимизатор (app/_lib/img.ts). GIF — как есть
+ * (анимация); файл, который не удалось прочитать, тоже как есть.
+ */
+async function toMaster(input: Buffer, ext: string) {
+  if (ext === "gif") return { data: input, ext, mime: "image/gif" };
+  try {
+    const data = await sharp(input)
+      .rotate()
+      .resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 85 })
+      .toBuffer();
+    return { data, ext: "webp", mime: "image/webp" };
+  } catch {
+    return { data: input, ext, mime: `image/${ext === "jpg" ? "jpeg" : ext}` };
+  }
+}
+
+/**
+ * Файл (мастер-копия, см. toMaster) кладётся в public/uploads/ГГГГ/ММ/
+ * и получает случайное имя, запись о нём — в таблицу media. Отдаётся URL
+ * для поля формы.
  */
 export async function uploadImage(formData: FormData): Promise<UploadResult> {
   const file = formData.get("file");
@@ -37,15 +59,13 @@ export async function uploadImage(formData: FormData): Promise<UploadResult> {
   const now = new Date();
   const year = String(now.getFullYear());
   const month = String(now.getMonth() + 1).padStart(2, "0");
-  const filename = `${randomBytes(8).toString("hex")}.${ext}`;
+  const master = await toMaster(Buffer.from(await file.arrayBuffer()), ext);
+  const filename = `${randomBytes(8).toString("hex")}.${master.ext}`;
   const relativeDir = path.posix.join("uploads", year, month);
   const absoluteDir = path.join(process.cwd(), "public", relativeDir);
 
   await mkdir(absoluteDir, { recursive: true });
-  await writeFile(
-    path.join(absoluteDir, filename),
-    Buffer.from(await file.arrayBuffer()),
-  );
+  await writeFile(path.join(absoluteDir, filename), master.data);
 
   const url = `/${relativeDir}/${filename}`;
   const [row] = await db
@@ -53,8 +73,8 @@ export async function uploadImage(formData: FormData): Promise<UploadResult> {
     .values({
       url,
       filename: file.name.slice(0, 255),
-      mime: file.type,
-      sizeBytes: file.size,
+      mime: master.mime,
+      sizeBytes: master.data.length,
     })
     .returning({ id: media.id });
 

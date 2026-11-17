@@ -2,6 +2,7 @@
 import { getTopCollections } from "@/app/_lib/catalog";
 
 import { H3_L, H3_SB, OutlineBtn, SectionHeader, TextLink, inset } from "../bbs/ui";
+import { imgSrc } from "@/app/_lib/img";
 
 type Collection = Awaited<ReturnType<typeof getTopCollections>>[number];
 
@@ -14,7 +15,7 @@ function CollectionCard({ c }: { c: Collection }) {
       <div className="relative h-[304px] w-full shrink-0 bg-[#d9d9d9]">
         {c.image && (
           <img
-            src={c.image}
+            {...imgSrc(c.image, 262, 304)}
             alt={c.alt}
             width={262}
             height={304}

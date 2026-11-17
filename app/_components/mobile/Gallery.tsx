@@ -4,6 +4,7 @@
 import { useRef, useState } from "react";
 
 import type { GalleryImage } from "../product/ProductGallery";
+import { imgSrc } from "@/app/_lib/img";
 
 /** Больше семи точек не влезает красиво: дальше — «окно», едущее за активной. */
 const MAX_DOTS = 7;
@@ -54,7 +55,7 @@ export default function MobileGallery({
         {images.map((img, i) => (
           <img
             key={img.full + i}
-            src={img.full}
+            {...imgSrc(img.full, 375, 336)}
             alt={img.alt || title}
             loading={i === 0 ? "eager" : "lazy"}
             width={375}

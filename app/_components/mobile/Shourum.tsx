@@ -51,7 +51,7 @@ export default async function MobileShourum({ offers }: { offers: Offer[] }) {
       <div className="contents" data-reveal>
         {/* RealizedProjects (1624:13584): фото, адрес и график, Main_cta, текст. */}
         <MSection>
-          <Photo src="/figma/bbs/showroom-hall.jpg" alt="Шоурум BBS у Києві" height={322} />
+          <Photo src="/figma/bbs/showroom-hall.webp" alt="Шоурум BBS у Києві" height={322} />
           <MetaChips stack />
           <VisitBtn />
           <MTitle>Шоурум BBS — центр вибору матеріалів для дизайнерів та обробників</MTitle>
