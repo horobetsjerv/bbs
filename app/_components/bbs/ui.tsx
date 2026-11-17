@@ -161,13 +161,13 @@ function Arrow({ from, to, size, menu }: { from: ArrowState; to: ArrowState; siz
         !to.filled
           ? ""
           : menu
-            ? "group-hover/menu:[fill-opacity:1] group-has-[:focus-visible]/menu:[fill-opacity:1]"
+            ? "group-data-[open]/menu:[fill-opacity:1] group-has-[:focus-visible]/menu:[fill-opacity:1]"
             : "group-hover:[fill-opacity:1]"
       }`;
   const move =
     from.shape === "nav"
       ? menu
-        ? "group-hover/menu:rotate-90 group-has-[:focus-visible]/menu:rotate-90"
+        ? "group-data-[open]/menu:rotate-90 group-has-[:focus-visible]/menu:rotate-90"
         : "group-hover:rotate-90"
       : "group-hover:translate-x-[3px]";
   const color = `${ARROW_COLOR[from.color]} ${to.color !== from.color ? ARROW_HOVER_COLOR[to.color] : ""}`;
@@ -216,7 +216,7 @@ export function SwapIcon({
         height={size}
         className={`block size-full ${fade} ${
           menu
-            ? "group-hover/menu:opacity-0 group-has-[:focus-visible]/menu:opacity-0"
+            ? "group-data-[open]/menu:opacity-0 group-has-[:focus-visible]/menu:opacity-0"
             : "group-hover:opacity-0"
         }`}
       />
@@ -228,7 +228,7 @@ export function SwapIcon({
         height={size}
         className={`absolute inset-0 block size-full opacity-0 ${fade} ${
           menu
-            ? "group-hover/menu:opacity-100 group-has-[:focus-visible]/menu:opacity-100"
+            ? "group-data-[open]/menu:opacity-100 group-has-[:focus-visible]/menu:opacity-100"
             : "group-hover:opacity-100"
         }`}
       />

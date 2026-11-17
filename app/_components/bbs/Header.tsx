@@ -12,6 +12,7 @@ import { ProjectCard } from "./cards";
 import { NAVIGATION } from "./Footer";
 import HeaderMenu from "./HeaderMenu";
 import Logo from "./Logo";
+import NavMenus from "./NavMenus";
 import SectionsMenu from "./SectionsMenu";
 import { H4_BTN, H4_L, HOVER_EASE, Icon, OutlineBtn, PrimaryBtn, SwapIcon } from "./ui";
 
@@ -79,21 +80,21 @@ export default function Header({
   );
 }
 
-// Открытая панель: курсор на пункте или на самой панели (она внутри группы),
+// Открытая панель: пункт с data-open (ставит NavMenus по наведению),
 // либо фокус с клавиатуры внутри (focus-visible — клик мышью панель не держит).
 // Текст только краснеет: смена толщины шрифта сдвигала соседние пункты.
-const OPEN_TEXT = `transition-colors ${HOVER_EASE} group-hover/menu:text-red group-has-[:focus-visible]/menu:text-red`;
+const OPEN_TEXT = `transition-colors ${HOVER_EASE} group-data-[open]/menu:text-red group-has-[:focus-visible]/menu:text-red`;
 // Появление — плавно: прозрачность и сдвиг на 4px за 200ms (сдвиг — только
 // без prefers-reduced-motion). Закрытие с
 // задержкой 150ms (visibility переключается в конце transition): курсор
 // успевает наискосок дойти до панели через пустоту шапки, а панель остаётся
 // наводимой и снова «ловит» hover. Открытая — над закрывающейся.
 const PANEL =
-  "invisible absolute inset-x-0 top-full z-[1] flex -translate-y-[4px] justify-center motion-reduce:translate-none bg-white opacity-0 shadow-[inset_0_-1px_0_var(--color-light-gray)] transition-[opacity,translate,visibility] delay-150 duration-200 ease-out group-hover/menu:visible group-hover/menu:z-[2] group-hover/menu:translate-y-0 group-hover/menu:opacity-100 group-hover/menu:delay-0 group-has-[:focus-visible]/menu:visible group-has-[:focus-visible]/menu:z-[2] group-has-[:focus-visible]/menu:translate-y-0 group-has-[:focus-visible]/menu:opacity-100 group-has-[:focus-visible]/menu:delay-0";
+  "invisible absolute inset-x-0 top-full z-[1] flex -translate-y-[4px] justify-center motion-reduce:translate-none bg-white opacity-0 shadow-[inset_0_-1px_0_var(--color-light-gray)] transition-[opacity,translate,visibility] delay-150 duration-200 ease-out group-data-[open]/menu:visible group-data-[open]/menu:z-[2] group-data-[open]/menu:translate-y-0 group-data-[open]/menu:opacity-100 group-data-[open]/menu:delay-0 group-has-[:focus-visible]/menu:visible group-has-[:focus-visible]/menu:z-[2] group-has-[:focus-visible]/menu:translate-y-0 group-has-[:focus-visible]/menu:opacity-100 group-has-[:focus-visible]/menu:delay-0";
 // Пока панель открыта, строка шапки сплошная белая и без нижней линии —
 // в макете шапка с панелью один белый блок с линией снизу.
 const HEADER_OPEN =
-  "transition-[background-color,box-shadow] delay-150 duration-200 ease-out has-[[data-menu]:hover]:bg-white has-[[data-menu]:hover]:shadow-none has-[[data-menu]:hover]:delay-0 has-[[data-menu]_:focus-visible]:bg-white has-[[data-menu]_:focus-visible]:shadow-none has-[[data-menu]_:focus-visible]:delay-0";
+  "transition-[background-color,box-shadow] delay-150 duration-200 ease-out has-[[data-menu][data-open]]:bg-white has-[[data-menu][data-open]]:shadow-none has-[[data-menu][data-open]]:delay-0 has-[[data-menu]_:focus-visible]:bg-white has-[[data-menu]_:focus-visible]:shadow-none has-[[data-menu]_:focus-visible]:delay-0";
 
 function DesktopHeader({
   phone,
@@ -111,7 +112,7 @@ function DesktopHeader({
       <div className="flex w-[1280px] items-center px-[80px] py-[24px]">
         <div className="flex min-w-px flex-1 items-center gap-[24px]">
           <Logo />
-          <nav className="flex min-w-px flex-1 items-center justify-between">
+          <NavMenus className="flex min-w-px flex-1 items-center justify-between">
             {NAV.map((item) => {
               const width = item.width ? { width: `${item.width}px` } : undefined;
               if (!item.menu) {
@@ -232,7 +233,7 @@ function DesktopHeader({
             <PrimaryBtn href="/#lead-form" py={14} className="px-[16px]!">
               Залишити заявку
             </PrimaryBtn>
-          </nav>
+          </NavMenus>
         </div>
       </div>
     </header>
