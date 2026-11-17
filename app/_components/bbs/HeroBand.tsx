@@ -37,7 +37,7 @@ export default function HeroBand({
         style={fit ? { height: "auto", bottom: -154, minHeight: 368 } : height ? { height } : undefined}
       >
         <img
-          src="/figma/bbs/hero-laminam.jpg"
+          src="/figma/bbs/hero-laminam.webp"
           alt=""
           width={768}
           height={1024}

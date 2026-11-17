@@ -285,7 +285,7 @@ export function MHero({
     <section className="relative flex w-full flex-col items-start gap-[24px] px-[16px] pt-[24px] pb-[40px]">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <img
-          src="/figma/bbs/hero-laminam.jpg"
+          src="/figma/bbs/hero-laminam.webp"
           alt={bgAlt}
           width={768}
           height={1024}
