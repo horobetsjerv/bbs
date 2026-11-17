@@ -246,7 +246,7 @@ export const TILE_APPLICATION: Record<TileIcon, string> = {
  * Фильтры плитки в едином каталоге — такие, чтобы catalogHref вёл на
  * статичный адрес подборки, а не на ?application=…: «Стільниці» — виріб
  * (/kataloh/stilnytsi-zi-shtuchnoho-kameniu/), «Підлога» и «Стіни» в базе только у керамограніту
- * (/kataloh/keramogranit-dlia-pidlohy/), «Сходи» — /kataloh/skhody/.
+ * (/kataloh/keramogranit-dlia-pidlohy/), «Сходи» — фильтр /kataloh/?application=skhody.
  * Тип каменя плитки (`type`) заменяет тип из выбора.
  */
 const TILE_SELECTION: Record<TileIcon, Record<string, string[]>> = {

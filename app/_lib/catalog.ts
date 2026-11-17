@@ -18,6 +18,7 @@ import {
   STONE_TYPES,
   TYPE_URL,
   catalogHref,
+  hasOwnLanding,
   LAMINAM_CATALOG_PATH,
   landingPath,
   sameSelection,
@@ -719,6 +720,7 @@ export async function resolveLanding(slug: string): Promise<Partial<Selected> | 
   const base = { type: [parts.type] };
   if (!parts.rest) return base;
   for (const key of LANDING_KEYS) {
+    if (!hasOwnLanding(parts.type, key, parts.rest)) continue;
     if (all.some((m) => m.facets[key].some((o) => o.slug === parts.rest))) {
       return { ...base, [key]: [parts.rest] };
     }
@@ -747,12 +749,8 @@ const FIXED_SEO: Record<
   { label: string; h1: [light: string, bold: string]; name: string; lead?: string; parent?: string }
 > = {
   "stilnytsi-zi-shtuchnoho-kameniu": { label: "Стільниці", h1: ["Плити для", "стільниць"], name: "Плити для стільниць" },
-  "kukhonni-fartukhy": { label: "Кухонні фартухи", h1: ["Матеріали для", "кухонних фартухів"], name: "Матеріали для кухонних фартухів" },
   "pidvikonnia-zi-shtuchnoho-kameniu": { label: "Підвіконня", h1: ["Плити для", "підвіконь"], name: "Плити для підвіконь" },
   "umyvalnyky-zi-shtuchnoho-kameniu": { label: "Умивальники", h1: ["Плити для", "умивальників"], name: "Плити для умивальників" },
-  kaminy: { label: "Каміни", h1: ["Матеріали для", "облицювання камінів"], name: "Матеріали для облицювання камінів" },
-  fasady: { label: "Фасади", h1: ["Матеріали для", "фасадів"], name: "Матеріали для фасадів" },
-  skhody: { label: "Сходи", h1: ["Матеріали для", "сходів"], name: "Матеріали для сходів" },
   "stilnytsi-z-keramogranitu": {
     label: "Стільниці з керамограніту",
     h1: ["Стільниці з", "керамограніту"],
@@ -772,7 +770,6 @@ const FIXED_SEO: Record<
     h1: ["Кухонні фартухи з", "керамограніту"],
     name: "Кухонні фартухи з керамограніту",
     lead: "Керамограніт Laminam для кухонних фартухів",
-    parent: "Кухонні фартухи",
   },
   "pidvikonnia-z-keramogranitu": {
     label: "Підвіконня з керамограніту",
@@ -800,7 +797,6 @@ const FIXED_SEO: Record<
     h1: ["Облицювання камінів", "керамогранітом"],
     name: "Облицювання камінів керамогранітом",
     lead: "Керамограніт Laminam для облицювання камінів",
-    parent: "Каміни",
   },
   "keramogranit-dlia-fasadiv": {
     label: "Керамограніт для фасадів",
@@ -1128,7 +1124,7 @@ export async function getSitemapCatalog() {
     for (const key of LANDING_KEYS) {
       const slugs = new Set(ofType.flatMap((m) => m.facets[key].map((o) => o.slug)));
       for (const slug of slugs)
-        if (count({ ...base, [key]: [slug] }) >= 3) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}-${slug}/`);
+        if (hasOwnLanding(type, key, slug) && count({ ...base, [key]: [slug] }) >= 3) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}-${slug}/`);
     }
   }
   for (const l of FIXED_LANDINGS)

@@ -6,7 +6,6 @@
 //   /kataloh/keramogranit/                 — тип каменя (+ его бренд)
 //   /kataloh/kvartsovyi-kamin-bilyi/       — тип + цвет
 //   /kataloh/keramogranit-pid-marmur/      — тип + дизайн
-//   /kataloh/kvartsovyi-kamin-3000x1400/   — тип + размер
 //   /kataloh/stilnytsi-zi-shtuchnoho-kameniu/ — виріб (FIXED_LANDINGS)
 //   /kataloh/stilnytsi-z-keramogranitu/    — виріб / призначення + тип
 //
@@ -39,6 +38,18 @@ export const TYPE_BRAND: Record<StoneType, string> = {
 export const LANDING_KEYS = ["color", "design", "size"] as const;
 export type LandingKey = (typeof LANDING_KEYS)[number];
 
+/**
+ * Пункты, которые по SEO-аудиту остаются обычным фильтром (/kataloh/?…,
+ * noindex) без своего адреса: все размеры и часть дизайнов кварца.
+ * Старые адреса — 301 в next.config.ts.
+ */
+const DYNAMIC_KVARTS_DESIGNS = ["kroshka", "odnoton", "pid-granit", "pid-marmur"];
+export function hasOwnLanding(type: StoneType, key: string, value: string) {
+  if (key === "size") return false;
+  if (type === "kvarts" && key === "design") return !DYNAMIC_KVARTS_DESIGNS.includes(value);
+  return true;
+}
+
 type Selection = Record<string, string[]>;
 
 const K = { type: ["keramohranit"] };
@@ -60,14 +71,10 @@ export const LAMINAM_CATALOG_PATH = "/kataloh/keramogranit/";
 export const FIXED_LANDINGS: { slug: string; selected: Selection; entryOnly?: boolean }[] = [
   // Навигационные: «Вироби з каменю» → один пункт фильтра.
   { slug: "stilnytsi-zi-shtuchnoho-kameniu", selected: { product: ["stilnytsi"] } },
-  { slug: "kukhonni-fartukhy", selected: { product: ["fartukhy"] } },
   { slug: "pidvikonnia-zi-shtuchnoho-kameniu", selected: { product: ["pidvikonnia"] } },
   { slug: "umyvalnyky-zi-shtuchnoho-kameniu", selected: { product: ["umyvalnyky"] } },
-  { slug: "kaminy", selected: { product: ["kaminy"] } },
-  // «Фасади» — сфера використання, а не виріб: пункт «Для фасадів» в «Призначенні».
-  { slug: "fasady", selected: { application: ["fasad"] } },
-  // «Сходи» — то же: оба материала, пункт «Для сходів» (плитка «Сходи» главной).
-  { slug: "skhody", selected: { application: ["skhody"] } },
+  // Фартухи, каміни, фасади, сходи без типа каменя — по SEO-аудиту обычный
+  // фильтр (/kataloh/?…), без своего адреса; старые адреса — 301 в next.config.ts.
   // Виріб + матеріал.
   { slug: "stilnytsi-z-keramogranitu", selected: { product: ["stilnytsi"], ...K } },
   { slug: "stilnytsi-z-kvartsovoho-kameniu", selected: { product: ["stilnytsi"], ...Q } },
@@ -124,6 +131,7 @@ export function landingPath(selected: Selection): string | null {
   if (rest.length > 1) return null;
   const [key, values] = rest[0];
   if (!(LANDING_KEYS as readonly string[]).includes(key) || values.length !== 1) return null;
+  if (!hasOwnLanding(t, key, values[0])) return null;
   return `${CATALOG_PATH}${TYPE_URL[t]}-${values[0]}/`;
 }
 

@@ -561,10 +561,8 @@ const CRUMB_HREF: Record<string, string> = {
   Керамограніт: "/kataloh/keramogranit/",
   "Кварцовий камінь": "/kataloh/kvartsovyi-kamin/",
   Стільниці: "/kataloh/stilnytsi-zi-shtuchnoho-kameniu/",
-  "Кухонні фартухи": "/kataloh/kukhonni-fartukhy/",
   Підвіконня: "/kataloh/pidvikonnia-zi-shtuchnoho-kameniu/",
   Умивальники: "/kataloh/umyvalnyky-zi-shtuchnoho-kameniu/",
-  Каміни: "/kataloh/kaminy/",
 };
 
 /**
