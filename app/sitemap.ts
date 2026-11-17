@@ -9,7 +9,7 @@ const STATIC = ["/", "/laminam/", "/vicostone/", "/kataloh/", "/proekty/", "/blo
 
 /**
  * sitemap.xml: только индексируемые адреса — страницы, подборки каталога
- * с 3+ товарами (как в robots у самих подборок), товары, изделия, статьи.
+ * с товарами (как в robots у самих подборок), товары, изделия, статьи.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [catalog, projects, posts] = await Promise.all([

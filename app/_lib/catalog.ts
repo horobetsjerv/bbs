@@ -909,7 +909,7 @@ function parentCrumb(name: string) {
 /**
  * Title / Description / H1 / canonical / robots страницы каталога.
  * `landing` — slug подборки из адреса (/kataloh/{landing}/), у /kataloh/ — нет.
- * Подборка индексируется при 3+ товарах; любое другое сочетание фильтров —
+ * Подборка индексируется, если в ней есть товары; любое другое сочетание фильтров —
  * noindex с canonical на корень каталога (или на подборку с тем же выбором).
  */
 export async function getCatalogSeo({
@@ -961,8 +961,8 @@ export async function getCatalogSeo({
   const path = `${CATALOG_PATH}${own}/`;
   const all = await loadMaterials();
   const found = all.filter((m) => matches(m, selected));
-  // Таблица: статичный адрес фильтра открываем для индексации только при 3+ товарах.
-  const index = found.length >= 3;
+  // SEO-аудит: статичная подборка открыта, если в ней есть товары; пустая — noindex.
+  const index = found.length > 0;
   const canonical = `${path}${pageSuffix}`;
 
   const fixed = FIXED_SEO[own];
@@ -1107,7 +1107,7 @@ export function materialSeo(m: NonNullable<Awaited<ReturnType<typeof getMaterial
 }
 
 /**
- * Для sitemap.xml: подборки с 3+ товарами (остальные noindex) и все товары.
+ * Для sitemap.xml: подборки с товарами (пустые — noindex) и все товары.
  * Состав подборок — тот же, что у resolveLanding / getCatalogSeo.
  */
 export async function getSitemapCatalog() {
@@ -1119,16 +1119,16 @@ export async function getSitemapCatalog() {
   const landings: string[] = [];
   for (const type of STONE_TYPES) {
     const base = { type: [type] };
-    if (count(base) >= 3) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}/`);
+    if (count(base) > 0) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}/`);
     const ofType = all.filter((m) => m.facets.type.some((t) => t.slug === type));
     for (const key of LANDING_KEYS) {
       const slugs = new Set(ofType.flatMap((m) => m.facets[key].map((o) => o.slug)));
       for (const slug of slugs)
-        if (hasOwnLanding(type, key, slug) && count({ ...base, [key]: [slug] }) >= 3) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}-${slug}/`);
+        if (hasOwnLanding(type, key, slug) && count({ ...base, [key]: [slug] }) > 0) landings.push(`${CATALOG_PATH}${TYPE_URL[type]}-${slug}/`);
     }
   }
   for (const l of FIXED_LANDINGS)
-    if (count(l.selected) >= 3) landings.push(`${CATALOG_PATH}${l.slug}/`);
+    if (count(l.selected) > 0) landings.push(`${CATALOG_PATH}${l.slug}/`);
   return { landings, products: all.map((m) => m.href) };
 }
 
