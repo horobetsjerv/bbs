@@ -216,6 +216,7 @@ export default function MobileLaminam({
           questions={faq.map((f) => f.question)}
           answers={faq.map((f) => f.answer)}
           allHref={null}
+          heading
         />
         <MCta title={cta.title} text={cta.text} button={cta.button} innerGap={12} />
       </div>

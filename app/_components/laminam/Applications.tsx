@@ -3,7 +3,7 @@ import { LAMINAM_CATALOG_PATH } from "@/app/_lib/catalog-url";
 
 // SEO-таблица, лист «Laminam»: «Де використовують» — список дословно (со строчной,
 // «фасадів кухонь» продолжает «виготовлення стільниць»).
-export const USES_TITLE = "Де використовують";
+export const USES_TITLE = "Де використовують Laminam";
 export const USES = [
   "виготовлення стільниць",
   "фасадів кухонь",
