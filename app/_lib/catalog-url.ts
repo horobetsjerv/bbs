@@ -7,7 +7,7 @@
 //   /kataloh/kvartsovyi-kamin-bilyi/       — тип + цвет
 //   /kataloh/keramogranit-pid-marmur/      — тип + дизайн
 //   /kataloh/kvartsovyi-kamin-3000x1400/   — тип + размер
-//   /kataloh/stilnytsi/                    — виріб (FIXED_LANDINGS)
+//   /kataloh/stilnytsi-zi-shtuchnoho-kameniu/ — виріб (FIXED_LANDINGS)
 //   /kataloh/stilnytsi-z-keramogranitu/    — виріб / призначення + тип
 //
 // Любое другое сочетание фильтров остаётся на /kataloh/?… (noindex).
@@ -59,10 +59,10 @@ export const LAMINAM_CATALOG_PATH = "/kataloh/keramogranit/";
  */
 export const FIXED_LANDINGS: { slug: string; selected: Selection; entryOnly?: boolean }[] = [
   // Навигационные: «Вироби з каменю» → один пункт фильтра.
-  { slug: "stilnytsi", selected: { product: ["stilnytsi"] } },
+  { slug: "stilnytsi-zi-shtuchnoho-kameniu", selected: { product: ["stilnytsi"] } },
   { slug: "kukhonni-fartukhy", selected: { product: ["fartukhy"] } },
-  { slug: "pidvikonnia", selected: { product: ["pidvikonnia"] } },
-  { slug: "umyvalnyky", selected: { product: ["umyvalnyky"] } },
+  { slug: "pidvikonnia-zi-shtuchnoho-kameniu", selected: { product: ["pidvikonnia"] } },
+  { slug: "umyvalnyky-zi-shtuchnoho-kameniu", selected: { product: ["umyvalnyky"] } },
   { slug: "kaminy", selected: { product: ["kaminy"] } },
   // «Фасади» — сфера використання, а не виріб: пункт «Для фасадів» в «Призначенні».
   { slug: "fasady", selected: { application: ["fasad"] } },

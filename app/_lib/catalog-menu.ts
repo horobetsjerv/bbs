@@ -63,7 +63,7 @@ export const CATALOG_MENU: {
 export const VYROBY_MENU: { title: string; href: string | null; items: MenuLinkData[] }[] = [
   {
     title: "Стільниці",
-    href: landingHref("stilnytsi"),
+    href: landingHref("stilnytsi-zi-shtuchnoho-kameniu"),
     items: [
       { label: "Стільниці з керамограніту", href: landingHref("stilnytsi-z-keramogranitu") },
       { label: "Стільниці з кварцового каменю", href: landingHref("stilnytsi-z-kvartsovoho-kameniu") },
@@ -79,7 +79,7 @@ export const VYROBY_MENU: { title: string; href: string | null; items: MenuLinkD
   },
   {
     title: "Підвіконня",
-    href: landingHref("pidvikonnia"),
+    href: landingHref("pidvikonnia-zi-shtuchnoho-kameniu"),
     items: [
       { label: "Підвіконня з керамограніту", href: landingHref("pidvikonnia-z-keramogranitu") },
       { label: "Підвіконня з кварцового каменю", href: landingHref("pidvikonnia-z-kvartsovoho-kameniu") },
@@ -87,7 +87,7 @@ export const VYROBY_MENU: { title: string; href: string | null; items: MenuLinkD
   },
   {
     title: "Умивальники",
-    href: landingHref("umyvalnyky"),
+    href: landingHref("umyvalnyky-zi-shtuchnoho-kameniu"),
     items: [{ label: "Умивальники з керамограніту", href: landingHref("umyvalnyky-z-keramogranitu") }],
   },
   {

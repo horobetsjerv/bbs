@@ -1661,7 +1661,7 @@ export const LANDING_TEXTS: Record<string, LandingText> = {
   },
   // Лист «Стільниці зі штучного каменю» — навигационная подборка «Стільниці»
   // (оба материала).
-  stilnytsi: {
+  "stilnytsi-zi-shtuchnoho-kameniu": {
     title: "Стільниці зі штучного каменю на замовлення | BBS",
     description:
       "Виготовлення стільниць зі штучного каменю Laminam і Vicostone на замовлення ⭐ Індивідуальні розміри ⭐ Заміри та монтаж ☎️ (067) 334-77-44",
@@ -1773,7 +1773,7 @@ export const LANDING_TEXTS: Record<string, LandingText> = {
     },
   },
   // Лист «Підвіконня зі штучного каменю» — навигационная подборка «Підвіконня».
-  pidvikonnia: {
+  "pidvikonnia-zi-shtuchnoho-kameniu": {
     title: "Підвіконня зі штучного каменю на замовлення | BBS",
     description:
       "Виготовлення підвіконь зі штучного каменю Laminam і Vicostone за індивідуальними розмірами ⭐ Заміри та монтаж по Україні ☎️ (067) 334-77-44",
@@ -1900,7 +1900,7 @@ export const LANDING_TEXTS: Record<string, LandingText> = {
     },
   },
   // Лист «Умивальники зі штучного каменю» — навигационная подборка «Умивальники».
-  umyvalnyky: {
+  "umyvalnyky-zi-shtuchnoho-kameniu": {
     title: "Умивальники зі штучного каменю на замовлення | BBS",
     description:
       "Виготовлення умивальників зі штучного каменю Laminam і Vicostone на замовлення ⭐ Індивідуальний дизайн ⭐ Гарантія якості ☎️ (067) 334-77-44",

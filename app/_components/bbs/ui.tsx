@@ -560,10 +560,10 @@ const CRUMB_HREF: Record<string, string> = {
   // Тип камня в крошках карточки товара.
   Керамограніт: "/kataloh/keramogranit/",
   "Кварцовий камінь": "/kataloh/kvartsovyi-kamin/",
-  Стільниці: "/kataloh/stilnytsi/",
+  Стільниці: "/kataloh/stilnytsi-zi-shtuchnoho-kameniu/",
   "Кухонні фартухи": "/kataloh/kukhonni-fartukhy/",
-  Підвіконня: "/kataloh/pidvikonnia/",
-  Умивальники: "/kataloh/umyvalnyky/",
+  Підвіконня: "/kataloh/pidvikonnia-zi-shtuchnoho-kameniu/",
+  Умивальники: "/kataloh/umyvalnyky-zi-shtuchnoho-kameniu/",
   Каміни: "/kataloh/kaminy/",
 };
 

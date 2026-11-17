@@ -746,10 +746,10 @@ const FIXED_SEO: Record<
   string,
   { label: string; h1: [light: string, bold: string]; name: string; lead?: string; parent?: string }
 > = {
-  stilnytsi: { label: "Стільниці", h1: ["Плити для", "стільниць"], name: "Плити для стільниць" },
+  "stilnytsi-zi-shtuchnoho-kameniu": { label: "Стільниці", h1: ["Плити для", "стільниць"], name: "Плити для стільниць" },
   "kukhonni-fartukhy": { label: "Кухонні фартухи", h1: ["Матеріали для", "кухонних фартухів"], name: "Матеріали для кухонних фартухів" },
-  pidvikonnia: { label: "Підвіконня", h1: ["Плити для", "підвіконь"], name: "Плити для підвіконь" },
-  umyvalnyky: { label: "Умивальники", h1: ["Плити для", "умивальників"], name: "Плити для умивальників" },
+  "pidvikonnia-zi-shtuchnoho-kameniu": { label: "Підвіконня", h1: ["Плити для", "підвіконь"], name: "Плити для підвіконь" },
+  "umyvalnyky-zi-shtuchnoho-kameniu": { label: "Умивальники", h1: ["Плити для", "умивальників"], name: "Плити для умивальників" },
   kaminy: { label: "Каміни", h1: ["Матеріали для", "облицювання камінів"], name: "Матеріали для облицювання камінів" },
   fasady: { label: "Фасади", h1: ["Матеріали для", "фасадів"], name: "Матеріали для фасадів" },
   skhody: { label: "Сходи", h1: ["Матеріали для", "сходів"], name: "Матеріали для сходів" },

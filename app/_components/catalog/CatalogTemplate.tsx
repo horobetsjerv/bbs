@@ -77,14 +77,14 @@ export async function catalogMetadata(
 /**
  * Подкатегории подборки: на странице типа (/kataloh/keramogranit/) — подборки
  * «призначення + тип», как в меню «Каталог» шапки; на «Стільниці»
- * (/kataloh/stilnytsi/) — стільниці по материалу, как в меню «Вироби».
+ * (/kataloh/stilnytsi-zi-shtuchnoho-kameniu/) — стільниці по материалу, как в меню «Вироби».
  * Только на «чистой» подборке: с добавленными фильтрами — нет.
  */
 function typeSubcategories(landing: string | undefined, selected: Selected) {
   const type = CATALOG_MENU.find((s) => landing === TYPE_URL[s.key]);
   const section = type
     ? { href: type.href, heading: `${type.title} за призначенням`, items: type.items }
-    : landing === "stilnytsi"
+    : landing === "stilnytsi-zi-shtuchnoho-kameniu"
       ? { href: VYROBY_MENU[0].href, heading: "Стільниці за матеріалом", items: VYROBY_MENU[0].items }
       : null;
   return section && landingPath(selected) === section.href ? section : null;

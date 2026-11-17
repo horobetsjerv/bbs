@@ -29,9 +29,9 @@
 | Кварцовий камінь стільниця | `/kataloh/stilnytsi-z-kvartsovoho-kameniu/` | то же (FAQ 3/3); в этапах «колекцію Laminam» — как в листе |
 | Кварцит підвіконня | `/kataloh/pidvikonnia-z-kvartsovoho-kameniu/` | то же (FAQ 4/4); в этапах «колекцію Laminam» — как в листе (2026-10-22) |
 | Кварцит сходи | `/kataloh/skhody-z-kvartsovoho-kameniu/` | новая подборка «кварц + Для сходів»; то же (FAQ 4/4), «колекцію Laminam» — как в листе (2026-10-22) |
-| Стільниці зі штучного каменю | `/kataloh/stilnytsi/` | навигационная подборка (оба материала); title, description, H1, вступ, тексты, этапы, FAQ 4/4 (2026-10-22) |
-| Підвіконня зі штучного каменю | `/kataloh/pidvikonnia/` | то же (FAQ 5/5) |
-| Умивальники зі штучного каменю | `/kataloh/umyvalnyky/` | то же (FAQ 5/5) |
+| Стільниці зі штучного каменю | `/kataloh/stilnytsi-zi-shtuchnoho-kameniu/` | навигационная подборка (оба материала); title, description, H1, вступ, тексты, этапы, FAQ 4/4 (2026-10-22) |
+| Підвіконня зі штучного каменю | `/kataloh/pidvikonnia-zi-shtuchnoho-kameniu/` | то же (FAQ 5/5) |
+| Умивальники зі штучного каменю | `/kataloh/umyvalnyky-zi-shtuchnoho-kameniu/` | то же (FAQ 5/5) |
 | Каталог керамограніт | `/kataloh/keramogranit/` | title, description, H1, все тексты, таблица характеристик, FAQ 5/5, «Потрібна допомога…» после FAQ (2026-10-22) |
 | Каталог кварцовий камінь | `/kataloh/kvartsovyi-kamin/` | то же (FAQ 5/5) |
 | Співпраця | `/spivpratsia/` | тексты листа стоят (лист заполнен после сверки 12.10) |

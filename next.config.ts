@@ -18,6 +18,10 @@ const MOVED: [source: string, destination: string][] = [
   ["/kataloh/laminam", "/kataloh/keramogranit/"],
   // Отдельной подборки Vicostone нет: весь кварцовий камінь в базе — Vicostone.
   ["/kataloh/vicostone", "/kataloh/kvartsovyi-kamin/"],
+  // Навигационные подборки «Вироби» получили адреса с ключом (SEO-аудит).
+  ["/kataloh/stilnytsi", "/kataloh/stilnytsi-zi-shtuchnoho-kameniu/"],
+  ["/kataloh/pidvikonnia", "/kataloh/pidvikonnia-zi-shtuchnoho-kameniu/"],
+  ["/kataloh/umyvalnyky", "/kataloh/umyvalnyky-zi-shtuchnoho-kameniu/"],
   ["/vyroby", "/proekty/"],
   ["/vyroby/:slug", "/proekty/:slug/"],
   ["/contacts", "/kontakty/"],
