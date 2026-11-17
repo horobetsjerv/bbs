@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { OG_BASE, SITE_URL } from "./_lib/site";
+import Script from "next/script";
 import { Suspense } from "react";
 import NavProgress from "./_components/bbs/NavProgress";
 import { PreloaderArm } from "./_components/bbs/Preloader";
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/** Google Tag Manager заказчика (официальный код контейнера). */
+const GTM_ID = "GTM-T2F7C6S2";
+const GTM_SNIPPET = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`;
+
 // Цвет панели браузера на телефоне — как белая шапка сайта.
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -50,6 +59,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full motion-safe:scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* GTM без JavaScript — сразу после открытия body, как в инструкции Google. */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        <Script id="gtm" strategy="afterInteractive">
+          {GTM_SNIPPET}
+        </Script>
         {children}
         <PreloaderArm />
         {/* Полоса прогресса переходов; useSearchParams требует Suspense. */}
