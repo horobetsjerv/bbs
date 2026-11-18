@@ -118,6 +118,10 @@ function LeadForm({
     try {
       const next = await submitLead(prev, form);
       if (next.status === "ok") {
+        // GA через GTM (просьба заказчика): заявка принята сервером — событие для отчётов.
+        const w = window as typeof window & { dataLayer?: unknown[] };
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({ event: "lead_form_success" });
         rememberLead(leadKey(String(form.get("name")), String(form.get("phone")), String(form.get("message") ?? "")));
         onSent();
       }
