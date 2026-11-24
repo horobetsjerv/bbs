@@ -41,11 +41,13 @@ export async function syncLeadToSheets(leadId: number) {
   let error: string | null = null;
   try {
     // Apps Script отвечает редиректом на страницу с результатом — fetch идёт по нему.
+    // Первый вызов после простоя у Google бывает долгим (20+ с) — ждём до минуты;
+    // посетитель не ждёт (after), а повтор мог бы задвоить строку.
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(20_000),
+      signal: AbortSignal.timeout(60_000),
     });
     const text = await res.text();
     let data: { ok?: boolean; error?: string } = {};
