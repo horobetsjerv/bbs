@@ -1,8 +1,8 @@
 "use server";
 
-// Заявки с сайта → таблица leads (видны в админке, раздел «Заявки»)
-// и уведомление в Telegram-группу (telegram.ts). Google Sheets не подключены:
-// поля sheets_* остаются пустыми.
+// Заявки с сайта → таблица leads (видны в админке, раздел «Заявки»),
+// уведомление в Telegram-группу (telegram.ts) и строка в Google-таблице
+// «Ліди BBS» (sheets.ts).
 
 import { headers } from "next/headers";
 import { after } from "next/server";
@@ -11,6 +11,7 @@ import { db } from "@/db";
 import { leads } from "@/db/schema";
 
 import { nameError, phoneError } from "./lead-validation";
+import { syncLeadToSheets } from "./sheets";
 import { notifyLeadTelegram } from "./telegram";
 
 const FORM_TYPES = ["feedback", "sample_order", "price_request"] as const;
@@ -97,7 +98,7 @@ export async function submitLead(_prev: LeadState, form: FormData): Promise<Lead
     console.error("[leads] insert failed", e);
     return { status: "error", message: "Не вдалося надіслати заявку. Спробуйте ще раз.", values };
   }
-  // После ответа: посетитель не ждёт Telegram, сбой отправки не теряет заявку.
-  after(() => notifyLeadTelegram(leadId));
+  // После ответа: посетитель не ждёт Telegram и таблицу, сбой отправки не теряет заявку.
+  after(() => Promise.all([notifyLeadTelegram(leadId), syncLeadToSheets(leadId)]));
   return { status: "ok" };
 }
